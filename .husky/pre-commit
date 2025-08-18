@@ -1,0 +1,20 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🤖 Running Claude safety checks..."
+
+# Run our custom Claude safety check
+if ! ./scripts/claude-safety-check.sh; then
+    echo "❌ Pre-commit failed: Claude safety check found issues"
+    echo "💡 Fix the issues above and try committing again"
+    exit 1
+fi
+
+# Run build check
+echo "🏗️  Running build check..."
+if ! npm run build; then
+    echo "❌ Pre-commit failed: Build errors detected"
+    exit 1
+fi
+
+echo "✅ Pre-commit checks passed!"

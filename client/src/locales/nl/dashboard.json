@@ -1,0 +1,97 @@
+{
+  "crew": {
+    "welcome": "Welkom, {{name}}!",
+    "subtitle": "Ga verder met uw onboarding training reis",
+    "vessel": "Schip",
+    "position": "Positie",
+    "overall_progress": "Totale Voortgang",
+    "stats": {
+      "phases_completed": "Fasen Voltooid",
+      "items_completed": "Items Voltooid",
+      "quizzes_passed": "Examens Geslaagd",
+      "status": "Status"
+    },
+    "training_phases": {
+      "title": "Training Fasen",
+      "subtitle": "Voltooi elke fase in volgorde om vooruitgang te boeken",
+      "steps_label": "Stappen",
+      "quiz_label": "Examen",
+      "quiz_required": "Examen Vereist",
+      "quiz_passed": "Examen Geslaagd ({{score}}%)",
+      "quiz_failed": "Examen Gefaald ({{score}}%) - Herkansing Vereist",
+      "quiz_approved": "Examen Goedgekeurd ({{score}}%)",
+      "awaiting_review": "Wacht op Beoordeling ({{score}}%)",
+      "take_quiz": "Examen Maken",
+      "view_results": "Resultaten Bekijken",
+      "retake_quiz": "Examen Herkansen"
+    },
+    "next_steps": {
+      "title": "Volgende Stappen",
+      "complete_training": "Voltooi uw huidige training fase",
+      "take_quiz": "Maak het examen voor Fase {{phase}}",
+      "wait_approval": "Wacht op manager goedkeuring van uw examenresultaten",
+      "all_complete": "Gefeliciteerd! U heeft alle training fasen voltooid."
+    }
+  },
+  "manager": {
+    "welcome": "Manager Dashboard",
+    "subtitle": "Bewaak bemanning training voortgang en beheer onboarding",
+    "stats": {
+      "total_crew": "Totaal Bemanningsleden",
+      "active_training": "Actief in Training",
+      "completed": "Training Voltooid",
+      "pending_review": "Wacht op Beoordeling"
+    },
+    "crew_overview": {
+      "title": "Bemanning Overzicht",
+      "add_crew": "Nieuw Bemanningslid Toevoegen",
+      "search_placeholder": "Zoek bemanningsleden...",
+      "filter_all": "Alle",
+      "filter_active": "Actief",
+      "filter_completed": "Voltooid",
+      "filter_pending": "In afwachting"
+    },
+    "recent_activity": {
+      "title": "Recente Activiteit",
+      "no_activity": "Geen recente activiteit"
+    },
+    "pending_reviews": {
+      "title": "Examens Wachtend op Beoordeling",
+      "no_reviews": "Geen beoordelingen in afwachting",
+      "review_quiz": "Examen Beoordelen"
+    },
+    "forms": {
+      "first_name": "Voornaam",
+      "last_name": "Achternaam",
+      "email": "E-mailadres",
+      "position": "Positie",
+      "vessel_assignment": "Scheepstoewijzing",
+      "start_date": "Startdatum",
+      "create_crew_member": "Bemanningslid Aanmaken",
+      "update_crew_member": "Bemanningslid Bijwerken",
+      "creating": "Aanmaken...",
+      "updating": "Bijwerken...",
+      "name": "Naam",
+      "status": "Status",
+      "progress": "Voortgang",
+      "last_activity": "Laatste Activiteit",
+      "actions": "Acties",
+      "view_details": "Details Bekijken",
+      "edit_member": "Lid Bewerken",
+      "delete_member": "Lid Verwijderen",
+      "send_reminder": "Herinnering Versturen",
+      "export_data": "Gegevens Exporteren"
+    },
+    "table": {
+      "no_crew_members": "Geen bemanningsleden gevonden",
+      "loading": "Bemanningsleden laden...",
+      "total_crew_active": "Totaal Actieve Bemanning",
+      "average_completion": "Gemiddelde Voltooiing",
+      "overdue_training": "Achterstallige Training"
+    }
+  },
+  "manager": {
+    "welcome": "Manager Dashboard",
+    "subtitle": "Beheer bemanning onboarding en trainingsvoortgang"
+  }
+}

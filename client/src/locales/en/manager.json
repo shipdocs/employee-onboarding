@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Manager Dashboard",
+    "sections": {
+      "crew": {
+        "title": "Crew Members",
+        "description": "Manage your crew member roster and onboarding status",
+        "refresh": "Refresh",
+        "add": "Add Crew Member",
+        "search": "Search crew members...",
+        "selected": "{{count}} selected"
+      },
+      "quizReviews": {
+        "title": "Pending Quiz Reviews",
+        "description": "Review and approve quiz submissions from crew members",
+        "empty": "No Pending Reviews",
+        "emptyDescription": "All quiz submissions have been reviewed."
+      },
+      "onboardingReviews": {
+        "title": "Complete Onboarding Reviews",
+        "description": "Review complete training progress and approve final onboarding",
+        "empty": "No Pending Reviews",
+        "emptyDescription": "No crew members ready for final onboarding approval."
+      },
+      "compliance": {
+        "trainingProgress": "Training Progress by Position",
+        "sessionsCompleted": "{{count}} training sessions completed this week",
+        "lastUpdated": "Last updated: {{date}}",
+        "quizReviewsPending": "{{count}} quiz reviews pending your approval",
+        "requiresAttention": "Requires immediate attention",
+        "certificatesIssued": "{{count}} certificates issued this month",
+        "certificatesDistributed": "All certificates automatically distributed"
+      }
+    },
+    "filters": {
+      "allStatus": "All Status",
+      "notStarted": "Not Started",
+      "inProgress": "In Progress",
+      "formsCompleted": "Forms Completed",
+      "trainingCompleted": "Training Completed",
+      "fullyCompleted": "Fully Completed",
+      "suspended": "Suspended"
+    },
+    "table": {
+      "headers": {
+        "name": "Name",
+        "position": "Position",
+        "vessel": "Vessel",
+        "boardingDate": "Boarding Date",
+        "status": "Status",
+        "actions": "Actions"
+      }
+    },
+    "status": {
+      "notStarted": "Not Started",
+      "inProgress": "In Progress",
+      "formsCompleted": "Forms Completed",
+      "trainingCompleted": "Training Completed",
+      "fullyCompleted": "Fully Completed",
+      "suspended": "Suspended"
+    },
+    "actions": {
+      "view": "View crew member details",
+      "sendMagicLink": "Send magic link",
+      "sendSafetyPdf": "Send Safety Management PDF",
+      "sendOnboardingEmail": "Send Onboarding Start Email",
+      "edit": "Edit crew member",
+      "delete": "Delete crew member",
+      "approve": "Approve quiz",
+      "reject": "Reject quiz",
+      "approveOnboarding": "Approve Complete Onboarding"
+    },
+    "tooltips": {
+      "viewCrewMember": "View detailed crew member information, training progress, and completion status",
+      "sendMagicLink": "Send a secure login link to crew member's email for training access (3-hour expiration)",
+      "sendSafetyPDF": "Send the complete Safety Management System (SMS) PDF document to crew member",
+      "sendOnboardingStart": "Send welcome email to officially start the crew member's onboarding training process",
+      "resendCompletionEmail": "Resend completion certificate and congratulations email to fully trained crew member",
+      "editCrewMember": "Edit crew member details, position, vessel assignment, and other profile information",
+      "deleteCrewMember": "Permanently remove this crew member from the system (cannot be undone)"
+    },
+    "quiz": {
+      "passed": "Passed",
+      "failed": "Failed",
+      "requiresReview": "Quiz requires review"
+    },
+    "certificates": {
+      "issued": "Certificates Issued"
+    },
+    "bulk": {
+      "selectFirst": "Please select crew members first"
+    },
+    "messages": {
+      "crewCreated": "Crew member created successfully",
+      "crewCreateFailed": "Failed to create crew member",
+      "magicLinkSent": "Magic link sent successfully",
+      "magicLinkFailed": "Failed to send magic link",
+      "crewUpdated": "Crew member updated successfully",
+      "crewUpdateFailed": "Failed to update crew member",
+      "crewDeleted": "Crew member deleted successfully",
+      "crewDeleteFailed": "Failed to delete crew member",
+      "quizReviewed": "Quiz review completed successfully",
+      "quizReviewFailed": "Failed to review quiz",
+      "onboardingApproved": "Onboarding approved and certificate sent",
+      "onboardingApproveFailed": "Failed to approve onboarding",
+      "safetyPdfSent": "Safety Management PDF sent successfully",
+      "safetyPdfFailed": "Failed to send Safety PDF: {{error}}",
+      "onboardingEmailSent": "Onboarding Start email sent successfully",
+      "onboardingEmailFailed": "Failed to send Onboarding Start email: {{error}}",
+      "deleteConfirm": "Are you sure you want to delete {{name}}? This action cannot be undone.",
+      "bulkDeleteConfirm": "Are you sure you want to delete {{count}} crew member(s)? This action cannot be undone.",
+      "approveOnboardingConfirm": "Are you sure you want to approve this crew member's complete onboarding? This will generate and send their completion certificate."
+    },
+    "contentManagement": "Content Management",
+    "stats": {
+      "total_crew": "Total Crew",
+      "pending_reviews": "Pending Reviews",
+      "in_progress": "In Progress",
+      "not_started": "Not Started"
+    }
+  }
+}

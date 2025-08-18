@@ -1,0 +1,347 @@
+{
+  "dashboard": {
+    "title": "Admin Dashboard",
+    "loading": "Loading admin dashboard...",
+    "loadingDetails": "Fetching managers, templates, and system statistics",
+    "tabs": {
+      "overview": "Overview",
+      "managers": "Manager Management",
+      "templates": "PDF Templates",
+      "performance": "Performance",
+      "security": "Security",
+      "content": "Content Management",
+      "settings": "System Settings",
+      "audit": "Audit Log"
+    },
+    "stats": {
+      "managers": "Total Managers",
+      "crew": "Total Crew Members",
+      "sessions": "Active Sessions",
+      "health": "System Health"
+    },
+    "sections": {
+      "managers": {
+        "title": "Manager Accounts",
+        "description": "Manage manager accounts and permissions",
+        "add": "Add Manager",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "templates": {
+        "title": "PDF Templates",
+        "description": "Manage certificate and document templates",
+        "create": "Create Template",
+        "empty": "No templates",
+        "emptyDescription": "Get started by creating your first PDF template."
+      },
+      "content": {
+        "title": "Content Management",
+        "description": "Edit Training & Quizzes",
+        "redirecting": "Redirecting to Content Management..."
+      },
+      "audit": {
+        "view": "View Activity",
+        "title": "System Audit Log",
+        "description": "Track all administrative actions and system events",
+        "loading": "Loading audit logs...",
+        "failed": "Failed to load audit logs",
+        "tryAgain": "Try Again",
+        "filters": "Filters",
+        "refresh": "Refresh",
+        "action": "Action",
+        "allActions": "All Actions",
+        "resourceType": "Resource Type",
+        "fromDate": "From Date",
+        "toDate": "To Date",
+        "clearFilters": "Clear Filters",
+        "noLogs": "No audit logs found",
+        "noLogsDescription": "No audit log entries match your current filters.",
+        "viewDetails": "View Details",
+        "previous": "Previous",
+        "next": "Next",
+        "showing": "Showing",
+        "to": "to",
+        "of": "of",
+        "results": "results",
+        "page": "Page {{page}} of {{totalPages}}",
+        "actions": {
+          "adminLogin": "Admin Login",
+          "managerLogin": "Manager Login",
+          "crewLogin": "Crew Login",
+          "userCreated": "User Created",
+          "userUpdated": "User Updated",
+          "userDeleted": "User Deleted",
+          "emailSent": "Email Sent",
+          "certificateGenerated": "Certificate Generated"
+        },
+        "resourceTypes": {
+          "admin": "Admin",
+          "manager": "Manager",
+          "crew": "Crew",
+          "template": "Template",
+          "email": "Email"
+        }
+      }
+    },
+    "actions": {
+      "deactivate": "Deactivate manager",
+      "activate": "Activate manager",
+      "sendMagicLink": "Send magic login link",
+      "resendWelcomeEmail": "Resend welcome email",
+      "edit": "Edit manager",
+      "delete": "Delete manager"
+    },
+    "tooltips": {
+      "deactivateManager": "Deactivate this manager account and revoke access",
+      "activateManager": "Activate this manager account and grant access",
+      "sendMagicLink": "Send a secure login link to this manager's email (3-hour expiration)",
+      "resendWelcomeEmail": "Resend welcome email with new password and manager guide (respects current language preference)",
+      "editManager": "Edit manager account details, permissions, and settings",
+      "deleteManager": "Permanently delete this manager account (cannot be undone)"
+    },
+    "messages": {
+      "loadFailed": "Failed to load dashboard data",
+      "managerActivated": "Manager {{name}} activated successfully",
+      "managerDeactivated": "Manager {{name}} deactivated successfully",
+      "statusUpdateFailed": "Failed to update manager status",
+      "magicLinkSent": "Magic link sent to {{name}}",
+      "magicLinkFailed": "Failed to send magic link",
+      "welcomeEmailResent": "Welcome email with new credentials sent to {{name}}",
+      "welcomeEmailFailed": "Failed to send welcome email",
+      "deleteConfirm": "Are you sure you want to delete manager \"{{name}}\"? This action cannot be undone.",
+      "managerDeleted": "Manager deleted successfully",
+      "deleteFailed": "Failed to delete manager",
+      "templateDeleteConfirm": "Are you sure you want to delete template \"{{name}}\"? This action cannot be undone.",
+      "templateDeleted": "Template deleted successfully",
+      "templateDeleteFailed": "Failed to delete template",
+      "templatePreviewGenerated": "Preview generated for template \"{{name}}\"",
+      "templatePreviewFailed": "Failed to generate preview for template \"{{name}}\""
+    }
+  },
+  "settings": {
+    "title": "System Settings",
+    "description": "Configure global application settings and preferences",
+    "categories": {
+      "application": "Application",
+      "email": "Email",
+      "security": "Security", 
+      "training": "Training",
+      "notifications": "Notifications"
+    },
+    "descriptions": {
+      "application": "General application settings",
+      "email": "Email configuration and notifications",
+      "security": "Security and authentication settings",
+      "training": "Training and certification settings",
+      "notifications": "Notification preferences"
+    },
+    "actions": {
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "refresh": "Refresh",
+      "reset": "Reset to Defaults",
+      "unsaved_changes": "Unsaved changes"
+    },
+    "messages": {
+      "loading": "Loading system settings...",
+      "load_failed": "Failed to load system settings",
+      "try_again": "Try Again",
+      "reset_confirm": "Are you sure you want to reset {{category}} settings to defaults? This cannot be undone.",
+      "reset_all_confirm": "Are you sure you want to reset all settings to defaults? This cannot be undone."
+    },
+    "email": {
+      "provider_title": "Email Service Provider",
+      "provider_description": "Choose your email service provider. Only relevant settings will be shown below.",
+      "smtp_title": "SMTP",
+      "smtp_description": "ProtonMail, Gmail, etc.",
+      "mailersend_title": "MailerSend", 
+      "mailersend_description": "Transactional Email API"
+    },
+    "empty": {
+      "title": "No settings found",
+      "message": "No settings are available for this category."
+    }
+  },
+  "certificates": {
+    "title": "Certificates",
+    "description": "Manage crew certificates and documentation",
+    "loading": "Loading certificates...",
+    "error": "Error Loading Certificates",
+    "failed": "Failed to load certificates",
+    "tryAgain": "Try Again",
+    "search": "Search certificates...",
+    "refresh": "Refresh",
+    "noFound": "No Certificates Found",
+    "noFoundDescription": "No certificates match your current filters.",
+    "filters": {
+      "allTypes": "All Types",
+      "onboardingTraining": "Onboarding Training",
+      "introKapitein": "Intro Kapitein"
+    },
+    "table": {
+      "type": "Type",
+      "crewMember": "Crew Member",
+      "issueDate": "Issue Date",
+      "expiryDate": "Expiry Date",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "noExpiry": "No Expiry",
+      "expired": "Expired",
+      "expiringSoon": "Expiring Soon",
+      "valid": "Valid",
+      "unverified": "Unverified",
+      "verified": "Verified",
+      "notVerified": "Not Verified"
+    },
+    "details": {
+      "title": "Certificate Details",
+      "crewInfo": "Crew Member Information",
+      "name": "Name",
+      "email": "Email",
+      "position": "Position",
+      "vessel": "Vessel Assignment",
+      "editTitle": "Edit Certificate Details",
+      "certificateType": "Certificate Type",
+      "certificateNumber": "Certificate Number",
+      "issueDate": "Issue Date",
+      "expiryDate": "Expiry Date",
+      "issuingAuthority": "Issuing Authority",
+      "verified": "Verified",
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes",
+      "metadata": "Certificate Metadata",
+      "generatedBy": "Generated By",
+      "generatedAt": "Generated At",
+      "lastUpdated": "Last Updated",
+      "updatedBy": "Updated By",
+      "templateUsed": "Template Used",
+      "version": "Version",
+      "fileSize": "File Size",
+      "downloadCount": "Download Count",
+      "editDetails": "Edit Details",
+      "download": "Download Certificate",
+      "regenerateConfirm": "Confirm regeneration?",
+      "regenerateDescription": "This will create a new certificate file. The existing certificate will be replaced.",
+      "regenerate": "Regenerate Certificate",
+      "deleteConfirm": "Confirm deletion?",
+      "deleteDescription": "This action cannot be undone. The certificate and all its data will be permanently removed.",
+      "delete": "Delete Certificate"
+    },
+    "messages": {
+      "updated": "Certificate updated successfully",
+      "updateFailed": "Failed to update certificate: {{error}}",
+      "deleted": "Certificate deleted successfully",
+      "deleteFailed": "Failed to delete certificate: {{error}}",
+      "regenerated": "Certificate regenerated successfully",
+      "regenerateFailed": "Failed to regenerate certificate: {{error}}"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "showing": "Showing",
+      "to": "to",
+      "of": "of",
+      "results": "results"
+    }
+  },
+  "performance": {
+    "title": "Performance Dashboard",
+    "subtitle": "Maritime-specific performance monitoring and analytics",
+    "loading": "Loading performance data...",
+    "error_loading": "Error loading performance data",
+    "fetch_error": "Failed to fetch performance metrics",
+    "export": "Export Data",
+    "export_success": "Performance data exported successfully",
+    "export_error": "Failed to export performance data",
+    "time_ranges": {
+      "1h": "Last Hour",
+      "24h": "Last 24 Hours",
+      "7d": "Last 7 Days",
+      "30d": "Last 30 Days"
+    },
+    "metrics": {
+      "overall_score": "Overall Performance Score",
+      "active_users": "Active Users",
+      "avg_response_time": "Average Response Time",
+      "user_satisfaction": "User Satisfaction",
+      "connection_quality": "Connection Quality",
+      "location_distribution": "Location Distribution",
+      "maritime": {
+        "connection_quality": "Maritime Connection Quality",
+        "location_distribution": "Maritime Location Distribution",
+        "vessel_performance": "Vessel Performance",
+        "offshore_connectivity": "Offshore Connectivity",
+        "training_completion": "Training Completion Rates",
+        "safety_metrics": "Safety Metrics"
+      }
+    },
+    "charts": {
+      "response_time_trend": "Response Time Trend",
+      "user_activity": "User Activity",
+      "error_rate": "Error Rate",
+      "bandwidth_usage": "Bandwidth Usage"
+    },
+    "alerts": {
+      "title": "Performance Alerts",
+      "high_response_time": "High Response Time Detected",
+      "low_satisfaction": "Low User Satisfaction",
+      "connection_issues": "Connection Quality Issues",
+      "performance_degradation": "Performance Degradation"
+    },
+    "feedback": {
+      "recent_title": "Recent User Feedback"
+    },
+    "maritime": {
+      "connection_quality": "Maritime Connection Quality",
+      "location_distribution": "Maritime Location Distribution"
+    }
+  },
+  "security": {
+    "dashboard_title": "Security Monitoring",
+    "dashboard_subtitle": "Real-time security monitoring and threat detection",
+    "metrics": {
+      "active_threats": "Active Threats",
+      "failed_logins": "Failed Logins",
+      "blocked_requests": "Blocked Requests",
+      "security_score": "Security Score"
+    },
+    "time_range": "Time Range",
+    "severity_filter": "Severity Filter",
+    "search_events": "Search events...",
+    "recent_events": "Recent Security Events",
+    "event_type": "Event Type",
+    "severity": "Severity",
+    "user": "User",
+    "ip_address": "IP Address",
+    "timestamp": "Timestamp",
+    "actions": "Actions",
+    "no_events": "No security events found",
+    "no_events_description": "No security events match the current filters"
+  },
+  "data_export": {
+    "title": "Data Export & GDPR Management",
+    "subtitle": "Manage data exports and GDPR requests",
+    "exports_tab": "Data Exports",
+    "deletions_tab": "Data Deletions",
+    "export_id": "Export ID",
+    "export_type": "Export Type",
+    "user_email": "User Email",
+    "status": "Status",
+    "file_size": "File Size",
+    "created_at": "Created At",
+    "completed_at": "Completed At",
+    "actions": "Actions",
+    "view_details": "View Details",
+    "download": "Download",
+    "no_exports": "No data exports found",
+    "no_exports_description": "No data exports match the current filters",
+    "export_details": "Export Details",
+    "file_path": "File Path",
+    "error_message": "Error Message",
+    "close": "Close",
+    "loading": "Loading exports...",
+    "error_loading": "Error loading exports"
+  }
+}

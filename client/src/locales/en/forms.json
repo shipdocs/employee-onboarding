@@ -1,0 +1,170 @@
+{
+  "selectPosition": "Select position",
+  "addManager": {
+    "title": "Add New Manager",
+    "fields": {
+      "email": "Email Address",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number (optional)",
+      "company": "Company",
+      "preferredLanguage": "Preferred Language",
+      "permissions": "Permissions"
+    },
+    "permissionOptions": {
+      "crew_manage": "Manage crew members",
+      "quiz_review": "Review and approve quizzes",
+      "onboarding_approve": "Approve final onboarding",
+      "certificates_view": "View certificates",
+      "certificates_download": "Download certificates",
+      "certificates_regenerate": "Regenerate certificates",
+      "content_edit": "Edit training content"
+    },
+    "actions": {
+      "create": "Create Manager",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "success": "Manager created successfully",
+      "error": "Failed to create manager"
+    }
+  },
+  "editManager": {
+    "title": "Edit Manager",
+    "fields": {
+      "email": "Email Address",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "company": "Company",
+      "preferredLanguage": "Preferred Language",
+      "permissions": "Permissions",
+      "isActive": "Active Status"
+    },
+    "activeOptions": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "actions": {
+      "save": "Save Changes",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "success": "Manager updated successfully",
+      "error": "Failed to update manager"
+    }
+  },
+  "addCrewMember": {
+    "title": "Add New Crew Member",
+    "fields": {
+      "email": "Email Address",
+      "firstName": "First Name", 
+      "lastName": "Last Name",
+      "position": "Position",
+      "vesselAssignment": "Vessel Assignment",
+      "expectedBoardingDate": "Expected Boarding Date",
+      "contactPhone": "Contact Phone",
+      "emergencyContactName": "Emergency Contact Name",
+      "emergencyContactPhone": "Emergency Contact Phone",
+      "preferredLanguage": "Preferred Language"
+    },
+    "actions": {
+      "create": "Create Crew Member",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "success": "Crew member created successfully",
+      "error": "Failed to create crew member"
+    }
+  },
+  "editCrewMember": {
+    "title": "Edit Crew Member",
+    "fields": {
+      "email": "Email Address",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "position": "Position",
+      "vesselAssignment": "Vessel Assignment",
+      "expectedBoardingDate": "Expected Boarding Date",
+      "contactPhone": "Contact Phone",
+      "emergencyContactName": "Emergency Contact Name",
+      "emergencyContactPhone": "Emergency Contact Phone",
+      "preferredLanguage": "Preferred Language",
+      "isActive": "Active Status"
+    },
+    "actions": {
+      "save": "Save Changes",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "success": "Crew member updated successfully",
+      "error": "Failed to update crew member"
+    }
+  },
+  "quizReview": {
+    "title": "Review Quiz Submission",
+    "submittedBy": "Submitted by: {{name}}",
+    "phase": "Phase {{number}} Quiz",
+    "score": "Score: {{score}}/{{total}} ({{percentage}}%)",
+    "submittedAt": "Submitted: {{date}}",
+    "question": "Question {{number}}",
+    "userAnswer": "User Answer",
+    "correctAnswer": "Correct Answer",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "feedback": {
+      "title": "Manager Feedback",
+      "placeholder": "Provide feedback for the crew member (optional)"
+    },
+    "actions": {
+      "approve": "Approve Quiz",
+      "reject": "Reject Quiz",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "approveConfirm": "Are you sure you want to approve this quiz?",
+      "rejectConfirm": "Are you sure you want to reject this quiz? The crew member will need to retake it.",
+      "approved": "Quiz approved successfully",
+      "rejected": "Quiz rejected successfully",
+      "error": "Failed to process quiz review"
+    }
+  },
+  "onboardingReview": {
+    "title": "Review Complete Onboarding",
+    "crewMember": "Crew Member: {{name}}",
+    "position": "Position: {{position}}",
+    "vessel": "Vessel: {{vessel}}",
+    "summary": {
+      "title": "Training Summary",
+      "formsCompleted": "Forms: Completed",
+      "phase": "Phase {{number}}",
+      "status": "Status: {{status}}",
+      "quizScore": "Quiz: {{score}}/{{total}}",
+      "completedAt": "Completed: {{date}}"
+    },
+    "actions": {
+      "approve": "Approve & Issue Certificate",
+      "reject": "Request Additional Training",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "approveConfirm": "Are you sure you want to approve this crew member's onboarding? This will issue their completion certificate.",
+      "approved": "Onboarding approved and certificate issued",
+      "error": "Failed to process onboarding review"
+    }
+  },
+  "common": {
+    "required": "Required",
+    "optional": "Optional",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "submitting": "Submitting...",
+    "error": "An error occurred",
+    "tryAgain": "Try Again",
+    "close": "Close",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "errors": {
+    "general": {
+      "networkError": "Netwerkfout. Controleer uw verbinding.",
+      "serverError": "Serverfout. Probeer het later opnieuw.",
+      "unauthorized": "U bent niet geautoriseerd om deze actie uit te voeren.",
+      "sessionExpired": "Uw sessie is verlopen. Log opnieuw in.",
+      "notFound": "De opgevraagde bron is niet gevonden.",
+      "validationError": "Controleer uw invoer en probeer opnieuw.",
+      "timeout": "Verzoek time-out. Probeer het opnieuw."
+    },
+    "auth": {
+      "invalidCredentials": "Ongeldig e-mailadres of wachtwoord.",
+      "emailNotFound": "Geen account gevonden met dit e-mailadres.",
+      "passwordIncorrect": "Onjuist wachtwoord.",
+      "accountDisabled": "Uw account is uitgeschakeld.",
+      "magicLinkInvalid": "Deze inloglink is ongeldig of verlopen.",
+      "magicLinkUsed": "Deze inloglink is al gebruikt.",
+      "logoutFailed": "Uitloggen mislukt. Probeer het opnieuw."
+    },
+    "crew": {
+      "createFailed": "Aanmaken bemanningslid mislukt.",
+      "updateFailed": "Bijwerken bemanningslid mislukt.",
+      "deleteFailed": "Verwijderen bemanningslid mislukt.",
+      "notFound": "Bemanningslid niet gevonden.",
+      "emailExists": "Een bemanningslid met dit e-mailadres bestaat al.",
+      "invalidData": "Ongeldige bemanningslid gegevens opgegeven."
+    },
+    "manager": {
+      "createFailed": "Aanmaken manager mislukt.",
+      "updateFailed": "Bijwerken manager mislukt.",
+      "deleteFailed": "Verwijderen manager mislukt.",
+      "notFound": "Manager niet gevonden.",
+      "emailExists": "Een manager met dit e-mailadres bestaat al.",
+      "noPermission": "U heeft geen toestemming om andere managers te beheren."
+    },
+    "training": {
+      "sessionNotFound": "Trainingssessie niet gevonden.",
+      "itemNotFound": "Trainingsitem niet gevonden.",
+      "alreadyCompleted": "Dit trainingsitem is al voltooid.",
+      "notStarted": "Start eerst de trainingsfase.",
+      "completeFailed": "Markeren als voltooid mislukt.",
+      "proofRequired": "Bewijs van voltooiing is vereist voor dit item.",
+      "uploadFailed": "Uploaden bewijsdocument mislukt."
+    },
+    "quiz": {
+      "notAvailable": "Examen is nog niet beschikbaar.",
+      "alreadyPassed": "U bent al geslaagd voor dit examen.",
+      "submitFailed": "Indienen examen mislukt.",
+      "reviewFailed": "Beoordelen examen mislukt.",
+      "notFound": "Examen niet gevonden.",
+      "invalidAnswers": "Ongeldige examenantwoorden opgegeven.",
+      "incompleteTraining": "Voltooi alle trainingsitems voordat u het examen doet."
+    },
+    "certificates": {
+      "generateFailed": "Genereren certificaat mislukt.",
+      "notFound": "Certificaat niet gevonden.",
+      "notEligible": "Gebruiker komt niet in aanmerking voor certificaat.",
+      "sendFailed": "Versturen certificaat e-mail mislukt."
+    },
+    "email": {
+      "sendFailed": "Versturen e-mail mislukt.",
+      "invalidAddress": "Ongeldig e-mailadres.",
+      "templateNotFound": "E-mailsjabloon niet gevonden.",
+      "attachmentFailed": "Toevoegen document mislukt."
+    },
+    "pdf": {
+      "generateFailed": "Genereren PDF mislukt.",
+      "templateNotFound": "PDF sjabloon niet gevonden.",
+      "invalidData": "Ongeldige gegevens voor PDF generatie."
+    },
+    "upload": {
+      "failed": "Uploaden bestand mislukt.",
+      "tooLarge": "Bestand is te groot. Maximale grootte is {{maxSize}}.",
+      "invalidType": "Ongeldig bestandstype. Toegestane types: {{allowedTypes}}.",
+      "noFile": "Geen bestand opgegeven."
+    }
+  },
+  "success": {
+    "saved": "Wijzigingen succesvol opgeslagen.",
+    "created": "Succesvol aangemaakt.",
+    "updated": "Succesvol bijgewerkt.",
+    "deleted": "Succesvol verwijderd.",
+    "sent": "Succesvol verstuurd.",
+    "completed": "Succesvol voltooid.",
+    "approved": "Succesvol goedgekeurd.",
+    "rejected": "Succesvol afgekeurd."
+  }
+}

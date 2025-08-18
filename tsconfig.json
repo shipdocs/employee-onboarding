@@ -1,0 +1,75 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES6"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": true,
+    "paths": {
+      "@/*": [
+        "./lib/*"
+      ],
+      "@/services/*": [
+        "./services/*"
+      ],
+      "@/api/*": [
+        "./api/*"
+      ],
+      "@/client/*": [
+        "./client/src/*"
+      ],
+      "@/types/*": [
+        "./types/*"
+      ]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types",
+      "./lib"
+    ],
+    "types": [
+      "node",
+      "jest"
+    ],
+    "incremental": true
+  },
+  "include": [
+    "api/**/*",
+    "client/src/**/*",
+    "lib/**/*",
+    "services/**/*",
+    "types/**/*",
+    "scripts/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "coverage",
+    "tests",
+    "client/build",
+    "client/node_modules"
+  ]
+}

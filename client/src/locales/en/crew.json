@@ -1,0 +1,165 @@
+{
+  "dashboard": {
+    "title": "Crew Dashboard",
+    "welcome": "Welcome back, {{name}}!",
+    "sections": {
+      "profile": {
+        "title": "Your Profile",
+        "description": "View and update your personal information",
+        "view": "View Profile"
+      },
+      "trainingProgress": {
+        "title": "Training Progress",
+        "description": "Complete your onboarding training phases",
+        "phase": "Phase {{number}}",
+        "currentPhase": "Current Phase",
+        "completedPhase": "Completed Phase",
+        "upcomingPhase": "Upcoming Phase",
+        "dueDate": "Due: {{date}}",
+        "overdue": "Overdue",
+        "startTraining": "Start Training",
+        "continueTraining": "Continue Training",
+        "viewTraining": "View Training",
+        "takeQuiz": "Take Quiz",
+        "quizPassed": "Quiz Passed",
+        "quizFailed": "Quiz Failed - Retake Required",
+        "awaitingReview": "Quiz Submitted - Awaiting Review",
+        "itemsCompleted": "{{completed}} of {{total}} items completed"
+      },
+      "quizHistory": {
+        "title": "Quiz History",
+        "phase": "Phase {{number}} Quiz",
+        "score": "Score: {{score}}/{{total}}",
+        "passed": "Passed",
+        "failed": "Failed",
+        "pending": "Under Review",
+        "rejected": "Rejected - Please Retake",
+        "retake": "Retake Quiz",
+        "feedback": "Manager Feedback"
+      },
+      "forms": {
+        "title": "Required Forms",
+        "description": "Complete and submit required onboarding forms",
+        "notStarted": "Not Started",
+        "inProgress": "In Progress",
+        "completed": "Completed",
+        "complete": "Complete Forms",
+        "review": "Review Forms"
+      }
+    },
+    "status": {
+      "notStarted": "Not Started",
+      "inProgress": "In Progress",
+      "formsCompleted": "Forms Completed",
+      "trainingCompleted": "Training Completed",
+      "fullyCompleted": "Fully Completed",
+      "suspended": "Account Suspended"
+    },
+    "messages": {
+      "noActiveSession": "No active training session found",
+      "quizNotAvailable": "Quiz not available yet. Complete all training items first.",
+      "trainingCompleted": "Congratulations! You've completed all training phases.",
+      "certificateIssued": "Your completion certificate has been issued.",
+      "contactManager": "Please contact your manager if you have questions."
+    }
+  },
+  "training": {
+    "phase": "Phase {{number}}: {{title}}",
+    "progress": "Progress: {{percentage}}%",
+    "item": "Item {{number}}",
+    "markComplete": "Mark as Complete",
+    "uploadProof": "Upload Proof",
+    "proofRequired": "Proof of completion required",
+    "proofUploaded": "Proof uploaded",
+    "completed": "Completed",
+    "nextItem": "Next Item",
+    "previousItem": "Previous Item",
+    "backToOverview": "Back to Overview",
+    "completePhase": "Complete Phase",
+    "phaseCompleted": "Phase Completed!",
+    "proceedToQuiz": "Proceed to Quiz",
+    "messages": {
+      "itemCompleted": "Training item completed successfully",
+      "itemCompleteFailed": "Failed to complete training item",
+      "proofUploaded": "Proof uploaded successfully",
+      "proofUploadFailed": "Failed to upload proof",
+      "phaseCompleted": "Phase {{number}} completed successfully!",
+      "allItemsRequired": "Please complete all training items before taking the quiz"
+    }
+  },
+  "quiz": {
+    "title": "Phase {{number}} Quiz",
+    "instructions": "Please answer all questions carefully. You need to score at least {{passingScore}}% to pass.",
+    "question": "Question {{current}} of {{total}}",
+    "submit": "Submit Quiz",
+    "submitting": "Submitting...",
+    "confirmSubmit": "Are you sure you want to submit your quiz? You cannot change your answers after submission.",
+    "results": {
+      "title": "Quiz Results",
+      "score": "Your Score: {{score}}/{{total}} ({{percentage}}%)",
+      "passed": "Congratulations! You passed the quiz.",
+      "failed": "Unfortunately, you did not pass. Please review the material and try again.",
+      "pending": "Your quiz has been submitted for manual review. You will be notified once it's reviewed.",
+      "reviewFeedback": "Manager Feedback: {{feedback}}"
+    },
+    "messages": {
+      "submitted": "Quiz submitted successfully",
+      "submitFailed": "Failed to submit quiz",
+      "loadFailed": "Failed to load quiz questions",
+      "answerRequired": "Please answer all questions before submitting"
+    }
+  },
+  "forms": {
+    "title": "Onboarding Forms",
+    "personal": {
+      "title": "Personal Information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "address": "Home Address",
+      "dateOfBirth": "Date of Birth",
+      "nationality": "Nationality",
+      "passportNumber": "Passport Number",
+      "seamanBookNumber": "Seaman's Book Number"
+    },
+    "emergency": {
+      "title": "Emergency Contact",
+      "name": "Contact Name",
+      "relationship": "Relationship",
+      "phone": "Contact Phone",
+      "email": "Contact Email",
+      "address": "Contact Address"
+    },
+    "medical": {
+      "title": "Medical Information",
+      "bloodType": "Blood Type",
+      "allergies": "Allergies",
+      "medications": "Current Medications",
+      "conditions": "Medical Conditions",
+      "doctorName": "Doctor Name",
+      "doctorPhone": "Doctor Phone"
+    },
+    "banking": {
+      "title": "Banking Information",
+      "bankName": "Bank Name",
+      "accountNumber": "Account Number",
+      "iban": "IBAN",
+      "swiftCode": "SWIFT/BIC Code"
+    },
+    "actions": {
+      "save": "Save Progress",
+      "submit": "Submit Forms",
+      "edit": "Edit Forms",
+      "download": "Download Copy"
+    },
+    "messages": {
+      "saved": "Forms saved successfully",
+      "submitted": "Forms submitted successfully",
+      "saveFailed": "Failed to save forms",
+      "submitFailed": "Failed to submit forms",
+      "allFieldsRequired": "Please fill in all required fields",
+      "confirmSubmit": "Are you sure you want to submit your forms? You cannot edit them after submission."
+    }
+  }
+}

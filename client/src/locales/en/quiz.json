@@ -1,0 +1,123 @@
+{
+  "title": "Phase {{phase}} Assessment",
+  "instructions": {
+    "title": "Quiz Instructions",
+    "read_carefully": "Please read all questions carefully before answering",
+    "time_limit": "Time limit: {{minutes}} minutes",
+    "passing_score": "Passing score: {{score}}%",
+    "single_attempt": "You have one attempt per quiz session",
+    "save_progress": "Your progress is automatically saved",
+    "review_answers": "Review your answers before submitting",
+    "no_going_back": "You cannot change answers after submission"
+  },
+  "question_types": {
+    "multiple_choice": "Multiple Choice",
+    "true_false": "True/False",
+    "file_upload": "File Upload",
+    "short_answer": "Short Answer",
+    "drag_drop": "Drag and Drop",
+    "fill_gaps": "Fill in the Gaps"
+  },
+  "navigation": {
+    "question_progress": "Question {{current}} of {{total}}",
+    "previous_question": "Previous Question",
+    "next_question": "Next Question",
+    "submit_quiz": "Submit Quiz",
+    "review_quiz": "Review Quiz",
+    "start_quiz": "Start Quiz",
+    "retake_quiz": "Retake Quiz",
+    "ready_to_begin": "Ready to Begin?",
+    "time_limit_label": "Time Limit",
+    "questions_label": "Questions",
+    "passing_score_label": "Passing Score",
+    "questions_count": "{{count}} questions"
+  },
+  "file_upload": {
+    "instructions": "Upload a clear photo showing the required safety equipment",
+    "drag_drop": "Drag and drop your file here, or click to browse",
+    "file_types": "Accepted file types: JPG, PNG, PDF",
+    "max_size": "Maximum file size: {{size}}MB",
+    "upload_success": "File uploaded successfully",
+    "upload_error": "Upload failed. Please try again.",
+    "remove_file": "Remove file",
+    "file_removed": "File removed. You can upload a new one."
+  },
+  "results": {
+    "quiz_completed": "Quiz Completed",
+    "your_score": "Your Score: {{score}}%",
+    "passing_score": "Passing Score: {{required}}%",
+    "result_passed": "Congratulations! You passed the quiz.",
+    "result_failed": "You did not meet the passing score. Please review the training material and retake the quiz.",
+    "pending_review": "Your quiz is pending manager review.",
+    "approved": "Your quiz has been approved by management.",
+    "rejected": "Your quiz was not approved. Please retake the quiz.",
+    "time_taken": "Time taken: {{time}}",
+    "questions_correct": "{{correct}} out of {{total}} questions correct",
+    "view_answers": "View Detailed Results",
+    "download_certificate": "Download Certificate"
+  },
+  "validation": {
+    "answer_required": "Please provide an answer for this question",
+    "file_required": "Please upload a file for this question",
+    "invalid_file_type": "Invalid file type. Please upload JPG, PNG, or PDF files only.",
+    "file_too_large": "File size exceeds the maximum limit of {{size}}MB",
+    "text_too_short": "Answer must be at least {{min}} characters long",
+    "text_too_long": "Answer must not exceed {{max}} characters"
+  },
+  "safety_equipment": {
+    "fire_extinguisher": "Fire Extinguisher",
+    "life_jacket": "Life Jacket",
+    "emergency_alarm": "Emergency Alarm",
+    "first_aid_kit": "First Aid Kit",
+    "emergency_exit": "Emergency Exit",
+    "muster_station": "Muster Station",
+    "safety_shower": "Safety Shower",
+    "eye_wash_station": "Eye Wash Station"
+  },
+  "common_answers": {
+    "yes": "Yes",
+    "no": "No",
+    "true": "True",
+    "false": "False",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "not_answered": "Not answered"
+  },
+  "loading": {
+    "preparing_quiz": "Please wait while we prepare your Phase {{phase}} quiz."
+  },
+  "errors": {
+    "not_found": "Quiz Not Found",
+    "not_available": "The quiz for Phase {{phase}} is not available.",
+    "session_expired": "Quiz session expired. Please refresh the page to start over.",
+    "submission_failed": "Failed to submit quiz: {{error}}",
+    "session_not_found": "Quiz session not found. Please refresh and try again."
+  },
+  "ui": {
+    "auto_advance": "Advancing automatically in 1.5s...",
+    "question_answered": "Question answered",
+    "provide_answer": "Please provide an answer to continue",
+    "question_progress": "Question",
+    "save_progress": "Save your progress",
+    "quiz_completed_title": "Quiz Completed!",
+    "quiz_completed_message": "Your answers have been submitted and are being reviewed. You will receive your results and certificate once the review is complete.",
+    "return_to_training": "Return to Training",
+    "go_to_dashboard": "Go to Dashboard",
+    "important_instructions": "Important Instructions:",
+    "instruction_photos": "Some questions require photo uploads - ensure good lighting and clear images",
+    "instruction_navigation": "You can navigate between questions but cannot restart once submitted",
+    "instruction_files": "File uploads must be under 5MB and in JPG, PNG, or WebP format",
+    "instruction_all_questions": "All questions must be answered to complete the quiz",
+    "instruction_auto_save": "Your progress is automatically saved",
+    "quiz_started": "Quiz started! Good luck!"
+  },
+  "offline": {
+    "mode_active": "Offline Mode",
+    "pending_sync": "Will Sync",
+    "progress_restored": "Quiz progress restored from offline storage",
+    "now_offline": "You're now offline. Your progress will be saved locally.",
+    "back_online_will_sync": "Back online! Your quiz will sync automatically.",
+    "saved_will_sync": "Quiz completed offline. Results will sync when connection is restored.",
+    "save_failed": "Failed to save quiz offline. Please try again."
+  }
+}

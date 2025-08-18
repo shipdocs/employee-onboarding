@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Manager Dashboard",
+    "sections": {
+      "crew": {
+        "title": "Bemanningsleden",
+        "description": "Beheer uw bemanningsrooster en onboarding status",
+        "refresh": "Vernieuwen",
+        "add": "Bemanningslid Toevoegen",
+        "search": "Zoek bemanningsleden...",
+        "selected": "{{count}} geselecteerd"
+      },
+      "quizReviews": {
+        "title": "Wachtende Examen Beoordelingen",
+        "description": "Beoordeel en keur exameninzendingen van bemanningsleden goed",
+        "empty": "Geen Wachtende Beoordelingen",
+        "emptyDescription": "Alle exameninzendingen zijn beoordeeld."
+      },
+      "onboardingReviews": {
+        "title": "Complete Onboarding Beoordelingen",
+        "description": "Beoordeel volledige trainingsvoortgang en keur definitieve onboarding goed",
+        "empty": "Geen Wachtende Beoordelingen",
+        "emptyDescription": "Geen bemanningsleden klaar voor definitieve onboarding goedkeuring."
+      },
+      "compliance": {
+        "trainingProgress": "Trainingsvoortgang per Positie",
+        "sessionsCompleted": "{{count}} trainingssessies voltooid deze week",
+        "lastUpdated": "Laatst bijgewerkt: {{date}}",
+        "quizReviewsPending": "{{count}} examenbeoordelingen wachten op uw goedkeuring",
+        "requiresAttention": "Vereist onmiddellijke aandacht",
+        "certificatesIssued": "{{count}} certificaten uitgegeven deze maand",
+        "certificatesDistributed": "Alle certificaten automatisch verspreid"
+      }
+    },
+    "filters": {
+      "allStatus": "Alle Status",
+      "notStarted": "Niet Gestart",
+      "inProgress": "Bezig",
+      "formsCompleted": "Formulieren Voltooid",
+      "trainingCompleted": "Training Voltooid",
+      "fullyCompleted": "Volledig Voltooid",
+      "suspended": "Opgeschort"
+    },
+    "table": {
+      "headers": {
+        "name": "Naam",
+        "position": "Positie",
+        "vessel": "Schip",
+        "boardingDate": "Instapdag",
+        "status": "Status",
+        "actions": "Acties"
+      }
+    },
+    "status": {
+      "notStarted": "Niet Gestart",
+      "inProgress": "Bezig",
+      "formsCompleted": "Formulieren Voltooid",
+      "trainingCompleted": "Training Voltooid",
+      "fullyCompleted": "Volledig Voltooid",
+      "suspended": "Opgeschort"
+    },
+    "actions": {
+      "view": "Bekijk bemanningslid details",
+      "sendMagicLink": "Verstuur magische link",
+      "sendSafetyPdf": "Verstuur Veiligheidsmanagement PDF",
+      "sendOnboardingEmail": "Verstuur Onboarding Start Email",
+      "edit": "Bewerk bemanningslid",
+      "delete": "Verwijder bemanningslid",
+      "approve": "Keur examen goed",
+      "reject": "Wijs examen af",
+      "approveOnboarding": "Keur Volledige Onboarding Goed"
+    },
+    "tooltips": {
+      "viewCrewMember": "Bekijk gedetailleerde bemanningslid informatie, trainingsvoortgang en voltooiingsstatus",
+      "sendMagicLink": "Verstuur beveiligde inloglink naar e-mail van bemanningslid voor trainingstoegang (3 uur geldig)",
+      "sendSafetyPDF": "Verstuur het complete Safety Management System (SMS) PDF document naar bemanningslid",
+      "sendOnboardingStart": "Verstuur welkomst e-mail om officieel het onboarding trainingsproces te starten",
+      "resendCompletionEmail": "Verstuur voltooiingscertificaat en felicitatie e-mail opnieuw naar volledig getraind bemanningslid",
+      "editCrewMember": "Bewerk bemanningslid details, positie, scheepstoewijzing en andere profielinformatie",
+      "deleteCrewMember": "Verwijder dit bemanningslid permanent uit het systeem (kan niet ongedaan worden gemaakt)"
+    },
+    "quiz": {
+      "passed": "Geslaagd",
+      "failed": "Gefaald",
+      "requiresReview": "Examen vereist beoordeling"
+    },
+    "certificates": {
+      "issued": "Certificaten Uitgegeven"
+    },
+    "bulk": {
+      "selectFirst": "Selecteer eerst bemanningsleden"
+    },
+    "messages": {
+      "crewCreated": "Bemanningslid succesvol aangemaakt",
+      "crewCreateFailed": "Fout bij aanmaken bemanningslid",
+      "magicLinkSent": "Magische link succesvol verstuurd",
+      "magicLinkFailed": "Fout bij versturen magische link",
+      "crewUpdated": "Bemanningslid succesvol bijgewerkt",
+      "crewUpdateFailed": "Fout bij bijwerken bemanningslid",
+      "crewDeleted": "Bemanningslid succesvol verwijderd",
+      "crewDeleteFailed": "Fout bij verwijderen bemanningslid",
+      "quizReviewed": "Examenbeoordeling succesvol voltooid",
+      "quizReviewFailed": "Fout bij beoordelen examen",
+      "onboardingApproved": "Onboarding goedgekeurd en certificaat verstuurd",
+      "onboardingApproveFailed": "Fout bij goedkeuren onboarding",
+      "safetyPdfSent": "Veiligheidsmanagement PDF succesvol verstuurd",
+      "safetyPdfFailed": "Fout bij versturen Veiligheids PDF: {{error}}",
+      "onboardingEmailSent": "Onboarding Start email succesvol verstuurd",
+      "onboardingEmailFailed": "Fout bij versturen Onboarding Start email: {{error}}",
+      "deleteConfirm": "Weet u zeker dat u {{name}} wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "bulkDeleteConfirm": "Weet u zeker dat u {{count}} bemanningslid(en) wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "approveOnboardingConfirm": "Weet u zeker dat u de volledige onboarding van dit bemanningslid wilt goedkeuren? Dit zal hun voltooiingscertificaat genereren en versturen."
+    },
+    "contentManagement": "Inhoudsbeheer",
+    "stats": {
+      "total_crew": "Totaal Bemanning",
+      "pending_reviews": "Wachtende Beoordelingen",
+      "in_progress": "Bezig",
+      "not_started": "Niet Gestart"
+    }
+  }
+}

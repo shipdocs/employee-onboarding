@@ -1,0 +1,96 @@
+{
+  "title": "Gegevensprivacy & AVG Portal",
+  "subtitle": "Beheer uw persoonlijke gegevens en oefen uw privacyrechten uit",
+  
+  "tabs": {
+    "overview": "Overzicht",
+    "export": "Gegevens Exporteren",
+    "deletion": "Gegevens Verwijderen",
+    "requests": "Mijn Verzoeken"
+  },
+  
+  "overview": {
+    "dataAccess": {
+      "title": "Recht op Inzage",
+      "description": "Bekijk en begrijp welke persoonlijke gegevens wij van u hebben"
+    },
+    "dataPortability": {
+      "title": "Gegevensportabiliteit",
+      "description": "Download uw gegevens in een machine-leesbaar formaat"
+    },
+    "dataErasure": {
+      "title": "Recht om Vergeten te Worden",
+      "description": "Verzoek om verwijdering van uw persoonlijke gegevens"
+    },
+    "contact": {
+      "title": "Contact FG",
+      "description": "Krijg hulp bij privacyvragen of zorgen"
+    },
+    "yourData": {
+      "title": "Uw Gegevensoverzicht",
+      "email": "E-mail",
+      "name": "Naam",
+      "role": "Rol",
+      "joined": "Lid sinds"
+    }
+  },
+  
+  "export": {
+    "info": {
+      "title": "Gegevensexport Informatie",
+      "description": "U kunt een kopie van uw persoonlijke gegevens aanvragen. De export is 7 dagen beschikbaar voor download na voltooiing."
+    },
+    "types": {
+      "personal": {
+        "title": "Alleen Persoonlijke Gegevens",
+        "description": "Basis profielinformatie en voorkeuren",
+        "button": "Persoonlijke Gegevens Export Aanvragen"
+      },
+      "complete": {
+        "title": "Volledige Gegevensexport",
+        "description": "Alle gegevens inclusief trainingsvoortgang, certificaten en activiteitenlogs",
+        "button": "Volledige Gegevensexport Aanvragen"
+      }
+    },
+    "requestSuccess": "Gegevensexport verzoek succesvol aangemaakt. U wordt geïnformeerd wanneer het klaar is.",
+    "requestError": "Kon export verzoek niet aanmaken. Probeer het opnieuw."
+  },
+  
+  "deletion": {
+    "warning": {
+      "title": "Belangrijke Waarschuwing",
+      "description": "Gegevensverwijdering is permanent en kan niet ongedaan worden gemaakt. Sommige gegevens moeten mogelijk bewaard blijven voor wettelijke compliance (maritieme trainingscertificaten)."
+    },
+    "initiateButton": "Gegevensverwijdering Aanvragen",
+    "confirmation": {
+      "title": "Bevestig Gegevensverwijdering",
+      "instruction": "Om verwijdering te bevestigen, typ 'DELETE MY DATA' in het veld hieronder:",
+      "placeholder": "Typ: DELETE MY DATA"
+    },
+    "confirmButton": "Bevestig Verwijdering",
+    "requestSuccess": "Gegevensverwijdering verzoek succesvol ingediend.",
+    "requestError": "Kon verwijdering verzoek niet indienen. Probeer het opnieuw."
+  },
+  
+  "requests": {
+    "types": {
+      "export": "Gegevensexport",
+      "deletion": "Gegevensverwijdering"
+    },
+    "status": {
+      "processing": "Verwerken",
+      "completed": "Voltooid",
+      "failed": "Mislukt",
+      "pending_approval": "Wacht op Beoordeling"
+    },
+    "requested": "Aangevraagd",
+    "empty": {
+      "title": "Nog Geen Verzoeken",
+      "description": "U heeft nog geen AVG verzoeken gedaan. Gebruik de tabbladen hierboven om uw gegevens te exporteren of verwijderen."
+    }
+  },
+  
+  "download": {
+    "error": "Kon bestand niet downloaden. Probeer het opnieuw."
+  }
+}

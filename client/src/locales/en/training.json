@@ -1,0 +1,112 @@
+{
+  "phase": "Phase",
+  "phases": {
+    "phase1": {
+      "title": "Immediate Safety Training",
+      "description": "Essential safety training to be completed within 24 hours of boarding",
+      "time_limit": "24 hours"
+    },
+    "phase2": {
+      "title": "Nautical Training",
+      "description": "Comprehensive nautical procedures and vessel operations training",
+      "time_limit": "72 hours"
+    },
+    "phase3": {
+      "title": "Advanced Safety & Environmental",
+      "description": "Advanced safety protocols and environmental compliance training",
+      "time_limit": "1 week"
+    }
+  },
+  "items": {
+    "meet_colleagues": "Meet colleagues + daily affairs on board",
+    "safety_equipment": "Safety equipment and emergency procedures",
+    "fire_safety": "Fire safety and firefighting equipment",
+    "emergency_procedures": "Emergency procedures and muster stations",
+    "personal_protective": "Personal protective equipment (PPE)",
+    "vessel_layout": "Vessel layout and restricted areas",
+    "communication": "Communication procedures and protocols",
+    "environmental": "Environmental protection procedures",
+    "cargo_operations": "Cargo operations and safety",
+    "navigation": "Navigation and bridge procedures",
+    "engine_room": "Engine room safety and procedures",
+    "maintenance": "Maintenance and repair procedures"
+  },
+  "categories": {
+    "orientation": "Orientation",
+    "safety": "Safety",
+    "emergency": "Emergency Procedures",
+    "equipment": "Equipment",
+    "procedures": "Procedures",
+    "environmental": "Environmental",
+    "navigation": "Navigation",
+    "maintenance": "Maintenance"
+  },
+  "instructions": {
+    "read_carefully": "Please read the following information carefully",
+    "complete_all": "Complete all training items in this phase",
+    "take_photos": "Take photos as proof of completion where required",
+    "ask_questions": "Ask your supervisor if you have any questions",
+    "safety_first": "Safety is our top priority - never skip safety procedures"
+  },
+  "completion": {
+    "item_completed": "Training item completed",
+    "phase_completed": "Phase completed successfully",
+    "all_completed": "All training phases completed",
+    "certificate_ready": "Certificate ready for download",
+    "instructor_signature": "Instructor signature required",
+    "photo_required": "Photo proof required"
+  },
+  "navigation": {
+    "previous_item": "Previous Item",
+    "next_item": "Next Item",
+    "back_to_phase": "Back to Phase Overview",
+    "mark_complete": "Mark as Complete",
+    "undo_complete": "Undo Completion"
+  },
+  "ui": {
+    "time_spent": "Time Spent",
+    "minutes": "minutes",
+    "start_training": "Start Training",
+    "continue_training": "Continue Training",
+    "phase_complete": "Phase Complete",
+    "take_quiz_now": "Take Quiz Now",
+    "back_to_dashboard": "Back to Dashboard",
+    "congratulations": "Congratulations!",
+    "phase_completed_message": "You have successfully completed this training phase.",
+    "ready_for_quiz": "You are now ready to take the quiz for this phase.",
+    "loading_content": "Loading training content...",
+    "not_found_title": "Training Phase Not Found",
+    "not_found_message": "The requested training phase could not be loaded.",
+    "return_to_dashboard": "Return to Dashboard",
+    "training_progress": "Training Progress",
+    "time_limit": "Time Limit",
+    "total_items": "Total Items",
+    "completed": "Completed",
+    "remaining": "Remaining",
+    "phase_overview": "Phase Overview",
+    "quick_actions": "Quick Actions",
+    "excellent_work": "Excellent Work! Phase Complete!",
+    "outstanding_achievement": "Outstanding Achievement!",
+    "phase_completion_message": "You've successfully completed all {{count}} training items for {{title}}!",
+    "dedication_message": "Your dedication to maritime safety training is commendable.",
+    "test_knowledge": "Ready to test your knowledge?",
+    "view_quiz_results_message": "You can review your quiz results or continue studying the materials.",
+    "auto_navigate_message": "Automatically proceeding to quiz in:",
+    "cancel_auto_nav": "Cancel auto-navigation",
+    "auto_nav_10_seconds": "Auto-navigate to quiz in 10 seconds",
+    "streamlined_flow_title": "Streamlined Training Flow",
+    "auto_complete_message": "This item will be automatically marked as complete when you click \"Next\". You can always undo completion if needed.",
+    "mark_complete_now": "Mark as Complete Now",
+    "mark_incomplete": "Mark as Incomplete",
+    "last_training_item": "Last training item!",
+    "take_final_quiz": "Take Final Quiz Now",
+    "complete_and_next": "Complete & Next",
+    "overview": "Overview",
+    "learning_objectives": "Learning Objectives",
+    "key_points": "Key Points to Remember",
+    "procedures": "Procedures",
+    "emergency_response_types": "Emergency Response Types",
+    "training_content_placeholder": "Detailed training content for \"{{title}}\" will be displayed here.",
+    "training_content": "Training Content"
+  }
+}

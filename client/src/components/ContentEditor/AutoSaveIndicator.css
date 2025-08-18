@@ -1,0 +1,59 @@
+.auto-save-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.auto-save-indicator.saved {
+  background-color: #e8f5e8;
+  color: #2d5016;
+  border: 1px solid #b8d4a8;
+}
+
+.auto-save-indicator.saving {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffd60a;
+}
+
+.auto-save-indicator.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.save-icon {
+  display: flex;
+  align-items: center;
+}
+
+.saving-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.save-text {
+  white-space: nowrap;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .auto-save-indicator {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  .save-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+}

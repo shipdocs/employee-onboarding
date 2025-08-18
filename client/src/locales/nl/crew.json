@@ -1,0 +1,165 @@
+{
+  "dashboard": {
+    "title": "Bemanning Dashboard",
+    "welcome": "Welkom terug, {{name}}!",
+    "sections": {
+      "profile": {
+        "title": "Uw Profiel",
+        "description": "Bekijk en werk uw persoonlijke informatie bij",
+        "view": "Bekijk Profiel"
+      },
+      "trainingProgress": {
+        "title": "Trainingsvoortgang",
+        "description": "Voltooi uw onboarding trainingsfases",
+        "phase": "Fase {{number}}",
+        "currentPhase": "Huidige Fase",
+        "completedPhase": "Voltooide Fase",
+        "upcomingPhase": "Komende Fase",
+        "dueDate": "Deadline: {{date}}",
+        "overdue": "Achterstallig",
+        "startTraining": "Start Training",
+        "continueTraining": "Ga Door met Training",
+        "viewTraining": "Bekijk Training",
+        "takeQuiz": "Doe Examen",
+        "quizPassed": "Examen Geslaagd",
+        "quizFailed": "Examen Gefaald - Herkansing Vereist",
+        "awaitingReview": "Examen Ingediend - Wacht op Beoordeling",
+        "itemsCompleted": "{{completed}} van {{total}} items voltooid"
+      },
+      "quizHistory": {
+        "title": "Examengeschiedenis",
+        "phase": "Fase {{number}} Examen",
+        "score": "Score: {{score}}/{{total}}",
+        "passed": "Geslaagd",
+        "failed": "Gefaald",
+        "pending": "In Beoordeling",
+        "rejected": "Afgekeurd - Doe Opnieuw",
+        "retake": "Herkans Examen",
+        "feedback": "Manager Feedback"
+      },
+      "forms": {
+        "title": "Vereiste Formulieren",
+        "description": "Vul de vereiste onboarding formulieren in en dien ze in",
+        "notStarted": "Niet Gestart",
+        "inProgress": "Bezig",
+        "completed": "Voltooid",
+        "complete": "Vul Formulieren In",
+        "review": "Bekijk Formulieren"
+      }
+    },
+    "status": {
+      "notStarted": "Niet Gestart",
+      "inProgress": "Bezig",
+      "formsCompleted": "Formulieren Voltooid",
+      "trainingCompleted": "Training Voltooid",
+      "fullyCompleted": "Volledig Voltooid",
+      "suspended": "Account Opgeschort"
+    },
+    "messages": {
+      "noActiveSession": "Geen actieve trainingssessie gevonden",
+      "quizNotAvailable": "Examen nog niet beschikbaar. Voltooi eerst alle trainingsitems.",
+      "trainingCompleted": "Gefeliciteerd! U heeft alle trainingsfases voltooid.",
+      "certificateIssued": "Uw voltooiingscertificaat is uitgegeven.",
+      "contactManager": "Neem contact op met uw manager als u vragen heeft."
+    }
+  },
+  "training": {
+    "phase": "Fase {{number}}: {{title}}",
+    "progress": "Voortgang: {{percentage}}%",
+    "item": "Item {{number}}",
+    "markComplete": "Markeer als Voltooid",
+    "uploadProof": "Upload Bewijs",
+    "proofRequired": "Bewijs van voltooiing vereist",
+    "proofUploaded": "Bewijs geüpload",
+    "completed": "Voltooid",
+    "nextItem": "Volgend Item",
+    "previousItem": "Vorig Item",
+    "backToOverview": "Terug naar Overzicht",
+    "completePhase": "Voltooi Fase",
+    "phaseCompleted": "Fase Voltooid!",
+    "proceedToQuiz": "Ga door naar Examen",
+    "messages": {
+      "itemCompleted": "Trainingsitem succesvol voltooid",
+      "itemCompleteFailed": "Fout bij voltooien trainingsitem",
+      "proofUploaded": "Bewijs succesvol geüpload",
+      "proofUploadFailed": "Fout bij uploaden bewijs",
+      "phaseCompleted": "Fase {{number}} succesvol voltooid!",
+      "allItemsRequired": "Voltooi alle trainingsitems voordat u het examen doet"
+    }
+  },
+  "quiz": {
+    "title": "Fase {{number}} Examen",
+    "instructions": "Beantwoord alle vragen zorgvuldig. U moet minimaal {{passingScore}}% scoren om te slagen.",
+    "question": "Vraag {{current}} van {{total}}",
+    "submit": "Dien Examen In",
+    "submitting": "Indienen...",
+    "confirmSubmit": "Weet u zeker dat u uw examen wilt indienen? U kunt uw antwoorden niet meer wijzigen na indiening.",
+    "results": {
+      "title": "Examenresultaten",
+      "score": "Uw Score: {{score}}/{{total}} ({{percentage}}%)",
+      "passed": "Gefeliciteerd! U bent geslaagd voor het examen.",
+      "failed": "Helaas bent u niet geslaagd. Bekijk het materiaal en probeer het opnieuw.",
+      "pending": "Uw examen is ingediend voor handmatige beoordeling. U wordt geïnformeerd zodra het is beoordeeld.",
+      "reviewFeedback": "Manager Feedback: {{feedback}}"
+    },
+    "messages": {
+      "submitted": "Examen succesvol ingediend",
+      "submitFailed": "Fout bij indienen examen",
+      "loadFailed": "Fout bij laden examenvragen",
+      "answerRequired": "Beantwoord alle vragen voordat u indient"
+    }
+  },
+  "forms": {
+    "title": "Onboarding Formulieren",
+    "personal": {
+      "title": "Persoonlijke Informatie",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "E-mailadres",
+      "phone": "Telefoonnummer",
+      "address": "Huisadres",
+      "dateOfBirth": "Geboortedatum",
+      "nationality": "Nationaliteit",
+      "passportNumber": "Paspoortnummer",
+      "seamanBookNumber": "Monsterboekje Nummer"
+    },
+    "emergency": {
+      "title": "Noodcontact",
+      "name": "Naam Contact",
+      "relationship": "Relatie",
+      "phone": "Telefoon Contact",
+      "email": "E-mail Contact",
+      "address": "Adres Contact"
+    },
+    "medical": {
+      "title": "Medische Informatie",
+      "bloodType": "Bloedgroep",
+      "allergies": "Allergieën",
+      "medications": "Huidige Medicatie",
+      "conditions": "Medische Aandoeningen",
+      "doctorName": "Naam Huisarts",
+      "doctorPhone": "Telefoon Huisarts"
+    },
+    "banking": {
+      "title": "Bankinformatie",
+      "bankName": "Banknaam",
+      "accountNumber": "Rekeningnummer",
+      "iban": "IBAN",
+      "swiftCode": "SWIFT/BIC Code"
+    },
+    "actions": {
+      "save": "Bewaar Voortgang",
+      "submit": "Dien Formulieren In",
+      "edit": "Bewerk Formulieren",
+      "download": "Download Kopie"
+    },
+    "messages": {
+      "saved": "Formulieren succesvol opgeslagen",
+      "submitted": "Formulieren succesvol ingediend",
+      "saveFailed": "Fout bij opslaan formulieren",
+      "submitFailed": "Fout bij indienen formulieren",
+      "allFieldsRequired": "Vul alle verplichte velden in",
+      "confirmSubmit": "Weet u zeker dat u uw formulieren wilt indienen? U kunt ze niet meer bewerken na indiening."
+    }
+  }
+}

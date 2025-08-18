@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maritime Theme Test</title>
+    <link href="doxygen-docs/html/custom-doxygen.css" rel="stylesheet" type="text/css"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 Maritime Theme Test Page</h1>
+    
+    <div class="test-section">
+        <h2>Theme Indicator Test</h2>
+        <p>If the maritime theme is working, you should see "⚓ Maritime Theme" in the top-right corner of this page.</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>Header Test</h2>
+        <div id="titlearea">
+            <div id="projectname">Maritime Onboarding System</div>
+            <div id="projectnumber">v1.0</div>
+            <div id="projectbrief">Test Header with Maritime Theme</div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Navigation Test</h2>
+        <div class="tabs">
+            <div class="tablist">
+                <li><a href="#">Home</a></li>
+                <li class="current"><a href="#">Files</a></li>
+                <li><a href="#">Functions</a></li>
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Content Test</h2>
+        <div class="contents">
+            <h3>Maritime Colors Test</h3>
+            <p>This content should have maritime styling applied.</p>
+            <code>Sample code block</code>
+            <table>
+                <tr>
+                    <th>Header 1</th>
+                    <th>Header 2</th>
+                </tr>
+                <tr>
+                    <td>Data 1</td>
+                    <td>Data 2</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Instructions</h2>
+        <p><strong>What to look for:</strong></p>
+        <ul>
+            <li>⚓ "Maritime Theme" indicator in top-right corner</li>
+            <li>Blue gradient header background</li>
+            <li>Gold accent colors</li>
+            <li>Maritime blue navigation</li>
+            <li>Professional typography</li>
+        </ul>
+        
+        <p><strong>If you don't see these changes:</strong></p>
+        <ol>
+            <li>Hard refresh the page (Ctrl+F5 or Cmd+Shift+R)</li>
+            <li>Clear browser cache</li>
+            <li>Try opening in an incognito/private window</li>
+        </ol>
+    </div>
+    
+    <script>
+        // Add some JavaScript to help debug
+        window.onload = function() {
+            const indicator = window.getComputedStyle(document.body, '::before').content;
+            console.log('Theme indicator content:', indicator);
+            
+            const titleArea = document.getElementById('titlearea');
+            if (titleArea) {
+                const bgColor = window.getComputedStyle(titleArea).backgroundColor;
+                console.log('Title area background:', bgColor);
+            }
+        };
+    </script>
+</body>
+</html>

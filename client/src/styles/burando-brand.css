@@ -1,0 +1,643 @@
+/* Burando Maritime Services Brand Styling with Glass Morphism */
+
+/* Brand Color Variables */
+:root {
+  /* Primary Colors */
+  --burando-navy: #132545;
+  --burando-teal: #006A82;
+  --burando-bright-teal: #18AA9D;
+  --burando-light-green: #30EBB9;
+
+  /* Glass Effect Colors */
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: rgba(31, 38, 135, 0.37);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--burando-teal) 0%, var(--burando-bright-teal) 100%);
+  --gradient-navy: linear-gradient(135deg, var(--burando-navy) 0%, #0a1a2e 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+
+  /* Extended Palette */
+  --burando-navy-light: #1e3a5f;
+  --burando-navy-dark: #0a1a2e;
+  --burando-teal-light: #0d7a94;
+  --burando-teal-dark: #004d5e;
+  --burando-bright-teal-light: #2bb8ab;
+  --burando-bright-teal-dark: #138a7f;
+  --burando-light-green-light: #4df0c7;
+  --burando-light-green-dark: #26d4a5;
+
+  /* Neutral Colors */
+  --burando-gray-50: #f8fafc;
+  --burando-gray-100: #f1f5f9;
+  --burando-gray-200: #e2e8f0;
+  --burando-gray-300: #cbd5e1;
+  --burando-gray-400: #94a3b8;
+  --burando-gray-500: #64748b;
+  --burando-gray-600: #475569;
+  --burando-gray-700: #334155;
+  --burando-gray-800: #1e293b;
+  --burando-gray-900: #0f172a;
+
+  /* Status Colors */
+  --burando-success: var(--burando-light-green);
+  --burando-warning: #f59e0b;
+  --burando-error: #ef4444;
+  --burando-info: var(--burando-bright-teal);
+
+  /* Typography */
+  --burando-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --burando-font-weight-normal: 400;
+  --burando-font-weight-medium: 500;
+  --burando-font-weight-semibold: 600;
+  --burando-font-weight-bold: 700;
+
+  /* Spacing */
+  --burando-spacing-xs: 0.25rem;
+  --burando-spacing-sm: 0.5rem;
+  --burando-spacing-md: 1rem;
+  --burando-spacing-lg: 1.5rem;
+  --burando-spacing-xl: 2rem;
+  --burando-spacing-2xl: 3rem;
+
+  /* Border Radius */
+  --burando-radius-sm: 0.375rem;
+  --burando-radius-md: 0.5rem;
+  --burando-radius-lg: 0.75rem;
+  --burando-radius-xl: 1rem;
+
+  /* Shadows */
+  --burando-shadow-sm: 0 1px 2px 0 rgba(19, 37, 69, 0.05);
+  --burando-shadow-md: 0 4px 6px -1px rgba(19, 37, 69, 0.1), 0 2px 4px -1px rgba(19, 37, 69, 0.06);
+  --burando-shadow-lg: 0 10px 15px -3px rgba(19, 37, 69, 0.1), 0 4px 6px -2px rgba(19, 37, 69, 0.05);
+  --burando-shadow-xl: 0 20px 25px -5px rgba(19, 37, 69, 0.1), 0 10px 10px -5px rgba(19, 37, 69, 0.04);
+}
+
+/* Global Styles */
+body {
+  font-family: var(--burando-font-family);
+  color: var(--burando-navy);
+  background-color: var(--burando-gray-50);
+  line-height: 1.6;
+}
+
+/* Typography Classes */
+.burando-heading-1 {
+  font-size: 2.25rem;
+  font-weight: var(--burando-font-weight-bold);
+  color: var(--burando-navy);
+  line-height: 1.2;
+}
+
+.burando-heading-2 {
+  font-size: 1.875rem;
+  font-weight: var(--burando-font-weight-semibold);
+  color: var(--burando-navy);
+  line-height: 1.3;
+}
+
+.burando-heading-3 {
+  font-size: 1.5rem;
+  font-weight: var(--burando-font-weight-semibold);
+  color: var(--burando-navy);
+  line-height: 1.4;
+}
+
+.burando-text-primary {
+  color: var(--burando-navy);
+}
+
+.burando-text-secondary {
+  color: var(--burando-teal);
+}
+
+.burando-text-accent {
+  color: var(--burando-bright-teal);
+}
+
+.burando-text-muted {
+  color: var(--burando-gray-600);
+}
+
+/* Button Styles */
+.burando-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--burando-spacing-sm) var(--burando-spacing-md);
+  border-radius: var(--burando-radius-md);
+  font-weight: var(--burando-font-weight-medium);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.burando-btn-primary {
+  background-color: var(--burando-teal);
+  color: white;
+  box-shadow: var(--burando-shadow-sm);
+}
+
+.burando-btn-primary:hover {
+  background-color: var(--burando-teal-dark);
+  box-shadow: var(--burando-shadow-md);
+  transform: translateY(-1px);
+}
+
+.burando-btn-secondary {
+  background-color: var(--burando-bright-teal);
+  color: white;
+  box-shadow: var(--burando-shadow-sm);
+}
+
+.burando-btn-secondary:hover {
+  background-color: var(--burando-bright-teal-dark);
+  box-shadow: var(--burando-shadow-md);
+  transform: translateY(-1px);
+}
+
+.burando-btn-outline {
+  background-color: transparent;
+  color: var(--burando-teal);
+  border: 2px solid var(--burando-teal);
+}
+
+.burando-btn-outline:hover {
+  background-color: var(--burando-teal);
+  color: white;
+}
+
+.burando-btn-success {
+  background-color: var(--burando-success);
+  color: var(--burando-navy);
+}
+
+.burando-btn-success:hover {
+  background-color: var(--burando-light-green-dark);
+}
+
+.burando-btn-lg {
+  padding: var(--burando-spacing-md) var(--burando-spacing-lg);
+  font-size: 1rem;
+}
+
+.burando-btn-sm {
+  padding: var(--burando-spacing-xs) var(--burando-spacing-sm);
+  font-size: 0.75rem;
+}
+
+/* Card Styles */
+.burando-card {
+  background-color: white;
+  border-radius: var(--burando-radius-lg);
+  box-shadow: var(--burando-shadow-md);
+  border: 1px solid var(--burando-gray-200);
+  overflow: hidden;
+}
+
+.burando-card-header {
+  padding: var(--burando-spacing-lg);
+  border-bottom: 1px solid var(--burando-gray-200);
+  background-color: var(--burando-gray-50);
+}
+
+.burando-card-body {
+  padding: var(--burando-spacing-lg);
+}
+
+.burando-card-footer {
+  padding: var(--burando-spacing-lg);
+  border-top: 1px solid var(--burando-gray-200);
+  background-color: var(--burando-gray-50);
+}
+
+/* Navigation Styles */
+.burando-nav {
+  background-color: white;
+  border-bottom: 1px solid var(--burando-gray-200);
+  box-shadow: var(--burando-shadow-sm);
+}
+
+.burando-nav-brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: var(--burando-font-weight-bold);
+  color: var(--burando-navy);
+  text-decoration: none;
+}
+
+.burando-nav-link {
+  color: var(--burando-gray-600);
+  text-decoration: none;
+  padding: var(--burando-spacing-sm) var(--burando-spacing-md);
+  border-radius: var(--burando-radius-sm);
+  transition: all 0.2s ease-in-out;
+}
+
+.burando-nav-link:hover {
+  color: var(--burando-teal);
+  background-color: var(--burando-gray-100);
+}
+
+.burando-nav-link.active {
+  color: var(--burando-teal);
+  background-color: var(--burando-gray-100);
+  font-weight: var(--burando-font-weight-medium);
+}
+
+/* Status Badge Styles */
+.burando-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--burando-spacing-xs) var(--burando-spacing-sm);
+  border-radius: var(--burando-radius-md);
+  font-size: 0.75rem;
+  font-weight: var(--burando-font-weight-medium);
+  line-height: 1;
+}
+
+.burando-badge-success {
+  background-color: rgba(48, 235, 185, 0.1);
+  color: var(--burando-light-green-dark);
+  border: 1px solid rgba(48, 235, 185, 0.2);
+}
+
+.burando-badge-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.burando-badge-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.burando-badge-info {
+  background-color: rgba(24, 170, 157, 0.1);
+  color: var(--burando-bright-teal-dark);
+  border: 1px solid rgba(24, 170, 157, 0.2);
+}
+
+.burando-badge-neutral {
+  background-color: var(--burando-gray-100);
+  color: var(--burando-gray-700);
+  border: 1px solid var(--burando-gray-200);
+}
+
+/* Form Styles */
+.burando-form-group {
+  margin-bottom: var(--burando-spacing-md);
+}
+
+.burando-form-label {
+  display: block;
+  margin-bottom: var(--burando-spacing-xs);
+  font-weight: var(--burando-font-weight-medium);
+  color: var(--burando-navy);
+}
+
+.burando-form-input {
+  width: 100%;
+  padding: var(--burando-spacing-sm) var(--burando-spacing-md);
+  border: 2px solid var(--burando-gray-300);
+  border-radius: var(--burando-radius-md);
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.burando-form-input:focus {
+  outline: none;
+  border-color: var(--burando-teal);
+  box-shadow: 0 0 0 3px rgba(0, 106, 130, 0.1);
+}
+
+.burando-form-input:invalid {
+  border-color: var(--burando-error);
+}
+
+/* Progress Styles */
+.burando-progress {
+  width: 100%;
+  height: 0.5rem;
+  background-color: var(--burando-gray-200);
+  border-radius: var(--burando-radius-md);
+  overflow: hidden;
+}
+
+.burando-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--burando-teal) 0%, var(--burando-bright-teal) 100%);
+  transition: width 0.3s ease-in-out;
+}
+
+/* Logo Styles */
+.burando-logo {
+  height: 2.5rem;
+  width: auto;
+}
+
+.burando-logo-sm {
+  height: 2rem;
+  width: auto;
+}
+
+.burando-logo-lg {
+  height: 3rem;
+  width: auto;
+}
+
+/* Glass Morphism Base Classes */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px;
+}
+
+.glass-card-elevated {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.glass-button {
+  background: var(--gradient-primary);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 106, 130, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 106, 130, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 106, 130, 0.4);
+  background: linear-gradient(135deg, var(--burando-bright-teal) 0%, var(--burando-teal) 100%);
+}
+
+/* Background Patterns */
+.burando-bg {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+  position: relative;
+}
+
+.burando-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(0, 106, 130, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(19, 37, 69, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Navigation Styling */
+.nav-glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Hover Effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Typography */
+.text-gradient-primary {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-navy {
+  background: var(--gradient-navy);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Form Elements */
+.glass-input {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: var(--burando-teal);
+  box-shadow: 0 0 0 3px rgba(0, 106, 130, 0.1);
+  outline: none;
+}
+
+/* iOS Safari Fix: Ensure proper text contrast for white text on glass inputs */
+@supports (-webkit-touch-callout: none) {
+  .glass-input.text-white {
+    background: rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+  }
+  
+  .glass-input.text-white:focus {
+    background: rgba(0, 0, 0, 0.35);
+    border-color: var(--burando-bright-teal);
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+  }
+  
+  .glass-input.text-white::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.7) !important;
+  }
+}
+
+/* Mobile Touch Targets */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Responsive Utilities */
+@media (max-width: 768px) {
+  .mobile-stack {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+  
+  .mobile-text-sm {
+    font-size: 0.875rem !important;
+  }
+  
+  .mobile-p-2 {
+    padding: 0.5rem !important;
+  }
+  
+  .mobile-hidden {
+    display: none !important;
+  }
+  
+  /* Improve button spacing on mobile */
+  .btn {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+  }
+  
+  .btn-sm {
+    min-height: 40px;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  /* Better modal sizing on mobile */
+  .modal-mobile {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+  
+  /* Mobile form improvements */
+  .form-input,
+  .glass-input {
+    min-height: 48px !important;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 0.75rem 1rem !important;
+  }
+  
+  .form-select {
+    min-height: 48px !important;
+    font-size: 16px !important;
+    padding: 0.75rem 1rem !important;
+  }
+  
+  .form-textarea {
+    min-height: 120px !important;
+    font-size: 16px !important;
+    padding: 0.75rem 1rem !important;
+  }
+  
+  /* Mobile-specific card layouts */
+  .mobile-card {
+    margin: 0.5rem;
+    border-radius: 0.75rem;
+    padding: 1rem;
+  }
+  
+  /* Mobile typography scaling */
+  .mobile-text-xs {
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+  }
+  
+  .mobile-text-lg {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+  
+  /* Touch-friendly navigation */
+  .mobile-nav-item {
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  /* Mobile quiz optimizations */
+  .mobile-quiz-button {
+    min-height: 56px;
+    font-size: 16px;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Mobile progress indicators */
+  .mobile-progress {
+    height: 8px;
+    border-radius: 4px;
+  }
+  
+  /* Mobile table alternatives */
+  .mobile-stack-table {
+    display: block !important;
+  }
+  
+  .mobile-stack-table tbody,
+  .mobile-stack-table tr,
+  .mobile-stack-table td {
+    display: block !important;
+    width: 100% !important;
+  }
+  
+  .mobile-stack-table tr {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

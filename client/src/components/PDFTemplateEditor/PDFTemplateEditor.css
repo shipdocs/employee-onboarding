@@ -1,0 +1,253 @@
+.pdf-template-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f5f5f5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.editor-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.editor-sidebar {
+  width: 280px;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.editor-sidebar.right {
+  border-right: none;
+  border-left: 1px solid #e0e0e0;
+}
+
+.editor-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  overflow: auto;
+  padding: 20px;
+}
+
+.canvas-container {
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Template Canvas Styles */
+.template-canvas-container {
+  position: relative;
+}
+
+.template-canvas {
+  position: relative;
+  background: white;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  user-select: none;
+}
+
+.template-canvas.drop-target {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.drop-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 123, 255, 0.1);
+  border: 2px dashed #007bff;
+  padding: 20px;
+  border-radius: 8px;
+  color: #007bff;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* Field Component Styles */
+.field-component {
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.field-component:hover {
+  border-color: #007bff;
+}
+
+.field-component.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.field-component.dragging {
+  opacity: 0.7;
+  transform: rotate(2deg);
+}
+
+.field-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.data-binding-indicator {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  background: #28a745;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Resize Handles */
+.resize-handle {
+  position: absolute;
+  background: #007bff;
+  border: 1px solid white;
+  border-radius: 2px;
+  z-index: 20;
+}
+
+.resize-handle:hover {
+  background: #0056b3;
+}
+
+/* Corner handles */
+.resize-handle.nw {
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  cursor: nw-resize;
+}
+
+.resize-handle.ne {
+  top: -4px;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  cursor: ne-resize;
+}
+
+.resize-handle.sw {
+  bottom: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  cursor: sw-resize;
+}
+
+.resize-handle.se {
+  bottom: -4px;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  cursor: se-resize;
+}
+
+/* Edge handles */
+.resize-handle.n {
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  cursor: n-resize;
+}
+
+.resize-handle.s {
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  cursor: s-resize;
+}
+
+.resize-handle.w {
+  top: 50%;
+  left: -4px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  cursor: w-resize;
+}
+
+.resize-handle.e {
+  top: 50%;
+  right: -4px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  cursor: e-resize;
+}
+
+/* Alignment Guides */
+.alignment-guide {
+  position: absolute;
+  background: #ff4757;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.alignment-guide.vertical {
+  width: 1px;
+  background: #ff4757;
+}
+
+.alignment-guide.horizontal {
+  height: 1px;
+  background: #ff4757;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .editor-sidebar {
+    width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .editor-layout {
+    flex-direction: column;
+  }
+  
+  .editor-sidebar {
+    width: 100%;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .editor-sidebar.right {
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: none;
+  }
+}

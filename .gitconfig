@@ -1,0 +1,9 @@
+[user]
+	name = shipdocs
+	email = info@shipdocs.app
+[init]
+	defaultBranch = main
+[push]
+	default = simple
+[pull]
+	rebase = false

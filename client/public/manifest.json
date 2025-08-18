@@ -1,0 +1,47 @@
+{
+  "short_name": "Burando Training",
+  "name": "Burando Maritime Onboarding - Offline Ready",
+  "description": "Maritime crew onboarding and safety training platform - works offline at sea",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "burando-logo-white.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#18AA9D",
+  "background_color": "#132545",
+  "categories": ["education", "training", "maritime", "productivity"],
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "offline_enabled": true,
+  "features": [
+    "offline-training",
+    "quiz-persistence",
+    "progress-sync",
+    "maritime-optimized"
+  ]
+}
