@@ -7,11 +7,11 @@ A comprehensive crew onboarding and training management system for the maritime 
 **📖 [Complete Documentation](docs/README.md)** - Start here for comprehensive guides and references
 
 ### **Quick Links**
-- **🚀 [Installation & Setup](docs/INSTALLATION_SETUP.md)** - Get started with the system
-- **🔄 [Development Workflow](docs/DEVELOPMENT_WORKFLOW.md)** - Three-tier deployment pipeline
+- **🚀 [Getting Started](docs/getting-started/README.md)** - Get started with the system
+- **🔄 [Development Workflow](docs/for-developers/development-workflow/workflow.md)** - Three-tier deployment pipeline
 - **🔐 [Role-Based Access Control](docs/ROLE_BASED_ACCESS_CONTROL.md)** - User roles and permissions
 - **📄 [Certificate System](docs/CERTIFICATE_SYSTEM.md)** - Automated certificate generation
-- **🔧 [API Reference](docs/API_REFERENCE.md)** - Complete API documentation
+- **🔧 [API Reference](docs/api/README.md)** - Complete API documentation
 
 ## 🚢 **Overview**
 

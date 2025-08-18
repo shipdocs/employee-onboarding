@@ -21,22 +21,20 @@ Congratulations on joining our maritime team! This guide will help you navigate 
 
 ### Your First Login
 
-You should have received an email with the subject: **"Welcome to [Company Name] - Start Your Onboarding"**
+You should have received an email with the subject: **"Begin Your Onboarding Training - Secure Access Link"**
 
-1. **Open the email** and click the **"Start Onboarding"** button
-2. **Create your password**:
-   - Minimum 8 characters
-   - Include numbers and letters
-   - Keep it secure and memorable
-3. **Log in** with your email and new password
-4. **Welcome aboard!** You're now in your personal dashboard
+1. **Open the email** and click the **"Start Onboarding"** button (magic link)
+2. **You'll be automatically logged in** - no password needed!
+3. **Welcome aboard!** You're now in your personal dashboard
+
+**🔐 Security Note**: The magic link is secure and expires after 3 hours for your protection.
 
 ### If You Can't Find the Email
 
 - Check your **spam/junk folder**
 - Search for emails from **noreply@burando.online**
-- Contact your manager for a new invitation
-- Try the "Forgot Password" option
+- Contact your manager for a new magic link
+- **Note**: Crew members don't use passwords - only secure magic links
 
 ### System Requirements
 
