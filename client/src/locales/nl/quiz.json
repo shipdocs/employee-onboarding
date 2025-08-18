@@ -1,0 +1,94 @@
+{
+  "title": "Fase {{phase}} Beoordeling",
+  "instructions": {
+    "title": "Examen Instructies",
+    "read_carefully": "Lees alle vragen zorgvuldig door voordat u antwoordt",
+    "time_limit": "Tijdslimiet: {{minutes}} minuten",
+    "passing_score": "Slagingspercentage: {{score}}%",
+    "single_attempt": "U heeft één poging per examensessie",
+    "save_progress": "Uw voortgang wordt automatisch opgeslagen",
+    "review_answers": "Controleer uw antwoorden voordat u indient",
+    "no_going_back": "U kunt antwoorden niet wijzigen na indiening"
+  },
+  "question_types": {
+    "multiple_choice": "Meerkeuzevraag",
+    "true_false": "Waar/Onwaar",
+    "file_upload": "Bestand Uploaden",
+    "short_answer": "Kort Antwoord",
+    "drag_drop": "Slepen en Neerzetten",
+    "fill_gaps": "Invullen van Gaten"
+  },
+  "navigation": {
+    "question_progress": "Vraag {{current}} van {{total}}",
+    "previous_question": "Vorige Vraag",
+    "next_question": "Volgende Vraag",
+    "submit_quiz": "Examen Indienen",
+    "review_quiz": "Examen Controleren",
+    "start_quiz": "Examen Starten",
+    "retake_quiz": "Examen Herkansen",
+    "ready_to_begin": "Klaar om te Beginnen?",
+    "time_limit_label": "Tijdslimiet",
+    "questions_label": "Vragen",
+    "passing_score_label": "Slagingspercentage",
+    "questions_count": "{{count}} vragen"
+  },
+  "file_upload": {
+    "instructions": "Upload een duidelijke foto van de vereiste veiligheidsuitrusting",
+    "drag_drop": "Sleep uw bestand hierheen, of klik om te bladeren",
+    "file_types": "Geaccepteerde bestandstypen: JPG, PNG, PDF",
+    "max_size": "Maximale bestandsgrootte: {{size}}MB",
+    "upload_success": "Bestand succesvol geüpload",
+    "upload_error": "Upload mislukt. Probeer het opnieuw.",
+    "remove_file": "Bestand verwijderen"
+  },
+  "results": {
+    "quiz_completed": "Examen Voltooid",
+    "your_score": "Uw Score: {{score}}%",
+    "passing_score": "Slagingspercentage: {{required}}%",
+    "result_passed": "Gefeliciteerd! U bent geslaagd voor het examen.",
+    "result_failed": "U heeft het slagingspercentage niet behaald. Bekijk het trainingsmateriaal en herkans het examen.",
+    "pending_review": "Uw examen wacht op manager beoordeling.",
+    "approved": "Uw examen is goedgekeurd door het management.",
+    "rejected": "Uw examen is niet goedgekeurd. Herkans het examen.",
+    "time_taken": "Tijd gebruikt: {{time}}",
+    "questions_correct": "{{correct}} van {{total}} vragen correct",
+    "view_answers": "Gedetailleerde Resultaten Bekijken",
+    "download_certificate": "Certificaat Downloaden"
+  },
+  "validation": {
+    "answer_required": "Geef een antwoord op deze vraag",
+    "file_required": "Upload een bestand voor deze vraag",
+    "invalid_file_type": "Ongeldig bestandstype. Upload alleen JPG, PNG, of PDF bestanden.",
+    "file_too_large": "Bestandsgrootte overschrijdt de maximumlimiet van {{size}}MB",
+    "text_too_short": "Antwoord moet minimaal {{min}} tekens lang zijn",
+    "text_too_long": "Antwoord mag niet meer dan {{max}} tekens bevatten"
+  },
+  "safety_equipment": {
+    "fire_extinguisher": "Brandblusser",
+    "life_jacket": "Reddingsvest",
+    "emergency_alarm": "Noodalarm",
+    "first_aid_kit": "EHBO-kit",
+    "emergency_exit": "Nooduitgang",
+    "muster_station": "Verzamelplaats",
+    "safety_shower": "Veiligheidsdouche",
+    "eye_wash_station": "Oogspoelapparaat"
+  },
+  "common_answers": {
+    "yes": "Ja",
+    "no": "Nee",
+    "true": "Waar",
+    "false": "Onwaar",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "not_answered": "Niet beantwoord"
+  },
+  "offline": {
+    "mode_active": "Offline Modus",
+    "pending_sync": "Wordt Gesynchroniseerd",
+    "progress_restored": "Quiz voortgang hersteld uit offline opslag",
+    "now_offline": "U bent nu offline. Uw voortgang wordt lokaal opgeslagen.",
+    "back_online_will_sync": "Weer online! Uw quiz wordt automatisch gesynchroniseerd.",
+    "saved_will_sync": "Quiz offline voltooid. Resultaten worden gesynchroniseerd wanneer verbinding is hersteld.",
+    "save_failed": "Kon quiz niet offline opslaan. Probeer opnieuw."
+  }
+}

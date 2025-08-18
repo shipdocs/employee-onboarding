@@ -1,0 +1,97 @@
+name: Email Log Cleanup Backup
+
+# Backup trigger for email log cleanup in case Vercel cron fails
+# Runs daily at 2:30 AM UTC (30 minutes after Vercel cron)
+
+on:
+  schedule:
+    - cron: '30 2 * * *'  # Daily at 2:30 AM UTC
+  workflow_dispatch:      # Allow manual triggering
+
+jobs:
+  email-cleanup-backup:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Trigger Email Cleanup
+        run: |
+          echo "🔄 Triggering backup email cleanup..."
+          
+          # Get the production URL
+          CLEANUP_URL="${{ secrets.VERCEL_URL || 'https://onboarding.burando.online' }}/api/cron/email-cleanup"
+          
+          # Trigger the cleanup endpoint
+          response=$(curl -s -w "%{http_code}" -X POST "$CLEANUP_URL" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -H "User-Agent: GitHub-Actions-Backup-Trigger/1.0")
+          
+          # Extract HTTP status code (last 3 characters)
+          http_code="${response: -3}"
+          response_body="${response%???}"
+          
+          echo "📊 Response Code: $http_code"
+          echo "📄 Response Body: $response_body"
+          
+          # Check if the request was successful
+          if [ "$http_code" -eq 200 ]; then
+            echo "✅ Email cleanup backup trigger successful"
+            
+            # Parse the response to check if cleanup actually succeeded
+            if echo "$response_body" | grep -q '"success":true'; then
+              echo "✅ Email cleanup completed successfully"
+            elif echo "$response_body" | grep -q '"success":false'; then
+              echo "⚠️ Email cleanup failed but endpoint responded"
+              echo "$response_body" | grep -o '"error":"[^"]*"' || true
+              exit 1
+            else
+              echo "⚠️ Unexpected response format"
+              echo "$response_body"
+            fi
+          else
+            echo "❌ Email cleanup backup trigger failed with HTTP $http_code"
+            echo "$response_body"
+            exit 1
+          fi
+
+      - name: Notify on Failure
+        if: failure()
+        run: |
+          echo "🚨 Email cleanup backup failed!"
+          echo "This indicates both Vercel cron and GitHub Actions backup have issues."
+          echo "Manual intervention may be required."
+          
+          # You can add additional notification logic here:
+          # - Send Slack notification
+          # - Send email alert
+          # - Create GitHub issue
+          # - Post to Discord webhook
+          
+          # Example Slack notification (uncomment and configure):
+          # curl -X POST -H 'Content-type: application/json' \
+          #   --data '{"text":"🚨 Email cleanup backup failed! Manual intervention required."}' \
+          #   ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  verify-cleanup:
+    runs-on: ubuntu-latest
+    needs: email-cleanup-backup
+    if: always()  # Run even if backup job fails
+    
+    steps:
+      - name: Verify Cleanup Status
+        run: |
+          echo "🔍 Verifying email retention status..."
+          
+          # Get the production URL
+          STATUS_URL="${{ secrets.VERCEL_URL || 'https://onboarding.burando.online' }}/api/admin/email-retention-status"
+          
+          # Note: This would require admin authentication
+          # For now, just log that verification should be done manually
+          echo "📋 Manual verification recommended:"
+          echo "   1. Login to admin dashboard"
+          echo "   2. Check email retention status"
+          echo "   3. Verify cleanup operations are working"
+          echo "   4. Monitor for any expired records accumulation"
+          
+          echo "🔗 Status URL: $STATUS_URL"
+          echo "⏰ Backup trigger completed at: $(date -u)"

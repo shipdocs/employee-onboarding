@@ -1,0 +1,8 @@
+[
+  {
+    "type": "jest",
+    "action": "fix-jest-tests",
+    "description": "Update test expectations and fix broken test cases",
+    "status": "applied"
+  }
+]

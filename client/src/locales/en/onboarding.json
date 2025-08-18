@@ -1,0 +1,168 @@
+{
+  "welcome": {
+    "title": "Welcome Aboard!",
+    "subtitle": "Hi {{name}}, you're joining the crew as a {{role}}",
+    "description": "Let's get you started with your maritime safety training",
+    "training_overview": {
+      "safety": {
+        "title": "Safety Training",
+        "description": "Essential maritime safety protocols"
+      },
+      "team": {
+        "title": "Team Integration", 
+        "description": "Meet your crew and responsibilities"
+      },
+      "vessel": {
+        "title": "Vessel Operations",
+        "description": "Ship-specific procedures and equipment"
+      }
+    },
+    "timeline": {
+      "title": "Your Training Journey",
+      "phase1": "Safety Fundamentals (2 hours)",
+      "phase2": "Emergency Procedures (2 hours)", 
+      "phase3": "Operational Training (2 hours)",
+      "total": "Total Time: 4-6 hours over 2 weeks"
+    },
+    "button": "Start Your Training Journey",
+    "context": "Designed for maritime professionals by maritime experts"
+  },
+  "role_setup": {
+    "title": "Customize Your Training",
+    "subtitle": "Select your primary role focus to personalize your training experience for European inland waterways",
+    "roles": {
+      "schipper": {
+        "title": "Skipper/Captain",
+        "description": "Leadership, navigation and full responsibility for the vessel",
+        "priority": "Leadership & Navigation",
+        "duration": "8 hours",
+        "modules": [
+          "Rhine Navigation & Traffic Laws",
+          "Leadership & Crisis Management",
+          "Cargo Planning & Stability",
+          "Legal Responsibilities"
+        ]
+      },
+      "stuurman": {
+        "title": "Helmsman",
+        "description": "Navigation support and operational tasks",
+        "priority": "Navigation & Operations",
+        "duration": "6 hours",
+        "modules": [
+          "Navigation Support",
+          "Communication Systems (VHF/AIS)",
+          "Locks & Bridges Operations",
+          "Watch Duty Procedures"
+        ]
+      },
+      "matroos": {
+        "title": "Sailor",
+        "description": "Experienced deck operations and specialized tasks",
+        "priority": "Deck Operations & Mentoring",
+        "duration": "5 hours",
+        "modules": [
+          "Advanced Deck Operations",
+          "Cargo Handling & Safety",
+          "Maintenance & Repairs",
+          "Mentoring New Crew Members"
+        ]
+      },
+      "deksman": {
+        "title": "Deckhand",
+        "description": "Basic deck operations and general support",
+        "priority": "Basic Deck Operations",
+        "duration": "4 hours",
+        "modules": [
+          "Basic Deck Operations",
+          "Safety & Personal Protection",
+          "Basic Maintenance & Cleaning",
+          "Teamwork & Communication"
+        ]
+      }
+    },
+    "selected": "Selected: {{role}}",
+    "selected_description": "Your training will be customized for {{description}} with emphasis on {{priority}}.",
+    "help_text": "Don't worry - you can access training for all roles later",
+    "button": "Continue to Training Overview"
+  },
+  "training_overview": {
+    "title": "Your Training Program",
+    "subtitle": "Welcome to your personalized maritime training journey",
+    "focus": "Focus: {{focus}}",
+    "stats": {
+      "phases": {
+        "title": "3 Phases",
+        "description": "Comprehensive training program"
+      },
+      "duration": {
+        "title": "6 Hours Total", 
+        "description": "Flexible self-paced learning"
+      },
+      "support": {
+        "title": "Expert Support",
+        "description": "Maritime professionals available"
+      }
+    },
+    "phases": {
+      "phase1": {
+        "title": "Safety Fundamentals",
+        "description": "Essential maritime safety knowledge and emergency procedures",
+        "modules": [
+          "Personal Safety Equipment",
+          "Emergency Alarm Signals", 
+          "Muster Station Procedures",
+          "Basic First Aid"
+        ]
+      },
+      "phase2": {
+        "title": "Emergency Procedures",
+        "description": "Advanced emergency response and crisis management",
+        "modules": [
+          "Fire Fighting Procedures",
+          "Abandon Ship Procedures",
+          "Man Overboard Response", 
+          "Emergency Communication"
+        ]
+      },
+      "phase3": {
+        "title": "Operational Training",
+        "description": "Role-specific operational procedures and equipment",
+        "modules": [
+          "Equipment Operation",
+          "Standard Procedures",
+          "Documentation Requirements",
+          "Quality Assurance"
+        ]
+      }
+    },
+    "status": {
+      "ready": "Ready to Start",
+      "locked": "Unlocks After Previous Phase",
+      "completed": "Completed"
+    },
+    "important_info": {
+      "title": "Important Information",
+      "points": [
+        "Training must be completed in sequence - each phase unlocks the next",
+        "You can pause and resume training at any time",
+        "All progress is automatically saved",
+        "Certificates are generated upon successful completion",
+        "Support is available 24/7 for maritime emergencies"
+      ]
+    },
+    "start_button": "Start Phase 1: Safety Fundamentals",
+    "ready_text": "Ready to begin your maritime training journey"
+  },
+  "navigation": {
+    "back": "Back",
+    "continue": "Continue",
+    "skip": "Skip",
+    "next": "Next"
+  },
+  "common": {
+    "duration": "Duration: {{duration}}",
+    "focus": "Focus: {{focus}}",
+    "modules": "Training Modules:",
+    "phase": "Phase {{number}}: {{title}}"
+  }
+}

@@ -1,0 +1,23 @@
+# Force cache invalidation for TailwindCSS v4 fix
+client/node_modules/.cache
+client/build
+build
+.next
+node_modules/.cache
+
+# Test files and artifacts
+test-claude-implementations.js
+simple-validation-test.js
+tests/coverage/
+reports/
+e2e-tests/
+*.webm
+*.mp4
+coverage/
+playwright-report/
+test-results/
+
+# Development files
+*.log
+.env.local
+.DS_Store

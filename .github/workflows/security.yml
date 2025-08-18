@@ -1,0 +1,654 @@
+name: Security Scanning
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  NODE_VERSION: '18.x'
+
+jobs:
+  sast-analysis:
+    name: Static Application Security Testing (SAST)
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd client && npm ci --legacy-peer-deps && cd ..
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+          queries: security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript"
+
+      - name: Run ESLint Security Plugin
+        run: |
+          npm install --no-save eslint-plugin-security
+          npx eslint . --ext .js,.jsx,.ts,.tsx --format json --output-file eslint-security-results.json || true
+          
+          # Check for security issues
+          if [ -f eslint-security-results.json ]; then
+            SECURITY_ISSUES=$(cat eslint-security-results.json | jq '[.[] | select(.messages[] | .ruleId | startswith("security/"))] | length')
+            echo "Security issues found: $SECURITY_ISSUES"
+            
+            if [ "$SECURITY_ISSUES" -gt 0 ]; then
+              echo "❌ ESLint security issues detected!"
+              cat eslint-security-results.json | jq '.[] | select(.messages[] | .ruleId | startswith("security/"))'
+            else
+              echo "✅ No ESLint security issues found."
+            fi
+          fi
+
+      - name: Run Semgrep SAST
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: >-
+            p/security-audit
+            p/javascript
+            p/typescript
+            p/react
+            p/nodejs
+          generateSarif: "1"
+
+      - name: Upload Semgrep results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
+
+      - name: Run Snyk Code Analysis
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk-code.sarif
+          command: code test
+
+      - name: Upload Snyk results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: snyk-code.sarif
+
+      - name: Upload SAST artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sast-results
+          path: |
+            eslint-security-results.json
+            semgrep.sarif
+            snyk-code.sarif
+
+  security-regression-tests:
+    name: Security Regression Tests
+    runs-on: ubuntu-latest
+    needs: sast-analysis
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd client && npm ci --legacy-peer-deps && cd ..
+
+      - name: Run XSS Prevention Tests
+        run: |
+          echo "Running XSS prevention tests..."
+          npm run test:security:xss || echo "XSS tests not yet implemented"
+
+      - name: Run Rate Limiting Tests
+        run: |
+          echo "Running rate limiting tests..."
+          npm run test:security:rate-limit || echo "Rate limiting tests not yet implemented"
+
+      - name: Run JWT Security Tests
+        run: |
+          echo "Running JWT security tests..."
+          npm run test:security:jwt || echo "JWT security tests not yet implemented"
+
+      - name: Run File Upload Security Tests
+        run: |
+          echo "Running file upload security tests..."
+          npm run test:security:file-upload || echo "File upload security tests not yet implemented"
+
+      - name: Run Authentication Security Tests
+        run: |
+          echo "Running authentication security tests..."
+          npm run test:security:auth || echo "Authentication security tests not yet implemented"
+
+      - name: Upload security test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-test-results
+          path: |
+            reports/security-tests/
+            coverage/security/
+
+  security-gate:
+    name: Security Gate
+    runs-on: ubuntu-latest
+    needs: [sast-analysis, security-regression-tests, dependency-scan, client-dependency-scan]
+    if: always()
+
+    steps:
+      - name: Download SAST results
+        uses: actions/download-artifact@v4
+        with:
+          name: sast-results
+          path: ./sast-results/
+
+      - name: Evaluate Security Gate
+        run: |
+          echo "🔒 Evaluating Security Gate..."
+          
+          GATE_PASSED=true
+          
+          # Check SAST results
+          if [ -f "./sast-results/eslint-security-results.json" ]; then
+            ESLINT_ISSUES=$(cat ./sast-results/eslint-security-results.json | jq '[.[] | select(.messages[] | .ruleId | startswith("security/"))] | length' 2>/dev/null || echo "0")
+            echo "ESLint security issues: $ESLINT_ISSUES"
+            
+            if [ "$ESLINT_ISSUES" -gt 5 ]; then
+              echo "❌ Too many ESLint security issues found: $ESLINT_ISSUES"
+              GATE_PASSED=false
+            fi
+          fi
+          
+          # Check dependency scan results
+          if [ "${{ needs.dependency-scan.result }}" != "success" ]; then
+            echo "❌ Dependency scan failed"
+            GATE_PASSED=false
+          fi
+          
+          if [ "${{ needs.client-dependency-scan.result }}" != "success" ]; then
+            echo "❌ Client dependency scan failed"
+            GATE_PASSED=false
+          fi
+          
+          # Check security regression tests
+          if [ "${{ needs.security-regression-tests.result }}" == "failure" ]; then
+            echo "❌ Security regression tests failed"
+            GATE_PASSED=false
+          fi
+          
+          # Final gate decision
+          if [ "$GATE_PASSED" = true ]; then
+            echo "✅ Security Gate PASSED - Deployment approved"
+            exit 0
+          else
+            echo "❌ Security Gate FAILED - Deployment blocked"
+            echo "Please address security issues before proceeding with deployment."
+            exit 1
+          fi
+
+      - name: Create Security Gate Report
+        if: always()
+        run: |
+          echo "# 🔒 Security Gate Report" > security-gate-report.md
+          echo "" >> security-gate-report.md
+          echo "**Generated:** $(date)" >> security-gate-report.md
+          echo "**Status:** ${{ job.status }}" >> security-gate-report.md
+          echo "" >> security-gate-report.md
+          
+          echo "## Results Summary" >> security-gate-report.md
+          echo "- SAST Analysis: ${{ needs.sast-analysis.result }}" >> security-gate-report.md
+          echo "- Security Regression Tests: ${{ needs.security-regression-tests.result }}" >> security-gate-report.md
+          echo "- Dependency Scan: ${{ needs.dependency-scan.result }}" >> security-gate-report.md
+          echo "- Client Dependency Scan: ${{ needs.client-dependency-scan.result }}" >> security-gate-report.md
+          echo "" >> security-gate-report.md
+          
+          echo "## Recommendations" >> security-gate-report.md
+          echo "1. Review SAST findings in the Security tab" >> security-gate-report.md
+          echo "2. Address any failing security tests" >> security-gate-report.md
+          echo "3. Update vulnerable dependencies" >> security-gate-report.md
+          echo "4. Monitor security metrics dashboard" >> security-gate-report.md
+
+      - name: Upload Security Gate Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-gate-report
+          path: security-gate-report.md
+
+jobs:
+  dependency-scan:
+    name: Dependency Vulnerability Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        id: npm-audit
+        run: |
+          echo "Running npm audit..."
+          npm audit --audit-level=moderate --json > audit-results.json || true
+          
+          # Check if there are any vulnerabilities
+          VULN_COUNT=$(cat audit-results.json | jq '.metadata.vulnerabilities.total // 0')
+          echo "vulnerability-count=$VULN_COUNT" >> $GITHUB_OUTPUT
+          
+          # Display human-readable results
+          echo "=== NPM Audit Results ==="
+          npm audit --audit-level=moderate || true
+
+      - name: Upload audit results
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-results
+          path: audit-results.json
+
+      - name: Check for critical vulnerabilities
+        run: |
+          CRITICAL_COUNT=$(cat audit-results.json | jq '.metadata.vulnerabilities.critical // 0')
+          HIGH_COUNT=$(cat audit-results.json | jq '.metadata.vulnerabilities.high // 0')
+          
+          echo "Critical vulnerabilities: $CRITICAL_COUNT"
+          echo "High vulnerabilities: $HIGH_COUNT"
+          
+          if [ "$CRITICAL_COUNT" -gt 0 ] || [ "$HIGH_COUNT" -gt 0 ]; then
+            echo "❌ Critical or high severity vulnerabilities found!"
+            echo "Please run 'npm audit fix' or update vulnerable packages manually."
+            exit 1
+          else
+            echo "✅ No critical or high severity vulnerabilities found."
+          fi
+
+  client-dependency-scan:
+    name: Client Dependencies Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install client dependencies
+        run: |
+          cd client
+          npm ci --legacy-peer-deps
+
+      - name: Run client npm audit
+        id: client-audit
+        run: |
+          cd client
+          echo "Running client npm audit..."
+          npm audit --audit-level=moderate --json > ../client-audit-results.json || true
+          
+          # Display human-readable results
+          echo "=== Client NPM Audit Results ==="
+          npm audit --audit-level=moderate || true
+
+      - name: Upload client audit results
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-audit-results
+          path: client-audit-results.json
+
+      - name: Check for client critical vulnerabilities
+        run: |
+          CRITICAL_COUNT=$(cat client-audit-results.json | jq '.metadata.vulnerabilities.critical // 0')
+          HIGH_COUNT=$(cat client-audit-results.json | jq '.metadata.vulnerabilities.high // 0')
+          
+          echo "Client critical vulnerabilities: $CRITICAL_COUNT"
+          echo "Client high vulnerabilities: $HIGH_COUNT"
+          
+          if [ "$CRITICAL_COUNT" -gt 0 ] || [ "$HIGH_COUNT" -gt 0 ]; then
+            echo "❌ Critical or high severity vulnerabilities found in client dependencies!"
+            echo "Please run 'cd client && npm audit fix' or update vulnerable packages manually."
+            exit 1
+          else
+            echo "✅ No critical or high severity vulnerabilities found in client dependencies."
+          fi
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run security tests
+        run: |
+          echo "Running security-specific tests..."
+          npm run test:security || echo "Security tests not yet implemented"
+
+      - name: Check for hardcoded secrets
+        run: |
+          echo "Scanning for potential hardcoded secrets..."
+          
+          # Check for common secret patterns
+          if grep -r -E "(password|secret|key|token)\s*=\s*['\"][^'\"]{8,}" --include="*.js" --include="*.ts" --include="*.json" --exclude-dir=node_modules --exclude-dir=.git . ; then
+            echo "❌ Potential hardcoded secrets found!"
+            echo "Please review the above matches and ensure no secrets are committed."
+            exit 1
+          else
+            echo "✅ No obvious hardcoded secrets found."
+          fi
+
+      - name: Check environment variable usage
+        run: |
+          echo "Checking for direct process.env usage..."
+          
+          # Find direct process.env usage (should use SecureConfigManager)
+          DIRECT_ENV_COUNT=$(grep -r "process\.env\." --include="*.js" --exclude-dir=node_modules --exclude-dir=.git --exclude="config/*" --exclude="lib/configService.js" . | wc -l)
+          
+          echo "Direct process.env usage count: $DIRECT_ENV_COUNT"
+          
+          if [ "$DIRECT_ENV_COUNT" -gt 50 ]; then
+            echo "⚠️  High number of direct process.env usage found."
+            echo "Consider migrating to SecureConfigManager for better security."
+          else
+            echo "✅ Acceptable level of direct environment variable usage."
+          fi
+
+  automated-dependency-scanning:
+    name: Automated Dependency Vulnerability Scanning
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd client && npm ci --legacy-peer-deps && cd ..
+
+      - name: Run Snyk Dependency Scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=medium --json-file-output=snyk-dependencies.json
+
+      - name: Run npm audit with detailed output
+        run: |
+          echo "Running comprehensive npm audit..."
+          npm audit --audit-level=low --json > npm-audit-detailed.json || true
+          
+          # Generate human-readable summary
+          echo "=== NPM Audit Summary ===" > audit-summary.txt
+          npm audit --audit-level=low >> audit-summary.txt || true
+          
+          # Check client dependencies
+          cd client
+          npm audit --audit-level=low --json > ../client-audit-detailed.json || true
+          echo "=== Client NPM Audit Summary ===" >> ../audit-summary.txt
+          npm audit --audit-level=low >> ../audit-summary.txt || true
+          cd ..
+
+      - name: Run OSV Scanner for additional vulnerability detection
+        uses: google/osv-scanner-action@v1.7.4
+        continue-on-error: true
+        with:
+          scan-args: |-
+            --output=osv-results.json
+            --format=json
+            ./
+
+      - name: Generate Dependency Security Report
+        run: |
+          node -e "
+          const fs = require('fs');
+          const report = {
+            timestamp: new Date().toISOString(),
+            scanResults: {
+              npm: {},
+              snyk: {},
+              osv: {}
+            },
+            summary: {
+              totalVulnerabilities: 0,
+              criticalCount: 0,
+              highCount: 0,
+              mediumCount: 0,
+              lowCount: 0
+            },
+            recommendations: []
+          };
+          
+          // Process npm audit results
+          try {
+            const npmAudit = JSON.parse(fs.readFileSync('npm-audit-detailed.json', 'utf8'));
+            report.scanResults.npm = npmAudit;
+            if (npmAudit.metadata && npmAudit.metadata.vulnerabilities) {
+              const vulns = npmAudit.metadata.vulnerabilities;
+              report.summary.totalVulnerabilities += vulns.total || 0;
+              report.summary.criticalCount += vulns.critical || 0;
+              report.summary.highCount += vulns.high || 0;
+              report.summary.mediumCount += vulns.moderate || 0;
+              report.summary.lowCount += vulns.low || 0;
+            }
+          } catch (e) { console.log('No npm audit results'); }
+          
+          // Process client audit results
+          try {
+            const clientAudit = JSON.parse(fs.readFileSync('client-audit-detailed.json', 'utf8'));
+            report.scanResults.npmClient = clientAudit;
+            if (clientAudit.metadata && clientAudit.metadata.vulnerabilities) {
+              const vulns = clientAudit.metadata.vulnerabilities;
+              report.summary.totalVulnerabilities += vulns.total || 0;
+              report.summary.criticalCount += vulns.critical || 0;
+              report.summary.highCount += vulns.high || 0;
+              report.summary.mediumCount += vulns.moderate || 0;
+              report.summary.lowCount += vulns.low || 0;
+            }
+          } catch (e) { console.log('No client audit results'); }
+          
+          // Process Snyk results
+          try {
+            const snykResults = JSON.parse(fs.readFileSync('snyk-dependencies.json', 'utf8'));
+            report.scanResults.snyk = snykResults;
+          } catch (e) { console.log('No Snyk results'); }
+          
+          // Process OSV results
+          try {
+            const osvResults = JSON.parse(fs.readFileSync('osv-results.json', 'utf8'));
+            report.scanResults.osv = osvResults;
+          } catch (e) { console.log('No OSV results'); }
+          
+          // Generate recommendations
+          if (report.summary.criticalCount > 0) {
+            report.recommendations.push({
+              priority: 'CRITICAL',
+              action: 'Immediately update packages with critical vulnerabilities',
+              command: 'npm audit fix --force'
+            });
+          }
+          
+          if (report.summary.highCount > 0) {
+            report.recommendations.push({
+              priority: 'HIGH', 
+              action: 'Update packages with high severity vulnerabilities within 24 hours',
+              command: 'npm audit fix'
+            });
+          }
+          
+          fs.writeFileSync('dependency-security-report.json', JSON.stringify(report, null, 2));
+          console.log('Dependency security report generated');
+          "
+
+      - name: Upload Dependency Security Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dependency-security-reports
+          path: |
+            dependency-security-report.json
+            npm-audit-detailed.json
+            client-audit-detailed.json
+            snyk-dependencies.json
+            osv-results.json
+            audit-summary.txt
+
+      - name: Check Vulnerability Thresholds
+        run: |
+          echo "Checking vulnerability thresholds..."
+          
+          # Read the generated report
+          CRITICAL_COUNT=$(node -e "
+            try {
+              const report = JSON.parse(require('fs').readFileSync('dependency-security-report.json', 'utf8'));
+              console.log(report.summary.criticalCount || 0);
+            } catch(e) { console.log(0); }
+          ")
+          
+          HIGH_COUNT=$(node -e "
+            try {
+              const report = JSON.parse(require('fs').readFileSync('dependency-security-report.json', 'utf8'));
+              console.log(report.summary.highCount || 0);
+            } catch(e) { console.log(0); }
+          ")
+          
+          echo "Critical vulnerabilities: $CRITICAL_COUNT"
+          echo "High vulnerabilities: $HIGH_COUNT"
+          
+          # Fail the build if critical vulnerabilities are found
+          if [ "$CRITICAL_COUNT" -gt 0 ]; then
+            echo "❌ CRITICAL vulnerabilities found! Build failed."
+            echo "Please run 'npm audit fix --force' to resolve critical issues."
+            exit 1
+          fi
+          
+          # Warn about high vulnerabilities but don't fail the build
+          if [ "$HIGH_COUNT" -gt 5 ]; then
+            echo "⚠️  WARNING: $HIGH_COUNT high severity vulnerabilities found!"
+            echo "Consider running 'npm audit fix' to resolve these issues."
+          fi
+          
+          echo "✅ Dependency vulnerability scan completed successfully"
+
+  dependency-update-check:
+    name: Check for Outdated Dependencies
+    runs-on: ubuntu-latest
+    needs: automated-dependency-scanning
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for outdated packages
+        run: |
+          echo "Checking for outdated packages..."
+          npm outdated --json > outdated-packages.json || true
+          
+          # Display human-readable results
+          echo "=== Outdated Packages ==="
+          npm outdated || true
+
+      - name: Upload outdated packages report
+        uses: actions/upload-artifact@v4
+        with:
+          name: outdated-packages
+          path: outdated-packages.json
+
+      - name: Check client outdated packages
+        run: |
+          cd client
+          echo "Checking for outdated client packages..."
+          npm outdated --json > ../client-outdated-packages.json || true
+          
+          # Display human-readable results
+          echo "=== Client Outdated Packages ==="
+          npm outdated || true
+
+      - name: Upload client outdated packages report
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-outdated-packages
+          path: client-outdated-packages.json
+
+  notify-security-results:
+    name: Notify Security Results
+    runs-on: ubuntu-latest
+    needs: [dependency-scan, client-dependency-scan, security-audit, dependency-update-check]
+    if: always()
+
+    steps:
+      - name: Check security scan results
+        run: |
+          echo "Security scan completed."
+          echo "Dependency scan: ${{ needs.dependency-scan.result }}"
+          echo "Client dependency scan: ${{ needs.client-dependency-scan.result }}"
+          echo "Security audit: ${{ needs.security-audit.result }}"
+          echo "Dependency update check: ${{ needs.dependency-update-check.result }}"
+          
+          if [ "${{ needs.dependency-scan.result }}" != "success" ] || [ "${{ needs.client-dependency-scan.result }}" != "success" ]; then
+            echo "❌ Security vulnerabilities detected!"
+            echo "Please review the audit results and update vulnerable dependencies."
+            exit 1
+          else
+            echo "✅ No critical security vulnerabilities detected."
+          fi

@@ -1,0 +1,257 @@
+{
+  "testSuite": "Maritime Onboarding Production E2E Tests",
+  "startTime": "2025-07-09T16:48:10.056Z",
+  "endTime": "2025-07-09T16:49:45.031Z",
+  "duration": 94975,
+  "totalTests": 13,
+  "passed": 4,
+  "failed": 9,
+  "successRate": "30.77%",
+  "modules": [
+    {
+      "moduleName": "AdminTestSetup",
+      "results": [
+        {
+          "testName": "Admin Login",
+          "success": false,
+          "error": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[type=\"password\"]').last()\u001b[22m\n",
+          "duration": 34796,
+          "timestamp": "2025-07-09T16:48:49.093Z",
+          "screenshots": [
+            "admin-login-error"
+          ]
+        }
+      ],
+      "summary": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "successRate": "0.00%"
+      }
+    },
+    {
+      "moduleName": "EnhancedAuthentication",
+      "results": [
+        {
+          "testName": "Admin Login Flow",
+          "success": true,
+          "duration": 7510,
+          "timestamp": "2025-07-09T16:48:56.604Z",
+          "data": {
+            "finalUrl": "https://onboarding.burando.online/admin"
+          },
+          "screenshots": [
+            "login-page-start",
+            "help-menu-opened",
+            "admin-form-revealed",
+            "admin-credentials-filled",
+            "admin-login-result"
+          ]
+        },
+        {
+          "testName": "Magic Link with Toast",
+          "success": false,
+          "error": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#primary-email, input[type=\"email\"]').first()\u001b[22m\n",
+          "duration": 31531,
+          "timestamp": "2025-07-09T16:49:28.135Z",
+          "screenshots": [
+            "magic-link-toast-error"
+          ]
+        },
+        {
+          "testName": "Magic Link Completion",
+          "success": false,
+          "error": "simulatedMagicLink is not defined",
+          "duration": 4691,
+          "timestamp": "2025-07-09T16:49:32.827Z",
+          "screenshots": [
+            "magic-link-completion-error"
+          ]
+        },
+        {
+          "testName": "Loading States",
+          "success": true,
+          "duration": 3635,
+          "timestamp": "2025-07-09T16:49:36.462Z",
+          "error": null,
+          "screenshots": [
+            "before-loading-state",
+            "loading-state-found",
+            "after-loading-state"
+          ]
+        },
+        {
+          "testName": "Error Handling",
+          "success": false,
+          "duration": 2184,
+          "timestamp": "2025-07-09T16:49:38.646Z",
+          "error": "No error messages found for invalid input",
+          "screenshots": [
+            "invalid-email-error"
+          ]
+        }
+      ],
+      "summary": {
+        "total": 5,
+        "passed": 2,
+        "failed": 3,
+        "successRate": "40.00%"
+      }
+    },
+    {
+      "moduleName": "TrainingWorkflow",
+      "results": [
+        {
+          "testName": "Dashboard Access",
+          "success": true,
+          "duration": 2934,
+          "timestamp": "2025-07-09T16:49:41.580Z",
+          "data": {
+            "finalUrl": "https://onboarding.burando.online/login"
+          },
+          "error": null,
+          "screenshots": [
+            "dashboard-access"
+          ]
+        },
+        {
+          "testName": "Training Phase Cards",
+          "success": false,
+          "duration": 261,
+          "timestamp": "2025-07-09T16:49:41.841Z",
+          "data": {
+            "foundPhases": []
+          },
+          "error": "No training phase cards found",
+          "screenshots": [
+            "training-phase-cards"
+          ]
+        },
+        {
+          "testName": "Progress Tracking",
+          "success": false,
+          "duration": 244,
+          "timestamp": "2025-07-09T16:49:42.085Z",
+          "data": {
+            "foundProgress": []
+          },
+          "error": "No progress indicators found",
+          "screenshots": [
+            "progress-tracking"
+          ]
+        },
+        {
+          "testName": "Phase Navigation",
+          "success": true,
+          "duration": 2421,
+          "timestamp": "2025-07-09T16:49:44.506Z",
+          "data": {
+            "clickedElement": "button:has-text(\"Start\"): Get Started...",
+            "finalUrl": "https://onboarding.burando.online/login"
+          },
+          "error": null,
+          "screenshots": [
+            "phase-navigation-result"
+          ]
+        },
+        {
+          "testName": "Certificate Generation",
+          "success": false,
+          "duration": 261,
+          "timestamp": "2025-07-09T16:49:44.767Z",
+          "data": {
+            "certificateText": ""
+          },
+          "error": "No certificate elements found",
+          "screenshots": [
+            "certificate-generation"
+          ]
+        },
+        {
+          "testName": "Logout Functionality",
+          "success": false,
+          "duration": 261,
+          "timestamp": "2025-07-09T16:49:45.029Z",
+          "data": {
+            "logoutElement": "",
+            "finalUrl": "https://onboarding.burando.online/login",
+            "onLoginPage": true
+          },
+          "error": "No logout button found",
+          "screenshots": [
+            "logout-result"
+          ]
+        }
+      ],
+      "summary": {
+        "total": 6,
+        "passed": 2,
+        "failed": 4,
+        "successRate": "33.33%"
+      }
+    },
+    {
+      "moduleName": "TestSuite",
+      "results": [
+        {
+          "testName": "Fatal Error",
+          "success": false,
+          "error": "Cannot read properties of undefined (reading 'crew')",
+          "timestamp": "2025-07-09T16:49:45.031Z"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "adminSetup": {
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "successRate": "0.00%"
+    },
+    "enhancedAuth": {
+      "tests": 5,
+      "passed": 2,
+      "failed": 3,
+      "successRate": "40.00%"
+    },
+    "trainingWorkflow": {
+      "tests": 6,
+      "passed": 2,
+      "failed": 4,
+      "successRate": "33.33%"
+    },
+    "authentication": {
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "successRate": "0%"
+    },
+    "crewOnboarding": {
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "successRate": "0%"
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "CRITICAL",
+      "category": "Admin Access",
+      "issue": "Admin login not working",
+      "action": "Verify admin credentials and login flow"
+    },
+    {
+      "priority": "MEDIUM",
+      "category": "User Experience",
+      "issue": "Missing visual feedback",
+      "action": "Add loading states and confirmation messages"
+    },
+    {
+      "priority": "LOW",
+      "category": "Testing",
+      "issue": "E2E test coverage",
+      "action": "Add more test selectors with data-testid attributes"
+    }
+  ]
+}

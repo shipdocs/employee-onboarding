@@ -1,0 +1,14 @@
+{
+  "customPrompt": "# MCP USAGE GUIDELINES\n\nAlways use:\n- serena for semantic code retrieval and editing tools\n- context7 for up to date documentation on third party code\n- sequential thinking for any decision making\n\n# WORKFLOW PRIORITIES\n\n1. **Code Analysis & Editing**: Use Serena MCP for semantic code understanding, intelligent code search, and code editing operations\n2. **Documentation Lookup**: Use Context7 MCP for fetching current documentation on third-party libraries, frameworks, and APIs\n3. **Decision Making**: Use Sequential Thinking MCP for complex problem-solving, planning, and multi-step reasoning\n\n# SPECIFIC USE CASES\n\n## Serena MCP:\n- Semantic code search across the codebase\n- Intelligent code refactoring and editing\n- Code pattern analysis and suggestions\n- Finding related code sections\n- Understanding code relationships and dependencies\n\n## Context7 MCP:\n- Fetching latest API documentation\n- Getting current best practices for libraries\n- Checking for updated syntax and methods\n- Verifying compatibility information\n- Finding examples and usage patterns\n\n## Sequential Thinking MCP:\n- Breaking down complex development tasks\n- Planning implementation strategies\n- Analyzing trade-offs and alternatives\n- Multi-step problem solving\n- Architecture and design decisions\n\n# INTEGRATION APPROACH\n\nWhen working on development tasks:\n1. Use Sequential Thinking to plan the approach\n2. Use Context7 to verify current documentation and best practices\n3. Use Serena for code analysis and implementation\n4. Combine insights from all three for optimal solutions",
+  "mcpPreferences": {
+    "codeOperations": "serena",
+    "documentation": "context7", 
+    "decisionMaking": "sequential-thinking"
+  },
+  "workflowRules": [
+    "Always consult Context7 before implementing third-party library integrations",
+    "Use Serena for any code search or editing operations",
+    "Apply Sequential Thinking for complex multi-step tasks",
+    "Combine MCP insights for comprehensive solutions"
+  ]
+}

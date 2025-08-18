@@ -1,0 +1,50 @@
+# GitGuardian configuration file
+# This file configures GitGuardian to ignore false positives and demo credentials
+
+# Paths to ignore completely
+paths-ignore:
+  - "**/*.md"           # Ignore markdown files (documentation)
+  - "**/test/**"        # Ignore test files
+  - "**/tests/**"       # Ignore test directories
+  - "**/*.test.js"      # Ignore test files
+  - "**/*.spec.js"      # Ignore spec files
+
+# Specific patterns to ignore
+secrets-ignore:
+  # Demo credentials in translation files
+  - match: "demo-password-123"
+    name: "Demo password in translation files"
+    paths:
+      - "client/src/locales/**/*.json"
+  
+  - match: "demo-wachtwoord-123"
+    name: "Demo password in Dutch translation files"
+    paths:
+      - "client/src/locales/**/*.json"
+  
+  - match: "demo-manager@example.com"
+    name: "Demo email in translation files"
+    paths:
+      - "client/src/locales/**/*.json"
+
+  # Development/demo tokens
+  - match: "demo-token-crew1"
+    name: "Demo magic link token"
+    paths:
+      - "**/*.js"
+      - "**/*.json"
+      - "**/*.md"
+
+# Minimum entropy threshold for secrets detection
+minimum-entropy: 3.5
+
+# File size limit (in bytes) - files larger than this will be ignored
+maximum-file-size: 1048576  # 1MB
+
+# Custom rules
+custom-rules:
+  # Ignore obvious demo/test patterns
+  - name: "Demo credentials pattern"
+    regex: "demo-.*"
+    description: "Ignore demo credentials and test data"
+    severity: "low"

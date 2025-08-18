@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-06-15T11:08:01.041Z",
+  "system": {
+    "nodeVersion": "v18.20.5",
+    "platform": "linux",
+    "projectVersion": "2.0.0"
+  },
+  "codeQuality": {
+    "error": "Failed to run linter"
+  },
+  "testCoverage": {
+    "note": "No coverage data available. Run npm test:coverage"
+  },
+  "dependencies": {},
+  "security": {
+    "error": "Failed to run security audit"
+  }
+}

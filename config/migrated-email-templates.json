@@ -1,0 +1,52 @@
+{
+  "welcome": {
+    "subject_en": "Welcome to Burando Maritime Services - Onboarding Training",
+    "subject_nl": "Welkom bij Burando Maritime Services - Inwerk Training",
+    "template": "welcome_email_template",
+    "variables": [
+      "user.first_name",
+      "user.last_name",
+      "user.vessel_assignment"
+    ]
+  },
+  "magic_link": {
+    "subject_en": "Begin Your Onboarding Training - Secure Access Link",
+    "subject_nl": "Begin je inwerk training - Beveiligde toegangslink",
+    "template": "magic_link_template",
+    "variables": [
+      "user.first_name",
+      "magic_link",
+      "expiry_hours"
+    ]
+  },
+  "progress_reminder": {
+    "subject_en": "Training Reminder - Phase {phase} Due {due_date}",
+    "subject_nl": "Training Herinnering - Fase {phase} - Deadline {due_date}",
+    "template": "progress_reminder_template",
+    "variables": [
+      "user.first_name",
+      "phase",
+      "due_date"
+    ]
+  },
+  "next_phase": {
+    "subject_en": "Ready for Training Phase {next_phase}!",
+    "subject_nl": "Klaar voor Training Fase {next_phase}!",
+    "template": "next_phase_template",
+    "variables": [
+      "user.first_name",
+      "next_phase",
+      "previous_phase"
+    ]
+  },
+  "completion": {
+    "subject_en": "Training Completed - {user.first_name} {user.last_name}",
+    "subject_nl": "Training Voltooid - {user.first_name} {user.last_name}",
+    "template": "completion_template",
+    "variables": [
+      "user.first_name",
+      "user.last_name",
+      "certificate_path"
+    ]
+  }
+}

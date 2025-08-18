@@ -1,0 +1,92 @@
+{
+  "baseUrl": "https://onboarding.burando.online",
+  "timeout": 60000,
+  "credentials": {
+    "admin": {
+      "email": "process.env.E2E_ADMIN_EMAIL",
+      "password": "process.env.E2E_ADMIN_PASSWORD"
+    },
+    "manager": {
+      "email": "process.env.E2E_MANAGER_EMAIL",
+      "password": "process.env.E2E_MANAGER_PASSWORD"
+    },
+    "crew": {
+      "email": "process.env.E2E_CREW_EMAIL",
+      "password": "process.env.E2E_CREW_PASSWORD"
+    }
+  },
+  "selectors": {
+    "login": {
+      "emailInput": "#primary-email",
+      "adminEmailInput": "#admin-email", 
+      "adminPasswordInput": "#admin-password",
+      "submitButton": "button[type='submit']",
+      "magicLinkButton": "button:has-text('Get Started')",
+      "adminLoginButton": "button:has-text('admin')",
+      "errorMessage": ".text-red-300, [role='alert']"
+    },
+    "navigation": {
+      "dashboard": "[data-testid='dashboard']",
+      "profile": "[data-testid='profile-link']",
+      "logout": "[data-testid='logout-button']",
+      "languageSwitch": "[data-testid='language-switch']"
+    },
+    "onboarding": {
+      "welcomeScreen": "[data-testid='welcome-aboard']",
+      "phaseCard": "[data-testid='phase-card']",
+      "startButton": "[data-testid='start-phase']",
+      "nextButton": "[data-testid='next-button']",
+      "progressBar": "[data-testid='progress-bar']",
+      "quizForm": "[data-testid='quiz-form']",
+      "submitQuiz": "[data-testid='submit-quiz']"
+    },
+    "manager": {
+      "crewList": "[data-testid='crew-list']",
+      "addCrewButton": "[data-testid='add-crew']",
+      "crewCard": "[data-testid='crew-card']",
+      "progressChart": "[data-testid='progress-chart']",
+      "sendReminderButton": "[data-testid='send-reminder']"
+    },
+    "admin": {
+      "settingsPanel": "[data-testid='system-settings']",
+      "managersList": "[data-testid='managers-list']",
+      "addManagerButton": "[data-testid='add-manager']",
+      "statsWidget": "[data-testid='stats-widget']"
+    }
+  },
+  "testData": {
+    "newCrew": {
+      "name": "Test Crew Member",
+      "email": "testcrew@shipdocs.app",
+      "vessel": "Test Vessel",
+      "boardingDate": "2025-02-01"
+    },
+    "newManager": {
+      "name": "Test Manager",
+      "email": "testmanager@shipdocs.app",
+      "company": "Test Company"
+    }
+  },
+  "features": {
+    "offline": true,
+    "multilingual": true,
+    "pdfGeneration": true,
+    "emailNotifications": true,
+    "magicLinks": true
+  },
+  "networkProfiles": {
+    "fast": {
+      "downloadThroughput": 5000000,
+      "uploadThroughput": 2000000,
+      "latency": 20
+    },
+    "slow3G": {
+      "downloadThroughput": 40000,
+      "uploadThroughput": 20000,
+      "latency": 400
+    },
+    "offline": {
+      "offline": true
+    }
+  }
+}

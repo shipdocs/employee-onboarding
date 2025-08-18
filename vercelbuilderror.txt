@@ -1,0 +1,351 @@
+[07:29:15.111] Running build in Washington, D.C., USA (East) – iad1
+[07:29:15.112] Build machine configuration: 4 cores, 8 GB
+[07:29:15.131] Cloning github.com/shipdocs/new-onboarding-2025 (Branch: feature/captain-mode-quality-gates-fixes, Commit: 8a4be79)
+[07:29:15.282] Previous build caches not available
+[07:29:17.184] Cloning completed: 2.053s
+[07:29:17.391] Found .vercelignore
+[07:29:17.427] Removed 261 ignored files defined in .vercelignore
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/audits/API_ENDPOINT_AUDIT_REPORT.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/audits/api-audit.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/audits/api-detailed-audit.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/audits/CODE-ANALYSIS-REPORT.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/audits/COMPREHENSIVE_AUDIT_SUMMARY.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/audits/email-system-audit.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/audits/FORENSIC_INVESTIGATION_REPORT.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/audits/frontend-audit.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/bugs/manager-login-status-bug.md
+[07:29:17.428]   /docs-public/_archive/2025-07-14-snapshot/reports/cleanup/CLEANUP_COMPLETION_REPORT.md
+[07:29:19.390] Running "vercel build"
+[07:29:19.899] Vercel CLI 44.6.4
+[07:29:20.432] WARN! When using Next.js, it is recommended to place JavaScript Functions inside of the `pages/api` (provided by Next.js) directory instead of `api` (provided by Vercel). Other languages (Python, Go, etc) should still go in the `api` directory.
+[07:29:20.432] Learn More: https://nextjs.org/docs/api-routes/introduction
+[07:29:20.819] > Installing Builder: @vercel/node@3.0.0
+[07:29:27.700] Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+[07:29:27.708] Running "install" command: `npm install --legacy-peer-deps`...
+[07:29:31.271] npm warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+[07:29:37.926] 
+[07:29:37.926] > maritime-onboarding-system@2.0.1 prepare
+[07:29:37.926] > node -e "if (process.env.CI) process.exit(0); try { require('child_process').execSync('husky install', {stdio: 'inherit'}); } catch (e) { console.log('Husky not available, skipping git hooks setup'); }"
+[07:29:37.927] 
+[07:29:37.972] 
+[07:29:37.973] added 249 packages, and audited 250 packages in 10s
+[07:29:37.974] 
+[07:29:37.974] found 0 vulnerabilities
+[07:29:40.608] 
+[07:29:40.608] > maritime-onboarding-system@2.0.1 build
+[07:29:40.608] > cd client && npm install --legacy-peer-deps && npm run build && cd .. && cp -r client/build ./build
+[07:29:40.608] 
+[07:29:44.411] npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+[07:29:44.889] npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+[07:29:44.996] npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+[07:29:45.026] npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+[07:29:45.081] npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+[07:29:45.676] npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+[07:29:45.971] npm warn deprecated workbox-google-analytics@6.6.0: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
+[07:29:46.503] npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+[07:29:46.791] npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+[07:29:47.176] npm warn deprecated domexception@2.0.1: Use your platform's native DOMException instead
+[07:29:47.845] npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+[07:29:48.563] npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+[07:29:48.588] npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+[07:29:49.260] npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+[07:29:49.260] npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+[07:29:49.294] npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+[07:29:49.295] npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+[07:29:49.323] npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+[07:29:50.682] npm warn deprecated @babel/plugin-proposal-private-property-in-object@7.21.11: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
+[07:29:53.891] npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[07:30:03.779] 
+[07:30:03.779] > crew-onboarding-client@1.0.1 postinstall
+[07:30:03.779] > npm run copy-pdf-worker
+[07:30:03.779] 
+[07:30:03.909] 
+[07:30:03.909] > crew-onboarding-client@1.0.1 copy-pdf-worker
+[07:30:03.909] > cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs public/pdf.worker.min.js || echo 'PDF worker copy failed, continuing...'
+[07:30:03.909] 
+[07:30:04.003] 
+[07:30:04.004] added 1526 packages, and audited 1527 packages in 23s
+[07:30:04.004] 
+[07:30:04.004] 303 packages are looking for funding
+[07:30:04.004]   run `npm fund` for details
+[07:30:04.005] 
+[07:30:04.005] found 0 vulnerabilities
+[07:30:04.171] 
+[07:30:04.171] > crew-onboarding-client@1.0.1 build
+[07:30:04.171] > npm run copy-pdf-worker && GENERATE_SOURCEMAP=false ESLINT_NO_DEV_ERRORS=true CI=false react-scripts build && npm run copy-pdf-worker-to-build
+[07:30:04.171] 
+[07:30:04.295] 
+[07:30:04.295] > crew-onboarding-client@1.0.1 copy-pdf-worker
+[07:30:04.295] > cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs public/pdf.worker.min.js || echo 'PDF worker copy failed, continuing...'
+[07:30:04.295] 
+[07:30:05.653] Creating an optimized production build...
+[07:31:26.743] Compiled with warnings.
+[07:31:26.743] 
+[07:31:26.743] [eslint] 
+[07:31:26.743] src/App.js
+[07:31:26.743]   Line 51:24:  'logout' is assigned a value but never used          no-unused-vars
+[07:31:26.743]   Line 55:11:  'isMonitoring' is assigned a value but never used    no-unused-vars
+[07:31:26.743]   Line 55:25:  'measureApiCall' is assigned a value but never used  no-unused-vars
+[07:31:26.743] 
+[07:31:26.743] src/components/AuditLogViewer.js
+[07:31:26.743]   Line 1:27:  'useEffect' is defined but never used  no-unused-vars
+[07:31:26.743]   Line 11:3:  'Search' is defined but never used     no-unused-vars
+[07:31:26.744] 
+[07:31:26.744] src/components/CertificateManagement/CertificateList.js
+[07:31:26.744]   Line 15:3:   'CheckCircle' is defined but never used        no-unused-vars
+[07:31:26.744]   Line 27:17:  'setLimit' is assigned a value but never used  no-unused-vars
+[07:31:26.744] 
+[07:31:26.744] src/components/EditManagerModal.js
+[07:31:26.744]   Line 43:17:  'managerData' is assigned a value but never used  no-unused-vars
+[07:31:26.744] 
+[07:31:26.744] src/components/Layout.js
+[07:31:26.744]   Line 6:3:  'Ship' is defined but never used  no-unused-vars
+[07:31:26.744] 
+[07:31:26.744] src/components/MFAManagement.js
+[07:31:26.744]   Line 6:3:    'Settings' is defined but never used                                                                               no-unused-vars
+[07:31:26.744]   Line 12:3:   'Download' is defined but never used                                                                               no-unused-vars
+[07:31:26.744]   Line 29:11:  't' is assigned a value but never used                                                                             no-unused-vars
+[07:31:26.745]   Line 34:10:  'showBackupCodes' is assigned a value but never used                                                               no-unused-vars
+[07:31:26.748]   Line 34:27:  'setShowBackupCodes' is assigned a value but never used                                                            no-unused-vars
+[07:31:26.748]   Line 45:6:   React Hook useEffect has a missing dependency: 'fetchMFAStatus'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.748] 
+[07:31:26.748] src/components/MFASetup.js
+[07:31:26.748]   Line 30:11:  't' is assigned a value but never used                                                                          no-unused-vars
+[07:31:26.748]   Line 38:10:  'backupCodesDownloaded' is assigned a value but never used                                                      no-unused-vars
+[07:31:26.748]   Line 48:6:   React Hook useEffect has a missing dependency: 'currentStep'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.748] 
+[07:31:26.748] src/components/MobileBottomNav.js
+[07:31:26.749]   Line 8:3:   'Award' is defined but never used       no-unused-vars
+[07:31:26.749]   Line 10:3:  'HelpCircle' is defined but never used  no-unused-vars
+[07:31:26.749] 
+[07:31:26.749] src/components/NetworkStatus.js
+[07:31:26.749]   Line 10:10:  'showOfflineMessage' is assigned a value but never used  no-unused-vars
+[07:31:26.749] 
+[07:31:26.749] src/components/PDFTemplateEditor/FieldComponent.js
+[07:31:26.749]   Line 17:10:  'resizeHandle' is assigned a value but never used  no-unused-vars
+[07:31:26.749]   Line 107:7:  Expected a default case                            default-case
+[07:31:26.749] 
+[07:31:26.749] src/components/PDFTemplateEditor/PropertyPanel.js
+[07:31:26.749]   Line 2:24:  'Eye' is defined but never used     no-unused-vars
+[07:31:26.749]   Line 2:29:  'EyeOff' is defined but never used  no-unused-vars
+[07:31:26.749] 
+[07:31:26.749] src/components/PDFTemplateEditor/TemplateHeader.js
+[07:31:26.750]   Line 143:19:  'workerResponse' is assigned a value but never used  no-unused-vars
+[07:31:26.750] 
+[07:31:26.750] src/components/PDFTemplateEditor/index.js
+[07:31:26.750]   Line 22:22:  'setCanvasSize' is assigned a value but never used                                                                                      no-unused-vars
+[07:31:26.750]   Line 52:8:   React Hook useEffect has missing dependencies: 'initialTemplate' and 'template.id'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.750] 
+[07:31:26.750] src/components/SafeHTMLRenderer.js
+[07:31:26.750]   Line 99:32:   Script URL is a form of eval                                                     no-script-url
+[07:31:26.750]   Line 126:33:  Script URL is a form of eval                                                     no-script-url
+[07:31:26.750]   Line 132:15:  Anchors must have content and the content must be accessible by a screen reader  jsx-a11y/anchor-has-content
+[07:31:26.750]   Line 139:37:  Script URL is a form of eval                                                     no-script-url
+[07:31:26.750] 
+[07:31:26.750] src/components/SystemSettings.js
+[07:31:26.750]   Line 1:27:   'useEffect' is defined but never used              no-unused-vars
+[07:31:26.750]   Line 9:3:    'CheckCircle' is defined but never used            no-unused-vars
+[07:31:26.750]   Line 32:11:  'settingsData' is assigned a value but never used  no-unused-vars
+[07:31:26.750] 
+[07:31:26.750] src/components/ThemeToggle.js
+[07:31:26.750]   Line 10:11:  'theme' is assigned a value but never used                                                     no-unused-vars
+[07:31:26.750]   Line 89:7:   The attribute aria-pressed is not supported by the role switch                                 jsx-a11y/role-supports-aria-props
+[07:31:26.750]   Line 107:9:  Elements with the ARIA role "switch" must have the following attributes defined: aria-checked  jsx-a11y/role-has-required-aria-props
+[07:31:26.750] 
+[07:31:26.750] src/components/admin/ContentPreview.js
+[07:31:26.751]   Line 16:3:   'Divider' is defined but never used    no-unused-vars
+[07:31:26.751]   Line 33:12:  'ImageIcon' is defined but never used  no-unused-vars
+[07:31:26.751] 
+[07:31:26.751] src/components/admin/ContentVersioning.js
+[07:31:26.751]   Line 8:3:    'Card' is defined but never used                           no-unused-vars
+[07:31:26.751]   Line 9:3:    'CardContent' is defined but never used                    no-unused-vars
+[07:31:26.751]   Line 10:3:   'CardActions' is defined but never used                    no-unused-vars
+[07:31:26.751]   Line 25:3:   'FormControl' is defined but never used                    no-unused-vars
+[07:31:26.751]   Line 26:3:   'InputLabel' is defined but never used                     no-unused-vars
+[07:31:26.751]   Line 27:3:   'Select' is defined but never used                         no-unused-vars
+[07:31:26.751]   Line 28:3:   'MenuItem' is defined but never used                       no-unused-vars
+[07:31:26.751]   Line 57:10:  'approvalDialog' is assigned a value but never used        no-unused-vars
+[07:31:26.751]   Line 151:9:  'handleApprovalSubmit' is assigned a value but never used  no-unused-vars
+[07:31:26.751]   Line 173:5:  Expected a default case                                    default-case
+[07:31:26.751] 
+[07:31:26.751] src/components/admin/CreateIncidentModal.js
+[07:31:26.751]   Line 70:9:  'addUser' is assigned a value but never used     no-unused-vars
+[07:31:26.751]   Line 80:9:  'removeUser' is assigned a value but never used  no-unused-vars
+[07:31:26.752] 
+[07:31:26.757] src/components/admin/DocumentUploadSection.js
+[07:31:26.757]   Line 7:11:  't' is assigned a value but never used  no-unused-vars
+[07:31:26.757] 
+[07:31:26.757] src/components/admin/ExitStrategyManagement.js
+[07:31:26.757]   Line 14:3:  'Shield' is defined but never used  no-unused-vars
+[07:31:26.757] 
+[07:31:26.757] src/components/admin/IncidentManagement.js
+[07:31:26.757]   Line 1:27:   'useEffect' is defined but never used                 no-unused-vars
+[07:31:26.757]   Line 37:12:  'incidentsError' is assigned a value but never used   no-unused-vars
+[07:31:26.757]   Line 58:16:  'breachesLoading' is assigned a value but never used  no-unused-vars
+[07:31:26.757]   Line 104:9:  'breaches' is assigned a value but never used         no-unused-vars
+[07:31:26.757] 
+[07:31:26.757] src/components/admin/MediaUploader.js
+[07:31:26.757]   Line 21:3:   'FormControl' is defined but never used                                                                          no-unused-vars
+[07:31:26.757]   Line 22:3:   'InputLabel' is defined but never used                                                                           no-unused-vars
+[07:31:26.757]   Line 23:3:   'Select' is defined but never used                                                                               no-unused-vars
+[07:31:26.757]   Line 24:3:   'MenuItem' is defined but never used                                                                             no-unused-vars
+[07:31:26.757]   Line 63:10:  'error' is assigned a value but never used                                                                       no-unused-vars
+[07:31:26.757]   Line 126:6:  React Hook useCallback has a missing dependency: 'uploadFile'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.757] 
+[07:31:26.757] src/components/admin/PerformanceDashboard.js
+[07:31:26.757]   Line 6:27:   'useEffect' is defined but never used                   no-unused-vars
+[07:31:26.758]   Line 22:3:   'Filter' is defined but never used                      no-unused-vars
+[07:31:26.758]   Line 23:3:   'Calendar' is defined but never used                    no-unused-vars
+[07:31:26.758]   Line 33:10:  'selectedMetric' is assigned a value but never used     no-unused-vars
+[07:31:26.758]   Line 33:26:  'setSelectedMetric' is assigned a value but never used  no-unused-vars
+[07:31:26.758]   Line 41:5:   'refetch' is assigned a value but never used            no-unused-vars
+[07:31:26.758] 
+[07:31:26.758] src/components/admin/RichContentEditor.js
+[07:31:26.758]   Line 14:3:   'Divider' is defined but never used               no-unused-vars
+[07:31:26.758]   Line 29:13:  'UploadIcon' is defined but never used            no-unused-vars
+[07:31:26.758]   Line 37:10:  'AdminContentRenderer' is defined but never used  no-unused-vars
+[07:31:26.758]   Line 96:77:  'forceSave' is assigned a value but never used    no-unused-vars
+[07:31:26.758] 
+[07:31:26.758] src/components/admin/SecurityMonitoringDashboard.js
+[07:31:26.758]   Line 6:27:  'useEffect' is defined but never used       no-unused-vars
+[07:31:26.758]   Line 14:3:  'Unlock' is defined but never used          no-unused-vars
+[07:31:26.759]   Line 22:3:  'Filter' is defined but never used          no-unused-vars
+[07:31:26.759]   Line 45:5:  'error' is assigned a value but never used  no-unused-vars
+[07:31:26.759] 
+[07:31:26.759] src/components/common/NetworkStatus.js
+[07:31:26.759]   Line 14:10:   'showOfflineMessage' is assigned a value but never used    no-unused-vars
+[07:31:26.759]   Line 18:10:   'isServiceWorkerReady' is assigned a value but never used  no-unused-vars
+[07:31:26.759]   Line 214:29:  'setConnectionQuality' is assigned a value but never used  no-unused-vars
+[07:31:26.759] 
+[07:31:26.759] src/components/feedback/FeedbackWidget.js
+[07:31:26.759]   Line 10:3:   'ThumbsUp' is defined but never used                                                                                           no-unused-vars
+[07:31:26.759]   Line 11:3:   'ThumbsDown' is defined but never used                                                                                         no-unused-vars
+[07:31:26.759]   Line 33:10:  'feedbackType' is assigned a value but never used                                                                              no-unused-vars
+[07:31:26.759]   Line 47:6:   React Hook useEffect has a missing dependency: 'checkAutoTriggerConditions'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.759] 
+[07:31:26.759] src/components/onboarding/RoleSetupWizard.js
+[07:31:26.759]   Line 20:11:  't' is assigned a value but never used  no-unused-vars
+[07:31:26.759] 
+[07:31:26.759] src/components/onboarding/TrainingOverview.js
+[07:31:26.759]   Line 20:53:  'roleContent' is assigned a value but never used  no-unused-vars
+[07:31:26.759]   Line 21:11:  't' is assigned a value but never used            no-unused-vars
+[07:31:26.759] 
+[07:31:26.759] src/components/onboarding/WelcomeAboardScreen.js
+[07:31:26.759]   Line 10:11:  't' is assigned a value but never used  no-unused-vars
+[07:31:26.759] 
+[07:31:26.759] src/contexts/AuthContext.js
+[07:31:26.760]   Line 4:8:    'errorHandler' is defined but never used                                                                     no-unused-vars
+[07:31:26.760]   Line 81:6:   React Hook useCallback has a missing dependency: 'logout'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.760]   Line 117:6:  React Hook useEffect has a missing dependency: 'logout'. Either include it or remove the dependency array    react-hooks/exhaustive-deps
+[07:31:26.760] 
+[07:31:26.760] src/contexts/LanguageContext.js
+[07:31:26.760]   Line 91:6:  React Hook useEffect has missing dependencies: 'changeLanguage', 'currentLanguage', and 'languages'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.760] 
+[07:31:26.760] src/hooks/useAutoSave.js
+[07:31:26.760]   Line 23:6:  React Hook useEffect has a missing dependency: 'data'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.760] 
+[07:31:26.760] src/hooks/usePerformanceMonitoring.js
+[07:31:26.760]   Line 27:6:    React Hook useEffect has missing dependencies: 'startMonitoring' and 'stopMonitoring'. Either include them or remove the dependency array                                        react-hooks/exhaustive-deps
+[07:31:26.760]   Line 113:6:   React Hook useCallback has missing dependencies: 'monitorConnectionQuality', 'monitorDevicePerformance', and 'recordMetric'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.760]   Line 123:6:   React Hook useCallback has a missing dependency: 'recordMetric'. Either include it or remove the dependency array                                                                react-hooks/exhaustive-deps
+[07:31:26.760]   Line 147:6:   React Hook useCallback has missing dependencies: 'debouncedSendMetric', 'getMaritimeContext', and 'getSessionId'. Either include them or remove the dependency array             react-hooks/exhaustive-deps
+[07:31:26.760]   Line 315:5:   Expected a default case                                                                                                                                                          default-case
+[07:31:26.760]   Line 406:6:   React Hook useCallback has a missing dependency: 'recordMetric'. Either include it or remove the dependency array                                                                react-hooks/exhaustive-deps
+[07:31:26.760]   Line 409:31:  React Hook useCallback received a function whose dependencies are unknown. Pass an inline function instead                                                                       react-hooks/exhaustive-deps
+[07:31:26.760] 
+[07:31:26.760] src/pages/AdminDashboard.js
+[07:31:26.760]   Line 21:3:  'Upload' is defined but never used                                                                                    no-unused-vars
+[07:31:26.760]   Line 65:6:  React Hook useEffect has a missing dependency: 'loadDashboardData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.760] 
+[07:31:26.760] src/pages/ContentManagementPage.js
+[07:31:26.760]   Line 18:10:  'contentData' is assigned a value but never used                                                        no-unused-vars
+[07:31:26.760]   Line 18:23:  'setContentData' is assigned a value but never used                                                     no-unused-vars
+[07:31:26.760]   Line 153:6:  React Hook useCallback has a missing dependency: 't'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.761]   Line 169:6:  React Hook useCallback has a missing dependency: 't'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.761]   Line 185:6:  React Hook useCallback has a missing dependency: 't'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.761] 
+[07:31:26.761] src/pages/CrewDashboard.js
+[07:31:26.761]   Line 18:11:  't' is assigned a value but never used  no-unused-vars
+[07:31:26.761] 
+[07:31:26.761] src/pages/LoginPage.js
+[07:31:26.761]   Line 4:10:   'LogIn' is defined but never used                                                                                                       no-unused-vars
+[07:31:26.761]   Line 4:23:   'Lock' is defined but never used                                                                                                        no-unused-vars
+[07:31:26.761]   Line 18:10:  'showTokenEntry' is assigned a value but never used                                                                                     no-unused-vars
+[07:31:26.761]   Line 18:26:  'setShowTokenEntry' is assigned a value but never used                                                                                  no-unused-vars
+[07:31:26.761]   Line 37:6:   React Hook useEffect has missing dependencies: 'magicLoginMutation' and 'setValue'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.761]   Line 97:15:  'message' is assigned a value but never used                                                                                            no-unused-vars
+[07:31:26.761] 
+[07:31:26.761] src/pages/MagicLinkPage.js
+[07:31:26.761]   Line 8:8:  'LoadingSpinner' is defined but never used  no-unused-vars
+[07:31:26.761] 
+[07:31:26.761] src/pages/ManagerDashboard.js
+[07:31:26.761]   Line 23:3:   'MoreVertical' is defined but never used              no-unused-vars
+[07:31:26.761]   Line 58:10:  'showBulkActions' is assigned a value but never used  no-unused-vars
+[07:31:26.761] 
+[07:31:26.761] src/pages/PDFTemplateEditorPage.js
+[07:31:26.761]   Line 1:27:  'useEffect' is defined but never used  no-unused-vars
+[07:31:26.761] 
+[07:31:26.761] src/pages/ProfilePage.js
+[07:31:26.761]   Line 10:3:  'MapPin' is defined but never used  no-unused-vars
+[07:31:26.761] 
+[07:31:26.761] src/pages/QuizPage.js
+[07:31:26.762]   Line 21:12:   'ImageIcon' is defined but never used                                                                                                                                                                        no-unused-vars
+[07:31:26.762]   Line 26:3:    'Languages' is defined but never used                                                                                                                                                                        no-unused-vars
+[07:31:26.762]   Line 31:8:    'LoadingSpinner' is defined but never used                                                                                                                                                                   no-unused-vars
+[07:31:26.763]   Line 46:11:   'isOnline' is assigned a value but never used                                                                                                                                                                no-unused-vars
+[07:31:26.763]   Line 56:10:   'draggedItems' is assigned a value but never used                                                                                                                                                            no-unused-vars
+[07:31:26.763]   Line 56:24:   'setDraggedItems' is assigned a value but never used                                                                                                                                                         no-unused-vars
+[07:31:26.763]   Line 291:6:   React Hook useEffect has a missing dependency: 'handleSubmitQuiz'. Either include it or remove the dependency array                                                                                          react-hooks/exhaustive-deps
+[07:31:26.768]   Line 975:6:   React Hook useEffect has a missing dependency: 'uploadedFile'. Either include it or remove the dependency array                                                                                              react-hooks/exhaustive-deps
+[07:31:26.769]   Line 1484:9:  The 'initialItems' logical expression could make the dependencies of useEffect Hook (at line 1495) change on every render. To fix this, wrap the initialization of 'initialItems' in its own useMemo() Hook  react-hooks/exhaustive-deps
+[07:31:26.769] 
+[07:31:26.769] src/pages/TestPDFEditor.js
+[07:31:26.769]   Line 45:13:  'sampleData' is assigned a value but never used  no-unused-vars
+[07:31:26.769] 
+[07:31:26.769] src/pages/TrainingPage.js
+[07:31:26.769]   Line 9:3:    'ArrowRight' is defined but never used                                                                                                                                       no-unused-vars
+[07:31:26.769]   Line 256:6:  React Hook useEffect has missing dependencies: 'completedItems.size', 'getTotalItemCount', and 'validateCompletedItems'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+[07:31:26.769]   Line 295:6:  React Hook useEffect has missing dependencies: 'getTotalItemCount' and 'validateCompletedItems'. Either include them or remove the dependency array                          react-hooks/exhaustive-deps
+[07:31:26.770]   Line 349:9:  'canProceed' is assigned a value but never used                                                                                                                              no-unused-vars
+[07:31:26.770] 
+[07:31:26.770] src/services/onboardingService.js
+[07:31:26.770]   Line 166:15:  'errorText' is assigned a value but never used  no-unused-vars
+[07:31:26.770]   Line 336:15:  'errorText' is assigned a value but never used  no-unused-vars
+[07:31:26.770] 
+[07:31:26.770] src/utils/htmlSanitizer.js
+[07:31:26.770]   Line 40:82:  Unnecessary escape character: \-                                no-useless-escape
+[07:31:26.770]   Line 272:1:  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+[07:31:26.770] 
+[07:31:26.770] Search for the keywords to learn more about each warning.
+[07:31:26.770] To ignore, add // eslint-disable-next-line to the line before.
+[07:31:26.770] 
+[07:31:26.770] File sizes after gzip:
+[07:31:26.770] 
+[07:31:26.820]   572.39 kB  build/static/js/main.10474d80.js
+[07:31:26.821]   23.55 kB   build/static/css/main.a468d48b.css
+[07:31:26.821] 
+[07:31:26.821] The bundle size is significantly larger than recommended.
+[07:31:26.821] Consider reducing it with code splitting: https://goo.gl/9VhYWB
+[07:31:26.821] You can also analyze the project dependencies: https://goo.gl/LeUzfb
+[07:31:26.821] 
+[07:31:26.821] The project was built assuming it is hosted at /.
+[07:31:26.821] You can control this with the homepage field in your package.json.
+[07:31:26.821] 
+[07:31:26.821] The build folder is ready to be deployed.
+[07:31:26.821] You may serve it with a static server:
+[07:31:26.821] 
+[07:31:26.821]   npm install -g serve
+[07:31:26.821]   serve -s build
+[07:31:26.821] 
+[07:31:26.822] Find out more about deployment here:
+[07:31:26.822] 
+[07:31:26.822]   https://cra.link/deployment
+[07:31:26.822] 
+[07:31:27.139] 
+[07:31:27.139] > crew-onboarding-client@1.0.1 copy-pdf-worker-to-build
+[07:31:27.139] > cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs build/pdf.worker.min.js || echo 'PDF worker copy to build failed, continuing...'
+[07:31:27.139] 
+[07:31:27.198] Warning: Detected "engines": { "node": ">=18.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+[07:31:27.209] Installing dependencies...
+[07:31:27.213] Error: spawn npm ENOENT
+[07:31:30.664] Exiting build container

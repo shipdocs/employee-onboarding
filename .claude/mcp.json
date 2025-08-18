@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "captain-mode": {
+      "command": "node",
+      "args": [".claude/mcp-servers/captain-mode.js"],
+      "description": "Project management agent for Maritime Onboarding System"
+    },
+    "database-optimizer": {
+      "command": "node",
+      "args": [".claude/mcp-servers/database-optimizer.js"],
+      "description": "Database optimization specialist for Supabase"
+    },
+    "maritime-compliance": {
+      "command": "node",
+      "args": [".claude/mcp-servers/maritime-compliance.js"],
+      "description": "Maritime compliance and ISO 27001 specialist"
+    },
+    "security-specialist": {
+      "command": "node",
+      "args": [".claude/mcp-servers/security-specialist.js"],
+      "description": "Security audit and vulnerability assessment"
+    },
+    "testing-qa": {
+      "command": "node",
+      "args": [".claude/mcp-servers/testing-qa.js"],
+      "description": "Testing and QA specialist"
+    }
+  }
+}

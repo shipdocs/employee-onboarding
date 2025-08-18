@@ -1,0 +1,101 @@
+{
+  "network": {
+    "connection_lost": "Connection lost. Please check your internet connection and try again.",
+    "slow_connection": "Your connection seems slow. This might take a moment longer than usual.",
+    "offline": "You appear to be offline. Please check your internet connection.",
+    "timeout": "The request is taking longer than expected. Please try again.",
+    "server_unreachable": "Unable to reach our servers. Please check your connection and try again."
+  },
+  "authentication": {
+    "session_expired": "Your session has expired. Please log in again to continue.",
+    "session_expiring_soon": "Your session will expire in {{minutes}} minutes. Please save your work.",
+    "login_failed": "We couldn't log you in. Please check your credentials and try again.",
+    "login_link_expired": "This login link has expired. Please request a new one from the login page.",
+    "login_link_invalid": "This login link is not valid. Please request a new one from the login page.",
+    "access_denied": "You don't have permission to access this area. Contact your administrator if you need access.",
+    "token_invalid": "Your login session is no longer valid. Please log in again."
+  },
+  "onboarding": {
+    "progress_save_failed": "We couldn't save your progress. Your work is safe, but please try again.",
+    "step_load_failed": "Unable to load this onboarding step. Please refresh the page and try again.",
+    "completion_failed": "We couldn't complete your onboarding. Please try again or contact support.",
+    "role_selection_failed": "Unable to save your role selection. Please try selecting your role again.",
+    "analytics_failed": "Progress tracking is temporarily unavailable, but your onboarding will continue normally."
+  },
+  "training": {
+    "phase_load_failed": "Unable to load Phase {{phase}} training. Please refresh the page and try again.",
+    "item_load_failed": "This training item couldn't be loaded. Please try again or skip to the next item.",
+    "completion_failed": "We couldn't mark this training as complete. Please try again.",
+    "quiz_load_failed": "The quiz couldn't be loaded. Please refresh the page and try again.",
+    "quiz_submit_failed": "Your quiz answers couldn't be submitted. Please try again.",
+    "progress_sync_failed": "Your training progress couldn't be synchronized. Your work is saved locally."
+  },
+  "certificates": {
+    "generation_failed": "Your certificate couldn't be generated right now. Please try again later.",
+    "download_failed": "Certificate download failed. Please try again or contact support.",
+    "not_eligible": "You're not yet eligible for this certificate. Complete all required training first."
+  },
+  "file_operations": {
+    "upload_failed": "File upload failed. Please check your file and try again.",
+    "file_too_large": "This file is too large. Please choose a smaller file (max {{maxSize}}).",
+    "invalid_file_type": "This file type is not supported. Please choose a {{allowedTypes}} file.",
+    "download_failed": "File download failed. Please try again."
+  },
+  "form_validation": {
+    "required_field": "This field is required.",
+    "invalid_email": "Please enter a valid email address.",
+    "password_too_short": "Password must be at least {{minLength}} characters long.",
+    "passwords_dont_match": "Passwords don't match.",
+    "invalid_date": "Please enter a valid date.",
+    "future_date_required": "Date must be in the future.",
+    "past_date_required": "Date must be in the past."
+  },
+  "server": {
+    "internal_error": "Something went wrong on our end. Please try again in a few moments.",
+    "maintenance": "The system is temporarily under maintenance. Please try again later.",
+    "overloaded": "Our servers are busy right now. Please wait a moment and try again.",
+    "database_error": "There's a temporary issue with our database. Please try again shortly."
+  },
+  "recovery": {
+    "refresh_page": "Try refreshing the page",
+    "check_connection": "Check your internet connection",
+    "try_again_later": "Try again in a few minutes",
+    "contact_support": "Contact support if the problem continues",
+    "save_work": "Save your work before trying again",
+    "restart_browser": "Try restarting your browser"
+  },
+  "maritime_specific": {
+    "vessel_data_unavailable": "Vessel information is temporarily unavailable. Your training can continue.",
+    "crew_record_sync_failed": "Your crew record couldn't be synchronized. Changes are saved locally.",
+    "safety_protocol_load_failed": "Safety protocols couldn't be loaded. Please contact your safety officer.",
+    "compliance_check_failed": "Compliance verification is temporarily unavailable.",
+    "boarding_date_invalid": "Please enter a valid boarding date.",
+    "position_not_recognized": "This crew position is not recognized. Please contact HR."
+  },
+  "user_friendly": {
+    "something_went_wrong": "Oops! Something didn't work as expected.",
+    "please_try_again": "Please try again.",
+    "working_on_it": "We're working on fixing this.",
+    "almost_there": "You're almost there! Just one more try.",
+    "technical_difficulties": "We're experiencing some technical difficulties.",
+    "back_soon": "Everything should be back to normal soon."
+  },
+  "actions": {
+    "retry": "Try Again",
+    "refresh": "Refresh Page",
+    "go_back": "Go Back",
+    "contact_support": "Contact Support",
+    "skip": "Skip This Step",
+    "save_and_continue": "Save and Continue",
+    "try_later": "Try Later",
+    "report_problem": "Report Problem"
+  },
+  "help": {
+    "what_happened": "What happened?",
+    "what_to_do": "What should I do?",
+    "need_help": "Need help?",
+    "common_solutions": "Common solutions:",
+    "still_stuck": "Still having trouble?",
+    "contact_info": "Contact your system administrator or IT support."
+  }
+}

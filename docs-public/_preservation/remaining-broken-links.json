@@ -1,0 +1,1137 @@
+[
+  {
+    "file": "DOCUMENTATION_PRESERVATION_PLAN.md",
+    "link": "../project-history/timeline.md",
+    "linkText": "Sprint Timeline"
+  },
+  {
+    "file": "README.md",
+    "link": "getting-started/installation.md",
+    "linkText": "Installation & Setup"
+  },
+  {
+    "file": "README.md",
+    "link": "development/testing.md",
+    "linkText": "Testing"
+  },
+  {
+    "file": "README.md",
+    "link": "architecture/database.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "README.md",
+    "link": "architecture/api.md",
+    "linkText": "API Architecture"
+  },
+  {
+    "file": "README.md",
+    "link": "architecture/frontend.md",
+    "linkText": "Frontend Architecture"
+  },
+  {
+    "file": "README.md",
+    "link": "architecture/security.md",
+    "linkText": "Security"
+  },
+  {
+    "file": "README.md",
+    "link": "features/authentication.md",
+    "linkText": "Authentication System"
+  },
+  {
+    "file": "README.md",
+    "link": "features/training-system.md",
+    "linkText": "Training System"
+  },
+  {
+    "file": "README.md",
+    "link": "features/certificate-system.md",
+    "linkText": "Certificate System"
+  },
+  {
+    "file": "README.md",
+    "link": "features/internationalization.md",
+    "linkText": "Internationalization"
+  },
+  {
+    "file": "README.md",
+    "link": "features/pdf-templates.md",
+    "linkText": "PDF Template System"
+  },
+  {
+    "file": "README.md",
+    "link": "api/reference.md",
+    "linkText": "Complete Reference"
+  },
+  {
+    "file": "README.md",
+    "link": "api/authentication.md",
+    "linkText": "Authentication"
+  },
+  {
+    "file": "README.md",
+    "link": "api/admin.md",
+    "linkText": "Admin Endpoints"
+  },
+  {
+    "file": "README.md",
+    "link": "api/manager.md",
+    "linkText": "Manager Endpoints"
+  },
+  {
+    "file": "README.md",
+    "link": "api/crew.md",
+    "linkText": "Crew Endpoints"
+  },
+  {
+    "file": "README.md",
+    "link": "deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "README.md",
+    "link": "deployment/vercel.md",
+    "linkText": "Vercel Deployment"
+  },
+  {
+    "file": "README.md",
+    "link": "deployment/supabase.md",
+    "linkText": "Supabase Setup"
+  },
+  {
+    "file": "README.md",
+    "link": "deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "README.md",
+    "link": "migration/database-migration.md",
+    "linkText": "Database Migration"
+  },
+  {
+    "file": "README.md",
+    "link": "migration/data-migration.md",
+    "linkText": "Data Migration"
+  },
+  {
+    "file": "README.md",
+    "link": "migration/legacy-systems.md",
+    "linkText": "Legacy Systems"
+  },
+  {
+    "file": "README.md",
+    "link": "maintenance/monitoring.md",
+    "linkText": "Monitoring"
+  },
+  {
+    "file": "README.md",
+    "link": "maintenance/backup-recovery.md",
+    "linkText": "Backup & Recovery"
+  },
+  {
+    "file": "README.md",
+    "link": "maintenance/updates.md",
+    "linkText": "Updates"
+  },
+  {
+    "file": "README.md",
+    "link": "api/reference.md",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "README.md",
+    "link": "architecture/database.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "README.md",
+    "link": "deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "README.md",
+    "link": "deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "README.md",
+    "link": "maintenance/monitoring.md",
+    "linkText": "Monitoring Guide"
+  },
+  {
+    "file": "README.md",
+    "link": "features/pdf-templates.md",
+    "linkText": "PDF Template System"
+  },
+  {
+    "file": "README.md",
+    "link": "features/certificate-system.md",
+    "linkText": "Certificate System"
+  },
+  {
+    "file": "README.md",
+    "link": "features/training-system.md",
+    "linkText": "Training System"
+  },
+  {
+    "file": "README.md",
+    "link": "getting-started/installation.md",
+    "linkText": "Installation & Setup"
+  },
+  {
+    "file": "ROLE_BASED_ACCESS_CONTROL.md",
+    "link": "features/authentication.md",
+    "linkText": "Authentication System"
+  },
+  {
+    "file": "ROLE_BASED_ACCESS_CONTROL.md",
+    "link": "architecture/security.md",
+    "linkText": "Security Architecture"
+  },
+  {
+    "file": "ROLE_BASED_ACCESS_CONTROL.md",
+    "link": "api/reference.md",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "WHERE_TO_FIND_THINGS.md",
+    "link": "docs/reports/test-results/2025-06-10-comprehensive-test-results.md",
+    "linkText": "Latest Test Results"
+  },
+  {
+    "file": "WHERE_TO_FIND_THINGS.md",
+    "link": "docs/reports/bugs/",
+    "linkText": "Known Bugs"
+  },
+  {
+    "file": "WHERE_TO_FIND_THINGS.md",
+    "link": "docs/for-developers/api-reference/endpoints/overview.md",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "WHERE_TO_FIND_THINGS.md",
+    "link": "docs/for-developers/development-workflow/workflow.md",
+    "linkText": "Development Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/DOCUMENTATION_PRESERVATION_PLAN.md",
+    "link": "./for-developers/",
+    "linkText": "Developer Docs"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/DOCUMENTATION_PRESERVATION_PLAN.md",
+    "link": "./for-administrators/",
+    "linkText": "Admin Docs"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/DOCUMENTATION_PRESERVATION_PLAN.md",
+    "link": "./for-users/",
+    "linkText": "User Guides"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/DOCUMENTATION_PRESERVATION_PLAN.md",
+    "link": "./for-developers/api-reference/",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/DOCUMENTATION_PRESERVATION_PLAN.md",
+    "link": "./for-administrators/deployment/",
+    "linkText": "Deployment Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/DOCUMENTATION_PRESERVATION_PLAN.md",
+    "link": "./for-administrators/security/",
+    "linkText": "Security Documentation"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/DOCUMENTATION_PRESERVATION_PLAN.md",
+    "link": "../project-history/timeline.md",
+    "linkText": "Sprint Timeline"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "for-developers/development-workflow/environment-setup.md",
+    "linkText": "Environment Setup"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "development/testing.md",
+    "linkText": "Testing"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "for-developers/architecture/overview.md",
+    "linkText": "System Overview"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "architecture/database.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "architecture/api.md",
+    "linkText": "API Architecture"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "architecture/frontend.md",
+    "linkText": "Frontend Architecture"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "architecture/security.md",
+    "linkText": "Security"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "features/authentication.md",
+    "linkText": "Authentication System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "features/training-system.md",
+    "linkText": "Training System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "features/certificate-system.md",
+    "linkText": "Certificate System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "features/internationalization.md",
+    "linkText": "Internationalization"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "features/pdf-templates.md",
+    "linkText": "PDF Template System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "api/reference.md",
+    "linkText": "Complete Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "api/authentication.md",
+    "linkText": "Authentication"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "api/admin.md",
+    "linkText": "Admin Endpoints"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "api/manager.md",
+    "linkText": "Manager Endpoints"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "api/crew.md",
+    "linkText": "Crew Endpoints"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "for-administrators/deployment/overview.md",
+    "linkText": "Deployment Overview"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "deployment/vercel.md",
+    "linkText": "Vercel Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "deployment/supabase.md",
+    "linkText": "Supabase Setup"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "migration/database-migration.md",
+    "linkText": "Database Migration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "migration/data-migration.md",
+    "linkText": "Data Migration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "migration/legacy-systems.md",
+    "linkText": "Legacy Systems"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "maintenance/monitoring.md",
+    "linkText": "Monitoring"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "maintenance/backup-recovery.md",
+    "linkText": "Backup & Recovery"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "maintenance/updates.md",
+    "linkText": "Updates"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "for-developers/development-workflow/environment-setup.md",
+    "linkText": "Environment Setup"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "api/reference.md",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "architecture/database.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "for-developers/architecture/overview.md",
+    "linkText": "System Overview"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "maintenance/monitoring.md",
+    "linkText": "Monitoring Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "features/pdf-templates.md",
+    "linkText": "PDF Template System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "features/certificate-system.md",
+    "linkText": "Certificate System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "features/training-system.md",
+    "linkText": "Training System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "../client/src/components/PDFTemplateEditor/README.md",
+    "linkText": "PDF Template Editor"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/README.md",
+    "link": "for-developers/development-workflow/workflow.md",
+    "linkText": "Development Workflow"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/ROLE_BASED_ACCESS_CONTROL.md",
+    "link": "features/authentication.md",
+    "linkText": "Authentication System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/ROLE_BASED_ACCESS_CONTROL.md",
+    "link": "architecture/security.md",
+    "linkText": "Security Architecture"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/ROLE_BASED_ACCESS_CONTROL.md",
+    "link": "api/reference.md",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/WHERE_TO_FIND_THINGS.md",
+    "link": "docs/reports/test-results/2025-06-10-comprehensive-test-results.md",
+    "linkText": "Latest Test Results"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/WHERE_TO_FIND_THINGS.md",
+    "link": "docs/reports/bugs/",
+    "linkText": "Known Bugs"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/WHERE_TO_FIND_THINGS.md",
+    "link": "docs/for-developers/api-reference/endpoints/overview.md",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/WHERE_TO_FIND_THINGS.md",
+    "link": "docs/for-developers/development-workflow/workflow.md",
+    "linkText": "Development Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/api/README.md",
+    "link": "reference.md",
+    "linkText": "Complete API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/api/README.md",
+    "link": "authentication.md",
+    "linkText": "Authentication Endpoints"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/api/README.md",
+    "link": "admin.md",
+    "linkText": "Admin Endpoints"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/api/README.md",
+    "link": "manager.md",
+    "linkText": "Manager Endpoints"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/api/README.md",
+    "link": "crew.md",
+    "linkText": "Crew Endpoints"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/api/README.md",
+    "link": "../architecture/frontend.md",
+    "linkText": "Frontend Integration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/api/README.md",
+    "link": "../for-developers/architecture/database-design.md",
+    "linkText": "Database Integration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/api/README.md",
+    "link": "../architecture/security.md",
+    "linkText": "Security Implementation"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/architecture/README.md",
+    "link": "database.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/architecture/README.md",
+    "link": "api.md",
+    "linkText": "API Architecture"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/architecture/README.md",
+    "link": "frontend.md",
+    "linkText": "Frontend Architecture"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/architecture/README.md",
+    "link": "security.md",
+    "linkText": "Security Implementation"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/architecture/README.md",
+    "link": "../for-administrators/deployment/overview.md",
+    "linkText": "Deployment Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/architecture/README.md",
+    "link": "../for-developers/api-reference/",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/deployment/README.md",
+    "link": "environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/deployment/README.md",
+    "link": "vercel.md",
+    "linkText": "Vercel Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/deployment/README.md",
+    "link": "supabase.md",
+    "linkText": "Supabase Setup"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/deployment/README.md",
+    "link": "production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/deployment/README.md",
+    "link": "../for-developers/architecture/overview.md",
+    "linkText": "Architecture Overview"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/deployment/README.md",
+    "link": "../maintenance/monitoring.md",
+    "linkText": "Monitoring Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/README.md",
+    "link": "testing.md",
+    "linkText": "Testing Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/README.md",
+    "link": "../for-developers/architecture/overview.md",
+    "linkText": "Architecture Overview"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/deployment.md",
+    "link": "../deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/deployment.md",
+    "link": "../deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/deployment.md",
+    "link": "../maintenance/monitoring.md",
+    "linkText": "Monitoring Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/deployment.md",
+    "link": "../for-developers/architecture/database-design.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/environment-setup.md",
+    "link": "testing.md",
+    "linkText": "Testing Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/environment-setup.md",
+    "link": "../architecture/frontend.md",
+    "linkText": "Frontend Development"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/environment-setup.md",
+    "link": "../for-developers/architecture/database-design.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/workflow.md",
+    "link": "testing.md",
+    "linkText": "Testing Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/workflow.md",
+    "link": "../deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/development/workflow.md",
+    "link": "../for-developers/architecture/database-design.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/README.md",
+    "link": "authentication.md",
+    "linkText": "Authentication System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/README.md",
+    "link": "training-system.md",
+    "linkText": "Training System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/README.md",
+    "link": "certificate-system.md",
+    "linkText": "Certificate System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/README.md",
+    "link": "internationalization.md",
+    "linkText": "Internationalization"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/README.md",
+    "link": "pdf-templates.md",
+    "linkText": "PDF Template System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/README.md",
+    "link": "../for-developers/api-reference/",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/README.md",
+    "link": "../for-developers/architecture/database-design.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/README.md",
+    "link": "../architecture/security.md",
+    "linkText": "Security Implementation"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/role-based-access.md",
+    "link": "authentication.md",
+    "linkText": "Authentication System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/role-based-access.md",
+    "link": "../architecture/security.md",
+    "linkText": "Security Architecture"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/role-based-access.md",
+    "link": "../for-developers/api-reference/",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/features/role-based-access.md",
+    "link": "../for-developers/architecture/database-design.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/README.md",
+    "link": "environment-setup.md",
+    "linkText": "Environment Setup"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/README.md",
+    "link": "../for-developers/api-reference/",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/README.md",
+    "link": "../deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/README.md",
+    "link": "../deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/README.md",
+    "link": "../maintenance/monitoring.md",
+    "linkText": "Monitoring"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/README.md",
+    "link": "../features/pdf-templates.md",
+    "linkText": "PDF Template System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/README.md",
+    "link": "../features/training-system.md",
+    "linkText": "Training System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/README.md",
+    "link": "../features/certificate-system.md",
+    "linkText": "Certificate System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/first-steps.md",
+    "link": "../for-developers/architecture/overview.md",
+    "linkText": "Architecture Overview"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/first-steps.md",
+    "link": "../deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/first-steps.md",
+    "link": "../deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/first-steps.md",
+    "link": "../maintenance/monitoring.md",
+    "linkText": "Monitoring Setup"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/first-steps.md",
+    "link": "../features/pdf-templates.md",
+    "linkText": "PDF Template System"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/first-steps.md",
+    "link": "../features/internationalization.md",
+    "linkText": "Internationalization"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/installation.md",
+    "link": "../deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/installation.md",
+    "link": "../deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/installation.md",
+    "link": "../maintenance/monitoring.md",
+    "linkText": "Monitoring Setup"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/troubleshooting.md",
+    "link": "../for-developers/api-reference/",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/getting-started/troubleshooting.md",
+    "link": "../for-developers/architecture/overview.md",
+    "linkText": "Architecture Overview"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "link": "./TRANSLATION_API_ENDPOINTS.md",
+    "linkText": "Translation API Reference"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "link": "./docs/DATABASE_SCHEMA.md",
+    "linkText": "Database Schema Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "link": "./docs/FRONTEND_INTEGRATION.md",
+    "linkText": "Frontend Integration Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "link": "./docs/PERFORMANCE.md",
+    "linkText": "Performance Optimization"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/maintenance/README.md",
+    "link": "monitoring.md",
+    "linkText": "Monitoring Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/maintenance/README.md",
+    "link": "backup-recovery.md",
+    "linkText": "Backup and Recovery"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/maintenance/README.md",
+    "link": "updates.md",
+    "linkText": "Updates and Patches"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/maintenance/README.md",
+    "link": "../for-administrators/deployment/overview.md",
+    "linkText": "Deployment Guide"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/maintenance/README.md",
+    "link": "../architecture/security.md",
+    "linkText": "Security Architecture"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/migration/README.md",
+    "link": "database-migration.md",
+    "linkText": "Database Migration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/migration/README.md",
+    "link": "data-migration.md",
+    "linkText": "Data Migration"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/migration/README.md",
+    "link": "legacy-systems.md",
+    "linkText": "Legacy Systems"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/migration/README.md",
+    "link": "../for-developers/architecture/database-design.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "_archive/2025-07-14-snapshot/migration/README.md",
+    "link": "../for-administrators/deployment/overview.md",
+    "linkText": "Deployment Guide"
+  },
+  {
+    "file": "api/README.md",
+    "link": "reference.md",
+    "linkText": "Complete API Reference"
+  },
+  {
+    "file": "api/README.md",
+    "link": "authentication.md",
+    "linkText": "Authentication Endpoints"
+  },
+  {
+    "file": "api/README.md",
+    "link": "admin.md",
+    "linkText": "Admin Endpoints"
+  },
+  {
+    "file": "api/README.md",
+    "link": "manager.md",
+    "linkText": "Manager Endpoints"
+  },
+  {
+    "file": "api/README.md",
+    "link": "crew.md",
+    "linkText": "Crew Endpoints"
+  },
+  {
+    "file": "api/README.md",
+    "link": "../architecture/frontend.md",
+    "linkText": "Frontend Integration"
+  },
+  {
+    "file": "api/README.md",
+    "link": "../architecture/security.md",
+    "linkText": "Security Implementation"
+  },
+  {
+    "file": "development/README.md",
+    "link": "environment-setup.md",
+    "linkText": "Environment Setup"
+  },
+  {
+    "file": "development/README.md",
+    "link": "testing.md",
+    "linkText": "Testing Guide"
+  },
+  {
+    "file": "development/deployment.md",
+    "link": "../deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "development/deployment.md",
+    "link": "../deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "development/deployment.md",
+    "link": "../maintenance/monitoring.md",
+    "linkText": "Monitoring Guide"
+  },
+  {
+    "file": "development/workflow.md",
+    "link": "environment-setup.md",
+    "linkText": "Environment Setup"
+  },
+  {
+    "file": "development/workflow.md",
+    "link": "testing.md",
+    "linkText": "Testing Guide"
+  },
+  {
+    "file": "development/workflow.md",
+    "link": "../deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "features/role-based-access.md",
+    "link": "authentication.md",
+    "linkText": "Authentication System"
+  },
+  {
+    "file": "features/role-based-access.md",
+    "link": "../architecture/security.md",
+    "linkText": "Security Architecture"
+  },
+  {
+    "file": "for-administrators/deployment/overview.md",
+    "link": "environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "for-administrators/deployment/overview.md",
+    "link": "vercel.md",
+    "linkText": "Vercel Deployment"
+  },
+  {
+    "file": "for-administrators/deployment/overview.md",
+    "link": "supabase.md",
+    "linkText": "Supabase Setup"
+  },
+  {
+    "file": "for-administrators/deployment/overview.md",
+    "link": "production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "for-administrators/deployment/overview.md",
+    "link": "../development/workflow.md",
+    "linkText": "Development Workflow"
+  },
+  {
+    "file": "for-administrators/deployment/overview.md",
+    "link": "../for-developers/architecture/overview.md",
+    "linkText": "Architecture Overview"
+  },
+  {
+    "file": "for-administrators/deployment/overview.md",
+    "link": "../maintenance/monitoring.md",
+    "linkText": "Monitoring Guide"
+  },
+  {
+    "file": "for-developers/architecture/overview.md",
+    "link": "database.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "for-developers/architecture/overview.md",
+    "link": "api.md",
+    "linkText": "API Architecture"
+  },
+  {
+    "file": "for-developers/architecture/overview.md",
+    "link": "frontend.md",
+    "linkText": "Frontend Architecture"
+  },
+  {
+    "file": "for-developers/architecture/overview.md",
+    "link": "security.md",
+    "linkText": "Security Implementation"
+  },
+  {
+    "file": "for-developers/architecture/overview.md",
+    "link": "../development/README.md",
+    "linkText": "Development Guide"
+  },
+  {
+    "file": "for-developers/architecture/overview.md",
+    "link": "../for-administrators/deployment/overview.md",
+    "linkText": "Deployment Guide"
+  },
+  {
+    "file": "for-developers/architecture/overview.md",
+    "link": "../for-developers/api-reference/",
+    "linkText": "API Reference"
+  },
+  {
+    "file": "for-developers/architecture/overview.md",
+    "link": "../features/README.md",
+    "linkText": "Feature Documentation"
+  },
+  {
+    "file": "for-developers/development-workflow/environment-setup.md",
+    "link": "testing.md",
+    "linkText": "Testing Guide"
+  },
+  {
+    "file": "for-developers/development-workflow/environment-setup.md",
+    "link": "../api/README.md",
+    "linkText": "API Development"
+  },
+  {
+    "file": "for-developers/development-workflow/environment-setup.md",
+    "link": "../architecture/frontend.md",
+    "linkText": "Frontend Development"
+  },
+  {
+    "file": "for-developers/development-workflow/environment-setup.md",
+    "link": "../for-developers/architecture/database-design.md",
+    "linkText": "Database Design"
+  },
+  {
+    "file": "for-developers/development-workflow/environment-setup.md",
+    "link": "../getting-started/troubleshooting.md",
+    "linkText": "Troubleshooting Guide"
+  },
+  {
+    "file": "getting-started/first-steps.md",
+    "link": "../deployment/environments.md",
+    "linkText": "Environment Configuration"
+  },
+  {
+    "file": "getting-started/first-steps.md",
+    "link": "../deployment/production.md",
+    "linkText": "Production Deployment"
+  },
+  {
+    "file": "getting-started/first-steps.md",
+    "link": "../maintenance/monitoring.md",
+    "linkText": "Monitoring Setup"
+  },
+  {
+    "file": "getting-started/first-steps.md",
+    "link": "../features/pdf-templates.md",
+    "linkText": "PDF Template System"
+  },
+  {
+    "file": "getting-started/first-steps.md",
+    "link": "../features/internationalization.md",
+    "linkText": "Internationalization"
+  },
+  {
+    "file": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "link": "./TRANSLATION_API_ENDPOINTS.md",
+    "linkText": "Translation API Reference"
+  },
+  {
+    "file": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "link": "./docs/DATABASE_SCHEMA.md",
+    "linkText": "Database Schema Guide"
+  },
+  {
+    "file": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "link": "./docs/FRONTEND_INTEGRATION.md",
+    "linkText": "Frontend Integration Guide"
+  },
+  {
+    "file": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "link": "./docs/PERFORMANCE.md",
+    "linkText": "Performance Optimization"
+  },
+  {
+    "file": "maintenance/README.md",
+    "link": "monitoring.md",
+    "linkText": "Monitoring Guide"
+  },
+  {
+    "file": "maintenance/README.md",
+    "link": "backup-recovery.md",
+    "linkText": "Backup and Recovery"
+  },
+  {
+    "file": "maintenance/README.md",
+    "link": "updates.md",
+    "linkText": "Updates and Patches"
+  },
+  {
+    "file": "maintenance/README.md",
+    "link": "../architecture/security.md",
+    "linkText": "Security Architecture"
+  },
+  {
+    "file": "migration/README.md",
+    "link": "database-migration.md",
+    "linkText": "Database Migration"
+  },
+  {
+    "file": "migration/README.md",
+    "link": "data-migration.md",
+    "linkText": "Data Migration"
+  },
+  {
+    "file": "migration/README.md",
+    "link": "legacy-systems.md",
+    "linkText": "Legacy Systems"
+  }
+]

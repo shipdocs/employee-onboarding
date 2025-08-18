@@ -1,0 +1,1052 @@
+{
+  "timestamp": "2025-07-14T16:33:28.471Z",
+  "statistics": {
+    "totalFiles": 147,
+    "totalBrokenLinks": 112,
+    "filesWithBrokenLinks": 20,
+    "orphanedFiles": 124
+  },
+  "brokenLinks": [
+    {
+      "source": "README.md",
+      "target": "development/testing.md",
+      "line": 19,
+      "text": "Testing",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/development/testing.md"
+    },
+    {
+      "source": "README.md",
+      "target": "architecture/database.md",
+      "line": 24,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "README.md",
+      "target": "architecture/api.md",
+      "line": 25,
+      "text": "API Architecture",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/api.md"
+    },
+    {
+      "source": "README.md",
+      "target": "architecture/frontend.md",
+      "line": 26,
+      "text": "Frontend Architecture",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/frontend.md"
+    },
+    {
+      "source": "README.md",
+      "target": "architecture/security.md",
+      "line": 27,
+      "text": "Security",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/security.md"
+    },
+    {
+      "source": "README.md",
+      "target": "features/authentication.md",
+      "line": 31,
+      "text": "Authentication System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/authentication.md"
+    },
+    {
+      "source": "README.md",
+      "target": "features/training-system.md",
+      "line": 33,
+      "text": "Training System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/training-system.md"
+    },
+    {
+      "source": "README.md",
+      "target": "features/certificate-system.md",
+      "line": 34,
+      "text": "Certificate System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/certificate-system.md"
+    },
+    {
+      "source": "README.md",
+      "target": "features/internationalization.md",
+      "line": 35,
+      "text": "Internationalization",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/internationalization.md"
+    },
+    {
+      "source": "README.md",
+      "target": "features/pdf-templates.md",
+      "line": 36,
+      "text": "PDF Template System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/pdf-templates.md"
+    },
+    {
+      "source": "README.md",
+      "target": "api/reference.md",
+      "line": 40,
+      "text": "Complete Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "README.md",
+      "target": "api/authentication.md",
+      "line": 41,
+      "text": "Authentication",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/authentication.md"
+    },
+    {
+      "source": "README.md",
+      "target": "api/admin.md",
+      "line": 42,
+      "text": "Admin Endpoints",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/admin.md"
+    },
+    {
+      "source": "README.md",
+      "target": "api/manager.md",
+      "line": 43,
+      "text": "Manager Endpoints",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/manager.md"
+    },
+    {
+      "source": "README.md",
+      "target": "api/crew.md",
+      "line": 44,
+      "text": "Crew Endpoints",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/crew.md"
+    },
+    {
+      "source": "README.md",
+      "target": "deployment/environments.md",
+      "line": 48,
+      "text": "Environment Configuration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/environments.md"
+    },
+    {
+      "source": "README.md",
+      "target": "deployment/vercel.md",
+      "line": 49,
+      "text": "Vercel Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/vercel.md"
+    },
+    {
+      "source": "README.md",
+      "target": "deployment/supabase.md",
+      "line": 50,
+      "text": "Supabase Setup",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/supabase.md"
+    },
+    {
+      "source": "README.md",
+      "target": "deployment/production.md",
+      "line": 51,
+      "text": "Production Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/production.md"
+    },
+    {
+      "source": "README.md",
+      "target": "migration/database-migration.md",
+      "line": 55,
+      "text": "Database Migration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/migration/database-migration.md"
+    },
+    {
+      "source": "README.md",
+      "target": "migration/data-migration.md",
+      "line": 56,
+      "text": "Data Migration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/migration/data-migration.md"
+    },
+    {
+      "source": "README.md",
+      "target": "migration/legacy-systems.md",
+      "line": 57,
+      "text": "Legacy Systems",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/migration/legacy-systems.md"
+    },
+    {
+      "source": "README.md",
+      "target": "maintenance/monitoring.md",
+      "line": 61,
+      "text": "Monitoring",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/monitoring.md"
+    },
+    {
+      "source": "README.md",
+      "target": "maintenance/backup-recovery.md",
+      "line": 62,
+      "text": "Backup & Recovery",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/backup-recovery.md"
+    },
+    {
+      "source": "README.md",
+      "target": "maintenance/updates.md",
+      "line": 63,
+      "text": "Updates",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/updates.md"
+    },
+    {
+      "source": "README.md",
+      "target": "api/reference.md",
+      "line": 71,
+      "text": "API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "README.md",
+      "target": "architecture/database.md",
+      "line": 72,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "README.md",
+      "target": "deployment/environments.md",
+      "line": 76,
+      "text": "Environment Configuration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/environments.md"
+    },
+    {
+      "source": "README.md",
+      "target": "deployment/production.md",
+      "line": 77,
+      "text": "Production Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/production.md"
+    },
+    {
+      "source": "README.md",
+      "target": "maintenance/monitoring.md",
+      "line": 79,
+      "text": "Monitoring Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/monitoring.md"
+    },
+    {
+      "source": "README.md",
+      "target": "features/pdf-templates.md",
+      "line": 82,
+      "text": "PDF Template System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/pdf-templates.md"
+    },
+    {
+      "source": "README.md",
+      "target": "features/certificate-system.md",
+      "line": 83,
+      "text": "Certificate System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/certificate-system.md"
+    },
+    {
+      "source": "README.md",
+      "target": "features/training-system.md",
+      "line": 84,
+      "text": "Training System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/training-system.md"
+    },
+    {
+      "source": "ROLE_BASED_ACCESS_CONTROL.md",
+      "target": "features/authentication.md",
+      "line": 35,
+      "text": "Authentication System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/authentication.md"
+    },
+    {
+      "source": "ROLE_BASED_ACCESS_CONTROL.md",
+      "target": "architecture/security.md",
+      "line": 36,
+      "text": "Security Architecture",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/security.md"
+    },
+    {
+      "source": "ROLE_BASED_ACCESS_CONTROL.md",
+      "target": "api/reference.md",
+      "line": 37,
+      "text": "API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "WHERE_TO_FIND_THINGS.md",
+      "target": "docs/reports/test-results/2025-06-10-comprehensive-test-results.md",
+      "line": 35,
+      "text": "Latest Test Results",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/docs/reports/test-results/2025-06-10-comprehensive-test-results.md"
+    },
+    {
+      "source": "WHERE_TO_FIND_THINGS.md",
+      "target": "docs/reports/bugs/",
+      "line": 36,
+      "text": "Known Bugs",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/docs/reports/bugs"
+    },
+    {
+      "source": "WHERE_TO_FIND_THINGS.md",
+      "target": "docs/API_REFERENCE.md",
+      "line": 37,
+      "text": "API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/docs/API_REFERENCE.md"
+    },
+    {
+      "source": "WHERE_TO_FIND_THINGS.md",
+      "target": "docs/DEVELOPMENT_WORKFLOW.md",
+      "line": 38,
+      "text": "Development Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/docs/DEVELOPMENT_WORKFLOW.md"
+    },
+    {
+      "source": "api/README.md",
+      "target": "reference.md",
+      "line": 320,
+      "text": "Complete API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "api/README.md",
+      "target": "authentication.md",
+      "line": 321,
+      "text": "Authentication Endpoints",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/authentication.md"
+    },
+    {
+      "source": "api/README.md",
+      "target": "admin.md",
+      "line": 322,
+      "text": "Admin Endpoints",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/admin.md"
+    },
+    {
+      "source": "api/README.md",
+      "target": "manager.md",
+      "line": 323,
+      "text": "Manager Endpoints",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/manager.md"
+    },
+    {
+      "source": "api/README.md",
+      "target": "crew.md",
+      "line": 324,
+      "text": "Crew Endpoints",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/crew.md"
+    },
+    {
+      "source": "api/README.md",
+      "target": "../architecture/frontend.md",
+      "line": 327,
+      "text": "Frontend Integration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/frontend.md"
+    },
+    {
+      "source": "api/README.md",
+      "target": "../architecture/database.md",
+      "line": 328,
+      "text": "Database Integration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "api/README.md",
+      "target": "../architecture/security.md",
+      "line": 329,
+      "text": "Security Implementation",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/security.md"
+    },
+    {
+      "source": "architecture/README.md",
+      "target": "database.md",
+      "line": 328,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "architecture/README.md",
+      "target": "api.md",
+      "line": 329,
+      "text": "API Architecture",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/api.md"
+    },
+    {
+      "source": "architecture/README.md",
+      "target": "frontend.md",
+      "line": 330,
+      "text": "Frontend Architecture",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/frontend.md"
+    },
+    {
+      "source": "architecture/README.md",
+      "target": "security.md",
+      "line": 331,
+      "text": "Security Implementation",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/security.md"
+    },
+    {
+      "source": "architecture/README.md",
+      "target": "../api/reference.md",
+      "line": 336,
+      "text": "API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "deployment/README.md",
+      "target": "environments.md",
+      "line": 269,
+      "text": "Environment Configuration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/environments.md"
+    },
+    {
+      "source": "deployment/README.md",
+      "target": "vercel.md",
+      "line": 270,
+      "text": "Vercel Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/vercel.md"
+    },
+    {
+      "source": "deployment/README.md",
+      "target": "supabase.md",
+      "line": 271,
+      "text": "Supabase Setup",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/supabase.md"
+    },
+    {
+      "source": "deployment/README.md",
+      "target": "production.md",
+      "line": 272,
+      "text": "Production Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/production.md"
+    },
+    {
+      "source": "deployment/README.md",
+      "target": "../maintenance/monitoring.md",
+      "line": 277,
+      "text": "Monitoring Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/monitoring.md"
+    },
+    {
+      "source": "development/README.md",
+      "target": "testing.md",
+      "line": 397,
+      "text": "Testing Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/development/testing.md"
+    },
+    {
+      "source": "development/deployment.md",
+      "target": "../deployment/environments.md",
+      "line": 446,
+      "text": "Environment Configuration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/environments.md"
+    },
+    {
+      "source": "development/deployment.md",
+      "target": "../deployment/production.md",
+      "line": 447,
+      "text": "Production Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/production.md"
+    },
+    {
+      "source": "development/deployment.md",
+      "target": "../maintenance/monitoring.md",
+      "line": 448,
+      "text": "Monitoring Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/monitoring.md"
+    },
+    {
+      "source": "development/deployment.md",
+      "target": "../architecture/database.md",
+      "line": 449,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "development/environment-setup.md",
+      "target": "testing.md",
+      "line": 504,
+      "text": "Testing Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/development/testing.md"
+    },
+    {
+      "source": "development/environment-setup.md",
+      "target": "../architecture/frontend.md",
+      "line": 506,
+      "text": "Frontend Development",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/frontend.md"
+    },
+    {
+      "source": "development/environment-setup.md",
+      "target": "../architecture/database.md",
+      "line": 507,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "development/workflow.md",
+      "target": "testing.md",
+      "line": 327,
+      "text": "Testing Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/development/testing.md"
+    },
+    {
+      "source": "development/workflow.md",
+      "target": "../deployment/environments.md",
+      "line": 329,
+      "text": "Environment Configuration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/environments.md"
+    },
+    {
+      "source": "development/workflow.md",
+      "target": "../architecture/database.md",
+      "line": 330,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "features/README.md",
+      "target": "authentication.md",
+      "line": 214,
+      "text": "Authentication System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/authentication.md"
+    },
+    {
+      "source": "features/README.md",
+      "target": "training-system.md",
+      "line": 216,
+      "text": "Training System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/training-system.md"
+    },
+    {
+      "source": "features/README.md",
+      "target": "certificate-system.md",
+      "line": 217,
+      "text": "Certificate System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/certificate-system.md"
+    },
+    {
+      "source": "features/README.md",
+      "target": "internationalization.md",
+      "line": 218,
+      "text": "Internationalization",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/internationalization.md"
+    },
+    {
+      "source": "features/README.md",
+      "target": "pdf-templates.md",
+      "line": 219,
+      "text": "PDF Template System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/pdf-templates.md"
+    },
+    {
+      "source": "features/README.md",
+      "target": "../api/reference.md",
+      "line": 222,
+      "text": "API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "features/README.md",
+      "target": "../architecture/database.md",
+      "line": 223,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "features/README.md",
+      "target": "../architecture/security.md",
+      "line": 224,
+      "text": "Security Implementation",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/security.md"
+    },
+    {
+      "source": "features/role-based-access.md",
+      "target": "authentication.md",
+      "line": 354,
+      "text": "Authentication System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/authentication.md"
+    },
+    {
+      "source": "features/role-based-access.md",
+      "target": "../architecture/security.md",
+      "line": 355,
+      "text": "Security Architecture",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/security.md"
+    },
+    {
+      "source": "features/role-based-access.md",
+      "target": "../api/reference.md",
+      "line": 356,
+      "text": "API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "features/role-based-access.md",
+      "target": "../architecture/database.md",
+      "line": 357,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "getting-started/README.md",
+      "target": "environment-setup.md",
+      "line": 186,
+      "text": "Environment Setup",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/getting-started/environment-setup.md"
+    },
+    {
+      "source": "getting-started/README.md",
+      "target": "../api/reference.md",
+      "line": 188,
+      "text": "API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "getting-started/README.md",
+      "target": "../deployment/environments.md",
+      "line": 191,
+      "text": "Environment Configuration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/environments.md"
+    },
+    {
+      "source": "getting-started/README.md",
+      "target": "../deployment/production.md",
+      "line": 192,
+      "text": "Production Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/production.md"
+    },
+    {
+      "source": "getting-started/README.md",
+      "target": "../maintenance/monitoring.md",
+      "line": 193,
+      "text": "Monitoring",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/monitoring.md"
+    },
+    {
+      "source": "getting-started/README.md",
+      "target": "../features/pdf-templates.md",
+      "line": 196,
+      "text": "PDF Template System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/pdf-templates.md"
+    },
+    {
+      "source": "getting-started/README.md",
+      "target": "../features/training-system.md",
+      "line": 197,
+      "text": "Training System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/training-system.md"
+    },
+    {
+      "source": "getting-started/README.md",
+      "target": "../features/certificate-system.md",
+      "line": 198,
+      "text": "Certificate System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/certificate-system.md"
+    },
+    {
+      "source": "getting-started/first-steps.md",
+      "target": "../deployment/environments.md",
+      "line": 366,
+      "text": "Environment Configuration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/environments.md"
+    },
+    {
+      "source": "getting-started/first-steps.md",
+      "target": "../deployment/production.md",
+      "line": 367,
+      "text": "Production Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/production.md"
+    },
+    {
+      "source": "getting-started/first-steps.md",
+      "target": "../maintenance/monitoring.md",
+      "line": 368,
+      "text": "Monitoring Setup",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/monitoring.md"
+    },
+    {
+      "source": "getting-started/first-steps.md",
+      "target": "../features/pdf-templates.md",
+      "line": 372,
+      "text": "PDF Template System",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/pdf-templates.md"
+    },
+    {
+      "source": "getting-started/first-steps.md",
+      "target": "../features/internationalization.md",
+      "line": 373,
+      "text": "Internationalization",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/features/internationalization.md"
+    },
+    {
+      "source": "getting-started/installation.md",
+      "target": "../deployment/environments.md",
+      "line": 371,
+      "text": "Environment Configuration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/environments.md"
+    },
+    {
+      "source": "getting-started/installation.md",
+      "target": "../deployment/production.md",
+      "line": 372,
+      "text": "Production Deployment",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/deployment/production.md"
+    },
+    {
+      "source": "getting-started/installation.md",
+      "target": "../maintenance/monitoring.md",
+      "line": 373,
+      "text": "Monitoring Setup",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/monitoring.md"
+    },
+    {
+      "source": "getting-started/troubleshooting.md",
+      "target": "../api/reference.md",
+      "line": 448,
+      "text": "API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/api/reference.md"
+    },
+    {
+      "source": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+      "target": "./TRANSLATION_API_ENDPOINTS.md",
+      "line": 305,
+      "text": "Translation API Reference",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/implementation-plans/TRANSLATION_API_ENDPOINTS.md"
+    },
+    {
+      "source": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+      "target": "./docs/DATABASE_SCHEMA.md",
+      "line": 306,
+      "text": "Database Schema Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/implementation-plans/docs/DATABASE_SCHEMA.md"
+    },
+    {
+      "source": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+      "target": "./docs/FRONTEND_INTEGRATION.md",
+      "line": 307,
+      "text": "Frontend Integration Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/implementation-plans/docs/FRONTEND_INTEGRATION.md"
+    },
+    {
+      "source": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+      "target": "./docs/PERFORMANCE.md",
+      "line": 308,
+      "text": "Performance Optimization",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/implementation-plans/docs/PERFORMANCE.md"
+    },
+    {
+      "source": "maintenance/README.md",
+      "target": "monitoring.md",
+      "line": 317,
+      "text": "Monitoring Guide",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/monitoring.md"
+    },
+    {
+      "source": "maintenance/README.md",
+      "target": "backup-recovery.md",
+      "line": 318,
+      "text": "Backup and Recovery",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/backup-recovery.md"
+    },
+    {
+      "source": "maintenance/README.md",
+      "target": "updates.md",
+      "line": 319,
+      "text": "Updates and Patches",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/maintenance/updates.md"
+    },
+    {
+      "source": "maintenance/README.md",
+      "target": "../architecture/security.md",
+      "line": 323,
+      "text": "Security Architecture",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/security.md"
+    },
+    {
+      "source": "migration/README.md",
+      "target": "database-migration.md",
+      "line": 495,
+      "text": "Database Migration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/migration/database-migration.md"
+    },
+    {
+      "source": "migration/README.md",
+      "target": "data-migration.md",
+      "line": 496,
+      "text": "Data Migration",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/migration/data-migration.md"
+    },
+    {
+      "source": "migration/README.md",
+      "target": "legacy-systems.md",
+      "line": 497,
+      "text": "Legacy Systems",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/migration/legacy-systems.md"
+    },
+    {
+      "source": "migration/README.md",
+      "target": "../architecture/database.md",
+      "line": 500,
+      "text": "Database Design",
+      "type": "markdown",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/architecture/database.md"
+    },
+    {
+      "source": "plans/COMPLIANCE_IMPLEMENTATION_PLAN.md",
+      "target": "0-9a-f",
+      "line": 264,
+      "text": "1-5",
+      "type": "reference",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/plans/0-9a-f"
+    },
+    {
+      "source": "plans/COMPLIANCE_IMPLEMENTATION_PLAN.md",
+      "target": "0-9a-f",
+      "line": 264,
+      "text": "89ab",
+      "type": "reference",
+      "normalizedPath": "/home/martin/Ontwikkeling/new-onboarding-2025/docs/plans/0-9a-f"
+    }
+  ],
+  "orphanedFiles": [
+    "API-RESPONSE-STANDARD.md",
+    "API_DOCUMENTATION.md",
+    "API_ERROR_HANDLING.md",
+    "API_REFERENCE.md",
+    "CERTIFICATE_SYSTEM.md",
+    "CLAUDE_BEST_PRACTICES.md",
+    "COMPREHENSIVE_SECURITY_REPORT.md",
+    "CONTENT_SECURITY_POLICY.md",
+    "CREW_ASSIGNMENTS.md",
+    "DEPLOYMENT_PROCEDURES.md",
+    "DEVELOPER-GUIDE.md",
+    "DEVELOPER_QUICK_REFERENCE.md",
+    "DEVELOPMENT_PROCESS_OVERVIEW.md",
+    "DOCUMENTATION_AUDIT_FRAMEWORK.md",
+    "ERROR_HANDLING_GUIDE.md",
+    "FINAL_SECURITY_VALIDATION.md",
+    "HYBRID_DATABASE_SYNC.md",
+    "INCIDENT_RESPONSE_PROCEDURES.md",
+    "MANUAL-TESTING-CHECKLIST.md",
+    "MIGRATION_SYSTEM_DEEP_DIVE.md",
+    "PERFORMANCE.md",
+    "REFACTORING_SUMMARY.md",
+    "RICH_CONTENT_SYSTEM.md",
+    "RLS_IMPLEMENTATION.md",
+    "RLS_IMPLEMENTATION_GUIDE.md",
+    "SECURITY_FIX_REPORT.md",
+    "SECURITY_IMPLEMENTATION_GUIDE.md",
+    "SPRINT-1-SUMMARY.md",
+    "TOKEN_BLACKLIST_SYSTEM.md",
+    "TRAINING_DATABASE_FIXES.md",
+    "TYPESCRIPT-MIGRATION-GUIDE.md",
+    "USER_GUIDE_ADMIN.md",
+    "USER_GUIDE_CREW.md",
+    "USER_GUIDE_MANAGER.md",
+    "WHERE_TO_FIND_THINGS.md",
+    "api/TRANSLATION_API_ENDPOINTS.md",
+    "configuration-centralization.md",
+    "developers/api-reference-generated.md",
+    "developers/component-reference-generated.md",
+    "developers/setup-generated.md",
+    "development/SIMONE-REFACTORING-WORKFLOW.md",
+    "development/SIMONE_HANDLEIDING.md",
+    "email-service-consolidation.md",
+    "error-handling-migration-example.md",
+    "guides/ONLINE_AGENT_SETUP.md",
+    "guides/PC-SETUP.md",
+    "guides/SECURITY_NOTES.md",
+    "guides/VERCEL_DEPLOYMENT_GUIDE.md",
+    "implementation-plans/DYNAMIC_WORKFLOW_IMPLEMENTATION_PLAN.md",
+    "implementation-plans/MULTILINGUAL_WORKFLOW_IMPLEMENTATION_PLAN.md",
+    "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+    "migration/MIGRATION_CONSOLIDATION_SUMMARY.md",
+    "migration/MIGRATION_STRATEGY.md",
+    "optimization/health-check-optimization.md",
+    "plans/COMPLIANCE_IMPLEMENTATION_PLAN.md",
+    "plans/TRAINING_CONTENT_EDITOR_IMPROVEMENT_PLAN_2025-01-10.md",
+    "reports/audits/API_ENDPOINT_AUDIT_REPORT.md",
+    "reports/audits/CODE-ANALYSIS-REPORT.md",
+    "reports/audits/COMPREHENSIVE_AUDIT_SUMMARY.md",
+    "reports/audits/FORENSIC_INVESTIGATION_REPORT.md",
+    "reports/audits/api-audit.md",
+    "reports/audits/api-detailed-audit.md",
+    "reports/audits/email-system-audit.md",
+    "reports/audits/frontend-audit.md",
+    "reports/bugs/manager-login-status-bug.md",
+    "reports/cleanup/CLEANUP_COMPLETION_REPORT.md",
+    "reports/cleanup/CODEBASE_CLEANUP_SUMMARY.md",
+    "reports/cleanup/FINAL_CLEANUP_SUMMARY.md",
+    "reports/cleanup/FLOWS_DEBUG_RESOLUTION.md",
+    "reports/cleanup/KNIP_CLEANUP_COMPLETE.md",
+    "reports/cleanup/MD_CONSOLIDATION_ANALYSIS.md",
+    "reports/cleanup/MODULE_CONVERSION_REPORT.md",
+    "reports/cleanup/PROJECT_CLEANUP_PLAN.md",
+    "reports/cleanup/REFACTORING-PRIORITIES.md",
+    "reports/cleanup/RICH_CONTENT_COMPLETION_REPORT.md",
+    "reports/cleanup/WORKFLOW_TRAINING_INTEGRATION.md",
+    "reports/production-readiness-report.md",
+    "reports/security/CLAUDE_CODE_SECURITY_REMEDIATION_STATUS.md",
+    "reports/security/DEPENDENCY_SECURITY_AUDIT.md",
+    "reports/security/SECURITY_AUDIT_REPORT.md",
+    "reports/security/SECURITY_DEPENDENCY_REPORT.md",
+    "reports/security/SECURITY_REMEDIATION_STEPS.md",
+    "reports/security/SECURITY_SETUP.md",
+    "reports/security/frontend-auth-migration.md",
+    "reports/sprints/SPRINT-1-COMPLETION-REPORT.md",
+    "reports/sprints/SPRINT-1-REFACTORING.md",
+    "reports/sprints/SPRINT-TRACKER.md",
+    "reports/summaries/2025-06-10-root-cleanup-log.md",
+    "reports/summaries/DOCUMENTATION_ORGANIZATION_SUMMARY.md",
+    "reports/summaries/IMPROVEMENT_PLANS_STATUS_UPDATE.md",
+    "reports/test-results/integration-test-summary.md",
+    "security/REALISTIC_SECURITY_ASSESSMENT_2025-01-10.md",
+    "security/SECURITY_AUDIT_REPORT.md",
+    "smtp-implementation.md",
+    "sprints/S03_COMPLETION_SUMMARY.md",
+    "static-training-data-analysis.md",
+    "strategic-roadmap/platform-evolution-plan.md",
+    "summaries/MCP_SETUP_SUMMARY.md",
+    "summaries/MULTILINGUAL_IMPLEMENTATION_SUMMARY.md",
+    "summaries/NEXT_STEPS_DECISION_MATRIX.md",
+    "summaries/OFFLINE_CONNECTIVITY_PHASE_1_IMPLEMENTATION_SUMMARY.md",
+    "summaries/RLS_IMPLEMENTATION_SUMMARY.md",
+    "summaries/TRANSLATION_COMPLETION_SUMMARY.md",
+    "summaries/TRANSLATION_FIXES_SUMMARY.md",
+    "summaries/UX_PHASE_1_IMPLEMENTATION_SUMMARY.md",
+    "summaries/UX_PHASE_2_IMPLEMENTATION_SUMMARY.md",
+    "summaries/UX_PHASE_3_2_IMPLEMENTATION_SUMMARY.md",
+    "summaries/UX_PHASE_3_3_IMPLEMENTATION_SUMMARY.md",
+    "summaries/UX_PHASE_3_IMPLEMENTATION_SUMMARY.md",
+    "summaries/translation-report.md",
+    "system-settings-migration-complete.md",
+    "technical/OFFLINE_FUNCTIONALITY_TECHNICAL_GUIDE.md",
+    "template-flow-architecture.md",
+    "testing/COMPREHENSIVE_USABILITY_TEST_PLAN.md",
+    "testing/LIVE_USABILITY_TEST_RESULTS.md",
+    "testing/ONBOARDING_TEST_SUMMARY.md",
+    "testing/USABILITY_TEST_EXECUTION_LOG.md",
+    "typescript-migration-strategy.md",
+    "week3-error-handling-plan.md",
+    "week3-error-handling-summary.md",
+    "week4-database-abstraction-plan.md",
+    "week4-database-abstraction-summary.md",
+    "week5-workflow-adapter-guide.md",
+    "week5-workflow-adapter-summary.md"
+  ],
+  "patterns": {
+    "development": 1,
+    "architecture": 6,
+    "features": 9,
+    "api": 7,
+    "deployment": 6,
+    "migration": 3,
+    "maintenance": 4,
+    "docs/reports/test-results": 1,
+    "docs/reports": 1,
+    "docs": 2,
+    ".": 32,
+    "../architecture": 13,
+    "../api": 5,
+    "../maintenance": 5,
+    "../deployment": 9,
+    "../features": 5,
+    "./docs": 3
+  }
+}

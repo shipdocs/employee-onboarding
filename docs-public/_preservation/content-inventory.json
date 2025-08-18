@@ -1,0 +1,768 @@
+{
+  "files": [
+    {
+      "path": "API-RESPONSE-STANDARD.md",
+      "size": 6014,
+      "modified": "2025-06-15T08:37:58.513Z"
+    },
+    {
+      "path": "API_DOCUMENTATION.md",
+      "size": 17860,
+      "modified": "2025-07-04T11:53:39.732Z"
+    },
+    {
+      "path": "API_ERROR_HANDLING.md",
+      "size": 7659,
+      "modified": "2025-06-14T08:46:41.593Z"
+    },
+    {
+      "path": "API_REFERENCE.md",
+      "size": 9147,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "CERTIFICATE_SYSTEM.md",
+      "size": 14843,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "CLAUDE_BEST_PRACTICES.md",
+      "size": 7408,
+      "modified": "2025-07-04T11:53:39.732Z"
+    },
+    {
+      "path": "COMPREHENSIVE_SECURITY_REPORT.md",
+      "size": 7830,
+      "modified": "2025-06-27T19:08:47.486Z"
+    },
+    {
+      "path": "CONTENT_SECURITY_POLICY.md",
+      "size": 10886,
+      "modified": "2025-06-27T19:08:47.486Z"
+    },
+    {
+      "path": "CREW_ASSIGNMENTS.md",
+      "size": 4639,
+      "modified": "2025-07-04T11:53:39.732Z"
+    },
+    {
+      "path": "DEPLOYMENT_PROCEDURES.md",
+      "size": 11801,
+      "modified": "2025-07-04T11:53:39.732Z"
+    },
+    {
+      "path": "DEVELOPER-GUIDE.md",
+      "size": 11670,
+      "modified": "2025-06-15T08:37:58.514Z"
+    },
+    {
+      "path": "DEVELOPER_QUICK_REFERENCE.md",
+      "size": 7460,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "DEVELOPMENT_PROCESS_OVERVIEW.md",
+      "size": 7138,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "DEVELOPMENT_WORKFLOW.md",
+      "size": 9558,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "DOCUMENTATION_AUDIT_FRAMEWORK.md",
+      "size": 7234,
+      "modified": "2025-07-14T13:48:23.330Z"
+    },
+    {
+      "path": "DOCUMENTATION_PRESERVATION_PLAN.md",
+      "size": 12817,
+      "modified": "2025-07-14T16:39:47.691Z"
+    },
+    {
+      "path": "ERROR_HANDLING_GUIDE.md",
+      "size": 6154,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "FINAL_SECURITY_VALIDATION.md",
+      "size": 7181,
+      "modified": "2025-06-27T19:08:47.486Z"
+    },
+    {
+      "path": "HYBRID_DATABASE_SYNC.md",
+      "size": 9168,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "INCIDENT_RESPONSE_PROCEDURES.md",
+      "size": 13657,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "INSTALLATION_SETUP.md",
+      "size": 8257,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "MANUAL-TESTING-CHECKLIST.md",
+      "size": 5060,
+      "modified": "2025-06-15T08:37:58.514Z"
+    },
+    {
+      "path": "MIGRATION_SYSTEM_DEEP_DIVE.md",
+      "size": 8318,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "PERFORMANCE.md",
+      "size": 5101,
+      "modified": "2025-06-15T10:59:48.758Z"
+    },
+    {
+      "path": "README.md",
+      "size": 13463,
+      "modified": "2025-06-14T08:46:41.593Z"
+    },
+    {
+      "path": "REFACTORING_SUMMARY.md",
+      "size": 13194,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "RICH_CONTENT_SYSTEM.md",
+      "size": 9893,
+      "modified": "2025-06-27T19:08:47.486Z"
+    },
+    {
+      "path": "RLS_IMPLEMENTATION.md",
+      "size": 5994,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "RLS_IMPLEMENTATION_GUIDE.md",
+      "size": 6549,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "ROLE_BASED_ACCESS_CONTROL.md",
+      "size": 9124,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "SECURITY_FIX_REPORT.md",
+      "size": 6585,
+      "modified": "2025-06-27T19:08:47.486Z"
+    },
+    {
+      "path": "SECURITY_IMPLEMENTATION_GUIDE.md",
+      "size": 11741,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "SPRINT-1-SUMMARY.md",
+      "size": 6258,
+      "modified": "2025-06-15T08:37:58.514Z"
+    },
+    {
+      "path": "TOKEN_BLACKLIST_SYSTEM.md",
+      "size": 3421,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "TRAINING_DATABASE_FIXES.md",
+      "size": 2067,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "TYPESCRIPT-MIGRATION-GUIDE.md",
+      "size": 5373,
+      "modified": "2025-06-15T08:37:58.514Z"
+    },
+    {
+      "path": "USER_GUIDE_ADMIN.md",
+      "size": 15547,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "USER_GUIDE_CREW.md",
+      "size": 13411,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "USER_GUIDE_MANAGER.md",
+      "size": 14097,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "WHERE_TO_FIND_THINGS.md",
+      "size": 1354,
+      "modified": "2025-07-04T11:53:39.733Z"
+    },
+    {
+      "path": "api/README.md",
+      "size": 11459,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "api/TRANSLATION_API_ENDPOINTS.md",
+      "size": 15660,
+      "modified": "2025-06-14T08:46:41.593Z"
+    },
+    {
+      "path": "architecture/README.md",
+      "size": 12316,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "configuration-centralization.md",
+      "size": 6790,
+      "modified": "2025-06-15T15:19:55.948Z"
+    },
+    {
+      "path": "deployment/README.md",
+      "size": 11323,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "developers/api-reference-generated.md",
+      "size": 19556,
+      "modified": "2025-07-14T16:13:35.214Z"
+    },
+    {
+      "path": "developers/component-reference-generated.md",
+      "size": 5968,
+      "modified": "2025-07-14T16:13:35.214Z"
+    },
+    {
+      "path": "developers/setup-generated.md",
+      "size": 2187,
+      "modified": "2025-07-14T16:13:35.214Z"
+    },
+    {
+      "path": "development/CLAUDE.md",
+      "size": 8310,
+      "modified": "2025-07-04T11:53:39.734Z"
+    },
+    {
+      "path": "development/README.md",
+      "size": 12629,
+      "modified": "2025-06-02T11:38:09.601Z"
+    },
+    {
+      "path": "development/SIMONE-REFACTORING-WORKFLOW.md",
+      "size": 6522,
+      "modified": "2025-07-04T11:53:39.734Z"
+    },
+    {
+      "path": "development/SIMONE_HANDLEIDING.md",
+      "size": 6604,
+      "modified": "2025-07-04T11:53:39.734Z"
+    },
+    {
+      "path": "development/deployment.md",
+      "size": 12515,
+      "modified": "2025-06-14T08:46:41.593Z"
+    },
+    {
+      "path": "development/environment-setup.md",
+      "size": 13192,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "development/workflow.md",
+      "size": 10110,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "email-service-consolidation.md",
+      "size": 4587,
+      "modified": "2025-06-15T08:37:58.514Z"
+    },
+    {
+      "path": "error-handling-migration-example.md",
+      "size": 3633,
+      "modified": "2025-06-15T15:19:55.948Z"
+    },
+    {
+      "path": "features/README.md",
+      "size": 10931,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "features/role-based-access.md",
+      "size": 12579,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "getting-started/README.md",
+      "size": 7817,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "getting-started/first-steps.md",
+      "size": 10571,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "getting-started/installation.md",
+      "size": 10368,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "getting-started/troubleshooting.md",
+      "size": 11348,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "guides/ONLINE_AGENT_SETUP.md",
+      "size": 1278,
+      "modified": "2025-06-14T08:46:41.593Z"
+    },
+    {
+      "path": "guides/PC-SETUP.md",
+      "size": 2842,
+      "modified": "2025-06-14T08:46:41.593Z"
+    },
+    {
+      "path": "guides/SECURITY_NOTES.md",
+      "size": 1775,
+      "modified": "2025-06-14T08:46:41.593Z"
+    },
+    {
+      "path": "guides/VERCEL_DEPLOYMENT_GUIDE.md",
+      "size": 7715,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "implementation-plans/DYNAMIC_WORKFLOW_IMPLEMENTATION_PLAN.md",
+      "size": 27394,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "implementation-plans/MULTILINGUAL_WORKFLOW_IMPLEMENTATION_PLAN.md",
+      "size": 17497,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "implementation-plans/QUIZ_PHASE_TRANSLATION_IMPLEMENTATION.md",
+      "size": 11500,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "maintenance/README.md",
+      "size": 12530,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "migration/MIGRATION_CONSOLIDATION_SUMMARY.md",
+      "size": 3231,
+      "modified": "2025-07-04T11:53:39.734Z"
+    },
+    {
+      "path": "migration/MIGRATION_STRATEGY.md",
+      "size": 4839,
+      "modified": "2025-07-04T11:53:39.734Z"
+    },
+    {
+      "path": "migration/README.md",
+      "size": 15877,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "optimization/health-check-optimization.md",
+      "size": 2309,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "plans/COMPLIANCE_IMPLEMENTATION_PLAN.md",
+      "size": 54416,
+      "modified": "2025-07-14T13:38:21.457Z"
+    },
+    {
+      "path": "plans/TRAINING_CONTENT_EDITOR_IMPROVEMENT_PLAN_2025-01-10.md",
+      "size": 9144,
+      "modified": "2025-07-10T14:49:28.828Z"
+    },
+    {
+      "path": "reports/README.md",
+      "size": 1804,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "reports/audits/API_ENDPOINT_AUDIT_REPORT.md",
+      "size": 7205,
+      "modified": "2025-07-04T11:53:39.734Z"
+    },
+    {
+      "path": "reports/audits/CODE-ANALYSIS-REPORT.md",
+      "size": 8341,
+      "modified": "2025-07-04T11:53:39.734Z"
+    },
+    {
+      "path": "reports/audits/COMPREHENSIVE_AUDIT_SUMMARY.md",
+      "size": 6939,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/audits/FORENSIC_INVESTIGATION_REPORT.md",
+      "size": 8104,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/audits/api-audit.md",
+      "size": 5236,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/audits/api-detailed-audit.md",
+      "size": 5728,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/audits/email-system-audit.md",
+      "size": 7047,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "reports/audits/frontend-audit.md",
+      "size": 6903,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/bugs/manager-login-status-bug.md",
+      "size": 1237,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "reports/cleanup/CLEANUP_COMPLETION_REPORT.md",
+      "size": 4906,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/cleanup/CODEBASE_CLEANUP_SUMMARY.md",
+      "size": 5817,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/cleanup/FINAL_CLEANUP_SUMMARY.md",
+      "size": 4442,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/cleanup/FLOWS_DEBUG_RESOLUTION.md",
+      "size": 5778,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/cleanup/KNIP_CLEANUP_COMPLETE.md",
+      "size": 3755,
+      "modified": "2025-07-04T11:53:39.735Z"
+    },
+    {
+      "path": "reports/cleanup/MD_CONSOLIDATION_ANALYSIS.md",
+      "size": 8315,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/cleanup/MODULE_CONVERSION_REPORT.md",
+      "size": 2760,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/cleanup/PROJECT_CLEANUP_PLAN.md",
+      "size": 4205,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/cleanup/REFACTORING-PRIORITIES.md",
+      "size": 5402,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/cleanup/RICH_CONTENT_COMPLETION_REPORT.md",
+      "size": 10808,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/cleanup/WORKFLOW_TRAINING_INTEGRATION.md",
+      "size": 7482,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/production-readiness-report.md",
+      "size": 16151,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/security/CLAUDE_CODE_SECURITY_REMEDIATION_STATUS.md",
+      "size": 5537,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/security/DEPENDENCY_SECURITY_AUDIT.md",
+      "size": 6315,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/security/SECURITY_AUDIT_REPORT.md",
+      "size": 4929,
+      "modified": "2025-07-04T11:53:39.736Z"
+    },
+    {
+      "path": "reports/security/SECURITY_DEPENDENCY_REPORT.md",
+      "size": 1287,
+      "modified": "2025-07-04T11:53:39.737Z"
+    },
+    {
+      "path": "reports/security/SECURITY_REMEDIATION_STEPS.md",
+      "size": 3084,
+      "modified": "2025-07-04T11:53:39.737Z"
+    },
+    {
+      "path": "reports/security/SECURITY_SETUP.md",
+      "size": 1629,
+      "modified": "2025-07-04T11:53:39.737Z"
+    },
+    {
+      "path": "reports/security/frontend-auth-migration.md",
+      "size": 2578,
+      "modified": "2025-07-04T11:53:39.737Z"
+    },
+    {
+      "path": "reports/sprints/SPRINT-1-COMPLETION-REPORT.md",
+      "size": 6301,
+      "modified": "2025-07-04T11:53:39.737Z"
+    },
+    {
+      "path": "reports/sprints/SPRINT-1-REFACTORING.md",
+      "size": 6644,
+      "modified": "2025-07-04T11:53:39.737Z"
+    },
+    {
+      "path": "reports/sprints/SPRINT-TRACKER.md",
+      "size": 4225,
+      "modified": "2025-07-04T11:53:39.737Z"
+    },
+    {
+      "path": "reports/summaries/2025-06-10-root-cleanup-log.md",
+      "size": 1996,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "reports/summaries/DOCUMENTATION_ORGANIZATION_SUMMARY.md",
+      "size": 5891,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "reports/summaries/IMPROVEMENT_PLANS_STATUS_UPDATE.md",
+      "size": 3999,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "reports/test-results/2025-06-10-comprehensive-test-results.md",
+      "size": 3059,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "reports/test-results/integration-test-summary.md",
+      "size": 1989,
+      "modified": "2025-06-14T08:46:41.594Z"
+    },
+    {
+      "path": "security/REALISTIC_SECURITY_ASSESSMENT_2025-01-10.md",
+      "size": 7281,
+      "modified": "2025-07-14T13:32:04.452Z"
+    },
+    {
+      "path": "security/SECURITY_AUDIT_REPORT.md",
+      "size": 6810,
+      "modified": "2025-07-14T13:32:04.452Z"
+    },
+    {
+      "path": "smtp-implementation.md",
+      "size": 6226,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "sprints/S03_COMPLETION_SUMMARY.md",
+      "size": 10260,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "static-training-data-analysis.md",
+      "size": 4405,
+      "modified": "2025-06-27T19:08:47.486Z"
+    },
+    {
+      "path": "strategic-roadmap/platform-evolution-plan.md",
+      "size": 9516,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/MCP_SETUP_SUMMARY.md",
+      "size": 3718,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/MULTILINGUAL_IMPLEMENTATION_SUMMARY.md",
+      "size": 10456,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/NEXT_STEPS_DECISION_MATRIX.md",
+      "size": 7971,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/OFFLINE_CONNECTIVITY_PHASE_1_IMPLEMENTATION_SUMMARY.md",
+      "size": 12955,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/RLS_IMPLEMENTATION_SUMMARY.md",
+      "size": 5692,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/TRANSLATION_COMPLETION_SUMMARY.md",
+      "size": 5414,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/TRANSLATION_FIXES_SUMMARY.md",
+      "size": 4085,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/UX_PHASE_1_IMPLEMENTATION_SUMMARY.md",
+      "size": 5984,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/UX_PHASE_2_IMPLEMENTATION_SUMMARY.md",
+      "size": 8280,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/UX_PHASE_3_2_IMPLEMENTATION_SUMMARY.md",
+      "size": 11895,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/UX_PHASE_3_3_IMPLEMENTATION_SUMMARY.md",
+      "size": 12004,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/UX_PHASE_3_IMPLEMENTATION_SUMMARY.md",
+      "size": 9641,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "summaries/translation-report.md",
+      "size": 3153,
+      "modified": "2025-06-14T08:46:41.618Z"
+    },
+    {
+      "path": "system-settings-migration-complete.md",
+      "size": 4335,
+      "modified": "2025-06-15T15:19:55.948Z"
+    },
+    {
+      "path": "technical/OFFLINE_FUNCTIONALITY_TECHNICAL_GUIDE.md",
+      "size": 12072,
+      "modified": "2025-06-14T08:46:41.619Z"
+    },
+    {
+      "path": "template-flow-architecture.md",
+      "size": 4431,
+      "modified": "2025-06-02T11:38:09.602Z"
+    },
+    {
+      "path": "testing/COMPREHENSIVE_USABILITY_TEST_PLAN.md",
+      "size": 9902,
+      "modified": "2025-06-14T08:46:41.619Z"
+    },
+    {
+      "path": "testing/LIVE_USABILITY_TEST_RESULTS.md",
+      "size": 11518,
+      "modified": "2025-06-14T08:46:41.619Z"
+    },
+    {
+      "path": "testing/ONBOARDING_TEST_PROTOCOL.md",
+      "size": 5731,
+      "modified": "2025-06-14T08:46:41.619Z"
+    },
+    {
+      "path": "testing/ONBOARDING_TEST_SUMMARY.md",
+      "size": 4364,
+      "modified": "2025-06-14T08:46:41.619Z"
+    },
+    {
+      "path": "testing/USABILITY_TEST_EXECUTION_LOG.md",
+      "size": 5817,
+      "modified": "2025-06-14T08:46:41.619Z"
+    },
+    {
+      "path": "typescript-migration-strategy.md",
+      "size": 5087,
+      "modified": "2025-06-15T08:37:58.514Z"
+    },
+    {
+      "path": "week3-error-handling-plan.md",
+      "size": 2629,
+      "modified": "2025-06-15T15:19:55.948Z"
+    },
+    {
+      "path": "week3-error-handling-summary.md",
+      "size": 3362,
+      "modified": "2025-06-15T15:19:55.948Z"
+    },
+    {
+      "path": "week4-database-abstraction-plan.md",
+      "size": 4155,
+      "modified": "2025-06-15T15:19:55.948Z"
+    },
+    {
+      "path": "week4-database-abstraction-summary.md",
+      "size": 4610,
+      "modified": "2025-06-15T15:19:55.948Z"
+    },
+    {
+      "path": "week5-workflow-adapter-guide.md",
+      "size": 9272,
+      "modified": "2025-06-15T15:19:55.948Z"
+    },
+    {
+      "path": "week5-workflow-adapter-summary.md",
+      "size": 6546,
+      "modified": "2025-06-15T15:19:55.948Z"
+    }
+  ],
+  "directories": [
+    "api",
+    "architecture",
+    "deployment",
+    "developers",
+    "development",
+    "features",
+    "getting-started",
+    "guides",
+    "implementation-plans",
+    "maintenance",
+    "migration",
+    "optimization",
+    "plans",
+    "reports",
+    "scripts",
+    "security",
+    "source-documents",
+    "sprints",
+    "strategic-roadmap",
+    "summaries",
+    "technical",
+    "testing"
+  ]
+}

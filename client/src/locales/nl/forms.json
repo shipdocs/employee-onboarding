@@ -1,0 +1,170 @@
+{
+  "selectPosition": "Selecteer positie",
+  "addManager": {
+    "title": "Nieuwe Manager Toevoegen",
+    "fields": {
+      "email": "E-mailadres",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "phone": "Telefoonnummer (optioneel)",
+      "company": "Bedrijf",
+      "preferredLanguage": "Voorkeurstaal",
+      "permissions": "Machtigingen"
+    },
+    "permissionOptions": {
+      "crew_manage": "Bemanningsleden beheren",
+      "quiz_review": "Examens beoordelen en goedkeuren",
+      "onboarding_approve": "Definitieve onboarding goedkeuren",
+      "certificates_view": "Certificaten bekijken",
+      "certificates_download": "Certificaten downloaden",
+      "certificates_regenerate": "Certificaten opnieuw genereren",
+      "content_edit": "Trainingsinhoud bewerken"
+    },
+    "actions": {
+      "create": "Manager Aanmaken",
+      "cancel": "Annuleren"
+    },
+    "messages": {
+      "success": "Manager succesvol aangemaakt",
+      "error": "Fout bij aanmaken manager"
+    }
+  },
+  "editManager": {
+    "title": "Manager Bewerken",
+    "fields": {
+      "email": "E-mailadres",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "phone": "Telefoonnummer",
+      "company": "Bedrijf",
+      "preferredLanguage": "Voorkeurstaal",
+      "permissions": "Machtigingen",
+      "isActive": "Actieve Status"
+    },
+    "activeOptions": {
+      "active": "Actief",
+      "inactive": "Inactief"
+    },
+    "actions": {
+      "save": "Wijzigingen Opslaan",
+      "cancel": "Annuleren"
+    },
+    "messages": {
+      "success": "Manager succesvol bijgewerkt",
+      "error": "Fout bij bijwerken manager"
+    }
+  },
+  "addCrewMember": {
+    "title": "Nieuw Bemanningslid Toevoegen",
+    "fields": {
+      "email": "E-mailadres",
+      "firstName": "Voornaam", 
+      "lastName": "Achternaam",
+      "position": "Positie",
+      "vesselAssignment": "Schip Toewijzing",
+      "expectedBoardingDate": "Verwachte Instapdag",
+      "contactPhone": "Contact Telefoon",
+      "emergencyContactName": "Naam Noodcontact",
+      "emergencyContactPhone": "Telefoon Noodcontact",
+      "preferredLanguage": "Voorkeurstaal"
+    },
+    "actions": {
+      "create": "Bemanningslid Aanmaken",
+      "cancel": "Annuleren"
+    },
+    "messages": {
+      "success": "Bemanningslid succesvol aangemaakt",
+      "error": "Fout bij aanmaken bemanningslid"
+    }
+  },
+  "editCrewMember": {
+    "title": "Bemanningslid Bewerken",
+    "fields": {
+      "email": "E-mailadres",
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "position": "Positie",
+      "vesselAssignment": "Schip Toewijzing",
+      "expectedBoardingDate": "Verwachte Instapdag",
+      "contactPhone": "Contact Telefoon",
+      "emergencyContactName": "Naam Noodcontact",
+      "emergencyContactPhone": "Telefoon Noodcontact",
+      "preferredLanguage": "Voorkeurstaal",
+      "isActive": "Actieve Status"
+    },
+    "actions": {
+      "save": "Wijzigingen Opslaan",
+      "cancel": "Annuleren"
+    },
+    "messages": {
+      "success": "Bemanningslid succesvol bijgewerkt",
+      "error": "Fout bij bijwerken bemanningslid"
+    }
+  },
+  "quizReview": {
+    "title": "Beoordeel Exameninzending",
+    "submittedBy": "Ingediend door: {{name}}",
+    "phase": "Fase {{number}} Examen",
+    "score": "Score: {{score}}/{{total}} ({{percentage}}%)",
+    "submittedAt": "Ingediend: {{date}}",
+    "question": "Vraag {{number}}",
+    "userAnswer": "Antwoord Gebruiker",
+    "correctAnswer": "Correct Antwoord",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "feedback": {
+      "title": "Manager Feedback",
+      "placeholder": "Geef feedback voor het bemanningslid (optioneel)"
+    },
+    "actions": {
+      "approve": "Keur Examen Goed",
+      "reject": "Wijs Examen Af",
+      "cancel": "Annuleren"
+    },
+    "messages": {
+      "approveConfirm": "Weet u zeker dat u dit examen wilt goedkeuren?",
+      "rejectConfirm": "Weet u zeker dat u dit examen wilt afwijzen? Het bemanningslid moet het opnieuw doen.",
+      "approved": "Examen succesvol goedgekeurd",
+      "rejected": "Examen succesvol afgekeurd",
+      "error": "Fout bij verwerken examenbeoordeling"
+    }
+  },
+  "onboardingReview": {
+    "title": "Beoordeel Volledige Onboarding",
+    "crewMember": "Bemanningslid: {{name}}",
+    "position": "Positie: {{position}}",
+    "vessel": "Schip: {{vessel}}",
+    "summary": {
+      "title": "Trainingssamenvatting",
+      "formsCompleted": "Formulieren: Voltooid",
+      "phase": "Fase {{number}}",
+      "status": "Status: {{status}}",
+      "quizScore": "Examen: {{score}}/{{total}}",
+      "completedAt": "Voltooid: {{date}}"
+    },
+    "actions": {
+      "approve": "Keur Goed & Geef Certificaat Uit",
+      "reject": "Vraag Extra Training Aan",
+      "cancel": "Annuleren"
+    },
+    "messages": {
+      "approveConfirm": "Weet u zeker dat u de onboarding van dit bemanningslid wilt goedkeuren? Dit zal hun voltooiingscertificaat uitgeven.",
+      "approved": "Onboarding goedgekeurd en certificaat uitgegeven",
+      "error": "Fout bij verwerken onboarding beoordeling"
+    }
+  },
+  "common": {
+    "required": "Verplicht",
+    "optional": "Optioneel",
+    "loading": "Laden...",
+    "saving": "Opslaan...",
+    "submitting": "Indienen...",
+    "error": "Er is een fout opgetreden",
+    "tryAgain": "Probeer Opnieuw",
+    "close": "Sluiten",
+    "confirm": "Bevestigen",
+    "cancel": "Annuleren",
+    "yes": "Ja",
+    "no": "Nee"
+  }
+}

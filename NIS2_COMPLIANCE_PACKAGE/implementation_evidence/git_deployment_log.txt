@@ -1,0 +1,10 @@
+72f8617 feat: implement comprehensive vendor risk assessment framework
+d88e7c5 feat: deploy GDPR self-service portal
+29e3182 fix: correct table references in data-exports API
+2aa135f fix: replace toast.info() with toast() for react-hot-toast compatibility
+926dee4 fix: resolve multiple admin dashboard issues
+7b1af56 fix: correct rateLimit import paths based on actual file depth
+e1a2f99 fix: correct rateLimit import paths across all API endpoints
+1425d7c fix: correct rateLimit import paths in test files
+937b32f fix: add missing getManager function to adminService
+2973a28 fix: correct rateLimit import path in admin managers API endpoint

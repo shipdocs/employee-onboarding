@@ -1,0 +1,125 @@
+{
+  "timestamp": "2025-07-15T06:27:37.975Z",
+  "source": "/home/martin/Ontwikkeling/new-onboarding-2025/docs",
+  "output": "/home/martin/Ontwikkeling/new-onboarding-2025/docs-public",
+  "stats": {
+    "filesProcessed": 336,
+    "replacementsMade": 365,
+    "filesSkipped": 0,
+    "errors": []
+  },
+  "replacementPatterns": [
+    {
+      "pattern": "/[\\w.-]+@shipdocs\\.app/gi",
+      "replacement": "user@example.com"
+    },
+    {
+      "pattern": "/adminmartexx@shipdocs\\.app/gi",
+      "replacement": "admin@example.com"
+    },
+    {
+      "pattern": "/manager@shipdocs\\.app/gi",
+      "replacement": "manager@example.com"
+    },
+    {
+      "pattern": "/crew\\.test@shipdocs\\.app/gi",
+      "replacement": "crew@example.com"
+    },
+    {
+      "pattern": "/hr@shipdocs\\.app/gi",
+      "replacement": "hr@example.com"
+    },
+    {
+      "pattern": "/noreply@shipdocs\\.app/gi",
+      "replacement": "noreply@example.com"
+    },
+    {
+      "pattern": "/security@shipdocs\\.app/gi",
+      "replacement": "security@example.com"
+    },
+    {
+      "pattern": "/burando_onboarding_[\\w]+@shipdocs\\.app/gi",
+      "replacement": "onboarding@example.com"
+    },
+    {
+      "pattern": "/Yumminova21!@#/g",
+      "replacement": "YOUR_ADMIN_PASSWORD"
+    },
+    {
+      "pattern": "/TestPass123!/g",
+      "replacement": "YOUR_TEST_PASSWORD"
+    },
+    {
+      "pattern": "/password123/gi",
+      "replacement": "your-password"
+    },
+    {
+      "pattern": "/securepassword/gi",
+      "replacement": "your-secure-password"
+    },
+    {
+      "pattern": "/mlsn\\.[a-f0-9]{64}/g",
+      "replacement": "mlsn.YOUR_MAILERSEND_API_KEY"
+    },
+    {
+      "pattern": "/eyJ[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*/g",
+      "replacement": "YOUR_JWT_TOKEN"
+    },
+    {
+      "pattern": "/12028afbd79ca9eeb0a16f4454030f959940191637059b93d073a59e416dbb84/g",
+      "replacement": "YOUR_JWT_SECRET"
+    },
+    {
+      "pattern": "/https:\\/\\/ocqnnyxnqaedarcohywe\\.supabase\\.co/g",
+      "replacement": "https://YOUR_PROJECT.supabase.co"
+    },
+    {
+      "pattern": "/https:\\/\\/awylsjqmqhsegvvrkiim\\.supabase\\.co/g",
+      "replacement": "https://YOUR_PROJECT.supabase.co"
+    },
+    {
+      "pattern": "/https:\\/\\/atonfoxqfdfmraucwygt\\.supabase\\.co/g",
+      "replacement": "https://YOUR_PROJECT.supabase.co"
+    },
+    {
+      "pattern": "/ocqnnyxnqaedarcohywe\\.supabase\\.co/g",
+      "replacement": "YOUR_PROJECT.supabase.co"
+    },
+    {
+      "pattern": "/awylsjqmqhsegvvrkiim\\.supabase\\.co/g",
+      "replacement": "YOUR_DEV_PROJECT.supabase.co"
+    },
+    {
+      "pattern": "/atonfoxqfdfmraucwygt\\.supabase\\.co/g",
+      "replacement": "YOUR_TEST_PROJECT.supabase.co"
+    },
+    {
+      "pattern": "/ocqnnyxnqaedarcohywe/g",
+      "replacement": "YOUR_PROJECT_ID"
+    },
+    {
+      "pattern": "/awylsjqmqhsegvvrkiim/g",
+      "replacement": "YOUR_DEV_PROJECT_ID"
+    },
+    {
+      "pattern": "/atonfoxqfdfmraucwygt/g",
+      "replacement": "YOUR_TEST_PROJECT_ID"
+    },
+    {
+      "pattern": "/new-onboarding-2025-git-[\\w-]+\\.vercel\\.app/g",
+      "replacement": "your-project.vercel.app"
+    },
+    {
+      "pattern": "/onboarding\\.burando\\.online/g",
+      "replacement": "your-domain.com"
+    },
+    {
+      "pattern": "/anon-key:\\s*[\\w-]+/g",
+      "replacement": "anon-key: YOUR_ANON_KEY"
+    },
+    {
+      "pattern": "/service-role:\\s*[\\w-]+/g",
+      "replacement": "service-role: YOUR_SERVICE_ROLE_KEY"
+    }
+  ]
+}

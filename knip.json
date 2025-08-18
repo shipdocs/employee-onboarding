@@ -1,0 +1,48 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": [
+        "api/**/*.{js,ts}",
+        "scripts/**/*.js"
+      ],
+      "project": [
+        "api/**/*.{js,ts}",
+        "lib/**/*.{js,ts}",
+        "services/**/*.{js,ts}",
+        "scripts/**/*.js",
+        "config/**/*.js"
+      ]
+    },
+    "client": {
+      "entry": ["src/index.js"],
+      "project": ["src/**/*.{js,jsx,ts,tsx}"]
+    }
+  },
+  "ignore": [
+    "**/*.test.{js,ts,tsx}",
+    "**/*.spec.{js,ts,tsx}",
+    "**/test/**",
+    "**/tests/**",
+    "**/e2e-tests/**",
+    "**/__tests__/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/coverage/**",
+    "**/.next/**",
+    "**/node_modules/**",
+    "client/public/**",
+    "supabase/**",
+    "docs/**"
+  ],
+  "ignoreDependencies": [
+    "@types/*",
+    "eslint-*",
+    "lighthouse"
+  ],
+  "ignoreExportsUsedInFile": true,
+  "webpack": false,
+  "typescript": {
+    "config": ["tsconfig.json", "client/tsconfig.json"]
+  }
+}

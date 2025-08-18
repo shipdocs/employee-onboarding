@@ -1,0 +1,31 @@
+{
+  "quick": {
+    "how_was_experience": "How was your experience?",
+    "good_experience": "Good experience",
+    "okay_experience": "Okay experience", 
+    "poor_experience": "Poor experience"
+  },
+  "detailed": {
+    "open_detailed": "Detailed feedback",
+    "rate_experience": "Rate your experience",
+    "additional_comments": "Additional comments (optional)",
+    "comment_placeholder": "Tell us about your experience, any issues you encountered, or suggestions for improvement...",
+    "characters": "characters",
+    "context": "Context",
+    "submitting": "Submitting...",
+    "submit": "Submit Feedback"
+  },
+  "contexts": {
+    "general": "General Feedback",
+    "training_completion": "Training Completion",
+    "quiz_completion": "Quiz Completion", 
+    "offline_mode": "Offline Experience",
+    "error_recovery": "Error Recovery"
+  },
+  "validation": {
+    "rating_or_comment_required": "Please provide either a rating or comment"
+  },
+  "errors": {
+    "submission_failed": "Failed to submit feedback. Please try again."
+  }
+}

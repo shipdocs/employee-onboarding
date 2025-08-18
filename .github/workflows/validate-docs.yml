@@ -1,0 +1,148 @@
+name: Validate Documentation
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+      - '.github/workflows/validate-docs.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies
+      run: |
+        # Install jq for JSON processing
+        sudo apt-get update && sudo apt-get install -y jq
+        echo "Dependencies installed successfully"
+        
+    - name: Run documentation validation
+      run: |
+        echo "🔍 Running documentation validation..."
+
+        # Ensure the preservation directory exists
+        mkdir -p docs/_preservation
+
+        # Run validation script
+        if node scripts/validate-documentation.js --report=json; then
+          echo "✅ Validation script completed successfully"
+        else
+          echo "❌ Validation script failed"
+          exit 1
+        fi
+
+        # Check if validation report was generated
+        if [ -f "docs/_preservation/validation-report.json" ]; then
+          echo "📊 Validation report found, analyzing results..."
+
+          # Use jq to safely parse JSON
+          BROKEN_LINKS=$(jq '.brokenLinks | length' docs/_preservation/validation-report.json)
+          ORPHANED_FILES=$(jq '.orphanedFiles | length' docs/_preservation/validation-report.json)
+
+          echo "📊 Validation Results:"
+          echo "   Broken Links: $BROKEN_LINKS"
+          echo "   Orphaned Files: $ORPHANED_FILES"
+
+          # Fail if there are critical issues
+          if [ "$BROKEN_LINKS" -gt 100 ]; then
+            echo "❌ Too many broken links (>100). Please fix documentation links."
+            exit 1
+          fi
+
+          if [ "$ORPHANED_FILES" -gt 200 ]; then
+            echo "⚠️ Warning: High number of orphaned files (>200)"
+          fi
+
+          echo "✅ Documentation validation passed!"
+        else
+          echo "❌ Validation report not generated"
+          exit 1
+        fi
+        
+    - name: Run documentation sanitization
+      run: |
+        echo "🧹 Running documentation sanitization..."
+        node scripts/sanitize-docs-for-public.js
+
+    - name: Check for sensitive data
+      run: |
+        echo "🔍 Checking for sensitive data in sanitized documentation..."
+        
+        # Check for common sensitive patterns
+        SENSITIVE_PATTERNS=(
+          "@shipdocs.app"
+          "Yumminova21"
+          "mlsn.[a-f0-9]{64}"
+          "eyJ[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+"
+          "[a-z0-9]{20}\.supabase\.co"
+        )
+        
+        FOUND_SENSITIVE=0
+        
+        for pattern in "${SENSITIVE_PATTERNS[@]}"; do
+          echo "Checking for: $pattern"
+          if grep -r -E "$pattern" docs-public/ --include="*.md" 2>/dev/null; then
+            echo "⚠️ Found sensitive pattern: $pattern"
+            FOUND_SENSITIVE=1
+          fi
+        done
+        
+        if [ $FOUND_SENSITIVE -eq 1 ]; then
+          echo "❌ Sensitive data found in sanitized documentation!"
+          echo "This indicates the sanitization script needs improvement."
+          exit 1
+        else
+          echo "✅ No sensitive data found in sanitized documentation"
+        fi
+        
+    - name: Generate validation summary
+      if: always()
+      run: |
+        echo "## 📄 Documentation Validation Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f "docs/_preservation/validation-report.json" ]; then
+          echo "### Metrics" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          
+          TOTAL_FILES=$(cat docs/_preservation/validation-report.json | jq -r '.totalFiles')
+          BROKEN_LINKS=$(cat docs/_preservation/validation-report.json | jq -r '.brokenLinks | length')
+          ORPHANED_FILES=$(cat docs/_preservation/validation-report.json | jq -r '.orphanedFiles | length')
+          
+          echo "| Total Files | $TOTAL_FILES |" >> $GITHUB_STEP_SUMMARY
+          echo "| Broken Links | $BROKEN_LINKS |" >> $GITHUB_STEP_SUMMARY
+          echo "| Orphaned Files | $ORPHANED_FILES |" >> $GITHUB_STEP_SUMMARY
+          
+          # Add details for broken links if any
+          if [ "$BROKEN_LINKS" -gt 0 ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### ❌ Broken Links (First 10)" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            cat docs/_preservation/validation-report.json | jq -r '.brokenLinks[:10][] | "\(.file):\(.line) - \(.linkText) → \(.link)"' >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi
+        fi
+        
+    - name: Upload validation report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: documentation-validation-report
+        path: docs/_preservation/validation-report.*

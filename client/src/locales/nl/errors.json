@@ -1,0 +1,101 @@
+{
+  "network": {
+    "connection_lost": "Verbinding verloren. Controleer uw internetverbinding en probeer opnieuw.",
+    "slow_connection": "Uw verbinding lijkt traag. Dit kan iets langer duren dan gewoonlijk.",
+    "offline": "U lijkt offline te zijn. Controleer uw internetverbinding.",
+    "timeout": "Het verzoek duurt langer dan verwacht. Probeer opnieuw.",
+    "server_unreachable": "Kan onze servers niet bereiken. Controleer uw verbinding en probeer opnieuw."
+  },
+  "authentication": {
+    "session_expired": "Uw sessie is verlopen. Log opnieuw in om door te gaan.",
+    "session_expiring_soon": "Uw sessie verloopt over {{minutes}} minuten. Sla uw werk op.",
+    "login_failed": "We konden u niet inloggen. Controleer uw gegevens en probeer opnieuw.",
+    "login_link_expired": "Deze inloglink is verlopen. Vraag een nieuwe aan op de inlogpagina.",
+    "login_link_invalid": "Deze inloglink is niet geldig. Vraag een nieuwe aan op de inlogpagina.",
+    "access_denied": "U heeft geen toegang tot dit gebied. Neem contact op met uw beheerder als u toegang nodig heeft.",
+    "token_invalid": "Uw inlogsessie is niet meer geldig. Log opnieuw in."
+  },
+  "onboarding": {
+    "progress_save_failed": "We konden uw voortgang niet opslaan. Uw werk is veilig, maar probeer opnieuw.",
+    "step_load_failed": "Kan deze onboarding-stap niet laden. Ververs de pagina en probeer opnieuw.",
+    "completion_failed": "We konden uw onboarding niet voltooien. Probeer opnieuw of neem contact op met ondersteuning.",
+    "role_selection_failed": "Kan uw rolselectie niet opslaan. Probeer uw rol opnieuw te selecteren.",
+    "analytics_failed": "Voortgangsregistratie is tijdelijk niet beschikbaar, maar uw onboarding gaat normaal door."
+  },
+  "training": {
+    "phase_load_failed": "Kan Fase {{phase}} training niet laden. Ververs de pagina en probeer opnieuw.",
+    "item_load_failed": "Dit trainingsonderdeel kon niet worden geladen. Probeer opnieuw of ga naar het volgende onderdeel.",
+    "completion_failed": "We konden deze training niet als voltooid markeren. Probeer opnieuw.",
+    "quiz_load_failed": "De quiz kon niet worden geladen. Ververs de pagina en probeer opnieuw.",
+    "quiz_submit_failed": "Uw quiz-antwoorden konden niet worden verzonden. Probeer opnieuw.",
+    "progress_sync_failed": "Uw trainingsvoortgang kon niet worden gesynchroniseerd. Uw werk is lokaal opgeslagen."
+  },
+  "certificates": {
+    "generation_failed": "Uw certificaat kon nu niet worden gegenereerd. Probeer later opnieuw.",
+    "download_failed": "Certificaat download mislukt. Probeer opnieuw of neem contact op met ondersteuning.",
+    "not_eligible": "U komt nog niet in aanmerking voor dit certificaat. Voltooi eerst alle vereiste training."
+  },
+  "file_operations": {
+    "upload_failed": "Bestand uploaden mislukt. Controleer uw bestand en probeer opnieuw.",
+    "file_too_large": "Dit bestand is te groot. Kies een kleiner bestand (max {{maxSize}}).",
+    "invalid_file_type": "Dit bestandstype wordt niet ondersteund. Kies een {{allowedTypes}} bestand.",
+    "download_failed": "Bestand downloaden mislukt. Probeer opnieuw."
+  },
+  "form_validation": {
+    "required_field": "Dit veld is verplicht.",
+    "invalid_email": "Voer een geldig e-mailadres in.",
+    "password_too_short": "Wachtwoord moet minimaal {{minLength}} tekens lang zijn.",
+    "passwords_dont_match": "Wachtwoorden komen niet overeen.",
+    "invalid_date": "Voer een geldige datum in.",
+    "future_date_required": "Datum moet in de toekomst liggen.",
+    "past_date_required": "Datum moet in het verleden liggen."
+  },
+  "server": {
+    "internal_error": "Er ging iets mis aan onze kant. Probeer over een paar momenten opnieuw.",
+    "maintenance": "Het systeem is tijdelijk in onderhoud. Probeer later opnieuw.",
+    "overloaded": "Onze servers zijn momenteel druk bezet. Wacht even en probeer opnieuw.",
+    "database_error": "Er is een tijdelijk probleem met onze database. Probeer binnenkort opnieuw."
+  },
+  "recovery": {
+    "refresh_page": "Probeer de pagina te verversen",
+    "check_connection": "Controleer uw internetverbinding",
+    "try_again_later": "Probeer over een paar minuten opnieuw",
+    "contact_support": "Neem contact op met ondersteuning als het probleem aanhoudt",
+    "save_work": "Sla uw werk op voordat u opnieuw probeert",
+    "restart_browser": "Probeer uw browser opnieuw te starten"
+  },
+  "maritime_specific": {
+    "vessel_data_unavailable": "Scheepsinformatie is tijdelijk niet beschikbaar. Uw training kan doorgaan.",
+    "crew_record_sync_failed": "Uw bemanningsrecord kon niet worden gesynchroniseerd. Wijzigingen zijn lokaal opgeslagen.",
+    "safety_protocol_load_failed": "Veiligheidsprotocollen konden niet worden geladen. Neem contact op met uw veiligheidsofficier.",
+    "compliance_check_failed": "Compliance verificatie is tijdelijk niet beschikbaar.",
+    "boarding_date_invalid": "Voer een geldige inschepingsdatum in.",
+    "position_not_recognized": "Deze bemanningspositie wordt niet herkend. Neem contact op met HR."
+  },
+  "user_friendly": {
+    "something_went_wrong": "Oeps! Iets werkte niet zoals verwacht.",
+    "please_try_again": "Probeer opnieuw.",
+    "working_on_it": "We werken aan het oplossen hiervan.",
+    "almost_there": "U bent er bijna! Nog één keer proberen.",
+    "technical_difficulties": "We ondervinden enkele technische problemen.",
+    "back_soon": "Alles zou binnenkort weer normaal moeten werken."
+  },
+  "actions": {
+    "retry": "Opnieuw Proberen",
+    "refresh": "Pagina Verversen",
+    "go_back": "Ga Terug",
+    "contact_support": "Contact Ondersteuning",
+    "skip": "Deze Stap Overslaan",
+    "save_and_continue": "Opslaan en Doorgaan",
+    "try_later": "Later Proberen",
+    "report_problem": "Probleem Melden"
+  },
+  "help": {
+    "what_happened": "Wat is er gebeurd?",
+    "what_to_do": "Wat moet ik doen?",
+    "need_help": "Hulp nodig?",
+    "common_solutions": "Veelvoorkomende oplossingen:",
+    "still_stuck": "Nog steeds problemen?",
+    "contact_info": "Neem contact op met uw systeembeheerder of IT-ondersteuning."
+  }
+}

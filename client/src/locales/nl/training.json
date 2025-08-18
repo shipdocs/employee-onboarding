@@ -1,0 +1,78 @@
+{
+  "phase": "Fase",
+  "phases": {
+    "phase1": {
+      "title": "Directe Veiligheidstraining",
+      "description": "Essentiële veiligheidstraining die binnen 24 uur na het aan boord gaan moet worden voltooid",
+      "time_limit": "24 uur"
+    },
+    "phase2": {
+      "title": "Nautische Training",
+      "description": "Uitgebreide nautische procedures en scheepsoperaties training",
+      "time_limit": "72 uur"
+    },
+    "phase3": {
+      "title": "Geavanceerde Veiligheid & Milieu",
+      "description": "Geavanceerde veiligheidsprotocollen en milieunaleving training",
+      "time_limit": "1 week"
+    }
+  },
+  "items": {
+    "meet_colleagues": "Collega's ontmoeten + dagelijkse zaken aan boord",
+    "safety_equipment": "Veiligheidsuitrusting en noodprocedures",
+    "fire_safety": "Brandveiligheid en brandbestrijdingsapparatuur",
+    "emergency_procedures": "Noodprocedures en verzamelplaatsen",
+    "personal_protective": "Persoonlijke beschermingsmiddelen (PBM)",
+    "vessel_layout": "Scheepsindeling en verboden gebieden",
+    "communication": "Communicatieprocedures en protocollen",
+    "environmental": "Milieubeschermingsprocedures",
+    "cargo_operations": "Ladingoperaties en veiligheid",
+    "navigation": "Navigatie en brugprocedures",
+    "engine_room": "Machinekamerveiligheid en procedures",
+    "maintenance": "Onderhoud en reparatieprocedures"
+  },
+  "categories": {
+    "orientation": "Oriëntatie",
+    "safety": "Veiligheid",
+    "emergency": "Noodprocedures",
+    "equipment": "Uitrusting",
+    "procedures": "Procedures",
+    "environmental": "Milieu",
+    "navigation": "Navigatie",
+    "maintenance": "Onderhoud"
+  },
+  "instructions": {
+    "read_carefully": "Lees de volgende informatie zorgvuldig door",
+    "complete_all": "Voltooi alle trainingsonderdelen in deze fase",
+    "take_photos": "Maak foto's als bewijs van voltooiing waar vereist",
+    "ask_questions": "Vraag uw supervisor als u vragen heeft",
+    "safety_first": "Veiligheid is onze topprioriteit - sla nooit veiligheidsprocedures over"
+  },
+  "completion": {
+    "item_completed": "Trainingsonderdeel voltooid",
+    "phase_completed": "Fase succesvol voltooid",
+    "all_completed": "Alle trainingsfasen voltooid",
+    "certificate_ready": "Certificaat klaar voor download",
+    "instructor_signature": "Instructeur handtekening vereist",
+    "photo_required": "Fotobewijs vereist"
+  },
+  "navigation": {
+    "previous_item": "Vorig Onderdeel",
+    "next_item": "Volgend Onderdeel",
+    "back_to_phase": "Terug naar Fase Overzicht",
+    "mark_complete": "Markeren als Voltooid",
+    "undo_complete": "Voltooiing Ongedaan Maken"
+  },
+  "ui": {
+    "time_spent": "Tijd Besteed",
+    "minutes": "minuten",
+    "start_training": "Training Starten",
+    "continue_training": "Training Voortzetten",
+    "phase_complete": "Fase Voltooid",
+    "take_quiz_now": "Examen Nu Maken",
+    "back_to_dashboard": "Terug naar Dashboard",
+    "congratulations": "Gefeliciteerd!",
+    "phase_completed_message": "U heeft deze trainingsfase succesvol voltooid.",
+    "ready_for_quiz": "U bent nu klaar om het examen voor deze fase te maken."
+  }
+}

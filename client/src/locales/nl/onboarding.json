@@ -1,0 +1,168 @@
+{
+  "welcome": {
+    "title": "Welkom aan Boord!",
+    "subtitle": "Hallo {{name}}, je sluit je aan bij de bemanning als {{role}}",
+    "description": "Laten we je op weg helpen met je maritieme veiligheidstraining",
+    "training_overview": {
+      "safety": {
+        "title": "Veiligheidstraining",
+        "description": "Essentiële maritieme veiligheidsprotocollen"
+      },
+      "team": {
+        "title": "Team Integratie", 
+        "description": "Ontmoet je bemanning en verantwoordelijkheden"
+      },
+      "vessel": {
+        "title": "Scheepsoperaties",
+        "description": "Scheepsspecifieke procedures en apparatuur"
+      }
+    },
+    "timeline": {
+      "title": "Jouw Trainingsreis",
+      "phase1": "Veiligheidsgrondlagen (2 uur)",
+      "phase2": "Noodprocedures (2 uur)", 
+      "phase3": "Operationele Training (2 uur)",
+      "total": "Totale Tijd: 4-6 uur over 2 weken"
+    },
+    "button": "Start Jouw Trainingsreis",
+    "context": "Ontworpen voor maritieme professionals door maritieme experts"
+  },
+  "role_setup": {
+    "title": "Pas Je Training Aan",
+    "subtitle": "Selecteer je primaire rolfocus om je trainingservaring te personaliseren voor de Europese binnenvaart",
+    "roles": {
+      "schipper": {
+        "title": "Schipper/Kapitein",
+        "description": "Leiding, navigatie en volledige verantwoordelijkheid voor het schip",
+        "priority": "Leiderschap & Navigatie",
+        "duration": "8 uur",
+        "modules": [
+          "Rijnvaart Navigatie & Verkeerswetten",
+          "Leiderschap & Crisismanagement",
+          "Lading Planning & Stabiliteit",
+          "Wettelijke Verantwoordelijkheden"
+        ]
+      },
+      "stuurman": {
+        "title": "Stuurman",
+        "description": "Navigatie ondersteuning en operationele taken",
+        "priority": "Navigatie & Operaties",
+        "duration": "6 uur",
+        "modules": [
+          "Navigatie Ondersteuning",
+          "Communicatie Systemen (VHF/AIS)",
+          "Sluizen & Bruggen Operaties",
+          "Wachtdienst Procedures"
+        ]
+      },
+      "matroos": {
+        "title": "Matroos",
+        "description": "Ervaren dekwerkzaamheden en specialistische taken",
+        "priority": "Dekoperaties & Mentoring",
+        "duration": "5 uur",
+        "modules": [
+          "Geavanceerde Dekwerkzaamheden",
+          "Lading Behandeling & Veiligheid",
+          "Onderhoud & Reparaties",
+          "Mentoring Nieuwe Bemanningsleden"
+        ]
+      },
+      "deksman": {
+        "title": "Deksman",
+        "description": "Basis dekwerkzaamheden en algemene ondersteuning",
+        "priority": "Basis Dekoperaties",
+        "duration": "4 uur",
+        "modules": [
+          "Basis Dekwerkzaamheden",
+          "Veiligheid & Persoonlijke Bescherming",
+          "Basis Onderhoud & Schoonmaak",
+          "Teamwerk & Communicatie"
+        ]
+      }
+    },
+    "selected": "Geselecteerd: {{role}}",
+    "selected_description": "Je training wordt aangepast voor {{description}} met nadruk op {{priority}}.",
+    "help_text": "Maak je geen zorgen - je kunt later training voor alle rollen benaderen",
+    "button": "Ga door naar Trainingsoverzicht"
+  },
+  "training_overview": {
+    "title": "Jouw Trainingsprogramma",
+    "subtitle": "Welkom bij je gepersonaliseerde maritieme trainingsreis",
+    "focus": "Focus: {{focus}}",
+    "stats": {
+      "phases": {
+        "title": "3 Fasen",
+        "description": "Uitgebreid trainingsprogramma"
+      },
+      "duration": {
+        "title": "6 Uur Totaal", 
+        "description": "Flexibel zelfstudie leren"
+      },
+      "support": {
+        "title": "Expert Ondersteuning",
+        "description": "Maritieme professionals beschikbaar"
+      }
+    },
+    "phases": {
+      "phase1": {
+        "title": "Veiligheidsgrondlagen",
+        "description": "Essentiële maritieme veiligheidskennis en noodprocedures",
+        "modules": [
+          "Persoonlijke Veiligheidsuitrusting",
+          "Noodalarm Signalen", 
+          "Verzamelplaats Procedures",
+          "Basis Eerste Hulp"
+        ]
+      },
+      "phase2": {
+        "title": "Noodprocedures",
+        "description": "Geavanceerde noodrespons en crisismanagement",
+        "modules": [
+          "Brandbestrijding Procedures",
+          "Schip Verlaten Procedures",
+          "Man Overboord Respons", 
+          "Noodcommunicatie"
+        ]
+      },
+      "phase3": {
+        "title": "Operationele Training",
+        "description": "Rolspecifieke operationele procedures en apparatuur",
+        "modules": [
+          "Apparatuur Bediening",
+          "Standaard Procedures",
+          "Documentatie Vereisten",
+          "Kwaliteitsborging"
+        ]
+      }
+    },
+    "status": {
+      "ready": "Klaar om te Beginnen",
+      "locked": "Ontgrendelt na Vorige Fase",
+      "completed": "Voltooid"
+    },
+    "important_info": {
+      "title": "Belangrijke Informatie",
+      "points": [
+        "Training moet in volgorde worden voltooid - elke fase ontgrendelt de volgende",
+        "Je kunt training op elk moment pauzeren en hervatten",
+        "Alle voortgang wordt automatisch opgeslagen",
+        "Certificaten worden gegenereerd bij succesvolle voltooiing",
+        "Ondersteuning is 24/7 beschikbaar voor maritieme noodgevallen"
+      ]
+    },
+    "start_button": "Start Fase 1: Veiligheidsgrondlagen",
+    "ready_text": "Klaar om je maritieme trainingsreis te beginnen"
+  },
+  "navigation": {
+    "back": "Terug",
+    "continue": "Doorgaan",
+    "skip": "Overslaan",
+    "next": "Volgende"
+  },
+  "common": {
+    "duration": "Duur: {{duration}}",
+    "focus": "Focus: {{focus}}",
+    "modules": "Trainingsmodules:",
+    "phase": "Fase {{number}}: {{title}}"
+  }
+}

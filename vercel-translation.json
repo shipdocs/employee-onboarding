@@ -1,0 +1,117 @@
+{
+  "name": "vercel-translation-config",
+  "description": "Vercel-optimized translation service configuration",
+  "version": "2.0.0",
+  "translation": {
+    "providers": {
+      "cloud-libretranslate": {
+        "enabled": true,
+        "priority": 1,
+        "description": "Free cloud LibreTranslate instances",
+        "cost": "FREE",
+        "instances": [
+          "https://libretranslate.com",
+          "https://translate.argosopentech.com",
+          "https://translate.astian.org",
+          "https://translate.mentality.rip"
+        ],
+        "timeout": 10000,
+        "retry_count": 3
+      },
+      "microsoft": {
+        "enabled": true,
+        "priority": 2,
+        "description": "Microsoft Translator (2M chars/month free)",
+        "cost": "FREE_TIER",
+        "endpoint": "https://api.cognitive.microsofttranslator.com",
+        "requires_api_key": true,
+        "timeout": 10000,
+        "free_tier_limit": "2000000_chars_month"
+      },
+      "google": {
+        "enabled": true,
+        "priority": 3,
+        "description": "Google Translate (500K chars/month free)",
+        "cost": "FREE_TIER",
+        "requires_api_key": true,
+        "timeout": 10000,
+        "free_tier_limit": "500000_chars_month"
+      },
+      "browser": {
+        "enabled": true,
+        "priority": 4,
+        "description": "Browser-based translation fallback",
+        "cost": "FREE",
+        "timeout": 5000
+      }
+    },
+    "maritime_terminology": {
+      "enabled": true,
+      "confidence_boost": 0.1,
+      "verified_terms_only": false,
+      "categories": ["training", "procedures", "equipment", "safety", "emergency"]
+    },
+    "translation_memory": {
+      "enabled": true,
+      "cache_duration": "90_days",
+      "deduplicate": true,
+      "store_confidence": true
+    },
+    "quality_control": {
+      "min_confidence_threshold": 0.7,
+      "human_review_threshold": 0.8,
+      "maritime_enhancement": true,
+      "preserve_formatting": true
+    }
+  },
+  "supported_languages": {
+    "source": ["en"],
+    "targets": ["nl", "de", "fr", "es", "it", "pt"],
+    "maritime_optimized": ["en", "nl", "de", "fr", "es"]
+  },
+  "vercel_optimization": {
+    "serverless_compatible": true,
+    "edge_functions": false,
+    "max_execution_time": "10s",
+    "memory_limit": "1024mb",
+    "concurrent_requests": 50,
+    "caching": {
+      "enabled": true,
+      "duration": "24h",
+      "key_strategy": "text_hash"
+    }
+  },
+  "environment_variables": {
+    "required": [],
+    "optional": [
+      "MICROSOFT_TRANSLATOR_KEY",
+      "MICROSOFT_TRANSLATOR_REGION",
+      "GOOGLE_TRANSLATE_API_KEY",
+      "GOOGLE_CLOUD_PROJECT_ID"
+    ],
+    "defaults": {
+      "TRANSLATION_PROVIDER": "cloud-libretranslate",
+      "ENABLE_TRANSLATION_MEMORY": "true",
+      "MARITIME_ENHANCEMENT": "true",
+      "HUMAN_REVIEW_THRESHOLD": "0.8"
+    }
+  },
+  "cost_analysis": {
+    "free_tier_usage": {
+      "cloud_libretranslate": "unlimited",
+      "microsoft": "2M chars/month",
+      "google": "500K chars/month"
+    },
+    "estimated_monthly_cost": {
+      "small_usage": "$0",
+      "medium_usage": "$0-5",
+      "large_usage": "$5-20"
+    },
+    "cost_optimization": {
+      "use_translation_memory": true,
+      "prefer_free_providers": true,
+      "cache_common_phrases": true,
+      "batch_similar_requests": true
+    }
+  }
+}

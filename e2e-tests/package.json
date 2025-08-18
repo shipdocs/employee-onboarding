@@ -1,0 +1,53 @@
+{
+  "name": "maritime-onboarding-e2e-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive E2E test suite for Maritime Onboarding System",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "test:auth": "node index.js auth",
+    "test:crew": "node index.js crew",
+    "test:manager": "node index.js manager",
+    "test:admin": "node index.js admin",
+    "test:performance": "node index.js performance",
+    "test:smoke": "node index.js smoke",
+    "test:full": "node index.js full",
+    "test:interactive": "node index.js interactive",
+    "test:staging": "node index.js --env staging",
+    "test:production": "node index.js --env production --headless",
+    "test:prod-comprehensive": "node production-test-runner.js",
+    "create-manager": "node create-manager-and-request-link.js",
+    "test:debug": "node index.js --no-headless --modules authentication",
+    "report:open": "open reports/test-report-*.html",
+    "clean": "rm -rf reports/*"
+  },
+  "bin": {
+    "maritime-e2e": "./index.js"
+  },
+  "keywords": [
+    "e2e",
+    "testing",
+    "playwright",
+    "maritime",
+    "onboarding",
+    "automation"
+  ],
+  "author": "Maritime Onboarding Team",
+  "license": "MIT",
+  "dependencies": {
+    "@playwright/test": "^1.42.1",
+    "commander": "^11.1.0",
+    "date-fns": "^3.0.6",
+    "inquirer": "^8.2.5",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  },
+  "overrides": {
+    "tmp": "^0.2.4"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

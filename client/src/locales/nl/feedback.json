@@ -1,0 +1,31 @@
+{
+  "quick": {
+    "how_was_experience": "Hoe was uw ervaring?",
+    "good_experience": "Goede ervaring",
+    "okay_experience": "Redelijke ervaring", 
+    "poor_experience": "Slechte ervaring"
+  },
+  "detailed": {
+    "open_detailed": "Gedetailleerde feedback",
+    "rate_experience": "Beoordeel uw ervaring",
+    "additional_comments": "Aanvullende opmerkingen (optioneel)",
+    "comment_placeholder": "Vertel ons over uw ervaring, eventuele problemen die u tegenkwam, of suggesties voor verbetering...",
+    "characters": "karakters",
+    "context": "Context",
+    "submitting": "Verzenden...",
+    "submit": "Feedback Verzenden"
+  },
+  "contexts": {
+    "general": "Algemene Feedback",
+    "training_completion": "Training Voltooiing",
+    "quiz_completion": "Quiz Voltooiing", 
+    "offline_mode": "Offline Ervaring",
+    "error_recovery": "Foutherstel"
+  },
+  "validation": {
+    "rating_or_comment_required": "Geef alstublieft een beoordeling of opmerking"
+  },
+  "errors": {
+    "submission_failed": "Feedback verzenden mislukt. Probeer het opnieuw."
+  }
+}

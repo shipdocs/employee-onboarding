@@ -1,0 +1,331 @@
+{
+  "phase1": {
+    "title": "Phase 1: Immediate Safety Training Assessment",
+    "description": "Comprehensive assessment covering immediate safety procedures, equipment identification, and emergency response protocols.",
+    "timeLimit": 45,
+    "passingScore": 80,
+    "questions": [
+      {
+        "id": "p1_q1",
+        "type": "file_upload",
+        "category": "equipment_identification",
+        "question": "Take a photo of a fire extinguisher on your vessel and upload it below. The photo must clearly show the pressure gauge and instruction label.",
+        "instructions": "Find any fire extinguisher on the vessel. Take a clear photo showing:\n• The pressure gauge (green/red indicator)\n• The instruction label with operating steps\n• The type of extinguisher (foam, CO2, powder, etc.)\n• The inspection tag with date",
+        "points": 10,
+        "required": true,
+        "acceptedFileTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "maxFileSize": 5,
+        "validation": {
+          "requiresApproval": true,
+          "checklistItems": [
+            "Pressure gauge visible",
+            "Instruction label readable",
+            "Extinguisher type identifiable",
+            "Inspection tag visible"
+          ]
+        }
+      },
+      {
+        "id": "p1_q2",
+        "type": "file_upload",
+        "category": "emergency_equipment",
+        "question": "Locate and photograph the emergency shutoff valves for the gasoil tanks. Upload a photo showing the valve position and labeling.",
+        "instructions": "Find the emergency shutoff valves for gasoil tanks. Your photo must show:\n• The valve handle/lever in current position\n• Clear labeling indicating 'Emergency Shutoff' or similar\n• The tank or system the valve controls\n• Any operating instructions posted nearby",
+        "points": 10,
+        "required": true,
+        "acceptedFileTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "maxFileSize": 5,
+        "validation": {
+          "requiresApproval": true,
+          "checklistItems": [
+            "Valve handle/lever visible",
+            "Emergency shutoff labeling clear",
+            "Tank/system identification visible",
+            "Operating instructions visible"
+          ]
+        }
+      },
+      {
+        "id": "p1_q3",
+        "type": "file_upload",
+        "category": "documentation",
+        "question": "Find and photograph the 'Schriftelijke Instructies' (Written Instructions) posted in a common area. The text must be clearly readable.",
+        "instructions": "Locate the written instructions (Schriftelijke Instructies) posted on the vessel. Take a photo that shows:\n• The complete document with all text readable\n• The title 'Schriftelijke Instructies' or equivalent\n• Emergency contact numbers if included\n• Any safety procedures or protocols listed",
+        "points": 10,
+        "required": true,
+        "acceptedFileTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "maxFileSize": 5,
+        "validation": {
+          "requiresApproval": true,
+          "checklistItems": [
+            "Document title clearly visible",
+            "All text is readable",
+            "Emergency contacts visible (if applicable)",
+            "Safety procedures visible"
+          ]
+        }
+      },
+      {
+        "id": "p1_q4",
+        "type": "multiple_choice",
+        "category": "fire_safety",
+        "question": "What is the correct sequence for using a fire extinguisher?",
+        "options": [
+          "Pull pin, Aim at base, Squeeze handle, Sweep side to side",
+          "Aim at flames, Pull pin, Squeeze handle, Sweep up and down",
+          "Squeeze handle, Pull pin, Aim at base, Sweep side to side",
+          "Pull pin, Aim at flames, Squeeze handle, Stand still"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The PASS method: Pull the pin, Aim at the base of the fire, Squeeze the handle, Sweep from side to side.",
+        "points": 5
+      },
+      {
+        "id": "p1_q5",
+        "type": "yes_no",
+        "category": "emergency_procedures",
+        "question": "Should you enter the engine room immediately after a CO2 fire suppression system has been activated?",
+        "correctAnswer": false,
+        "explanation": "Never enter an engine room immediately after CO2 discharge. CO2 displaces oxygen and creates a deadly atmosphere. Wait for proper ventilation and use breathing apparatus.",
+        "points": 5
+      },
+      {
+        "id": "p1_q6",
+        "type": "fill_in_gaps",
+        "category": "alarm_signals",
+        "question": "The general alarm consists of _____ short blasts followed by _____ long blast(s).",
+        "template": "The general alarm consists of [BLANK] short blasts followed by [BLANK] long blast(s).",
+        "correctAnswers": [
+          "seven",
+          "one"
+        ],
+        "acceptedVariations": [
+          [
+            "7",
+            "1"
+          ],
+          [
+            "Seven",
+            "One"
+          ],
+          [
+            "SEVEN",
+            "ONE"
+          ]
+        ],
+        "explanation": "The general alarm signal is seven short blasts followed by one long blast, indicating an emergency requiring immediate crew response.",
+        "points": 5
+      },
+      {
+        "id": "p1_q7",
+        "type": "drag_order",
+        "category": "emergency_response",
+        "question": "Arrange the following emergency response steps in the correct order:",
+        "items": [
+          "Sound the alarm",
+          "Assess the situation",
+          "Secure the scene",
+          "Report to captain",
+          "Take immediate action",
+          "Document the incident"
+        ],
+        "correctOrder": [
+          1,
+          2,
+          0,
+          4,
+          3,
+          5
+        ],
+        "explanation": "Correct order: 1) Assess situation, 2) Secure scene, 3) Sound alarm, 4) Take immediate action, 5) Report to captain, 6) Document incident",
+        "points": 8
+      },
+      {
+        "id": "p1_q8",
+        "type": "matching",
+        "category": "safety_equipment",
+        "question": "Match each piece of safety equipment with its primary use:",
+        "leftColumn": [
+          "Lifebuoy",
+          "Lifejacket",
+          "Emergency eye wash",
+          "Respiratory filter"
+        ],
+        "rightColumn": [
+          "Personal flotation in water",
+          "Chemical splash in eyes",
+          "Man overboard rescue",
+          "Toxic atmosphere protection"
+        ],
+        "correctMatches": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "explanation": "Lifebuoy for man overboard, Lifejacket for personal flotation, Eye wash for chemical exposure, Respiratory filter for toxic atmospheres.",
+        "points": 8
+      },
+      {
+        "id": "p1_q9",
+        "type": "short_answer",
+        "category": "policies",
+        "question": "What is Burando Maritime Services' policy regarding alcohol and drugs on board?",
+        "sampleAnswer": "Zero tolerance policy - no alcohol or drugs permitted at any time while on vessel or on duty",
+        "keyWords": [
+          "zero tolerance",
+          "no alcohol",
+          "no drugs",
+          "prohibited",
+          "not permitted"
+        ],
+        "points": 5,
+        "maxLength": 200
+      },
+      {
+        "id": "p1_q10",
+        "type": "scenario",
+        "category": "incident_reporting",
+        "question": "You witness a crew member slip and fall on deck but they get up and say they're fine. What should you do?",
+        "scenario": "During routine deck operations, you see a colleague slip on a wet surface and fall. They immediately get up, brush themselves off, and insist they are not injured and don't want to make a fuss. However, you notice they seem to be favoring one leg slightly.",
+        "options": [
+          "Do nothing since they said they're fine",
+          "Report the incident to the captain immediately",
+          "Wait to see if symptoms develop later",
+          "Only report if the person asks you to"
+        ],
+        "correctAnswer": 1,
+        "explanation": "All incidents, including near misses and minor injuries, must be reported immediately to the captain regardless of the person's initial assessment. This ensures proper documentation and medical evaluation.",
+        "points": 8
+      }
+    ]
+  },
+  "phase2": {
+    "title": "Phase 2: Operational Training Assessment",
+    "description": "Advanced operational procedures, cargo handling, and vessel-specific systems assessment.",
+    "timeLimit": 60,
+    "passingScore": 85,
+    "questions": []
+  },
+  "phase3": {
+    "title": "Phase 3: Advanced Training Assessment",
+    "description": "Comprehensive assessment of all training phases",
+    "timeLimit": 90,
+    "passingScore": 90,
+    "questions": [
+      {
+        "question": "What does the company's 'Zero Spills, Zero Incidents' mission mean?",
+        "options": [
+          "Accidents are acceptable if minor",
+          "Complete prevention of all spills and incidents",
+          "Only major incidents should be prevented",
+          "Spills are acceptable if properly cleaned"
+        ],
+        "correct": 1,
+        "explanation": "The company is committed to complete prevention of all spills and incidents, regardless of size."
+      },
+      {
+        "question": "When is a work permit required?",
+        "options": [
+          "Only for hot work",
+          "For all maintenance activities",
+          "For any work that poses potential risks",
+          "Never required on vessels"
+        ],
+        "correct": 2,
+        "explanation": "Work permits are required for any work activity that poses potential safety or environmental risks."
+      }
+    ]
+  },
+  "questionTypes": {
+    "file_upload": {
+      "component": "FileUploadQuestion",
+      "validation": [
+        "file_type",
+        "file_size",
+        "manual_review"
+      ],
+      "scoring": "manual_or_checklist"
+    },
+    "multiple_choice": {
+      "component": "MultipleChoiceQuestion",
+      "validation": [
+        "single_selection"
+      ],
+      "scoring": "automatic"
+    },
+    "yes_no": {
+      "component": "YesNoQuestion",
+      "validation": [
+        "boolean_selection"
+      ],
+      "scoring": "automatic"
+    },
+    "fill_in_gaps": {
+      "component": "FillInGapsQuestion",
+      "validation": [
+        "text_matching",
+        "variations"
+      ],
+      "scoring": "automatic_with_variations"
+    },
+    "drag_order": {
+      "component": "DragOrderQuestion",
+      "validation": [
+        "sequence_matching"
+      ],
+      "scoring": "automatic"
+    },
+    "matching": {
+      "component": "MatchingQuestion",
+      "validation": [
+        "pair_matching"
+      ],
+      "scoring": "automatic"
+    },
+    "short_answer": {
+      "component": "ShortAnswerQuestion",
+      "validation": [
+        "keyword_matching",
+        "length_check"
+      ],
+      "scoring": "automatic_with_keywords"
+    },
+    "scenario": {
+      "component": "ScenarioQuestion",
+      "validation": [
+        "single_selection",
+        "reasoning"
+      ],
+      "scoring": "automatic"
+    }
+  },
+  "scoringConfig": {
+    "passingScores": {
+      "phase1": 80,
+      "phase2": 85,
+      "phase3": 90
+    },
+    "retakePolicy": {
+      "maxAttempts": 3,
+      "cooldownPeriod": 24,
+      "reviewRequired": true
+    },
+    "certification": {
+      "validityPeriod": 365,
+      "renewalRequired": true
+    }
+  }
+}

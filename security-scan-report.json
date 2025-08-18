@@ -1,0 +1,2220 @@
+{
+  "scanSummary": {
+    "filesScanned": 4503,
+    "duration": 572,
+    "totalVulnerabilities": 245,
+    "severityBreakdown": {
+      "HIGH": 24,
+      "MEDIUM": 186,
+      "LOW": 35
+    }
+  },
+  "vulnerabilities": [
+    {
+      "severity": "HIGH",
+      "type": "Generic Secrets",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/lib/mfaService.js",
+      "line": 109,
+      "description": "Potential hardcoded generic secrets found",
+      "recommendation": "Move secrets to environment variables",
+      "timestamp": "2025-08-03T17:05:16.712Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.30571d67.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.810Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.30571d67.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.815Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.30571d67.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.818Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.30571d67.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.821Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.60ed894a.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.825Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.60ed894a.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.828Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.60ed894a.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.831Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.835Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.837Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.839Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "SQL Injection",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Potential SQL injection vulnerability detected",
+      "recommendation": "Use parameterized queries or ORM methods",
+      "timestamp": "2025-08-03T17:05:16.842Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/components/ContentEditor/ContentPreview.js",
+      "line": 125,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.928Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/components/SafeHTMLRenderer.js",
+      "line": 7,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.928Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/components/quiz/questions/FileUploadQuestion.js",
+      "line": 206,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.930Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/hooks/useAutoSave.js",
+      "line": 37,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.930Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/hooks/usePerformanceMonitoring.js",
+      "line": 502,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.930Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/e2e-tests/src/modules/AdminModule.js",
+      "line": 180,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.933Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/e2e-tests/src/modules/ManagerDashboardModule.js",
+      "line": 87,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.934Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/infrastructure/monitoring/health-monitor.js",
+      "line": 147,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.934Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/lib/contentCache.js",
+      "line": 214,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.935Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/index.js",
+      "line": 15,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.940Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.30571d67.js",
+      "line": 2,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.941Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.30571d67.js",
+      "line": 2,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.945Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.60ed894a.js",
+      "line": 2,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.946Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.60ed894a.js",
+      "line": 2,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.949Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.951Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.951Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.953Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/quality-gates.config.js",
+      "line": 94,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.953Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/quality-gates.config.js",
+      "line": 92,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.953Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/archive/old-tests/test-api-integration.js",
+      "line": 47,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.955Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/archive/old-tests/test-safe-html-renderer.js",
+      "line": 5,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.956Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/ci-cd-enhancement.js",
+      "line": 275,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.956Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/security-audit.js",
+      "line": 152,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.958Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/security-vulnerability-scanner.js",
+      "line": 112,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.958Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/tests/test-database-performance.js",
+      "line": 52,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.959Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/validate-training-page-fixes.js",
+      "line": 22,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.961Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/coverage/lcov-report/sorter.js",
+      "line": 70,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.962Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/coverage/sorter.js",
+      "line": 70,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.962Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/integration/e2e/critical-user-journeys.test.js",
+      "line": 257,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.962Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/performance/loadTesting.test.js",
+      "line": 327,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.964Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "XSS Vulnerability",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/unit/services/test-infrastructure-fixes.test.js",
+      "line": 209,
+      "description": "Potential XSS vulnerability detected",
+      "recommendation": "Sanitize user input and use safe DOM manipulation",
+      "timestamp": "2025-08-03T17:05:16.966Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/managers/[id]/resend-welcome-email.js",
+      "line": 37,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.000Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/errors/frontend.js",
+      "line": 14,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.002Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/quiz/[phase].js",
+      "line": 214,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.003Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/quiz/scoring.js",
+      "line": 159,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.003Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/quiz-questions.js",
+      "line": 191,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.003Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/components/ContentEditor/QuizEditor.js",
+      "line": 670,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.004Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/components/admin/DocumentUploadSection.js",
+      "line": 70,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.006Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/components/admin/MediaUploader.js",
+      "line": 164,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.006Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/components/feedback/FeedbackWidget.js",
+      "line": 198,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.007Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/components/quiz/questions/DragOrderQuestion.js",
+      "line": 19,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.007Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/hooks/usePerformanceMonitoring.js",
+      "line": 166,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.007Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/services/frontendErrorLogging.js",
+      "line": 32,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.009Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/services/offlineStorageService.js",
+      "line": 311,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.009Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/services/onboardingService.js",
+      "line": 17,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.009Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/client/src/services/requestQueue.js",
+      "line": 16,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.009Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/e2e-tests/config.js",
+      "line": 41,
+      "description": "Hardcoded password comparison",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.010Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/lib/api-key-manager.js",
+      "line": 266,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.011Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/lib/emailQueue.js",
+      "line": 225,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.012Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/lib/performanceMonitoring.ts",
+      "line": 139,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.013Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/lib/services/exitPerformanceTestService.js",
+      "line": 380,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.013Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/lib/services/incidentDetectionService.js",
+      "line": 373,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.014Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.30571d67.js",
+      "line": 2,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.019Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.60ed894a.js",
+      "line": 2,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.024Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.027Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/archive/old-tests/test-content-system.js",
+      "line": 216,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.029Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/services/database.js",
+      "line": 58,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.033Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/helpers/testHelpers.js",
+      "line": 10,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.034Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/integration/e2e/critical-user-journeys.test.js",
+      "line": 343,
+      "description": "Hardcoded password comparison",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.034Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/integration/performance/comprehensive-performance-suite.test.js",
+      "line": 32,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/integration.setup.js",
+      "line": 90,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/performance/k6-database-performance.js",
+      "line": 497,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/performance/k6-load-test.js",
+      "line": 83,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/performance/k6.config.js",
+      "line": 230,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/performance/load-test.js",
+      "line": 65,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/security/injection-tests.js",
+      "line": 168,
+      "description": "Hardcoded password comparison",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/security/penetration-tests.js",
+      "line": 804,
+      "description": "Hardcoded password comparison",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/unit/api/endpoints.test.ts",
+      "line": 86,
+      "description": "Hardcoded password comparison",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/unit/api/endpoints.test.ts",
+      "line": 296,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.035Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/unit/services/requestQueue.test.js",
+      "line": 41,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.036Z"
+    },
+    {
+      "severity": "LOW",
+      "type": "Insecure Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/tests/unit/services/test-infrastructure-fixes.test.js",
+      "line": 254,
+      "description": "Weak random number generation",
+      "recommendation": "Use secure authentication practices and strong cryptography",
+      "timestamp": "2025-08-03T17:05:17.036Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/audit-log.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.113Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/cleanup-tokens.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.113Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/feature-flags.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.113Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/feedback/summary.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.113Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/managers/[id]/resend-welcome-email.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.113Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/managers/[id]/send-magic-link.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/managers/[id].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/performance/maritime.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/performance/metrics.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/quiz-results-detailed.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/refactoring-metrics.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/run-notification-migration.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/security/events.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/security/metrics.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/stats.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/system-settings.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/admin/test-notifications.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/auth/logout.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/auth/magic-login.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/auth/mfa/setup.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/auth/mfa/status.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/auth/request-magic-link.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/auth/verify.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/config/[key].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/config/batch.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/config/environment.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/config/environment.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/content/check-migration.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/content/quizzes/[id].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/content/quizzes.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/content/training/load-initial-data.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/content/training/phases-simple.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/content/training/phases.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/crew/onboarding/analytics.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/crew/onboarding/progress.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/crew/process/complete.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/crew/training/phase/[phase]/start.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/crew/training/phase/[phase].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/crew/training/progress.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/cron/automated-cleanup.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/cron/backup-database.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/cron/cleanup-expired.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/cron/cleanup-tokens.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/cron/progress-monitoring.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/cron/send-reminders.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/cron/sla-monitoring.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/debug/auth-test.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/email/resend.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/email/send-alert.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.114Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/email/send-completion.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/email/send-final-completion.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/email/send-phase-start.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/email/send-quiz-rejection.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/email/send-weekly-report.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/errors/frontend.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/errors/frontend.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/example-with-csp.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/example-with-csp.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health/auth.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health/database.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health/database.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health/email.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health/email.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health/storage.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health/storage.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/health.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/incidents/stats.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/incidents/webhook.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/incidents/webhook.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/certificates/[id].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/certificates/index.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/certificates/regenerate.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/crew/[id]/resend-completion-email.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/crew/[id]/send-magic-link.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/crew/[id]/send-onboarding-start.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/crew/[id]/send-safety-pdf.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/crew/[id].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/dashboard/stats.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/onboarding/overview.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/onboarding-reviews/[userId]/approve.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/onboarding-reviews/index.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/quiz-reviews/[id]/approve.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/manager/quiz-reviews/pending.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/pdf/generate-certificate.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/pdf/generate-form-05-03a.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/pdf/generate-intro-kapitein.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/pdf/generate-manager-welcome.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/performance/metrics.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/security/csp-report.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/templates/[id]/preview.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/templates/[id]/thumbnail.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/templates/[id].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/templates/fields/[id].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/templates/index.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/templates/pdf-to-image.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/templates/preview.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test/admin-login-no-rate-limit.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test/admin-login-test.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test/db-connection.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test/db-connection.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test-email-service.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test-email-service.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test-env.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/test.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/phase/[phase]/item/[itemNumber]/complete.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/phase/[phase]/item/[itemNumber]/uncomplete.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/phase/[phase]/translations.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/phase/[phase].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/quiz/[phase]/translations.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/quiz/[phase].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.115Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/quiz/scoring.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/quiz-history.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/quiz-questions.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/training/stats.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/translation/batch-translate.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/translation/detect-language.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/translation/detect-language.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/translation/memory.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/translation/translate-text.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/upload/content-image.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/upload/content-video.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/[slug]/index.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/[slug]/start.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/[slug]/stats.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/[slug]/translate.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/available-training-content.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/debug.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/edit-workflow.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/items/[itemId]/training-content.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/migrate-to-training-integration.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/my-instances.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/progress-analytics.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/api/workflows/translations.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/[...slug].js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/audit-logs.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/cleanup-exports.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/compliance/reports.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/data-deletion/request.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/data-deletion/status.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/exit-strategy/export.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/exit-strategy/performance-test.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/exit-strategy/security-audit.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/exit-strategy/status.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/export-status/[exportId].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/admin/incidents/index.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/crew/training/phases.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/cron/cleanup-audit-logs.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Authentication",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/csp-report.js",
+      "line": 1,
+      "description": "API endpoint may be missing authentication",
+      "recommendation": "Add proper authentication middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/csp-report.js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Input Validation",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/pages/api/user/export-status/[exportId].js",
+      "line": 1,
+      "description": "API endpoint may be missing input validation",
+      "recommendation": "Add input validation middleware",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Security Header",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/next.config.js",
+      "line": 1,
+      "description": "Missing X-XSS-Protection security header",
+      "recommendation": "Add security headers to Next.js configuration",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Missing Security Header",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/next.config.js",
+      "line": 1,
+      "description": "Missing Content-Security-Policy security header",
+      "recommendation": "Add security headers to Next.js configuration",
+      "timestamp": "2025-08-03T17:05:17.116Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Weak Cryptography",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/archive/migration-chaos-2024/migration/04-file-migration.js",
+      "line": 146,
+      "description": "Weak MD5 hashing",
+      "recommendation": "Use strong cryptographic algorithms (SHA-256, bcrypt, etc.)",
+      "timestamp": "2025-08-03T17:05:17.159Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Weak Cryptography",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.30571d67.js",
+      "line": 2,
+      "description": "Weak password generation",
+      "recommendation": "Use strong cryptographic algorithms (SHA-256, bcrypt, etc.)",
+      "timestamp": "2025-08-03T17:05:17.176Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Weak Cryptography",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.60ed894a.js",
+      "line": 2,
+      "description": "Weak password generation",
+      "recommendation": "Use strong cryptographic algorithms (SHA-256, bcrypt, etc.)",
+      "timestamp": "2025-08-03T17:05:17.180Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Weak Cryptography",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/public/static/js/main.a1f57b63.js",
+      "line": 2,
+      "description": "Weak password generation",
+      "recommendation": "Use strong cryptographic algorithms (SHA-256, bcrypt, etc.)",
+      "timestamp": "2025-08-03T17:05:17.184Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Weak Cryptography",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/fix-critical-security-issues.js",
+      "line": 176,
+      "description": "Weak MD5 hashing",
+      "recommendation": "Use strong cryptographic algorithms (SHA-256, bcrypt, etc.)",
+      "timestamp": "2025-08-03T17:05:17.188Z"
+    },
+    {
+      "severity": "MEDIUM",
+      "type": "Weak Cryptography",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/fix-critical-security-issues.js",
+      "line": 185,
+      "description": "Weak SHA1 hashing",
+      "recommendation": "Use strong cryptographic algorithms (SHA-256, bcrypt, etc.)",
+      "timestamp": "2025-08-03T17:05:17.188Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Weak Cryptography",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/merge-duplicate-docs.js",
+      "line": 474,
+      "description": "Weak MD5 hashing",
+      "recommendation": "Use strong cryptographic algorithms (SHA-256, bcrypt, etc.)",
+      "timestamp": "2025-08-03T17:05:17.188Z"
+    },
+    {
+      "severity": "HIGH",
+      "type": "Weak Cryptography",
+      "file": "/home/martin/Ontwikkeling/new-onboarding-2025/scripts/validate-documentation.js",
+      "line": 407,
+      "description": "Weak MD5 hashing",
+      "recommendation": "Use strong cryptographic algorithms (SHA-256, bcrypt, etc.)",
+      "timestamp": "2025-08-03T17:05:17.192Z"
+    }
+  ],
+  "timestamp": "2025-08-03T17:05:17.204Z"
+}

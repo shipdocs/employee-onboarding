@@ -1,0 +1,20 @@
+{
+  "extraction_date": "2025-05-25T15:58:08.098718",
+  "total_files_processed": 2,
+  "files": {
+    "Safety Management Systeem Nederlands 01-10-2024.pdf": {
+      "filename": "Safety Management Systeem Nederlands 01-10-2024.pdf",
+      "word_count": 56760,
+      "line_count": 7016,
+      "key_sections_count": 1433,
+      "extraction_timestamp": "2025-05-25T15:58:07.662095"
+    },
+    "appendix05_03a-Introduction personnel.pdf": {
+      "filename": "appendix05_03a-Introduction personnel.pdf",
+      "word_count": 645,
+      "line_count": 152,
+      "key_sections_count": 24,
+      "extraction_timestamp": "2025-05-25T15:58:08.098174"
+    }
+  }
+}

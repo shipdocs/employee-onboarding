@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Management Button Diagnostic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .diagnostic-box {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .step {
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            background-color: #f8f9fa;
+        }
+        .success { border-left-color: #28a745; }
+        .error { border-left-color: #dc3545; }
+        .warning { border-left-color: #ffc107; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        .console-output {
+            background: #000;
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .test-pass { background: #d4edda; border: 1px solid #c3e6cb; }
+        .test-fail { background: #f8d7da; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Content Management Button Diagnostic Tool</h1>
+    
+    <div class="diagnostic-box">
+        <h2>Instructions</h2>
+        <div class="step">
+            <strong>Step 1:</strong> Navigate to the Content Management page in your browser
+        </div>
+        <div class="step">
+            <strong>Step 2:</strong> Go to Training Programs tab
+        </div>
+        <div class="step">
+            <strong>Step 3:</strong> Click "Manage Phases" on any workflow
+        </div>
+        <div class="step">
+            <strong>Step 4:</strong> Open browser Developer Tools (F12)
+        </div>
+        <div class="step">
+            <strong>Step 5:</strong> Copy and paste the diagnostic code below into the Console tab
+        </div>
+    </div>
+
+    <div class="diagnostic-box">
+        <h2>Diagnostic Code</h2>
+        <p>Copy this entire code block and paste it into your browser console:</p>
+        
+        <textarea id="diagnosticCode" readonly style="width: 100%; height: 400px; font-family: monospace; font-size: 12px;">
+// Content Management Button Diagnostic Script
+console.log('🔧 Starting Content Management Button Diagnostic...');
+
+function runDiagnostic() {
+    const results = {
+        pageInfo: {},
+        buttonTests: {},
+        consoleErrors: [],
+        recommendations: []
+    };
+
+    // 1. Check current page
+    results.pageInfo = {
+        url: window.location.href,
+        pathname: window.location.pathname,
+        search: window.location.search,
+        title: document.title,
+        userAgent: navigator.userAgent
+    };
+
+    console.log('📍 Page Info:', results.pageInfo);
+
+    // 2. Check if we're on the right page
+    const isContentPage = window.location.pathname.includes('/content');
+    const hasWorkflowPhases = document.querySelector('.workflow-phases-view');
+    const hasManagePhasesTitle = document.querySelector('text=Manage Phases:') || 
+                                 document.textContent.includes('Manage Phases:');
+
+    results.pageInfo.isContentPage = isContentPage;
+    results.pageInfo.hasWorkflowPhases = !!hasWorkflowPhases;
+    results.pageInfo.hasManagePhasesTitle = !!hasManagePhasesTitle;
+
+    console.log('✅ Page validation:', {
+        isContentPage,
+        hasWorkflowPhases,
+        hasManagePhasesTitle
+    });
+
+    // 3. Find Edit Content buttons
+    const editContentButtons = document.querySelectorAll('button:contains("Edit Content"), button[class*="edit"], *:contains("Edit Content")');
+    const editContentButtonsText = Array.from(document.querySelectorAll('button')).filter(btn => 
+        btn.textContent.includes('Edit Content')
+    );
+
+    results.buttonTests.editContentButtons = {
+        found: editContentButtonsText.length,
+        elements: editContentButtonsText.map(btn => ({
+            text: btn.textContent,
+            className: btn.className,
+            disabled: btn.disabled,
+            visible: btn.offsetParent !== null
+        }))
+    };
+
+    console.log('📝 Edit Content buttons found:', results.buttonTests.editContentButtons);
+
+    // 4. Find Edit Phase Structure buttons
+    const editStructureButtonsText = Array.from(document.querySelectorAll('button')).filter(btn => 
+        btn.textContent.includes('Edit Phase Structure')
+    );
+
+    results.buttonTests.editStructureButtons = {
+        found: editStructureButtonsText.length,
+        elements: editStructureButtonsText.map(btn => ({
+            text: btn.textContent,
+            className: btn.className,
+            disabled: btn.disabled,
+            visible: btn.offsetParent !== null
+        }))
+    };
+
+    console.log('🏗️ Edit Phase Structure buttons found:', results.buttonTests.editStructureButtons);
+
+    // 5. Test button click handlers
+    if (editContentButtonsText.length > 0) {
+        const btn = editContentButtonsText[0];
+        results.buttonTests.editContentClickTest = {
+            hasOnClick: !!btn.onclick,
+            hasEventListeners: getEventListeners ? !!getEventListeners(btn).click : 'unknown'
+        };
+        console.log('🔍 Edit Content button click test:', results.buttonTests.editContentClickTest);
+    }
+
+    if (editStructureButtonsText.length > 0) {
+        const btn = editStructureButtonsText[0];
+        results.buttonTests.editStructureClickTest = {
+            hasOnClick: !!btn.onclick,
+            hasEventListeners: getEventListeners ? !!getEventListeners(btn).click : 'unknown'
+        };
+        console.log('🔍 Edit Phase Structure button click test:', results.buttonTests.editStructureClickTest);
+    }
+
+    // 6. Check for React components
+    const reactRoot = document.querySelector('#root');
+    const hasReact = !!window.React || !!reactRoot?._reactInternalFiber || !!reactRoot?._reactInternalInstance;
+    
+    results.pageInfo.hasReact = hasReact;
+    console.log('⚛️ React detected:', hasReact);
+
+    // 7. Check console errors
+    const originalError = console.error;
+    const errors = [];
+    console.error = function(...args) {
+        errors.push(args.join(' '));
+        originalError.apply(console, args);
+    };
+    
+    setTimeout(() => {
+        console.error = originalError;
+        results.consoleErrors = errors;
+        console.log('❌ Console errors captured:', errors);
+    }, 1000);
+
+    // 8. Generate recommendations
+    if (!isContentPage) {
+        results.recommendations.push('❌ Not on content management page. Navigate to /content first.');
+    }
+    if (!hasWorkflowPhases) {
+        results.recommendations.push('❌ Workflow phases view not found. Click "Manage Phases" on a workflow first.');
+    }
+    if (editContentButtonsText.length === 0) {
+        results.recommendations.push('❌ No "Edit Content" buttons found. Check if phases are loaded.');
+    }
+    if (editStructureButtonsText.length === 0) {
+        results.recommendations.push('❌ No "Edit Phase Structure" buttons found. Check if phases are loaded.');
+    }
+    if (editContentButtonsText.some(btn => btn.disabled)) {
+        results.recommendations.push('⚠️ Some Edit Content buttons are disabled.');
+    }
+    if (editStructureButtonsText.some(btn => btn.disabled)) {
+        results.recommendations.push('⚠️ Some Edit Phase Structure buttons are disabled.');
+    }
+
+    // 9. Test button clicks (safe test)
+    console.log('🧪 Testing button clicks...');
+    
+    if (editContentButtonsText.length > 0) {
+        try {
+            const btn = editContentButtonsText[0];
+            console.log('🔄 Testing Edit Content button click...');
+            
+            // Capture any navigation or state changes
+            const originalLocation = window.location.href;
+            
+            // Simulate click
+            btn.click();
+            
+            setTimeout(() => {
+                const newLocation = window.location.href;
+                results.buttonTests.editContentClickResult = {
+                    originalUrl: originalLocation,
+                    newUrl: newLocation,
+                    navigationOccurred: originalLocation !== newLocation
+                };
+                console.log('📝 Edit Content click result:', results.buttonTests.editContentClickResult);
+            }, 2000);
+            
+        } catch (error) {
+            results.buttonTests.editContentClickError = error.message;
+            console.error('❌ Edit Content button click error:', error);
+        }
+    }
+
+    // 10. Final report
+    setTimeout(() => {
+        console.log('📊 DIAGNOSTIC COMPLETE');
+        console.log('='.repeat(50));
+        console.log('📍 Page Info:', results.pageInfo);
+        console.log('🔘 Button Tests:', results.buttonTests);
+        console.log('❌ Console Errors:', results.consoleErrors);
+        console.log('💡 Recommendations:', results.recommendations);
+        console.log('='.repeat(50));
+        
+        // Summary
+        const summary = {
+            pageValid: isContentPage && hasWorkflowPhases,
+            buttonsFound: editContentButtonsText.length > 0 && editStructureButtonsText.length > 0,
+            errorsDetected: results.consoleErrors.length > 0,
+            overallStatus: 'unknown'
+        };
+        
+        if (summary.pageValid && summary.buttonsFound && !summary.errorsDetected) {
+            summary.overallStatus = '✅ LOOKS GOOD';
+        } else if (!summary.pageValid) {
+            summary.overallStatus = '❌ WRONG PAGE';
+        } else if (!summary.buttonsFound) {
+            summary.overallStatus = '❌ BUTTONS MISSING';
+        } else if (summary.errorsDetected) {
+            summary.overallStatus = '⚠️ ERRORS DETECTED';
+        }
+        
+        console.log('🎯 SUMMARY:', summary);
+        
+        return results;
+    }, 3000);
+}
+
+// Run the diagnostic
+runDiagnostic();
+        </textarea>
+        
+        <button onclick="copyDiagnosticCode()">📋 Copy Diagnostic Code</button>
+    </div>
+
+    <div class="diagnostic-box">
+        <h2>What to Look For</h2>
+        <div class="step">
+            <strong>✅ Success indicators:</strong>
+            <ul>
+                <li>Page Info shows correct URL (/content)</li>
+                <li>Workflow phases view detected</li>
+                <li>Edit Content and Edit Phase Structure buttons found</li>
+                <li>No console errors</li>
+            </ul>
+        </div>
+        <div class="step warning">
+            <strong>⚠️ Warning signs:</strong>
+            <ul>
+                <li>Buttons found but disabled</li>
+                <li>React not detected</li>
+                <li>Console errors present</li>
+            </ul>
+        </div>
+        <div class="step error">
+            <strong>❌ Problem indicators:</strong>
+            <ul>
+                <li>Wrong page URL</li>
+                <li>No buttons found</li>
+                <li>JavaScript errors in console</li>
+                <li>Button clicks don't work</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="diagnostic-box">
+        <h2>Common Issues & Solutions</h2>
+        <div class="step">
+            <strong>Browser Cache:</strong> Try Ctrl+F5 (hard refresh) or clear browser cache
+        </div>
+        <div class="step">
+            <strong>JavaScript Disabled:</strong> Ensure JavaScript is enabled in browser settings
+        </div>
+        <div class="step">
+            <strong>Browser Extensions:</strong> Try disabling ad blockers or other extensions
+        </div>
+        <div class="step">
+            <strong>Incognito Mode:</strong> Test in private/incognito browsing mode
+        </div>
+    </div>
+
+    <script>
+        function copyDiagnosticCode() {
+            const textarea = document.getElementById('diagnosticCode');
+            textarea.select();
+            document.execCommand('copy');
+            alert('Diagnostic code copied to clipboard! Paste it in your browser console.');
+        }
+    </script>
+</body>
+</html>

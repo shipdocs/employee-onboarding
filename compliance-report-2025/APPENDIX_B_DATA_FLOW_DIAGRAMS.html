@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APPENDIX B DATA FLOW DIAGRAMS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: white;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm;
+        }
+        
+        @media print {
+            .container {
+                max-width: 100%;
+                padding: 15mm;
+            }
+        }
+        
+        /* Headers */
+        h1 {
+            color: #1a5490;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0 0 0.5em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 3px solid #1a5490;
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            color: #2c5282;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 1.5em 0 0.7em 0;
+            padding-bottom: 0.2em;
+            border-bottom: 1px solid #e2e8f0;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            color: #2d3748;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 1.2em 0 0.6em 0;
+            page-break-after: avoid;
+        }
+        
+        h4 {
+            color: #4a5568;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin: 1em 0 0.5em 0;
+            page-break-after: avoid;
+        }
+        
+        /* Paragraphs and text */
+        p {
+            margin: 0.8em 0;
+            text-align: justify;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: #1a202c;
+        }
+        
+        em {
+            font-style: italic;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 0.8em 0 0.8em 2em;
+        }
+        
+        li {
+            margin: 0.3em 0;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+            font-size: 0.95em;
+            page-break-inside: avoid;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #1a5490 0%, #2c5282 100%);
+        }
+        
+        th {
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tbody tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+        
+        /* Code blocks */
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            padding: 2px 6px;
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 3px;
+            color: #e53e3e;
+        }
+        
+        pre {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1em;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1em 0;
+            page-break-inside: avoid;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        pre code {
+            background: none;
+            border: none;
+            color: #e2e8f0;
+            padding: 0;
+        }
+        
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid #1a5490;
+            padding-left: 1.5em;
+            margin: 1em 0;
+            font-style: italic;
+            color: #4a5568;
+            background-color: #f7fafc;
+            padding: 1em 1.5em;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        /* Links */
+        a {
+            color: #1a5490;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        a:hover {
+            border-bottom-color: #1a5490;
+        }
+        
+        /* Horizontal rules */
+        hr {
+            border: none;
+            border-top: 2px solid #e2e8f0;
+            margin: 2em 0;
+        }
+        
+        /* Special elements */
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 0 2px;
+        }
+        
+        .badge-success {
+            background-color: #48bb78;
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: #ed8936;
+            color: white;
+        }
+        
+        .badge-info {
+            background-color: #4299e1;
+            color: white;
+        }
+        
+        /* Checkboxes */
+        input[type="checkbox"] {
+            margin-right: 0.5em;
+        }
+        
+        /* Mermaid diagram placeholder */
+        .mermaid-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2em;
+            border-radius: 8px;
+            text-align: center;
+            margin: 1.5em 0;
+            font-weight: 500;
+        }
+        
+        .mermaid-placeholder code {
+            display: block;
+            margin-top: 1em;
+            padding: 1em;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 0.85em;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        
+        /* Print specific styles */
+        @media print {
+            body {
+                font-size: 11pt;
+            }
+            
+            h1 { 
+                font-size: 20pt; 
+                page-break-before: always;
+            }
+            
+            h1:first-child {
+                page-break-before: avoid;
+            }
+            
+            h2 { font-size: 16pt; }
+            h3 { font-size: 14pt; }
+            h4 { font-size: 12pt; }
+            
+            table, pre, blockquote {
+                page-break-inside: avoid;
+            }
+            
+            .mermaid-placeholder {
+                background: #f0f0f0 !important;
+                color: #333 !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+        
+        /* Page header/footer for print */
+        @page {
+            margin: 2cm;
+            @top-center {
+                content: "Maritime Onboarding System 2025 - Compliance Documentation";
+                font-size: 10pt;
+                color: #666;
+            }
+            @bottom-center {
+                content: "Page " counter(page) " of " counter(pages);
+                font-size: 10pt;
+                color: #666;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>APPENDIX B: DATA FLOW DIAGRAMS</h1>
+<h2>Maritime Onboarding System 2025</h2>
+<h3>System Data Processing and Security Architecture</h3>
+<hr>
+<h2>EXECUTIVE SUMMARY</h2>
+<p>This appendix provides comprehensive data flow diagrams illustrating how data moves through the Maritime Onboarding System. Each diagram shows data processing points, security controls, and compliance checkpoints to ensure full transparency of data handling.</p>
+<hr>
+<h2>1. HIGH-LEVEL SYSTEM ARCHITECTURE</h2>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph TB
+    subgraph "EU Region - Frankfurt"
+        subgraph "Frontend - Vercel"
+            UI[React Application]
+            CDN[CDN Edge Network]
+        end
+        
+<pre><code>    subgraph &quot;Backend - Vercel Functions&quot;
+        API[API Endpoints]
+        AUTH[Auth Service]
+        PROC[Processing Layer]
+    end
+    
+    subgraph &quot;Database - Supabase&quot;
+        PG[(PostgreSQL)]
+        STOR[Object Storage]
+        RLS[Row Level Security]
+    end
+    
+    subgraph &quot;External Services&quot;
+        EMAIL[MailerSend EU]
+        MFA[TOTP Service]
+    end
+end
+
+subgraph &quot;Users&quot;
+    ADMIN[Admin Users]
+    MGR[Manager Users]
+    CREW[Crew Members]
+end
+
+ADMIN --&gt;|HTTPS/TLS 1.3| CDN
+MGR --&gt;|HTTPS/TLS 1.3| CDN
+CREW --&gt;|HTTPS/TLS 1.3| CDN
+
+CDN --&gt;|Encrypted| UI
+UI --&gt;|JWT + API Call| API
+API --&gt;|Verify Token| AUTH
+AUTH --&gt;|Authorized| PROC
+PROC --&gt;|Encrypted Query| RLS
+RLS --&gt;|Filtered Data| PG
+PROC --&gt;|Send Email| EMAIL
+AUTH --&gt;|MFA Check| MFA
+PROC --&gt;|Store Files| STOR&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>2. AUTHENTICATION FLOW</h2>
+<h3>2.1 Admin/Manager Password Authentication</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>sequenceDiagram
+    participant U as User
+    participant UI as Frontend
+    participant API as API Gateway
+    participant AUTH as Auth Service
+    participant MFA as MFA Service
+    participant DB as Database
+    participant LOG as Security Logger
+    
+<pre><code>U-&gt;&gt;UI: Enter credentials
+UI-&gt;&gt;API: POST /api/auth/admin-login
+API-&gt;&gt;AUTH: Validate credentials
+AUTH-&gt;&gt;DB: Check user + password hash
+
+alt Invalid Credentials
+    DB--&gt;&gt;AUTH: User not found/wrong password
+    AUTH-&gt;&gt;LOG: Log failed attempt
+    AUTH--&gt;&gt;API: Authentication failed
+    API--&gt;&gt;UI: Error (401)
+    UI--&gt;&gt;U: Show error
+else Valid Credentials
+    DB--&gt;&gt;AUTH: User verified
+    AUTH-&gt;&gt;MFA: Check MFA requirement
+    
+    alt MFA Required
+        MFA--&gt;&gt;AUTH: MFA needed
+        AUTH--&gt;&gt;API: Request MFA token
+        API--&gt;&gt;UI: MFA challenge
+        UI--&gt;&gt;U: Request TOTP
+        U-&gt;&gt;UI: Enter TOTP
+        UI-&gt;&gt;API: Submit TOTP
+        API-&gt;&gt;MFA: Verify TOTP
+        
+        alt Invalid TOTP
+            MFA--&gt;&gt;API: Invalid
+            API--&gt;&gt;UI: Error
+            UI--&gt;&gt;U: Try again
+        else Valid TOTP
+            MFA--&gt;&gt;API: Valid
+            API-&gt;&gt;AUTH: Generate JWT
+            AUTH-&gt;&gt;DB: Store session
+            AUTH-&gt;&gt;LOG: Log successful login
+            AUTH--&gt;&gt;API: JWT token
+            API--&gt;&gt;UI: Success + JWT
+            UI--&gt;&gt;U: Dashboard access
+        end
+    else No MFA
+        AUTH-&gt;&gt;AUTH: Generate JWT
+        AUTH-&gt;&gt;DB: Store session
+        AUTH-&gt;&gt;LOG: Log successful login
+        AUTH--&gt;&gt;API: JWT token
+        API--&gt;&gt;UI: Success + JWT
+        UI--&gt;&gt;U: Dashboard access
+    end
+end&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>2.2 Crew Magic Link Authentication</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>sequenceDiagram
+    participant C as Crew Member
+    participant UI as Frontend
+    participant API as API Gateway
+    participant AUTH as Auth Service
+    participant EMAIL as Email Service
+    participant DB as Database
+    participant LOG as Security Logger
+    
+<pre><code>C-&gt;&gt;UI: Enter email
+UI-&gt;&gt;API: POST /api/auth/request-magic-link
+API-&gt;&gt;AUTH: Validate crew email
+AUTH-&gt;&gt;DB: Check crew member exists
+
+alt Not Crew or Invalid
+    DB--&gt;&gt;AUTH: Not found/not crew
+    AUTH-&gt;&gt;LOG: Log invalid attempt
+    AUTH--&gt;&gt;API: Error
+    API--&gt;&gt;UI: Generic message
+    UI--&gt;&gt;C: &quot;Check email&quot; (security)
+else Valid Crew Member
+    DB--&gt;&gt;AUTH: Crew confirmed
+    AUTH-&gt;&gt;AUTH: Generate magic token
+    AUTH-&gt;&gt;DB: Store token (3hr expiry)
+    AUTH-&gt;&gt;EMAIL: Send magic link
+    EMAIL--&gt;&gt;C: Email with link
+    AUTH-&gt;&gt;LOG: Log magic link sent
+    AUTH--&gt;&gt;API: Success
+    API--&gt;&gt;UI: Check email message
+    UI--&gt;&gt;C: Check email prompt
+    
+    C-&gt;&gt;EMAIL: Click magic link
+    EMAIL-&gt;&gt;UI: Open link
+    UI-&gt;&gt;API: GET /api/auth/magic-login
+    API-&gt;&gt;AUTH: Validate token
+    AUTH-&gt;&gt;DB: Check token validity
+    
+    alt Invalid/Expired Token
+        DB--&gt;&gt;AUTH: Invalid
+        AUTH-&gt;&gt;LOG: Log failed attempt
+        AUTH--&gt;&gt;API: Error
+        API--&gt;&gt;UI: Token invalid
+        UI--&gt;&gt;C: Request new link
+    else Valid Token
+        DB--&gt;&gt;AUTH: Token valid
+        AUTH-&gt;&gt;AUTH: Generate JWT
+        AUTH-&gt;&gt;DB: Mark token used
+        AUTH-&gt;&gt;DB: Update crew status
+        AUTH-&gt;&gt;LOG: Log successful login
+        AUTH--&gt;&gt;API: JWT token
+        API--&gt;&gt;UI: Success + JWT
+        UI--&gt;&gt;C: Training dashboard
+    end
+end&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>3. DATA PROCESSING FLOWS</h2>
+<h3>3.1 Training Content Delivery</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph LR
+    subgraph "Content Request Flow"
+        U[User] -->|1. Request| API[API Gateway]
+        API -->|2. Verify Auth| AUTH[Auth Check]
+        AUTH -->|3. Check Role| RBAC[Role Validation]
+        RBAC -->|4. Query| DB[(Database)]
+        DB -->|5. Apply RLS| RLS[Row Security]
+        RLS -->|6. Filter by Company| FILTER[Company Filter]
+        FILTER -->|7. Return Data| CACHE[Cache Layer]
+        CACHE -->|8. Encrypted Response| U
+    end
+    
+<pre><code>subgraph &quot;Security Layers&quot;
+    SEC1[TLS 1.3]
+    SEC2[JWT Validation]
+    SEC3[Role Check]
+    SEC4[RLS Policies]
+    SEC5[Company Isolation]
+    SEC6[Response Encryption]
+end&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>3.2 Quiz Submission and Scoring</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>stateDiagram-v2
+    [*] --> QuizStart: User starts quiz
+    QuizStart --> LoadQuestions: Fetch questions
+    LoadQuestions --> DisplayQuiz: Encrypted delivery
+    DisplayQuiz --> AnswerSubmit: User submits
+    
+<pre><code>AnswerSubmit --&gt; Validation: Server validation
+Validation --&gt; ScoreCalc: Calculate score
+
+ScoreCalc --&gt; PassCheck: Check pass threshold
+PassCheck --&gt; Pass: Score &gt;= 80%
+PassCheck --&gt; Fail: Score &lt; 80%
+
+Pass --&gt; SaveResult: Store result
+Fail --&gt; SaveAttempt: Store attempt
+
+SaveResult --&gt; CertGen: Generate certificate
+SaveAttempt --&gt; RetryOption: Allow retry
+
+CertGen --&gt; Notification: Send notifications
+RetryOption --&gt; DisplayQuiz: New attempt
+
+Notification --&gt; Complete: Training complete
+Complete --&gt; [*]
+
+SaveResult --&gt; AuditLog: Log completion
+SaveAttempt --&gt; AuditLog: Log attempt
+AuditLog --&gt; SecurityLog: Security event&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>4. DATA STORAGE AND ENCRYPTION</h2>
+<h3>4.1 Encryption Layers</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph TD
+    subgraph "Data at Rest"
+        D1[User Data] -->|AES-256-GCM| ENC1[Encrypted Storage]
+        D2[Training Records] -->|AES-256-GCM| ENC1
+        D3[Certificates] -->|AES-256-GCM| ENC1
+        D4[Audit Logs] -->|AES-256-GCM| ENC1
+        D5[MFA Secrets] -->|AES-256-GCM + AT| ENC2[Double Encrypted]
+    end
+    
+<pre><code>subgraph &quot;Data in Transit&quot;
+    T1[Client Request] --&gt;|TLS 1.3| T2[API Gateway]
+    T2 --&gt;|TLS 1.3| T3[Database]
+    T3 --&gt;|TLS 1.3| T4[Backup Storage]
+    T2 --&gt;|TLS 1.3| T5[Email Service]
+end
+
+subgraph &quot;Key Management&quot;
+    K1[Master Key] --&gt;|Derived| K2[Data Keys]
+    K2 --&gt;|Rotation| K3[Key Rotation]
+    K3 --&gt;|30 days| K1
+end&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>4.2 Backup and Recovery Flow</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>sequenceDiagram
+    participant SCHED as Scheduler
+    participant DB as Primary DB
+    participant BACKUP as Backup Service
+    participant STOR as Storage (EU)
+    participant MON as Monitoring
+    participant ALERT as Alerts
+    
+<pre><code>loop Daily at 02:00 UTC
+    SCHED-&gt;&gt;DB: Initiate backup
+    DB-&gt;&gt;DB: Create snapshot
+    DB-&gt;&gt;BACKUP: Transfer snapshot
+    BACKUP-&gt;&gt;BACKUP: Compress data
+    BACKUP-&gt;&gt;BACKUP: Encrypt (AES-256)
+    BACKUP-&gt;&gt;STOR: Store in EU region
+    STOR--&gt;&gt;BACKUP: Confirm storage
+    BACKUP-&gt;&gt;MON: Log success
+    MON-&gt;&gt;MON: Update metrics
+end
+
+alt Backup Failure
+    BACKUP--xMON: Report failure
+    MON-&gt;&gt;ALERT: Trigger P2 alert
+    ALERT-&gt;&gt;ALERT: Notify team
+    ALERT-&gt;&gt;SCHED: Retry backup
+end
+
+Note over STOR: 30-day retention
+Note over STOR: Point-in-time recovery (7 days)&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>5. GDPR DATA FLOWS</h2>
+<h3>5.1 Data Subject Request Processing</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph TB
+    subgraph "Data Request Types"
+        REQ1[Access Request]
+        REQ2[Portability Request]
+        REQ3[Deletion Request]
+        REQ4[Correction Request]
+    end
+    
+<pre><code>subgraph &quot;Processing Pipeline&quot;
+    VAL[Validate Identity]
+    AUTH[Authorize Request]
+    PROC[Process Request]
+    GEN[Generate Response]
+    AUDIT[Audit Trail]
+end
+
+subgraph &quot;Data Sources&quot;
+    DB[(Primary Database)]
+    LOGS[(Audit Logs)]
+    STOR[(File Storage)]
+    BACKUP[(Backups)]
+end
+
+REQ1 --&gt; VAL
+REQ2 --&gt; VAL
+REQ3 --&gt; VAL
+REQ4 --&gt; VAL
+
+VAL --&gt; AUTH
+AUTH --&gt; PROC
+
+PROC --&gt; DB
+PROC --&gt; LOGS
+PROC --&gt; STOR
+PROC --&gt; BACKUP
+
+DB --&gt; GEN
+LOGS --&gt; GEN
+STOR --&gt; GEN
+
+GEN --&gt; AUDIT
+AUDIT --&gt; Response[Encrypted Response]&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>5.2 Data Retention and Deletion</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>gantt
+    title Data Retention Timeline
+    dateFormat YYYY-MM-DD
+    section User Data
+    Active Account          :active, 2025-01-01, 365d
+    Post-Contract Retention :crit, 730d
+    Deletion               :milestone, 2028-01-01, 0d
+    
+<pre><code>section Training Records
+Initial Storage        :2025-01-01, 2555d
+Legal Retention (7yr)  :active, 2025-01-01, 2555d
+Deletion              :milestone, 2032-01-01, 0d
+
+section Certificates
+Initial Storage        :2025-01-01, 3650d
+Retention (10yr)       :active, 2025-01-01, 3650d
+Deletion              :milestone, 2035-01-01, 0d
+
+section Audit Logs
+Active Logging         :active, 2025-01-01, 365d
+Rolling Deletion       :crit, 2026-01-01, 1d
+
+section Session Data
+Active Session         :active, 2025-01-01, 30d
+Auto Deletion         :crit, 2025-01-31, 1d&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>6. SECURITY MONITORING FLOWS</h2>
+<h3>6.1 Threat Detection Pipeline</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph LR
+    subgraph "Input Sources"
+        E1[API Requests]
+        E2[Login Attempts]
+        E3[File Access]
+        E4[Admin Actions]
+        E5[Error Events]
+    end
+    
+<pre><code>subgraph &quot;Processing&quot;
+    AGG[Event Aggregation]
+    ENRICH[Context Enrichment]
+    SCORE[Risk Scoring]
+    CLASS[Classification]
+end
+
+subgraph &quot;Detection Rules&quot;
+    R1[Brute Force]
+    R2[Privilege Escalation]
+    R3[Data Exfiltration]
+    R4[Anomaly Detection]
+    R5[Compliance Violation]
+end
+
+subgraph &quot;Response&quot;
+    ALERT[Alert Generation]
+    BLOCK[Auto Block]
+    LOG[Security Log]
+    NOTIFY[Notification]
+end
+
+E1 --&gt; AGG
+E2 --&gt; AGG
+E3 --&gt; AGG
+E4 --&gt; AGG
+E5 --&gt; AGG
+
+AGG --&gt; ENRICH
+ENRICH --&gt; SCORE
+SCORE --&gt; CLASS
+
+CLASS --&gt; R1
+CLASS --&gt; R2
+CLASS --&gt; R3
+CLASS --&gt; R4
+CLASS --&gt; R5
+
+R1 --&gt; ALERT
+R2 --&gt; ALERT
+R3 --&gt; BLOCK
+R4 --&gt; LOG
+R5 --&gt; NOTIFY&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>6.2 Incident Response Flow</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>stateDiagram-v2
+    [*] --> Detection: Security Event
+    
+<pre><code>Detection --&gt; Triage: Automated Analysis
+Triage --&gt; P1: Critical
+Triage --&gt; P2: High
+Triage --&gt; P3: Medium
+Triage --&gt; P4: Low
+
+P1 --&gt; ImmediateResponse: &lt; 15 min
+P2 --&gt; QuickResponse: &lt; 2 hours
+P3 --&gt; StandardResponse: &lt; 8 hours
+P4 --&gt; ScheduledResponse: &lt; 2 days
+
+ImmediateResponse --&gt; Containment
+QuickResponse --&gt; Containment
+StandardResponse --&gt; Investigation
+ScheduledResponse --&gt; Investigation
+
+Containment --&gt; Eradication
+Investigation --&gt; Eradication
+
+Eradication --&gt; Recovery
+Recovery --&gt; PostIncident
+
+PostIncident --&gt; Documentation
+Documentation --&gt; LessonsLearned
+LessonsLearned --&gt; [*]
+
+state Notification {
+    [*] --&gt; Internal: Team Alert
+    Internal --&gt; Customer: If Required
+    Customer --&gt; Regulatory: If Breach
+}
+
+Containment --&gt; Notification&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>7. INTEGRATION FLOWS</h2>
+<h3>7.1 Email Service Integration</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>sequenceDiagram
+    participant APP as Application
+    participant QUEUE as Email Queue
+    participant VAL as Validator
+    participant TEMP as Template Engine
+    participant TRANS as Translator
+    participant MAIL as MailerSend EU
+    participant LOG as Audit Log
+    
+<pre><code>APP-&gt;&gt;QUEUE: Queue email
+QUEUE-&gt;&gt;VAL: Validate recipient
+
+alt Invalid Email
+    VAL--&gt;&gt;LOG: Log invalid attempt
+    VAL--&gt;&gt;QUEUE: Reject
+else Valid Email
+    VAL-&gt;&gt;TEMP: Load template
+    TEMP-&gt;&gt;TRANS: Translate content
+    TRANS-&gt;&gt;TRANS: Apply language
+    TRANS-&gt;&gt;MAIL: Send via API
+    
+    alt Success
+        MAIL--&gt;&gt;LOG: Log success
+        MAIL--&gt;&gt;APP: Confirmation
+    else Failure
+        MAIL--&gt;&gt;QUEUE: Retry queue
+        QUEUE-&gt;&gt;QUEUE: Wait &amp; retry (3x)
+        alt Final Failure
+            QUEUE--&gt;&gt;LOG: Log failure
+            QUEUE--&gt;&gt;APP: Error notification
+        end
+    end
+end&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>7.2 Certificate Generation Flow</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph TD
+    subgraph "Certificate Generation Process"
+        START[Quiz Passed] --> VERIFY[Verify Completion]
+        VERIFY --> GATHER[Gather Data]
+        GATHER --> TEMPLATE[Load Template]
+        TEMPLATE --> POPULATE[Populate Fields]
+        POPULATE --> QR[Generate QR Code]
+        QR --> SIGN[Digital Signature]
+        SIGN --> PDF[Create PDF]
+        PDF --> ENCRYPT[Encrypt Document]
+        ENCRYPT --> STORE[Store in EU]
+        STORE --> NOTIFY[Send Notification]
+        NOTIFY --> END[Process Complete]
+    end
+    
+<pre><code>subgraph &quot;Data Elements&quot;
+    D1[User Details]
+    D2[Training Info]
+    D3[Completion Date]
+    D4[Certificate ID]
+    D5[Verification URL]
+end
+
+subgraph &quot;Security Controls&quot;
+    S1[Access Control]
+    S2[Encryption]
+    S3[Audit Trail]
+    S4[Tamper Protection]
+end
+
+D1 --&gt; GATHER
+D2 --&gt; GATHER
+D3 --&gt; GATHER
+D4 --&gt; GATHER
+D5 --&gt; QR
+
+S1 -.-&gt; VERIFY
+S2 -.-&gt; ENCRYPT
+S3 -.-&gt; STORE
+S4 -.-&gt; SIGN&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>8. COMPLIANCE CHECKPOINTS</h2>
+<h3>8.1 Data Processing Compliance Map</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph TB
+    subgraph "Data Entry Points"
+        E1[User Registration]
+        E2[Training Data]
+        E3[Quiz Responses]
+        E4[File Uploads]
+    end
+    
+<pre><code>subgraph &quot;Compliance Checks&quot;
+    C1{GDPR Consent?}
+    C2{Data Minimization?}
+    C3{Purpose Limitation?}
+    C4{Retention Policy?}
+    C5{Encryption Active?}
+    C6{Audit Logged?}
+end
+
+subgraph &quot;Processing&quot;
+    P1[Process Data]
+    P2[Store Data]
+    P3[Transfer Data]
+end
+
+subgraph &quot;Controls&quot;
+    ACCEPT[✓ Accept]
+    REJECT[✗ Reject]
+end
+
+E1 --&gt; C1
+E2 --&gt; C1
+E3 --&gt; C1
+E4 --&gt; C1
+
+C1 --&gt;|Yes| C2
+C1 --&gt;|No| REJECT
+
+C2 --&gt;|Yes| C3
+C2 --&gt;|No| REJECT
+
+C3 --&gt;|Yes| C4
+C3 --&gt;|No| REJECT
+
+C4 --&gt;|Yes| C5
+C4 --&gt;|No| REJECT
+
+C5 --&gt;|Yes| C6
+C5 --&gt;|No| REJECT
+
+C6 --&gt;|Yes| ACCEPT
+C6 --&gt;|No| REJECT
+
+ACCEPT --&gt; P1
+P1 --&gt; P2
+P2 --&gt; P3&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>9. NETWORK ARCHITECTURE</h2>
+<h3>9.1 Network Security Zones</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph TB
+    subgraph "Internet Zone"
+        USERS[External Users]
+        ATTACK[Potential Threats]
+    end
+    
+<pre><code>subgraph &quot;DMZ - Vercel Edge&quot;
+    CDN[CDN Network]
+    WAF[Web App Firewall]
+    DDOS[DDoS Protection]
+end
+
+subgraph &quot;Application Zone - Vercel&quot;
+    API[API Functions]
+    STATIC[Static Assets]
+end
+
+subgraph &quot;Data Zone - Supabase&quot;
+    DB[(Database)]
+    STORAGE[(Object Storage)]
+end
+
+subgraph &quot;Security Controls&quot;
+    FW1[Firewall Layer 1]
+    FW2[Firewall Layer 2]
+    IDS[Intrusion Detection]
+    SIEM[Security Monitoring]
+end
+
+USERS --&gt;|HTTPS| CDN
+ATTACK --&gt;|Blocked| WAF
+
+CDN --&gt; FW1
+FW1 --&gt; API
+API --&gt; FW2
+FW2 --&gt; DB
+
+WAF -.-&gt; IDS
+IDS -.-&gt; SIEM
+DDOS -.-&gt; SIEM&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>10. DATA LIFECYCLE MANAGEMENT</h2>
+<h3>10.1 Complete Data Lifecycle</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>journey
+    title Data Lifecycle Journey
+    section Collection
+      User Registration: 5: User, System
+      Consent Obtained: 5: System
+      Data Validated: 5: System
+    section Processing
+      Store in Database: 5: System
+      Apply Encryption: 5: System
+      Create Audit Log: 5: System
+    section Usage
+      Training Delivery: 5: User, System
+      Progress Tracking: 5: System
+      Certificate Generation: 5: System
+    section Retention
+      Active Period: 5: System
+      Archive Phase: 3: System
+      Retention Check: 4: System
+    section Deletion
+      Deletion Trigger: 4: System
+      Secure Wipe: 5: System
+      Confirmation: 5: System</code>
+    </div>
+
+<hr>
+<h2>DIAGRAM LEGEND</h2>
+<h3>Symbols and Notation</h3>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[Component]</code></td>
+<td>System Component</td>
+</tr>
+<tr>
+<td><code>(Database)</code></td>
+<td>Data Storage</td>
+</tr>
+<tr>
+<td><code>{Decision}</code></td>
+<td>Decision Point</td>
+</tr>
+<tr>
+<td><code>--&gt;</code></td>
+<td>Data Flow</td>
+</tr>
+<tr>
+<td><code>-.-&gt;</code></td>
+<td>Control/Monitor Flow</td>
+</tr>
+<tr>
+<td><code>==&gt;</code></td>
+<td>Encrypted Flow</td>
+</tr>
+<tr>
+<td><code>--x</code></td>
+<td>Blocked/Failed</td>
+</tr>
+<tr>
+<td><code>✓</code></td>
+<td>Approved/Valid</td>
+</tr>
+<tr>
+<td><code>✗</code></td>
+<td>Rejected/Invalid</td>
+</tr>
+</tbody></table>
+<h3>Security Levels</h3>
+<table>
+<thead>
+<tr>
+<th>Color</th>
+<th>Security Level</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🟢 Green</td>
+<td>Secure/Encrypted</td>
+</tr>
+<tr>
+<td>🟡 Yellow</td>
+<td>Monitored</td>
+</tr>
+<tr>
+<td>🔴 Red</td>
+<td>Blocked/Alert</td>
+</tr>
+<tr>
+<td>🔵 Blue</td>
+<td>Public/CDN</td>
+</tr>
+</tbody></table>
+<h3>Compliance Indicators</h3>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GDPR</td>
+<td>GDPR Compliant</td>
+</tr>
+<tr>
+<td>ISO</td>
+<td>ISO 27001 Control</td>
+</tr>
+<tr>
+<td>LOG</td>
+<td>Audit Logged</td>
+</tr>
+<tr>
+<td>ENC</td>
+<td>Encrypted</td>
+</tr>
+<tr>
+<td>MFA</td>
+<td>MFA Protected</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>NOTES</h2>
+<ol>
+<li><strong>All data flows</strong> within EU boundaries (Frankfurt region)</li>
+<li><strong>All transmissions</strong> use TLS 1.3 minimum</li>
+<li><strong>All storage</strong> uses AES-256-GCM encryption</li>
+<li><strong>All actions</strong> create audit log entries</li>
+<li><strong>All sensitive operations</strong> require authentication</li>
+<li><strong>All high-privilege actions</strong> require MFA</li>
+</ol>
+<hr>
+<p><em>These data flow diagrams are maintained by the Security Architecture team and updated with any system changes. Last update: January 2025</em></p>
+
+    </div>
+</body>
+</html>

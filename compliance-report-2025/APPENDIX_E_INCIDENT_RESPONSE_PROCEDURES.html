@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APPENDIX E INCIDENT RESPONSE PROCEDURES</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: white;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm;
+        }
+        
+        @media print {
+            .container {
+                max-width: 100%;
+                padding: 15mm;
+            }
+        }
+        
+        /* Headers */
+        h1 {
+            color: #1a5490;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0 0 0.5em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 3px solid #1a5490;
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            color: #2c5282;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 1.5em 0 0.7em 0;
+            padding-bottom: 0.2em;
+            border-bottom: 1px solid #e2e8f0;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            color: #2d3748;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 1.2em 0 0.6em 0;
+            page-break-after: avoid;
+        }
+        
+        h4 {
+            color: #4a5568;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin: 1em 0 0.5em 0;
+            page-break-after: avoid;
+        }
+        
+        /* Paragraphs and text */
+        p {
+            margin: 0.8em 0;
+            text-align: justify;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: #1a202c;
+        }
+        
+        em {
+            font-style: italic;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 0.8em 0 0.8em 2em;
+        }
+        
+        li {
+            margin: 0.3em 0;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+            font-size: 0.95em;
+            page-break-inside: avoid;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #1a5490 0%, #2c5282 100%);
+        }
+        
+        th {
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tbody tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+        
+        /* Code blocks */
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            padding: 2px 6px;
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 3px;
+            color: #e53e3e;
+        }
+        
+        pre {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 1em;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1em 0;
+            page-break-inside: avoid;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        pre code {
+            background: none;
+            border: none;
+            color: #e2e8f0;
+            padding: 0;
+        }
+        
+        /* Blockquotes */
+        blockquote {
+            border-left: 4px solid #1a5490;
+            padding-left: 1.5em;
+            margin: 1em 0;
+            font-style: italic;
+            color: #4a5568;
+            background-color: #f7fafc;
+            padding: 1em 1.5em;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        /* Links */
+        a {
+            color: #1a5490;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        a:hover {
+            border-bottom-color: #1a5490;
+        }
+        
+        /* Horizontal rules */
+        hr {
+            border: none;
+            border-top: 2px solid #e2e8f0;
+            margin: 2em 0;
+        }
+        
+        /* Special elements */
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 0 2px;
+        }
+        
+        .badge-success {
+            background-color: #48bb78;
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: #ed8936;
+            color: white;
+        }
+        
+        .badge-info {
+            background-color: #4299e1;
+            color: white;
+        }
+        
+        /* Checkboxes */
+        input[type="checkbox"] {
+            margin-right: 0.5em;
+        }
+        
+        /* Mermaid diagram placeholder */
+        .mermaid-placeholder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2em;
+            border-radius: 8px;
+            text-align: center;
+            margin: 1.5em 0;
+            font-weight: 500;
+        }
+        
+        .mermaid-placeholder code {
+            display: block;
+            margin-top: 1em;
+            padding: 1em;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 0.85em;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        
+        /* Print specific styles */
+        @media print {
+            body {
+                font-size: 11pt;
+            }
+            
+            h1 { 
+                font-size: 20pt; 
+                page-break-before: always;
+            }
+            
+            h1:first-child {
+                page-break-before: avoid;
+            }
+            
+            h2 { font-size: 16pt; }
+            h3 { font-size: 14pt; }
+            h4 { font-size: 12pt; }
+            
+            table, pre, blockquote {
+                page-break-inside: avoid;
+            }
+            
+            .mermaid-placeholder {
+                background: #f0f0f0 !important;
+                color: #333 !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+        
+        /* Page header/footer for print */
+        @page {
+            margin: 2cm;
+            @top-center {
+                content: "Maritime Onboarding System 2025 - Compliance Documentation";
+                font-size: 10pt;
+                color: #666;
+            }
+            @bottom-center {
+                content: "Page " counter(page) " of " counter(pages);
+                font-size: 10pt;
+                color: #666;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>APPENDIX E: INCIDENT RESPONSE PROCEDURES</h1>
+<h2>Maritime Onboarding System 2025</h2>
+<h3>Security Incident Management Framework</h3>
+<hr>
+<h2>EXECUTIVE SUMMARY</h2>
+<p>This document outlines the comprehensive incident response procedures for the Maritime Onboarding System, ensuring rapid detection, containment, and resolution of security incidents while maintaining compliance with GDPR Article 33/34 requirements and maritime industry standards.</p>
+<p><strong>24/7 Incident Hotline:</strong> [To be activated upon contract]<br><strong>Incident Email:</strong> <a href="mailto:incident@maritime-onboarding.eu">incident@maritime-onboarding.eu</a><br><strong>Maximum Response Time:</strong> 15 minutes (Critical) / 2 hours (High)</p>
+<hr>
+<h2>1. INCIDENT RESPONSE FRAMEWORK</h2>
+<h3>1.1 Incident Response Team (IRT)</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Primary Responsibility</th>
+<th>Contact</th>
+<th>Backup</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Incident Commander</strong></td>
+<td>Overall incident coordination</td>
+<td>DPO: M. Splinter</td>
+<td>Security Lead</td>
+</tr>
+<tr>
+<td><strong>Technical Lead</strong></td>
+<td>Technical investigation &amp; remediation</td>
+<td>DevOps Lead</td>
+<td>Senior Developer</td>
+</tr>
+<tr>
+<td><strong>Security Analyst</strong></td>
+<td>Threat analysis &amp; forensics</td>
+<td>Security Engineer</td>
+<td>System Admin</td>
+</tr>
+<tr>
+<td><strong>Communications Lead</strong></td>
+<td>Stakeholder communication</td>
+<td>PR Manager</td>
+<td>DPO</td>
+</tr>
+<tr>
+<td><strong>Legal Advisor</strong></td>
+<td>Regulatory compliance</td>
+<td>Legal Counsel</td>
+<td>External Counsel</td>
+</tr>
+<tr>
+<td><strong>Customer Liaison</strong></td>
+<td>Customer notification</td>
+<td>Account Manager</td>
+<td>Support Lead</td>
+</tr>
+</tbody></table>
+<h3>1.2 Incident Classification</h3>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Definition</th>
+<th>Response Time</th>
+<th>Escalation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>P1 - Critical</strong></td>
+<td>System-wide outage, data breach, ransomware</td>
+<td>15 minutes</td>
+<td>Immediate</td>
+</tr>
+<tr>
+<td><strong>P2 - High</strong></td>
+<td>Partial outage, attempted breach, data exposure risk</td>
+<td>2 hours</td>
+<td>Within 1 hour</td>
+</tr>
+<tr>
+<td><strong>P3 - Medium</strong></td>
+<td>Performance degradation, suspicious activity</td>
+<td>4 hours</td>
+<td>Within 4 hours</td>
+</tr>
+<tr>
+<td><strong>P4 - Low</strong></td>
+<td>Minor issues, false positives</td>
+<td>8 hours</td>
+<td>Next business day</td>
+</tr>
+</tbody></table>
+<h3>1.3 Incident Types</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph TD
+    A[Security Incident] --> B{Type?}
+    B --> C[Data Breach]
+    B --> D[Cyber Attack]
+    B --> E[System Compromise]
+    B --> F[Physical Security]
+    B --> G[Insider Threat]
+    
+<pre><code>C --&gt; C1[PII Exposure]
+C --&gt; C2[Unauthorized Access]
+C --&gt; C3[Data Exfiltration]
+
+D --&gt; D1[DDoS Attack]
+D --&gt; D2[Malware/Ransomware]
+D --&gt; D3[Phishing]
+
+E --&gt; E1[Account Compromise]
+E --&gt; E2[System Intrusion]
+E --&gt; E3[API Abuse]&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<hr>
+<h2>2. INCIDENT RESPONSE PHASES</h2>
+<h3>PHASE 1: PREPARATION (Continuous)</h3>
+<h4>1.1 Preventive Measures</h4>
+<ul>
+<li>☐ Security monitoring tools configured</li>
+<li>☐ Incident response plan documented</li>
+<li>☐ Team contact list updated</li>
+<li>☐ Communication templates prepared</li>
+<li>☐ Forensic tools ready</li>
+<li>☐ Backup systems verified</li>
+<li>☐ Legal requirements documented</li>
+</ul>
+<h4>1.2 Detection Capabilities</h4>
+<table>
+<thead>
+<tr>
+<th>Detection Method</th>
+<th>Tool/Process</th>
+<th>Alert Mechanism</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Automated Monitoring</strong></td>
+<td>SIEM/IDS</td>
+<td>Email, SMS, Dashboard</td>
+</tr>
+<tr>
+<td><strong>User Reports</strong></td>
+<td>Support tickets</td>
+<td>Ticketing system</td>
+</tr>
+<tr>
+<td><strong>Threat Intelligence</strong></td>
+<td>External feeds</td>
+<td>Security dashboard</td>
+</tr>
+<tr>
+<td><strong>Audit Logs</strong></td>
+<td>Log analysis</td>
+<td>Automated alerts</td>
+</tr>
+<tr>
+<td><strong>Health Checks</strong></td>
+<td>System monitoring</td>
+<td>Status page</td>
+</tr>
+</tbody></table>
+<h3>PHASE 2: DETECTION &amp; ANALYSIS (T+0 to T+1 hour)</h3>
+<h4>2.1 Initial Detection</h4>
+<pre><code>Time: T+0 minutes
+Actions:
+1. Alert received/incident detected
+2. Initial assessment by on-call engineer
+3. Severity classification
+4. IRT activation if P1/P2
+</code></pre>
+<h4>2.2 Triage Checklist</h4>
+<ul>
+<li>☐ Verify the incident is real (not false positive)</li>
+<li>☐ Determine incident type and scope</li>
+<li>☐ Identify affected systems/data</li>
+<li>☐ Assess business impact</li>
+<li>☐ Document initial findings</li>
+<li>☐ Activate appropriate response team</li>
+</ul>
+<h4>2.3 Evidence Collection</h4>
+<table>
+<thead>
+<tr>
+<th>Evidence Type</th>
+<th>Collection Method</th>
+<th>Storage Location</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>System Logs</strong></td>
+<td>Automated export</td>
+<td>Secure forensic storage</td>
+</tr>
+<tr>
+<td><strong>Network Traffic</strong></td>
+<td>Packet capture</td>
+<td>Encrypted archive</td>
+</tr>
+<tr>
+<td><strong>Memory Dumps</strong></td>
+<td>Forensic tools</td>
+<td>Isolated system</td>
+</tr>
+<tr>
+<td><strong>User Activity</strong></td>
+<td>Audit logs</td>
+<td>Compliance database</td>
+</tr>
+<tr>
+<td><strong>Screenshots</strong></td>
+<td>Manual capture</td>
+<td>Incident folder</td>
+</tr>
+</tbody></table>
+<h3>PHASE 3: CONTAINMENT (T+1 to T+4 hours)</h3>
+<h4>3.1 Short-term Containment</h4>
+<pre><code class="language-yaml">Immediate Actions:
+  - Isolate affected systems
+  - Disable compromised accounts
+  - Block malicious IPs/domains
+  - Preserve evidence
+  - Prevent incident spread
+  
+Decision Matrix:
+  Data_Breach:
+    - Revoke affected access tokens
+    - Reset compromised credentials
+    - Enable additional monitoring
+  
+  Malware:
+    - Disconnect infected systems
+    - Quarantine malicious files
+    - Update security rules
+  
+  DDoS:
+    - Enable DDoS protection
+    - Scale infrastructure
+    - Implement rate limiting
+</code></pre>
+<h4>3.2 Long-term Containment</h4>
+<ul>
+<li>Install patches/updates</li>
+<li>Improve security controls</li>
+<li>Implement additional monitoring</li>
+<li>Review and update firewall rules</li>
+<li>Enhance access controls</li>
+</ul>
+<h3>PHASE 4: ERADICATION (T+4 to T+24 hours)</h3>
+<h4>4.1 Threat Removal</h4>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Responsibility</th>
+<th>Verification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Remove malware</td>
+<td>Security Analyst</td>
+<td>Antivirus scan clean</td>
+</tr>
+<tr>
+<td>Delete backdoors</td>
+<td>Technical Lead</td>
+<td>Security audit passed</td>
+</tr>
+<tr>
+<td>Close vulnerabilities</td>
+<td>DevOps Team</td>
+<td>Penetration test</td>
+</tr>
+<tr>
+<td>Fix exploited bugs</td>
+<td>Development Team</td>
+<td>Code review complete</td>
+</tr>
+<tr>
+<td>Update configurations</td>
+<td>System Admin</td>
+<td>Config audit</td>
+</tr>
+</tbody></table>
+<h4>4.2 System Hardening</h4>
+<pre><code class="language-bash"># Hardening Checklist
+□ Update all system packages
+□ Apply security patches
+□ Review user permissions
+□ Audit system configurations
+□ Update security policies
+□ Enhance monitoring rules
+□ Review firewall rules
+□ Update threat signatures
+</code></pre>
+<h3>PHASE 5: RECOVERY (T+24 to T+72 hours)</h3>
+<h4>5.1 System Restoration</h4>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>stateDiagram-v2
+    [*] --> Validation: System Ready
+    Validation --> Testing: Validated
+    Testing --> Monitoring: Tests Passed
+    Monitoring --> Production: Stable
+    Production --> [*]: Fully Operational
+    
+<pre><code>Validation --&gt; Remediation: Issues Found
+Remediation --&gt; Validation: Fixed&lt;/code&gt;
+&lt;/div&gt;
+</code></pre>
+<h4>5.2 Recovery Checklist</h4>
+<ul>
+<li>☐ Restore systems from clean backups</li>
+<li>☐ Rebuild compromised systems</li>
+<li>☐ Reset all affected credentials</li>
+<li>☐ Verify system integrity</li>
+<li>☐ Test functionality</li>
+<li>☐ Monitor for recurrence</li>
+<li>☐ Confirm business operations</li>
+</ul>
+<h3>PHASE 6: POST-INCIDENT (T+72 hours onwards)</h3>
+<h4>6.1 Lessons Learned Meeting</h4>
+<p><strong>Participants:</strong> IRT, Management, Affected Teams<br><strong>Timeline:</strong> Within 5 business days<br><strong>Agenda:</strong></p>
+<ol>
+<li>Incident timeline review</li>
+<li>What went well</li>
+<li>What needs improvement</li>
+<li>Action items</li>
+<li>Process updates</li>
+<li>Training needs</li>
+</ol>
+<h4>6.2 Documentation Requirements</h4>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Purpose</th>
+<th>Deadline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Incident Report</strong></td>
+<td>Internal record</td>
+<td>48 hours</td>
+</tr>
+<tr>
+<td><strong>Executive Summary</strong></td>
+<td>Management briefing</td>
+<td>72 hours</td>
+</tr>
+<tr>
+<td><strong>Technical Analysis</strong></td>
+<td>Root cause &amp; fixes</td>
+<td>5 days</td>
+</tr>
+<tr>
+<td><strong>Regulatory Filing</strong></td>
+<td>Compliance requirement</td>
+<td>As required</td>
+</tr>
+<tr>
+<td><strong>Customer Notice</strong></td>
+<td>Transparency</td>
+<td>As appropriate</td>
+</tr>
+<tr>
+<td><strong>Improvement Plan</strong></td>
+<td>Prevent recurrence</td>
+<td>10 days</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>3. COMMUNICATION PROCEDURES</h2>
+<h3>3.1 Internal Communication Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Incident Level</th>
+<th>Who to Notify</th>
+<th>When</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>P1 - Critical</strong></td>
+<td>CEO, CTO, DPO, Legal</td>
+<td>Immediately</td>
+<td>Phone call</td>
+</tr>
+<tr>
+<td><strong>P2 - High</strong></td>
+<td>CTO, DPO, Department Heads</td>
+<td>Within 30 min</td>
+<td>Phone/Email</td>
+</tr>
+<tr>
+<td><strong>P3 - Medium</strong></td>
+<td>Department Heads, Team Leads</td>
+<td>Within 2 hours</td>
+<td>Email/Slack</td>
+</tr>
+<tr>
+<td><strong>P4 - Low</strong></td>
+<td>Direct Manager</td>
+<td>Within 4 hours</td>
+<td>Email/Ticket</td>
+</tr>
+</tbody></table>
+<h3>3.2 External Communication Requirements</h3>
+<h4>Customer Notification</h4>
+<pre><code>Trigger: Personal data breach affecting customers
+Timeline: Without undue delay, maximum 72 hours
+Content:
+- Nature of incident
+- Data categories affected
+- Potential consequences
+- Mitigation measures taken
+- Recommendations for customers
+- Contact information for questions
+</code></pre>
+<h4>Regulatory Notification (GDPR)</h4>
+<pre><code>Authority: Dutch DPA (Autoriteit Persoonsgegevens)
+Timeline: 72 hours from awareness
+Method: Online form at autoriteitpersoonsgegevens.nl
+Required Information:
+- Nature of breach
+- Categories and approximate number of data subjects
+- Categories and approximate number of records
+- Contact details of DPO
+- Likely consequences
+- Measures taken
+</code></pre>
+<h3>3.3 Communication Templates</h3>
+<h4>Initial Customer Notification</h4>
+<pre><code>Subject: Important Security Update - Action Required
+
+Dear [Customer Name],
+
+We are writing to inform you of a security incident that may have affected your account.
+
+What Happened:
+[Brief description of incident]
+
+Information Involved:
+[Categories of data potentially affected]
+
+What We Are Doing:
+[Actions taken to address the incident]
+
+What You Should Do:
+[Recommended actions for customer]
+
+For More Information:
+Contact our security team at security@maritime-onboarding.eu
+Reference: [Incident ID]
+
+We sincerely apologize for any inconvenience.
+
+[Signature]
+</code></pre>
+<hr>
+<h2>4. SPECIFIC INCIDENT PLAYBOOKS</h2>
+<h3>4.1 Data Breach Response</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>flowchart TD
+    A[Data Breach Detected] --> B{Confirm Breach}
+    B -->|Yes| C[Assess Scope]
+    B -->|No| D[False Alarm]
+    C --> E[Contain Breach]
+    E --> F{PII Involved?}
+    F -->|Yes| G[72hr GDPR Notice]
+    F -->|No| H[Internal Only]
+    G --> I[Customer Notification]
+    H --> J[Internal Report]
+    I --> K[Remediation]
+    J --> K
+    K --> L[Post-Incident Review]</code>
+    </div>
+
+<p><strong>Immediate Actions:</strong></p>
+<ol>
+<li>Identify exposed data categories</li>
+<li>Determine number of affected records</li>
+<li>Assess risk to data subjects</li>
+<li>Implement containment measures</li>
+<li>Preserve forensic evidence</li>
+<li>Begin notification timeline</li>
+</ol>
+<h3>4.2 Ransomware Response</h3>
+<p><strong>DO NOT PAY RANSOM - Company Policy</strong></p>
+<p><strong>Immediate Actions:</strong></p>
+<ol>
+<li>Isolate infected systems immediately</li>
+<li>Disconnect network shares</li>
+<li>Disable remote access</li>
+<li>Identify ransomware variant</li>
+<li>Check backup integrity</li>
+<li>Contact law enforcement</li>
+<li>Engage incident response firm</li>
+</ol>
+<p><strong>Recovery Process:</strong></p>
+<pre><code>1. Wipe infected systems
+2. Restore from clean backups
+3. Apply all security updates
+4. Reset all credentials
+5. Implement additional monitoring
+6. Conduct security awareness training
+</code></pre>
+<h3>4.3 DDoS Attack Response</h3>
+<p><strong>Mitigation Steps:</strong></p>
+<pre><code class="language-yaml">Immediate:
+  - Enable DDoS protection service
+  - Increase rate limiting
+  - Block attacking IPs
+  - Scale infrastructure
+  - Enable caching
+
+Short-term:
+  - Analyze attack patterns
+  - Update WAF rules
+  - Implement geo-blocking
+  - Contact ISP for assistance
+
+Long-term:
+  - Review architecture
+  - Implement CDN
+  - Enhance monitoring
+  - Create response automation
+</code></pre>
+<h3>4.4 Account Compromise Response</h3>
+<p><strong>Containment Actions:</strong></p>
+<ol>
+<li>Disable compromised account immediately</li>
+<li>Reset password and MFA</li>
+<li>Revoke all active sessions</li>
+<li>Audit recent account activity</li>
+<li>Check for privilege escalation</li>
+<li>Review access logs</li>
+<li>Scan for backdoors</li>
+<li>Notify affected user</li>
+</ol>
+<hr>
+<h2>5. EVIDENCE HANDLING</h2>
+<h3>5.1 Chain of Custody</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Action</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Collection</strong></td>
+<td>Secure evidence collection</td>
+<td>Screenshot, hash, timestamp</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>Encrypted secure storage</td>
+<td>Access log, location record</td>
+</tr>
+<tr>
+<td><strong>Analysis</strong></td>
+<td>Controlled examination</td>
+<td>Analysis log, tool list</td>
+</tr>
+<tr>
+<td><strong>Transfer</strong></td>
+<td>Secure transfer protocol</td>
+<td>Transfer log, recipient signature</td>
+</tr>
+<tr>
+<td><strong>Retention</strong></td>
+<td>Legal hold if required</td>
+<td>Retention notice, duration</td>
+</tr>
+<tr>
+<td><strong>Disposal</strong></td>
+<td>Secure deletion</td>
+<td>Destruction certificate</td>
+</tr>
+</tbody></table>
+<h3>5.2 Forensic Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Log Aggregator</strong></td>
+<td>Centralize logs</td>
+<td>All incidents</td>
+</tr>
+<tr>
+<td><strong>Network Analyzer</strong></td>
+<td>Traffic analysis</td>
+<td>Network incidents</td>
+</tr>
+<tr>
+<td><strong>Memory Forensics</strong></td>
+<td>RAM analysis</td>
+<td>Malware incidents</td>
+</tr>
+<tr>
+<td><strong>Disk Imaging</strong></td>
+<td>Create forensic copies</td>
+<td>System compromise</td>
+</tr>
+<tr>
+<td><strong>Hash Tools</strong></td>
+<td>Verify integrity</td>
+<td>All evidence</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>6. LEGAL AND COMPLIANCE</h2>
+<h3>6.1 Regulatory Requirements</h3>
+<table>
+<thead>
+<tr>
+<th>Regulation</th>
+<th>Notification Deadline</th>
+<th>Authority</th>
+<th>Penalties</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GDPR</strong></td>
+<td>72 hours</td>
+<td>Dutch DPA</td>
+<td>Up to 4% revenue</td>
+</tr>
+<tr>
+<td><strong>NIS Directive</strong></td>
+<td>Without undue delay</td>
+<td>National CSIRT</td>
+<td>Variable</td>
+</tr>
+<tr>
+<td><strong>Maritime Cyber</strong></td>
+<td>24 hours</td>
+<td>Flag State</td>
+<td>License impact</td>
+</tr>
+<tr>
+<td><strong>Insurance</strong></td>
+<td>Per policy</td>
+<td>Insurer</td>
+<td>Coverage impact</td>
+</tr>
+</tbody></table>
+<h3>6.2 Documentation Requirements</h3>
+<p><strong>Incident Log Must Include:</strong></p>
+<ul>
+<li>Date and time of detection</li>
+<li>How incident was discovered</li>
+<li>Systems and data affected</li>
+<li>Actions taken with timestamps</li>
+<li>Personnel involved</li>
+<li>Communications sent</li>
+<li>Decisions made and rationale</li>
+<li>Evidence collected</li>
+<li>Costs incurred</li>
+<li>Lessons learned</li>
+</ul>
+<hr>
+<h2>7. TESTING AND MAINTENANCE</h2>
+<h3>7.1 Testing Schedule</h3>
+<table>
+<thead>
+<tr>
+<th>Test Type</th>
+<th>Frequency</th>
+<th>Participants</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tabletop Exercise</strong></td>
+<td>Quarterly</td>
+<td>IRT + Management</td>
+<td>2 hours</td>
+</tr>
+<tr>
+<td><strong>Technical Drill</strong></td>
+<td>Monthly</td>
+<td>Technical team</td>
+<td>1 hour</td>
+</tr>
+<tr>
+<td><strong>Full Simulation</strong></td>
+<td>Annually</td>
+<td>All stakeholders</td>
+<td>4 hours</td>
+</tr>
+<tr>
+<td><strong>Communication Test</strong></td>
+<td>Monthly</td>
+<td>IRT</td>
+<td>30 minutes</td>
+</tr>
+<tr>
+<td><strong>Backup Recovery</strong></td>
+<td>Quarterly</td>
+<td>DevOps</td>
+<td>2 hours</td>
+</tr>
+</tbody></table>
+<h3>7.2 Continuous Improvement</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph LR
+    A[Incident] --> B[Response]
+    B --> C[Review]
+    C --> D[Lessons Learned]
+    D --> E[Update Procedures]
+    E --> F[Training]
+    F --> G[Testing]
+    G --> H[Validation]
+    H --> A</code>
+    </div>
+
+<hr>
+<h2>8. QUICK REFERENCE CARDS</h2>
+<h3>8.1 P1 Critical Incident - First 15 Minutes</h3>
+<pre><code>□ 00:00 - Alert received
+□ 00:02 - Verify incident
+□ 00:05 - Classify as P1
+□ 00:06 - Activate IRT
+□ 00:08 - Begin containment
+□ 00:10 - Start evidence collection
+□ 00:12 - Executive notification
+□ 00:15 - Initial assessment complete
+</code></pre>
+<h3>8.2 Data Breach - First 72 Hours</h3>
+<pre><code>□ Hour 1    - Confirm breach, assess scope
+□ Hour 2    - Contain breach, preserve evidence
+□ Hour 4    - Complete initial investigation
+□ Hour 8    - Management briefing
+□ Hour 24   - Determine notification requirements
+□ Hour 48   - Prepare regulatory filing
+□ Hour 72   - Submit GDPR notification
+</code></pre>
+<h3>8.3 Key Contact Numbers</h3>
+<table>
+<thead>
+<tr>
+<th>Contact</th>
+<th>Number</th>
+<th>Available</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Security Hotline</strong></td>
+<td>[TBD]</td>
+<td>24/7</td>
+</tr>
+<tr>
+<td><strong>DPO</strong></td>
+<td>[TBD]</td>
+<td>Business hours</td>
+</tr>
+<tr>
+<td><strong>Legal Counsel</strong></td>
+<td>[TBD]</td>
+<td>24/7 for P1</td>
+</tr>
+<tr>
+<td><strong>Dutch DPA</strong></td>
+<td>+31 70 888 8500</td>
+<td>Business hours</td>
+</tr>
+<tr>
+<td><strong>Cyber Insurance</strong></td>
+<td>[TBD]</td>
+<td>24/7</td>
+</tr>
+<tr>
+<td><strong>Law Enforcement</strong></td>
+<td>112 / 0900-8844</td>
+<td>24/7</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>9. APPENDICES</h2>
+<h3>Appendix A: Incident Report Form</h3>
+<pre><code class="language-markdown">INCIDENT REPORT #: ___________
+Date: ___________
+Reporter: ___________
+
+1. INCIDENT DETAILS
+- Detection Time: ___________
+- Type: ☐ Breach ☐ Attack ☐ Outage ☐ Other
+- Severity: ☐ P1 ☐ P2 ☐ P3 ☐ P4
+- Systems Affected: ___________
+
+2. INITIAL RESPONSE
+- First Responder: ___________
+- Actions Taken: ___________
+- Evidence Collected: ___________
+
+3. IMPACT ASSESSMENT
+- Data Affected: ___________
+- Users Impacted: ___________
+- Business Impact: ___________
+
+4. RESOLUTION
+- Root Cause: ___________
+- Fix Applied: ___________
+- Verified By: ___________
+
+5. FOLLOW-UP
+- Notifications Sent: ___________
+- Improvements Needed: ___________
+- Lessons Learned: ___________
+
+Signature: ___________ Date: ___________
+</code></pre>
+<h3>Appendix B: Decision Tree - Notification Requirements</h3>
+<div class="mermaid-placeholder">
+      📊 Diagram (View in PDF for best rendering)
+      <code>graph TD
+    A[Security Incident] --> B{Personal Data Involved?}
+    B -->|No| C[Internal Documentation Only]
+    B -->|Yes| D{Risk to Rights/Freedoms?}
+    D -->|Low| E[Document and Monitor]
+    D -->|High| F{Notify DPA?}
+    F -->|Yes| G[72-hour Deadline]
+    G --> H{Notify Individuals?}
+    H -->|Yes| I[Without Undue Delay]
+    H -->|No| J[DPA Only]</code>
+    </div>
+
+<h3>Appendix C: Regulatory Contact Information</h3>
+<table>
+<thead>
+<tr>
+<th>Authority</th>
+<th>Contact</th>
+<th>Portal</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Dutch DPA</strong></td>
+<td><a href="mailto:datalekken@autoriteitpersoonsgegevens.nl">datalekken@autoriteitpersoonsgegevens.nl</a></td>
+<td>mijn.autoriteitpersoonsgegevens.nl</td>
+<td>72-hour deadline</td>
+</tr>
+<tr>
+<td><strong>EU CSIRT</strong></td>
+<td><a href="mailto:cert@cert.europa.eu">cert@cert.europa.eu</a></td>
+<td>cert.europa.eu</td>
+<td>Network incidents</td>
+</tr>
+<tr>
+<td><strong>Maritime Authority</strong></td>
+<td>[Flag State Specific]</td>
+<td>Various</td>
+<td>Cyber incidents</td>
+</tr>
+<tr>
+<td><strong>Insurance</strong></td>
+<td>[Policy Specific]</td>
+<td>Per carrier</td>
+<td>Check policy terms</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>10. TRAINING MATERIALS</h2>
+<h3>10.1 Role-Specific Training</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Training Topics</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>All Staff</strong></td>
+<td>Security awareness, Incident reporting</td>
+<td>Annual</td>
+</tr>
+<tr>
+<td><strong>IRT Members</strong></td>
+<td>Incident response procedures, Tools</td>
+<td>Quarterly</td>
+</tr>
+<tr>
+<td><strong>Technical Team</strong></td>
+<td>Forensics, Containment techniques</td>
+<td>Bi-annual</td>
+</tr>
+<tr>
+<td><strong>Management</strong></td>
+<td>Crisis management, Communication</td>
+<td>Annual</td>
+</tr>
+<tr>
+<td><strong>Customer Service</strong></td>
+<td>Customer communication, Escalation</td>
+<td>Quarterly</td>
+</tr>
+</tbody></table>
+<h3>10.2 Scenario Library</h3>
+<ol>
+<li><p><strong>Scenario: Customer Data Leak</strong></p>
+<ul>
+<li>Trigger: Customer database exposed online</li>
+<li>Complexity: Medium</li>
+<li>Focus: GDPR compliance, customer notification</li>
+</ul>
+</li>
+<li><p><strong>Scenario: Ransomware Attack</strong></p>
+<ul>
+<li>Trigger: Encryption of production systems</li>
+<li>Complexity: High</li>
+<li>Focus: Business continuity, recovery</li>
+</ul>
+</li>
+<li><p><strong>Scenario: Insider Threat</strong></p>
+<ul>
+<li>Trigger: Malicious employee activity</li>
+<li>Complexity: High</li>
+<li>Focus: Detection, legal considerations</li>
+</ul>
+</li>
+<li><p><strong>Scenario: Supply Chain Compromise</strong></p>
+<ul>
+<li>Trigger: Third-party service breach</li>
+<li>Complexity: Medium</li>
+<li>Focus: Vendor management, containment</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>DOCUMENT CONTROL</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Author</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.0</td>
+<td>January 2025</td>
+<td>Security Team</td>
+<td>Initial version</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>Next Review Date:</strong> July 2025<br><strong>Document Owner:</strong> Data Protection Officer<br><strong>Classification:</strong> Confidential</p>
+<hr>
+<p><em>This Incident Response Procedure is a living document and should be updated based on lessons learned from actual incidents and exercises.</em></p>
+<p><em>For questions or suggestions, contact: <a href="mailto:security@maritime-onboarding.eu">security@maritime-onboarding.eu</a></em></p>
+
+    </div>
+</body>
+</html>

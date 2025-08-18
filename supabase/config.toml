@@ -1,0 +1,24 @@
+# Supabase Configuration File
+# This file configures the Supabase CLI and project settings
+
+# Project settings - removed invalid keys for current CLI version
+
+# Database configuration
+[db]
+# Port for local development (if using local Supabase)
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+# API configuration
+[api]
+port = 54321
+extra_search_path = ["extensions", "public"]
+max_rows = 1000
+
+# Studio configuration
+[studio]
+port = 54323
+
+# Note: Branch configuration removed - not supported in current Supabase CLI version
+# Manual migration workflow will be used instead

@@ -1,0 +1,116 @@
+{
+  "crew": {
+    "welcome": "Welcome, {{name}}!",
+    "subtitle": "Continue your onboarding training journey",
+    "vessel": "Vessel",
+    "position": "Position",
+    "overall_progress": "Overall Progress",
+    "current_training": "Current Training",
+    "items_completed": "Items Completed",
+    "quiz_results": "Quiz Results",
+    "my_profile": "My Profile",
+    "loading_dashboard": "Loading your dashboard...",
+    "stats": {
+      "phases_completed": "Phases Completed",
+      "items_completed": "Items Completed",
+      "quizzes_passed": "Quizzes Passed",
+      "status": "Status"
+    },
+    "training_phases": {
+      "title": "Training Phases",
+      "subtitle": "Complete each phase in order to progress",
+      "steps_label": "Steps",
+      "quiz_label": "Quiz",
+      "quiz_required": "Quiz Required",
+      "quiz_passed": "Quiz Passed ({{score}}%)",
+      "quiz_failed": "Quiz Failed ({{score}}%) - Retake Required",
+      "quiz_approved": "Quiz Approved ({{score}}%)",
+      "awaiting_review": "Awaiting Review ({{score}}%)",
+      "take_quiz": "Take Quiz",
+      "view_results": "View Results",
+      "retake_quiz": "Retake Quiz"
+    },
+    "next_steps": {
+      "title": "Next Steps",
+      "complete_training": "Complete your current training phase",
+      "take_quiz": "Take the quiz for Phase {{phase}}",
+      "wait_approval": "Wait for manager approval of your quiz results",
+      "all_complete": "Congratulations! You have completed all training phases.",
+      "continue_training": "Continue Your Training",
+      "phase1_next": "Start with Phase 1: Immediate Safety Training to begin your onboarding journey.",
+      "phase2_next": "Move on to Phase 2: Operational Training to learn about vessel operations.",
+      "phase3_next": "Complete Phase 3: Advanced Training & Policies to finish your onboarding."
+    },
+    "completion": {
+      "congratulations": "Congratulations! 🎉",
+      "all_complete_message": "You have successfully completed all phases of the onboarding training program. Your completion certificate has been generated and sent to HR.",
+      "items_completed_count": "{{completed}}/{{total}} items completed",
+      "overdue_by_days": "Overdue by {{days}} days",
+      "due_in_days": "Due in {{days}} days",
+      "status_not_started": "not started",
+      "status_in_progress": "in progress",
+      "status_completed": "completed"
+    }
+  },
+  "manager": {
+    "welcome": "Manager Dashboard",
+    "subtitle": "Oversee crew training progress and manage onboarding",
+    "stats": {
+      "total_crew": "Total Crew Members",
+      "active_training": "Active in Training",
+      "completed": "Completed Training",
+      "pending_review": "Pending Review"
+    },
+    "crew_overview": {
+      "title": "Crew Overview",
+      "add_crew": "Add New Crew Member",
+      "search_placeholder": "Search crew members...",
+      "filter_all": "All",
+      "filter_active": "Active",
+      "filter_completed": "Completed",
+      "filter_pending": "Pending"
+    },
+    "recent_activity": {
+      "title": "Recent Activity",
+      "no_activity": "No recent activity"
+    },
+    "pending_reviews": {
+      "title": "Pending Quiz Reviews",
+      "no_reviews": "No pending reviews",
+      "review_quiz": "Review Quiz"
+    },
+    "forms": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email Address",
+      "position": "Position",
+      "vessel_assignment": "Vessel Assignment",
+      "start_date": "Start Date",
+      "create_crew_member": "Create Crew Member",
+      "update_crew_member": "Update Crew Member",
+      "creating": "Creating...",
+      "updating": "Updating...",
+      "name": "Name",
+      "status": "Status",
+      "progress": "Progress",
+      "last_activity": "Last Activity",
+      "actions": "Actions",
+      "view_details": "View Details",
+      "edit_member": "Edit Member",
+      "delete_member": "Delete Member",
+      "send_reminder": "Send Reminder",
+      "export_data": "Export Data"
+    },
+    "table": {
+      "no_crew_members": "No crew members found",
+      "loading": "Loading crew members...",
+      "total_crew_active": "Total Active Crew",
+      "average_completion": "Average Completion",
+      "overdue_training": "Overdue Training"
+    }
+  },
+  "manager": {
+    "welcome": "Manager Dashboard",
+    "subtitle": "Manage crew onboarding and training progress"
+  }
+}

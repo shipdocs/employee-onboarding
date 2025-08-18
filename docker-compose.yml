@@ -1,0 +1,35 @@
+# Docker Compose for Maritime Onboarding System
+# Optional local development setup (NOT required for Vercel deployment)
+
+version: '3.8'
+
+services:
+  # Redis for translation caching (optional - can use Vercel KV instead)
+  redis:
+    image: redis:7-alpine
+    container_name: maritime-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - maritime-network
+
+volumes:
+  redis_data:
+    driver: local
+
+networks:
+  maritime-network:
+    driver: bridge
+
+# NOTE: This Docker setup is OPTIONAL for local development only.
+# The translation system is designed to work with Vercel serverless functions
+# using cloud-based translation services that require no Docker containers.

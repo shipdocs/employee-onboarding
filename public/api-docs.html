@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maritime Onboarding System - API Documentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.0/swagger-ui.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .nav-links {
+            background: #f7f8fa;
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        .nav-links a {
+            color: #0366d6;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        #swagger-ui {
+            padding: 2rem;
+        }
+        .info-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        .info-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .info-card h2 {
+            color: #24292e;
+            margin-top: 0;
+        }
+        .code-block {
+            background: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        .badge-get { background: #28a745; color: white; }
+        .badge-post { background: #007bff; color: white; }
+        .badge-put { background: #ffc107; color: black; }
+        .badge-delete { background: #dc3545; color: white; }
+        .endpoint-list {
+            list-style: none;
+            padding: 0;
+        }
+        .endpoint-list li {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e1e4e8;
+            display: flex;
+            align-items: center;
+        }
+        .endpoint-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Maritime Onboarding System API</h1>
+        <p>Comprehensive REST API Documentation v1.0.0</p>
+    </div>
+    
+    <div class="nav-links">
+        <a href="#quick-start">Quick Start</a>
+        <a href="#authentication">Authentication</a>
+        <a href="#endpoints">Endpoints</a>
+        <a href="#swagger-ui">Interactive Docs</a>
+        <a href="/API_DOCUMENTATION.md">Full Documentation</a>
+    </div>
+
+    <div class="info-section">
+        <div class="info-card" id="quick-start">
+            <h2>🚀 Quick Start</h2>
+            <p>Base URL: <code>https://onboarding.burando.online/api</code></p>
+            
+            <h3>1. Authenticate</h3>
+            <div class="code-block">
+POST /api/auth/login
+{
+  "email": "admin@example.com",
+  "password": "your-password"
+}
+            </div>
+            
+            <h3>2. Use the JWT Token</h3>
+            <div class="code-block">
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR...
+            </div>
+            
+            <h3>3. Make API Calls</h3>
+            <div class="code-block">
+GET /api/crew/profile
+            </div>
+        </div>
+
+        <div class="info-card" id="authentication">
+            <h2>🔐 Authentication</h2>
+            <p>The API uses JWT (JSON Web Tokens) for authentication. There are two authentication methods:</p>
+            <ul>
+                <li><strong>Admin/Manager:</strong> Email and password login via <code>/api/auth/login</code></li>
+                <li><strong>Crew Members:</strong> Magic link authentication via <code>/api/auth/request-magic-link</code></li>
+            </ul>
+            <p>Include the JWT token in the Authorization header for all authenticated requests.</p>
+        </div>
+
+        <div class="info-card" id="endpoints">
+            <h2>📍 Key Endpoints</h2>
+            <ul class="endpoint-list">
+                <li>
+                    <span class="badge badge-post">POST</span>
+                    <code>/api/auth/login</code> - Admin/Manager login
+                </li>
+                <li>
+                    <span class="badge badge-get">GET</span>
+                    <code>/api/crew/profile</code> - Get crew member profile
+                </li>
+                <li>
+                    <span class="badge badge-get">GET</span>
+                    <code>/api/content/training/phases</code> - Get training phases
+                </li>
+                <li>
+                    <span class="badge badge-post">POST</span>
+                    <code>/api/training/quiz/{phase}/submit</code> - Submit quiz answers
+                </li>
+                <li>
+                    <span class="badge badge-post">POST</span>
+                    <code>/api/upload/content-image</code> - Upload training images
+                </li>
+                <li>
+                    <span class="badge badge-get">GET</span>
+                    <code>/api/workflows</code> - Get training workflows
+                </li>
+                <li>
+                    <span class="badge badge-get">GET</span>
+                    <code>/api/health</code> - Health check (no auth required)
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <h2>📊 Response Format</h2>
+            <h3>Success Response</h3>
+            <div class="code-block">
+{
+  "data": {...},
+  "message": "Success message"
+}
+            </div>
+            
+            <h3>Error Response</h3>
+            <div class="code-block">
+{
+  "error": "Error message",
+  "code": "ERROR_CODE",
+  "details": {...}
+}
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2>⚡ Rate Limiting</h2>
+            <ul>
+                <li>Authentication: 5 requests/minute</li>
+                <li>Read operations: 100 requests/minute</li>
+                <li>Write operations: 20 requests/minute</li>
+                <li>File uploads: 10 requests/minute</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="swagger-ui"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.11.0/swagger-ui-standalone-preset.js"></script>
+    <script>
+        window.onload = function() {
+            const ui = SwaggerUIBundle({
+                url: "/api-spec.yaml",
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                defaultModelsExpandDepth: 1,
+                defaultModelExpandDepth: 1,
+                docExpansion: "list",
+                filter: true,
+                showExtensions: true,
+                showCommonExtensions: true,
+                validatorUrl: null
+            });
+            window.ui = ui;
+        }
+    </script>
+</body>
+</html>

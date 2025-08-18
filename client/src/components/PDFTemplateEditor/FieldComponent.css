@@ -1,0 +1,325 @@
+/* Field Component Styles */
+.field-component {
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+}
+
+.field-component:hover {
+  border-color: #007bff;
+  z-index: 20;
+}
+
+.field-component.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  z-index: 30;
+}
+
+.field-component.dragging {
+  opacity: 0.7;
+  transform: rotate(2deg);
+  z-index: 40;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.field-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.field-content input,
+.field-content select,
+.field-content textarea {
+  border: none;
+  background: transparent;
+  resize: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.field-content input:focus,
+.field-content select:focus,
+.field-content textarea:focus {
+  outline: none;
+}
+
+/* Data binding indicator */
+.data-binding-indicator {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  background: #28a745;
+  color: white;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  z-index: 50;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.data-binding-indicator::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 8px;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 3px solid #28a745;
+}
+
+/* Resize Handles */
+.resize-handle {
+  position: absolute;
+  background: #007bff;
+  border: 2px solid white;
+  border-radius: 50%;
+  z-index: 60;
+  transition: all 0.2s ease;
+  opacity: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.field-component.selected .resize-handle {
+  opacity: 1;
+}
+
+.resize-handle:hover {
+  background: #0056b3;
+  transform: scale(1.2);
+}
+
+/* Corner handles */
+.resize-handle.nw {
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  cursor: nw-resize;
+}
+
+.resize-handle.ne {
+  top: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  cursor: ne-resize;
+}
+
+.resize-handle.sw {
+  bottom: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  cursor: sw-resize;
+}
+
+.resize-handle.se {
+  bottom: -5px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  cursor: se-resize;
+}
+
+/* Edge handles */
+.resize-handle.n {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  cursor: n-resize;
+}
+
+.resize-handle.s {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  cursor: s-resize;
+}
+
+.resize-handle.w {
+  top: 50%;
+  left: -5px;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  cursor: w-resize;
+}
+
+.resize-handle.e {
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  cursor: e-resize;
+}
+
+/* Field type specific styles */
+.field-component[data-field-type="text"] .field-content {
+  display: flex;
+  align-items: center;
+}
+
+.field-component[data-field-type="number"] .field-content {
+  display: flex;
+  align-items: center;
+}
+
+.field-component[data-field-type="date"] .field-content {
+  display: flex;
+  align-items: center;
+}
+
+.field-component[data-field-type="checkbox"] .field-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.field-component[data-field-type="signature"] .field-content {
+  border: 1px dashed #ccc;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+.field-component[data-field-type="image"] .field-content {
+  border: 1px dashed #ccc;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.field-component[data-field-type="table"] .field-content {
+  border: 1px solid #dee2e6;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.field-component[data-field-type="qr_code"] .field-content,
+.field-component[data-field-type="barcode"] .field-content {
+  border: 1px solid #dee2e6;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Field validation states */
+.field-component.error {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+}
+
+.field-component.warning {
+  border-color: #ffc107;
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+}
+
+.field-component.success {
+  border-color: #28a745;
+  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
+}
+
+/* Field overlay for interaction */
+.field-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  cursor: move;
+  z-index: 5;
+}
+
+.field-component.selected .field-overlay {
+  cursor: move;
+}
+
+/* Field label (optional) */
+.field-label {
+  position: absolute;
+  top: -16px;
+  left: 0;
+  font-size: 10px;
+  color: #666;
+  background: white;
+  padding: 1px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+  z-index: 50;
+}
+
+/* Animation for field creation */
+@keyframes fieldAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.field-component.new {
+  animation: fieldAppear 0.3s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .resize-handle {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .resize-handle.nw,
+  .resize-handle.ne,
+  .resize-handle.sw,
+  .resize-handle.se {
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+  }
+  
+  .data-binding-indicator {
+    font-size: 8px;
+    padding: 1px 4px;
+  }
+  
+  .field-label {
+    font-size: 9px;
+  }
+}

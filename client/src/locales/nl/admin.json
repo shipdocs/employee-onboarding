@@ -1,0 +1,347 @@
+{
+  "dashboard": {
+    "title": "Beheerder Dashboard",
+    "loading": "Beheerder dashboard laden...",
+    "loadingDetails": "Managers, sjablonen en systeemstatistieken ophalen",
+    "tabs": {
+      "overview": "Overzicht",
+      "managers": "Manager Beheer",
+      "templates": "PDF Sjablonen",
+      "performance": "Prestaties",
+      "security": "Beveiliging",
+      "content": "Inhoudsbeheer",
+      "settings": "Systeeminstellingen",
+      "audit": "Auditlog"
+    },
+    "stats": {
+      "managers": "Totaal Managers",
+      "crew": "Totaal Bemanningsleden",
+      "sessions": "Actieve Sessies",
+      "health": "Systeemgezondheid"
+    },
+    "sections": {
+      "managers": {
+        "title": "Manager Accounts",
+        "description": "Beheer manager accounts en machtigingen",
+        "add": "Manager Toevoegen",
+        "active": "Actief",
+        "inactive": "Inactief"
+      },
+      "templates": {
+        "title": "PDF Sjablonen",
+        "description": "Beheer certificaat en document sjablonen",
+        "create": "Sjabloon Maken",
+        "empty": "Geen sjablonen",
+        "emptyDescription": "Begin met het maken van uw eerste PDF sjabloon."
+      },
+      "content": {
+        "title": "Inhoudsbeheer",
+        "description": "Training & Examens Bewerken",
+        "redirecting": "Doorverwijzen naar Inhoudsbeheer..."
+      },
+      "audit": {
+        "view": "Activiteit Bekijken",
+        "title": "Systeem Audit Log",
+        "description": "Volg alle administratieve acties en systeemgebeurtenissen",
+        "loading": "Audit logs laden...",
+        "failed": "Fout bij laden audit logs",
+        "tryAgain": "Probeer Opnieuw",
+        "filters": "Filters",
+        "refresh": "Vernieuwen",
+        "action": "Actie",
+        "allActions": "Alle Acties",
+        "resourceType": "Bron Type",
+        "fromDate": "Van Datum",
+        "toDate": "Tot Datum",
+        "clearFilters": "Filters Wissen",
+        "noLogs": "Geen audit logs gevonden",
+        "noLogsDescription": "Geen audit log items voldoen aan uw huidige filters.",
+        "viewDetails": "Bekijk Details",
+        "previous": "Vorige",
+        "next": "Volgende",
+        "showing": "Toont",
+        "to": "tot",
+        "of": "van",
+        "results": "resultaten",
+        "page": "Pagina {{page}} van {{totalPages}}",
+        "actions": {
+          "adminLogin": "Admin Inlog",
+          "managerLogin": "Manager Inlog",
+          "crewLogin": "Bemanning Inlog",
+          "userCreated": "Gebruiker Aangemaakt",
+          "userUpdated": "Gebruiker Bijgewerkt",
+          "userDeleted": "Gebruiker Verwijderd",
+          "emailSent": "E-mail Verzonden",
+          "certificateGenerated": "Certificaat Gegenereerd"
+        },
+        "resourceTypes": {
+          "admin": "Admin",
+          "manager": "Manager",
+          "crew": "Bemanning",
+          "template": "Sjabloon",
+          "email": "E-mail"
+        }
+      }
+    },
+    "actions": {
+      "deactivate": "Manager deactiveren",
+      "activate": "Manager activeren",
+      "sendMagicLink": "Magische login link versturen",
+      "resendWelcomeEmail": "Welkomst e-mail opnieuw versturen",
+      "edit": "Manager bewerken",
+      "delete": "Manager verwijderen"
+    },
+    "tooltips": {
+      "deactivateManager": "Dit manager account deactiveren en toegang intrekken",
+      "activateManager": "Dit manager account activeren en toegang verlenen",
+      "sendMagicLink": "Beveiligde inloglink versturen naar e-mail van deze manager (3 uur geldig)",
+      "resendWelcomeEmail": "Welkomst e-mail opnieuw versturen met nieuw wachtwoord en manager handleiding (respecteert huidige taalvoorkeur)",
+      "editManager": "Manager account details, rechten en instellingen bewerken",
+      "deleteManager": "Dit manager account permanent verwijderen (kan niet ongedaan worden gemaakt)"
+    },
+    "messages": {
+      "loadFailed": "Fout bij laden dashboard gegevens",
+      "managerActivated": "Manager {{name}} succesvol geactiveerd",
+      "managerDeactivated": "Manager {{name}} succesvol gedeactiveerd",
+      "statusUpdateFailed": "Fout bij bijwerken manager status",
+      "magicLinkSent": "Magische link verstuurd naar {{name}}",
+      "magicLinkFailed": "Fout bij versturen magische link",
+      "welcomeEmailResent": "Welkomst e-mail met nieuwe inloggegevens verstuurd naar {{name}}",
+      "welcomeEmailFailed": "Fout bij versturen welkomst e-mail",
+      "deleteConfirm": "Weet u zeker dat u manager \"{{name}}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "managerDeleted": "Manager succesvol verwijderd",
+      "deleteFailed": "Fout bij verwijderen manager",
+      "templateDeleteConfirm": "Weet u zeker dat u sjabloon \"{{name}}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "templateDeleted": "Sjabloon succesvol verwijderd",
+      "templateDeleteFailed": "Fout bij verwijderen sjabloon",
+      "templatePreviewGenerated": "Voorbeeld gegenereerd voor sjabloon \"{{name}}\"",
+      "templatePreviewFailed": "Fout bij genereren voorbeeld voor sjabloon \"{{name}}\""
+    }
+  },
+  "settings": {
+    "title": "Systeeminstellingen",
+    "description": "Configureer globale applicatie instellingen en voorkeuren",
+    "categories": {
+      "application": "Applicatie",
+      "email": "E-mail",
+      "security": "Beveiliging", 
+      "training": "Training",
+      "notifications": "Meldingen"
+    },
+    "descriptions": {
+      "application": "Algemene applicatie instellingen",
+      "email": "E-mail configuratie en meldingen",
+      "security": "Beveiliging en authenticatie instellingen",
+      "training": "Training en certificering instellingen",
+      "notifications": "Melding voorkeuren"
+    },
+    "actions": {
+      "save": "Wijzigingen Opslaan",
+      "saving": "Opslaan...",
+      "refresh": "Vernieuwen",
+      "reset": "Herstel naar Standaard",
+      "unsaved_changes": "Niet opgeslagen wijzigingen"
+    },
+    "messages": {
+      "loading": "Systeeminstellingen laden...",
+      "load_failed": "Fout bij laden systeeminstellingen",
+      "try_again": "Probeer Opnieuw",
+      "reset_confirm": "Weet u zeker dat u {{category}} instellingen wilt herstellen naar standaard? Dit kan niet ongedaan worden gemaakt.",
+      "reset_all_confirm": "Weet u zeker dat u alle instellingen wilt herstellen naar standaard? Dit kan niet ongedaan worden gemaakt."
+    },
+    "email": {
+      "provider_title": "E-mail Service Provider",
+      "provider_description": "Kies uw e-mail service provider. Alleen relevante instellingen worden hieronder getoond.",
+      "smtp_title": "SMTP",
+      "smtp_description": "ProtonMail, Gmail, etc.",
+      "mailersend_title": "MailerSend", 
+      "mailersend_description": "Transactionele E-mail API"
+    },
+    "empty": {
+      "title": "Geen instellingen gevonden",
+      "message": "Er zijn geen instellingen beschikbaar voor deze categorie."
+    }
+  },
+  "certificates": {
+    "title": "Certificaten",
+    "description": "Beheer bemanning certificaten en documentatie",
+    "loading": "Certificaten laden...",
+    "error": "Fout bij Laden Certificaten",
+    "failed": "Fout bij laden certificaten",
+    "tryAgain": "Probeer Opnieuw",
+    "search": "Zoek certificaten...",
+    "refresh": "Vernieuwen",
+    "noFound": "Geen Certificaten Gevonden",
+    "noFoundDescription": "Geen certificaten voldoen aan uw huidige filters.",
+    "filters": {
+      "allTypes": "Alle Types",
+      "onboardingTraining": "Onboarding Training",
+      "introKapitein": "Intro Kapitein"
+    },
+    "table": {
+      "type": "Type",
+      "crewMember": "Bemanningslid",
+      "issueDate": "Uitgiftedatum",
+      "expiryDate": "Vervaldatum",
+      "status": "Status",
+      "actions": "Acties"
+    },
+    "status": {
+      "noExpiry": "Geen Vervaldatum",
+      "expired": "Verlopen",
+      "expiringSoon": "Verloopt Binnenkort",
+      "valid": "Geldig",
+      "unverified": "Niet Geverifieerd",
+      "verified": "Geverifieerd",
+      "notVerified": "Niet Geverifieerd"
+    },
+    "details": {
+      "title": "Certificaat Details",
+      "crewInfo": "Bemanningslid Informatie",
+      "name": "Naam",
+      "email": "E-mail",
+      "position": "Positie",
+      "vessel": "Schip Toewijzing",
+      "editTitle": "Certificaat Details Bewerken",
+      "certificateType": "Certificaat Type",
+      "certificateNumber": "Certificaatnummer",
+      "issueDate": "Uitgiftedatum",
+      "expiryDate": "Vervaldatum",
+      "issuingAuthority": "Uitgevende Instantie",
+      "verified": "Geverifieerd",
+      "cancel": "Annuleren",
+      "saveChanges": "Wijzigingen Opslaan",
+      "metadata": "Certificaat Metadata",
+      "generatedBy": "Gegenereerd Door",
+      "generatedAt": "Gegenereerd Op",
+      "lastUpdated": "Laatst Bijgewerkt",
+      "updatedBy": "Bijgewerkt Door",
+      "templateUsed": "Gebruikte Sjabloon",
+      "version": "Versie",
+      "fileSize": "Bestandsgrootte",
+      "downloadCount": "Download Aantal",
+      "editDetails": "Details Bewerken",
+      "download": "Certificaat Downloaden",
+      "regenerateConfirm": "Bevestig regeneratie?",
+      "regenerateDescription": "Dit zal een nieuw certificaatbestand aanmaken. Het bestaande certificaat wordt vervangen.",
+      "regenerate": "Certificaat Regenereren",
+      "deleteConfirm": "Bevestig verwijdering?",
+      "deleteDescription": "Deze actie kan niet ongedaan worden gemaakt. Het certificaat en alle gegevens worden permanent verwijderd.",
+      "delete": "Certificaat Verwijderen"
+    },
+    "messages": {
+      "updated": "Certificaat succesvol bijgewerkt",
+      "updateFailed": "Fout bij bijwerken certificaat: {{error}}",
+      "deleted": "Certificaat succesvol verwijderd",
+      "deleteFailed": "Fout bij verwijderen certificaat: {{error}}",
+      "regenerated": "Certificaat succesvol geregenereerd",
+      "regenerateFailed": "Fout bij regenereren certificaat: {{error}}"
+    },
+    "pagination": {
+      "previous": "Vorige",
+      "next": "Volgende",
+      "showing": "Toont",
+      "to": "tot",
+      "of": "van",
+      "results": "resultaten"
+    }
+  },
+  "performance": {
+    "title": "Prestatie Dashboard",
+    "subtitle": "Maritiem-specifieke prestatiemonitoring en analyses",
+    "loading": "Prestatie gegevens laden...",
+    "error_loading": "Fout bij laden prestatie gegevens",
+    "fetch_error": "Fout bij ophalen prestatie statistieken",
+    "export": "Gegevens Exporteren",
+    "export_success": "Prestatie gegevens succesvol geëxporteerd",
+    "export_error": "Fout bij exporteren prestatie gegevens",
+    "time_ranges": {
+      "1h": "Laatste Uur",
+      "24h": "Laatste 24 Uur",
+      "7d": "Laatste 7 Dagen",
+      "30d": "Laatste 30 Dagen"
+    },
+    "metrics": {
+      "overall_score": "Algemene Prestatie Score",
+      "active_users": "Actieve Gebruikers",
+      "avg_response_time": "Gemiddelde Responstijd",
+      "user_satisfaction": "Gebruikerstevredenheid",
+      "connection_quality": "Verbindingskwaliteit",
+      "location_distribution": "Locatie Verdeling",
+      "maritime": {
+        "connection_quality": "Maritieme Verbindingskwaliteit",
+        "location_distribution": "Maritieme Locatie Verdeling",
+        "vessel_performance": "Schip Prestaties",
+        "offshore_connectivity": "Offshore Connectiviteit",
+        "training_completion": "Training Voltooiingspercentages",
+        "safety_metrics": "Veiligheidsstatistieken"
+      }
+    },
+    "charts": {
+      "response_time_trend": "Responstijd Trend",
+      "user_activity": "Gebruikersactiviteit",
+      "error_rate": "Foutpercentage",
+      "bandwidth_usage": "Bandbreedte Gebruik"
+    },
+    "alerts": {
+      "title": "Prestatie Waarschuwingen",
+      "high_response_time": "Hoge Responstijd Gedetecteerd",
+      "low_satisfaction": "Lage Gebruikerstevredenheid",
+      "connection_issues": "Verbindingskwaliteit Problemen",
+      "performance_degradation": "Prestatie Verslechtering"
+    },
+    "feedback": {
+      "recent_title": "Recente Gebruikersfeedback"
+    },
+    "maritime": {
+      "connection_quality": "Maritieme Verbindingskwaliteit",
+      "location_distribution": "Maritieme Locatie Verdeling"
+    }
+  },
+  "security": {
+    "dashboard_title": "Beveiligingsmonitoring",
+    "dashboard_subtitle": "Real-time beveiligingsmonitoring en dreigingsdetectie",
+    "metrics": {
+      "active_threats": "Actieve Dreigingen",
+      "failed_logins": "Mislukte Inlogpogingen",
+      "blocked_requests": "Geblokkeerde Verzoeken",
+      "security_score": "Beveiligingsscore"
+    },
+    "time_range": "Tijdsbereik",
+    "severity_filter": "Ernst Filter",
+    "search_events": "Zoek gebeurtenissen...",
+    "recent_events": "Recente Beveiligingsgebeurtenissen",
+    "event_type": "Gebeurtenistype",
+    "severity": "Ernst",
+    "user": "Gebruiker",
+    "ip_address": "IP-adres",
+    "timestamp": "Tijdstempel",
+    "actions": "Acties",
+    "no_events": "Geen beveiligingsgebeurtenissen gevonden",
+    "no_events_description": "Geen beveiligingsgebeurtenissen komen overeen met de huidige filters"
+  },
+  "data_export": {
+    "title": "Data Export & AVG Beheer",
+    "subtitle": "Beheer data exports en AVG verzoeken",
+    "exports_tab": "Data Exports",
+    "deletions_tab": "Data Verwijderingen",
+    "export_id": "Export ID",
+    "export_type": "Export Type",
+    "user_email": "Gebruiker E-mail",
+    "status": "Status",
+    "file_size": "Bestandsgrootte",
+    "created_at": "Aangemaakt Op",
+    "completed_at": "Voltooid Op",
+    "actions": "Acties",
+    "view_details": "Bekijk Details",
+    "download": "Download",
+    "no_exports": "Geen data exports gevonden",
+    "no_exports_description": "Geen data exports komen overeen met de huidige filters",
+    "export_details": "Export Details",
+    "file_path": "Bestandspad",
+    "error_message": "Foutmelding",
+    "close": "Sluiten",
+    "loading": "Exports laden...",
+    "error_loading": "Fout bij laden exports"
+  }
+}
