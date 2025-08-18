@@ -35,19 +35,19 @@ The Maritime Onboarding System streamlines crew training with a modern, role-bas
 - **Email**: MailerSend for reliable transactional emails
 - **Authentication**: JWT with role-based access control
 
-## 🔧 **Recent Updates**
+## 🔧 **Key Features**
 
-### **August 4, 2025 - Critical Production Fixes** ✅
-- **MFA System Restored**: Fixed 500 errors in MFA endpoints (PR #166)
-- **Security Vulnerability Resolved**: Removed PyPDF2 security issue (PR #167)
-- **Authentication Fixed**: Resolved JWT token expiration handling (Commit 918e929)
-- **System Status**: All critical production issues resolved
+### **Security & Compliance**
+- **Multi-factor Authentication**: Enhanced security for admin accounts
+- **Row Level Security**: Database-level access control
+- **GDPR Compliance**: Data export and privacy controls
+- **Audit Logging**: Complete activity tracking
 
-### **Previous Major Updates**
-- **Security Enhancements**: Multi-factor authentication system implemented
-- **Performance Improvements**: Optimized database queries and caching
-- **UI/UX Updates**: Enhanced user interface with better accessibility
-- **Compliance Features**: GDPR data export and audit logging
+### **Training Management**
+- **Phase-based Learning**: Structured onboarding progression
+- **Interactive Assessments**: Comprehensive quiz system
+- **Progress Tracking**: Real-time completion monitoring
+- **Certificate Generation**: Automated PDF certificates
 
 ## 🎯 **Training Workflow**
 

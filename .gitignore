@@ -147,3 +147,23 @@ playwright-report/
 .env.test
 .mcp.json
 .claude/settings.local.json
+
+# Development and internal folders
+.ai-collaboration/
+archive/
+reports/
+test-reports/
+refactor/
+improvement-plans/
+serena-mcp/
+
+# Development files
+*-report.json
+*-report.html
+*debug*.png
+*test*.js
+!tests/**/*.js
+!e2e-tests/**/*.js
+*.backup
+clean-*.sh
+verify-*.sh
