@@ -6,32 +6,12 @@ const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
 
-// Patch path-to-regexp at the file system level to prevent crashes
-const pathToRegexpPath = path.join(__dirname, 'node_modules', 'path-to-regexp', 'dist', 'index.js');
-
-try {
-  if (fs.existsSync(pathToRegexpPath)) {
-    console.log('🔧 Patching path-to-regexp to prevent crashes...');
-    const originalContent = fs.readFileSync(pathToRegexpPath, 'utf8');
-
-    // Replace the problematic error throwing with a warning
-    const patchedContent = originalContent.replace(
-      /throw new TypeError\(`Missing parameter name at \${i}: \${DEBUG_URL}`\);/g,
-      'console.warn(`⏭️ Skipped problematic path pattern at ${i}: ${DEBUG_URL}`); return [];'
-    );
-
-    if (patchedContent !== originalContent) {
-      fs.writeFileSync(pathToRegexpPath, patchedContent);
-      console.log('✅ Successfully patched path-to-regexp');
-    } else {
-      console.log('⚠️ path-to-regexp patch pattern not found');
-    }
-  } else {
-    console.log('⚠️ path-to-regexp not found at expected location');
-  }
-} catch (error) {
-  console.log('⚠️ Failed to patch path-to-regexp:', error.message);
-}
+// SECURITY: Removed dangerous runtime file system patching.
+// If there are issues with path-to-regexp, they should be handled properly:
+// 1. Update to a newer version that fixes the issue
+// 2. Use try-catch blocks around route registration
+// 3. Validate route patterns before registration
+// Runtime patching of node_modules is a critical security vulnerability.
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -45,35 +25,22 @@ app.use(cors({
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Simple rate limiting middleware
-const rateLimit = (windowMs = 15 * 60 * 1000, max = 100) => {
-  const requests = new Map();
-  return (req, res, next) => {
-    const key = req.ip;
-    const now = Date.now();
-    
-    if (!requests.has(key)) {
-      requests.set(key, []);
-    }
-    
-    const userRequests = requests.get(key).filter(time => now - time < windowMs);
-    
-    if (userRequests.length >= max) {
-      return res.status(429).json({ 
-        error: 'Too many requests',
-        retryAfter: Math.ceil(windowMs / 1000)
-      });
-    }
-    
-    userRequests.push(now);
-    requests.set(key, userRequests);
-    next();
-  };
-};
+// Initialize Redis-based rate limiter
+const rateLimiter = require('./lib/rate-limiter');
 
-// Create rate limiting instances
-global.apiRateLimit = rateLimit(15 * 60 * 1000, 100); // 100 requests per 15 minutes
-global.adminRateLimit = rateLimit(15 * 60 * 1000, 50); // 50 requests per 15 minutes
+// Initialize rate limiter on startup
+(async () => {
+  await rateLimiter.init();
+  
+  // Create rate limiting instances
+  const limiters = rateLimiter.createLimiters();
+  global.apiRateLimit = limiters.api;
+  global.adminRateLimit = limiters.admin;
+  global.authRateLimit = limiters.auth;
+  global.uploadRateLimit = limiters.upload;
+  global.passwordResetRateLimit = limiters.passwordReset;
+  global.emailRateLimit = limiters.email;
+})();
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -112,8 +79,13 @@ function loadApiRoutes(dir, basePath = '/api') {
             next(error);
           }
         };
-        app.all(basePath, expressHandler);
-        console.log(`✅ Loaded API route: ${basePath} (from index.js)`);
+        try {
+          app.all(basePath, expressHandler);
+          console.log(`✅ Loaded API route: ${basePath} (from index.js)`);
+        } catch (routeError) {
+          console.error(`❌ Failed to register route ${basePath}:`, routeError.message);
+          // Continue loading other routes even if one fails
+        }
       }
     } catch (error) {
       if (!error.message.includes('Cannot find module')) {
@@ -152,8 +124,12 @@ function loadApiRoutes(dir, basePath = '/api') {
                   next(error);
                 }
               };
-              app.all(`${basePath}/:${param}`, expressHandler);
-              console.log(`✅ Loaded dynamic route: ${basePath}/:${param}`);
+              try {
+                app.all(`${basePath}/:${param}`, expressHandler);
+                console.log(`✅ Loaded dynamic route: ${basePath}/:${param}`);
+              } catch (routeError) {
+                console.error(`❌ Failed to register dynamic route ${basePath}/:${param}:`, routeError.message);
+              }
             }
           } catch (error) {
             console.log(`⚠️  Failed to load ${dynamicFilePath}: ${error.message}`);
@@ -182,8 +158,12 @@ function loadApiRoutes(dir, basePath = '/api') {
                     next(error);
                   }
                 };
-                app.all(`${basePath}/:${param}/${routeName}`, expressHandler);
-                console.log(`✅ Loaded dynamic nested route: ${basePath}/:${param}/${routeName}`);
+                try {
+                  app.all(`${basePath}/:${param}/${routeName}`, expressHandler);
+                  console.log(`✅ Loaded dynamic nested route: ${basePath}/:${param}/${routeName}`);
+                } catch (routeError) {
+                  console.error(`❌ Failed to register nested route ${basePath}/:${param}/${routeName}:`, routeError.message);
+                }
               }
             } catch (error) {
               console.log(`⚠️  Failed to load ${dynamicItemPath}: ${error.message}`);
@@ -218,8 +198,12 @@ function loadApiRoutes(dir, basePath = '/api') {
                   next(error);
                 }
               };
-              app.all(`${basePath}/:${param}`, expressHandler);
-              console.log(`✅ Loaded dynamic route file: ${basePath}/:${param}`);
+              try {
+                app.all(`${basePath}/:${param}`, expressHandler);
+                console.log(`✅ Loaded dynamic route file: ${basePath}/:${param}`);
+              } catch (routeError) {
+                console.error(`❌ Failed to register route ${basePath}/:${param}:`, routeError.message);
+              }
             }
           } catch (error) {
             console.log(`⚠️  Failed to load ${item}: ${error.message}`);
@@ -249,8 +233,12 @@ function loadApiRoutes(dir, basePath = '/api') {
               next(error);
             }
           };
-          app.all(routePath, expressHandler);
-          console.log(`✅ Loaded API route: ${routePath}`);
+          try {
+            app.all(routePath, expressHandler);
+            console.log(`✅ Loaded API route: ${routePath}`);
+          } catch (routeError) {
+            console.error(`❌ Failed to register route ${routePath}:`, routeError.message);
+          }
         } else if (handler.default && typeof handler.default === 'function') {
           // Support ES6 default exports
           const expressHandler = (req, res, next) => {
@@ -263,8 +251,12 @@ function loadApiRoutes(dir, basePath = '/api') {
               next(error);
             }
           };
-          app.all(routePath, expressHandler);
-          console.log(`✅ Loaded API route (default): ${routePath}`);
+          try {
+            app.all(routePath, expressHandler);
+            console.log(`✅ Loaded API route (default): ${routePath}`);
+          } catch (routeError) {
+            console.error(`❌ Failed to register route ${routePath}:`, routeError.message);
+          }
         } else {
           console.log(`⏭️  Skipped (not a function): ${routePath}`);
         }
@@ -299,31 +291,15 @@ app.use('/api/*', (req, res) => {
   });
 });
 
-// Global error handler
-app.use((err, req, res, next) => {
-  console.error('❌ Server error:', err);
-  
-  // Handle specific error types
-  if (err.name === 'ValidationError') {
-    return res.status(400).json({
-      error: 'Validation error',
-      details: err.message
-    });
-  }
-  
-  if (err.name === 'UnauthorizedError') {
-    return res.status(401).json({
-      error: 'Unauthorized',
-      details: 'Invalid or missing authentication'
-    });
-  }
-  
-  // Generic error response
-  res.status(err.status || 500).json({
-    error: err.message || 'Internal server error',
-    timestamp: new Date().toISOString()
-  });
-});
+// Initialize centralized error handler
+const errorHandler = require('./lib/error-handler');
+
+// Setup global error handlers
+errorHandler.handleUncaughtException();
+errorHandler.handleUnhandledRejection();
+
+// Use centralized error handling middleware
+app.use(errorHandler.middleware());
 
 // Start server
 app.listen(PORT, () => {

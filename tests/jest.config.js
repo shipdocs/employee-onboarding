@@ -17,13 +17,32 @@ module.exports = {
     "json-summary"
   ],
 
-  // Coverage thresholds (temporarily lowered for Sprint S04 new features)
+  // Coverage thresholds - Updated to production standards
   coverageThreshold: {
     global: {
-      branches: 15,
-      functions: 20,
-      lines: 15,
-      statements: 15
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80
+    },
+    // Critical security modules require higher coverage
+    './lib/auth-middleware.js': {
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90
+    },
+    './lib/database-query-builder.js': {
+      branches: 95,
+      functions: 95,
+      lines: 95,
+      statements: 95
+    },
+    './lib/file-validator.js': {
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90
     }
   },
 
@@ -97,13 +116,19 @@ module.exports = {
   collectCoverageFrom: [
     "../server/**/*.{js,ts}",
     "../lib/**/*.{js,ts}",
+    "../api/**/*.{js,ts}",
     "../client/src/**/*.{js,ts,tsx}",
     "!**/*.d.ts",
+    "!**/*.test.{js,ts}",
+    "!**/*.spec.{js,ts}",
     "!**/node_modules/**",
     "!**/coverage/**",
     "!**/dist/**",
     "!**/build/**",
-    "!**/tests/**"
+    "!**/tests/**",
+    "!**/migrations/**",
+    "!**/scripts/**",
+    "!**/__mocks__/**"
   ],
 
   // Verbose output
