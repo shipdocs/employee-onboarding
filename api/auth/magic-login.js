@@ -41,7 +41,7 @@
  * // Success response
  * {
  *   "success": true,
- *   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+ *   "token": "your_jwt_token_here...",
  *   "user": {
  *     "id": "crew_123",
  *     "email": "crew@vessel.com",
