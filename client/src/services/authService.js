@@ -7,23 +7,9 @@ export const authService = {
     return response.data;
   },
 
-  managerLogin: async (email, password) => {
-    const response = await api.post('/auth/manager-login', { email, password });
-    return response.data;
-  },
-
-  adminLogin: async (email, password, mfaToken = null) => {
-    const response = await api.post('/auth/login-with-mfa', {
-      email,
-      password,
-      mfaToken
-    });
-    return response.data;
-  },
-
-  // Staff login for both admin and manager roles with MFA support
+  // Unified staff login for both admin and manager roles with MFA support
   staffLogin: async (email, password, mfaToken = null) => {
-    const response = await api.post('/auth/login-with-mfa', {
+    const response = await api.post('/auth/staff-login', {
       email,
       password,
       mfaToken

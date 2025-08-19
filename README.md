@@ -1,22 +1,39 @@
 # Employee Onboarding System
 
-A comprehensive crew onboarding and training management system for the maritime industry, featuring automated training workflows, interactive quizzes, and certificate generation.
+A complete maritime crew onboarding and training management system featuring automated training workflows, interactive quizzes, and certificate generation. **Ready to use after Docker setup with working admin accounts and training content.**
 
 [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-green.svg)](https://onboarding.burando.online)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-18+-blue.svg)](https://reactjs.org/)
 
+## 🚀 **Quick Start**
+
+### **✅ SYSTEM STATUS: Ready to Use**
+**👉 [REALITEIT_CHECK.md](REALITEIT_CHECK.md)** - **Complete overview of system capabilities and features**
+
+### **For Development & Testing**
+**⚡ [QUICK_START.md](QUICK_START.md)** - Local development setup (Docker Desktop)
+
+### **For Production Deployment**
+**🚀 [DEPLOYMENT_OPTIES.md](DEPLOYMENT_OPTIES.md)** - **Real deployment options: VPS, Cloud, Enterprise**
+**🛡️ [SECURITY_GUIDE.md](SECURITY_GUIDE.md)** - **Complete security implementation guide**
+**📖 [Complete Documentation](docs/README.md)** - Comprehensive guides and references
+
+### **For End Users**
+**👉 [EERSTE_STAPPEN.md](EERSTE_STAPPEN.md)** - First steps after deployment
+**👥 [GEBRUIKERSHANDLEIDING.md](GEBRUIKERSHANDLEIDING.md)** - User guide in Dutch
+
+---
+
 ## 📚 Documentation
 
-**📖 [Complete Documentation](docs/README.md)** - Start here for comprehensive guides and references
-
 ### Quick Links
-- **🚀 [Getting Started](docs/getting-started/README.md)** - Get started with the system
-- **🔄 [Development Workflow](docs/for-developers/development-workflow/workflow.md)** - Three-tier deployment pipeline
 - **🔐 [Role-Based Access Control](docs/ROLE_BASED_ACCESS_CONTROL.md)** - User roles and permissions
 - **📄 [Certificate System](docs/CERTIFICATE_SYSTEM.md)** - Automated certificate generation
 - **🔧 [API Reference](docs/api/README.md)** - Complete API documentation
+- **🚀 [Deployment Guide](docs/deployment/README.md)** - Production deployment
+- **👥 [User Guides](docs/user-guides/README.md)** - How to use the system
 
 ## 🚢 Overview
 

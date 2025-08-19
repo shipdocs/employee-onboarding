@@ -4,8 +4,8 @@
   "description": "Comprehensive maritime crew onboarding system with multi-phase training workflow",
   "main": "api/index.js",
   "scripts": {
-    "start": "vercel dev",
-    "start:cloud": "vercel dev --env-file .env.cloud",
+    "start": "docker compose up",
+    "start:dev": "docker compose up --build",
     "dev:build": "cd client && npm run build && cd .. && cp -r client/build ./build",
     "dev:fresh": "rm -rf build && npm run dev:build",
     "build": "cd client && npm run build:optimized && cd .. && cp -r client/build ./build",
@@ -101,8 +101,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "migrate:smtp": "node scripts/run-smtp-migration.js",
-    "deploy": "vercel --prod",
-    "setup:supabase": "node migration/01-setup-supabase.js",
+    "deploy": "docker compose -f docker-compose.yml up -d",
+    "setup:database": "docker exec maritime_database psql -U postgres -d maritime -f /docker-entrypoint-initdb.d/init-db.sql",
     "setup:environments": "node scripts/setup-environments.js",
     "setup:admin": "node scripts/setup-admin-user.js",
     "test:permissions": "node scripts/test-file-permissions.js",
@@ -144,7 +144,6 @@
     "prepare": "node -e \"if (process.env.CI) process.exit(0); try { require('child_process').execSync('husky install', {stdio: 'inherit'}); } catch (e) { console.log('Husky not available, skipping git hooks setup'); }\""
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.53.0",
     "axios": "1.11.0",
     "bcrypt": "6.0.0",
     "cors": "^2.8.5",
@@ -220,8 +219,8 @@
     "training",
     "crew",
     "shipping",
-    "vercel",
-    "supabase",
+    "docker",
+    "postgresql",
     "testing"
   ],
   "author": "Burando Maritime Services",

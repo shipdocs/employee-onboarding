@@ -1,175 +1,123 @@
-// Vercel API Route: /api/auth/magic-login.js
-const { supabase } = require('../../lib/supabase');
-const { generateTokenPair } = require('../../lib/auth');
-const { authRateLimit } = require('../../lib/rateLimit');
-const { notificationService } = require('../../lib/notificationService');
-const { createAPIHandler, createError, createValidationError, createAuthError, createDatabaseError } = require('../../lib/apiHandler');
+// Magic Link Login for Crew Members (PostgreSQL)
+const { Pool } = require('pg');
+const jwt = require('jsonwebtoken');
 
-// Helper function to log security events for magic link attempts (non-blocking)
-function logMagicLinkSecurityEvent(token, ipAddress, userAgent, eventType, details = {}) {
-  // Make this completely non-blocking to prevent RLS issues from breaking login
-  setImmediate(async () => {
-    try {
-      // Use service role key to bypass RLS for security logging
-      const { error } = await supabase
-        .from('security_events')
-        .insert({
-          event_id: require('crypto').randomUUID(),
-          type: `magic_link_${eventType}`,
-          severity: eventType === 'invalid_token' || eventType === 'expired_token' ? 'medium' : 'low',
-          user_id: null,
-          ip_address: ipAddress,
-          user_agent: userAgent,
-          details: {
-            token_hash: token ? require('crypto').createHash('sha256').update(token).digest('hex').substring(0, 16) : null,
-            timestamp: new Date().toISOString(),
-            ...details
-          },
-          threats: eventType === 'invalid_token' ? ['token_brute_force'] : []
-        });
-
-      if (error) {
-        console.error('🚨 [SECURITY] Failed to log magic link security event (non-critical):', error.message);
-      }
-    } catch (securityError) {
-      console.error('🚨 [SECURITY] Security event logging error (non-critical):', securityError.message);
-    }
-  });
-}
-
-async function handler(req, res) {
-  console.log('🔍 [MAGIC-LOGIN] Handler called');
-  const { token } = req.body;
-  const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'unknown';
-  const userAgent = req.headers['user-agent'] || 'unknown';
-
-  if (!token) {
-    console.log('❌ [MAGIC-LOGIN] No token provided');
-    throw createValidationError('Token is required', {
-      missingFields: ['token']
-    });
-  }
-
-  console.log('🔍 [MAGIC-LOGIN] Token received, proceeding with verification');
-
-  // Verify magic link (allow multiple uses within expiry period)
-  const { data: linkData, error: linkError } = await supabase
-    .from('magic_links')
-    .select('*')
-    .eq('token', token)
-    .gt('expires_at', new Date().toISOString())
-    .single();
-
-  if (linkError || !linkData) {
-    // Log security event for invalid/expired magic link attempt (non-blocking)
-    logMagicLinkSecurityEvent(token, clientIP, userAgent, 'invalid_token', {
-      error: linkError?.message || 'Token not found or expired'
-    });
-
-    throw createError('AUTH_TOKEN_EXPIRED', 'Invalid or expired login link');
-  }
-
-  // Get user data
-  const { data: userData, error: userError } = await supabase
-    .from('users')
-    .select('*')
-    .eq('email', linkData.email)
-    .single();
-
-  if (userError || !userData) {
-    throw createError('DB_RECORD_NOT_FOUND', 'User not found', {
-      email: linkData.email
-    });
-  }
-
-  // Block magic link login for privileged users (admin/manager)
-  if (['admin', 'manager'].includes(userData.role)) {
-    // Log security event for privileged user attempting magic link (non-blocking)
-    logMagicLinkSecurityEvent(token, clientIP, userAgent, 'privileged_user_attempt', {
-      email: linkData.email,
-      role: userData.role,
-      reason: 'Staff members must use password login'
-    });
-
-    throw createError('AUTH_METHOD_NOT_ALLOWED', 'Staff members must use the Staff Login option with password and MFA. Magic links are only available for crew members.');
-  }
-
-  // Track usage but don't mark as used to allow multiple logins within expiry window
-  const { error: updateError } = await supabase
-    .from('magic_links')
-    .update({ used_at: new Date().toISOString() })
-    .eq('token', token)
-    .is('used_at', null); // Only update if not already used (for first-time tracking)
-
-  if (updateError) {
-    // Don't fail the login for this non-critical update
-  }
-
-  // Update user status to in_progress if they're crew and currently not_started
-  if (userData.role === 'crew' && userData.status === 'not_started') {
-    const { error: statusUpdateError } = await supabase
-      .from('users')
-      .update({
-        status: 'in_progress',
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', userData.id);
-
-    if (statusUpdateError) {
-      // Don't fail the login, just log the error
-    } else {
-      // Update the userData object to reflect the change
-      userData.status = 'in_progress';
-    }
-  }
-
-  // Check for first-time login and trigger notifications
-  try {
-    await notificationService.checkAndHandleFirstLogin(userData);
-  } catch (notificationError) {
-    // Don't fail the login for notification errors
-    console.error('🚨 [MAGIC-LOGIN] Notification service error (non-critical):', notificationError);
-  }
-
-  // Log successful magic link usage (non-blocking)
-  logMagicLinkSecurityEvent(token, clientIP, userAgent, 'successful_login', {
-    email: linkData.email,
-    user_id: userData.id,
-    role: userData.role
-  });
-
-  // Generate token pair (access + refresh tokens)
-  console.log('🔍 [MAGIC-LOGIN] Generating token pair');
-  const tokenResult = await generateTokenPair(userData, req);
-  
-  if (!tokenResult.success) {
-    throw createError('AUTH_TOKEN_GENERATION_FAILED', 'Failed to generate authentication tokens');
-  }
-
-  console.log('✅ [MAGIC-LOGIN] Login successful for:', userData.email);
-  res.json({
-    token: tokenResult.accessToken,
-    refreshToken: tokenResult.refreshToken,
-    expiresIn: tokenResult.expiresIn,
-    tokenType: tokenResult.tokenType,
-    user: {
-      id: userData.id,
-      email: userData.email,
-      firstName: userData.first_name,
-      lastName: userData.last_name,
-      role: userData.role,
-      position: userData.position,
-      vesselAssignment: userData.vessel_assignment,
-      status: userData.status,
-      preferredLanguage: userData.preferred_language
-    }
-  });
-}
-
-// Create the standardized handler with error handling
-const apiHandler = createAPIHandler(handler, {
-  allowedMethods: ['POST']
+// Create PostgreSQL connection
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL
 });
 
-// Export with rate limiting
-module.exports = authRateLimit(apiHandler);
+module.exports = async function handler(req, res) {
+  // Only allow POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  try {
+    const { token } = req.body;
+
+    // Validate input
+    if (!token) {
+      return res.status(400).json({
+        error: 'Missing token',
+        message: 'Magic link token is required'
+      });
+    }
+
+    // Check if JWT_SECRET is configured
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({
+        error: 'Server configuration error',
+        message: 'Authentication not configured'
+      });
+    }
+
+    // Get magic link from database
+    const linkResult = await pool.query(
+      'SELECT * FROM magic_links WHERE token = $1 AND expires_at > NOW()',
+      [token]
+    );
+
+    if (linkResult.rows.length === 0) {
+      return res.status(401).json({
+        error: 'Invalid magic link',
+        message: 'Magic link is invalid or expired'
+      });
+    }
+
+    const linkData = linkResult.rows[0];
+
+    // Get user from database
+    const userResult = await pool.query(
+      'SELECT id, email, first_name, last_name, role, position, vessel_assignment, status, preferred_language FROM users WHERE id = $1 AND is_active = true',
+      [linkData.user_id]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(401).json({
+        error: 'User not found',
+        message: 'User account not found or inactive'
+      });
+    }
+
+    const user = userResult.rows[0];
+
+    // Block magic link login for privileged users (admin/manager)
+    if (['admin', 'manager'].includes(user.role)) {
+      return res.status(403).json({
+        error: 'Access denied',
+        message: 'Staff members must use the Staff Login option. Magic links are only for crew members.'
+      });
+    }
+
+    // Mark magic link as used
+    await pool.query(
+      'UPDATE magic_links SET used_at = NOW(), used_ip = $1 WHERE token = $2',
+      [req.headers['x-forwarded-for'] || req.connection.remoteAddress, token]
+    );
+
+    // Update user status to in_progress if they're crew and currently not_started
+    if (user.role === 'crew' && user.status === 'not_started') {
+      await pool.query(
+        'UPDATE users SET status = $1, updated_at = NOW() WHERE id = $2',
+        ['in_progress', user.id]
+      );
+      user.status = 'in_progress';
+    }
+
+    // Generate JWT token
+    const jwtToken = jwt.sign(
+      {
+        userId: user.id,
+        email: user.email,
+        role: user.role
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+    // Success response
+    return res.json({
+      success: true,
+      token: jwtToken,
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        role: user.role,
+        position: user.position,
+        vesselAssignment: user.vessel_assignment,
+        status: user.status,
+        preferredLanguage: user.preferred_language
+      }
+    });
+
+  } catch (error) {
+    console.error('Magic login error:', error);
+    return res.status(500).json({
+      error: 'Internal server error',
+      message: 'Please try again later'
+    });
+  }
+};

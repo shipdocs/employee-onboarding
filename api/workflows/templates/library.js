@@ -1,8 +1,6 @@
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../../../lib/supabase');
 const { requireManagerOrAdmin } = require('../../../lib/auth.js');
 const { apiRateLimit } = require('../../../lib/rateLimit');
-
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
 /**
  * Workflow Templates Library API

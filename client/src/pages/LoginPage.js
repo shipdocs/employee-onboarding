@@ -14,7 +14,6 @@ const LoginPage = () => {
   const [searchParams] = useSearchParams();
   const { login, user } = useAuth();
   const [loginType, setLoginType] = useState('request'); // 'request', 'token', or 'staff'
-  const [showSecondaryOptions, setShowSecondaryOptions] = useState(false);
   const [showTokenEntry, setShowTokenEntry] = useState(false);
   const [showMFAChallenge, setShowMFAChallenge] = useState(false);
   const [staffCredentials, setStaffCredentials] = useState(null);
@@ -281,7 +280,7 @@ const LoginPage = () => {
 
         {/* Login Form - Mobile-First Design */}
         <div className="glass-card-elevated p-6 sm:p-8 lg:p-10 hover-lift fade-in">
-          {/* Welcome Message & Guidance */}
+          {/* Welcome Message & Login Type Selection */}
           <div className="text-center mb-6 sm:mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-burando-bright-teal to-burando-teal rounded-full mb-4 sm:mb-6 shadow-2xl">
               <span className="text-2xl sm:text-3xl">🚢</span>
@@ -289,16 +288,67 @@ const LoginPage = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 drop-shadow-xl" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.8)'}}>
               {t('login_methods.title')}
             </h2>
-            <div className="max-w-md mx-auto">
-              <p className="text-white/90 text-base sm:text-lg mb-2" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>
-                New to the platform?
-              </p>
-              <p className="text-white/80 text-sm sm:text-base leading-relaxed" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>
-                Enter your email address and we'll send you a secure login link.
-              </p>
-              <div className="mt-4 text-white/70 text-xs sm:text-sm">
-                Already have a login link? Enter the code from your email below.
+
+            {/* Login Type Selection - Enhanced Design */}
+            <div className="max-w-lg mx-auto mb-8">
+              <div className="grid grid-cols-2 gap-4 p-2 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
+                <button
+                  type="button"
+                  onClick={() => setLoginType('request')}
+                  className={`py-4 px-6 rounded-xl text-sm font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
+                    loginType === 'request'
+                      ? 'bg-gradient-to-br from-burando-bright-teal to-burando-teal text-white shadow-xl border-2 border-white/30'
+                      : 'text-white/80 hover:text-white hover:bg-white/15 border-2 border-transparent hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className={`p-2 rounded-full ${loginType === 'request' ? 'bg-white/20' : 'bg-white/10'}`}>
+                      <Mail className="h-6 w-6" />
+                    </div>
+                    <span className="text-base">Crew Login</span>
+                    <span className="text-xs opacity-80">Magic Link</span>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLoginType('staff')}
+                  className={`py-4 px-6 rounded-xl text-sm font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
+                    loginType === 'staff'
+                      ? 'bg-gradient-to-br from-burando-navy to-burando-teal text-white shadow-xl border-2 border-white/30'
+                      : 'text-white/80 hover:text-white hover:bg-white/15 border-2 border-transparent hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className={`p-2 rounded-full ${loginType === 'staff' ? 'bg-white/20' : 'bg-white/10'}`}>
+                      <Shield className="h-6 w-6" />
+                    </div>
+                    <span className="text-base">Staff Login</span>
+                    <span className="text-xs opacity-80">Admin & Manager</span>
+                  </div>
+                </button>
               </div>
+            </div>
+
+            <div className="max-w-md mx-auto">
+              {loginType === 'request' ? (
+                <>
+                  <p className="text-white/90 text-base sm:text-lg mb-2" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>
+                    New to the platform?
+                  </p>
+                  <p className="text-white/80 text-sm sm:text-base leading-relaxed" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>
+                    Enter your email address and we'll send you a secure login link.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-white/90 text-base sm:text-lg mb-2" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>
+                    Admin or Manager?
+                  </p>
+                  <p className="text-white/80 text-sm sm:text-base leading-relaxed" style={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>
+                    Sign in with your email and password.
+                  </p>
+                </>
+              )}
             </div>
           </div>
 
@@ -377,61 +427,15 @@ const LoginPage = () => {
                 </div>
               </div>
 
-              {/* Progressive Disclosure - Secondary Options */}
-              <div className="mt-8 sm:mt-12">
-                {!showSecondaryOptions ? (
-                  /* Show "Need Help?" Link */
-                  <div className="text-center">
-                    <button
-                      type="button"
-                      onClick={() => setShowSecondaryOptions(true)}
-                      className="text-white/60 hover:text-white/80 text-base font-medium transition-colors duration-300 underline decoration-dotted underline-offset-4 py-3 px-4 min-h-[44px] touch-manipulation"
-                    >
-                      Need help logging in?
-                    </button>
-                  </div>
-                ) : (
-                  /* Show Secondary Options */
-                  <div className="pt-6 border-t border-white/10">
-                    <div className="text-center space-y-4">
-                      <p className="text-white/50 text-sm mb-4">{t('login_methods.request.alternative_text')}</p>
-
-                      {/* Login Code Option */}
-                      <div className="max-w-sm mx-auto">
-                        <button
-                          type="button"
-                          onClick={() => setLoginType('token')}
-                          className="w-full flex items-center justify-center px-5 py-4 text-base font-medium text-white/70 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-all duration-200 border border-white/10 hover:border-white/20 min-h-[48px] touch-manipulation"
-                        >
-                          <Key className="h-5 w-5 mr-3" />
-                          {t('login_methods.request.manual_token_button')}
-                        </button>
-                      </div>
-
-                      {/* Staff Access - Minimal */}
-                      <div className="pt-4 border-t border-white/5">
-                        <button
-                          type="button"
-                          onClick={() => setLoginType('staff')}
-                          className="text-sm text-white/40 hover:text-white/60 transition-colors duration-300 underline min-h-[44px] py-3 px-2 touch-manipulation"
-                        >
-                          Staff Login
-                        </button>
-                      </div>
-
-                      {/* Hide Secondary Options */}
-                      <div className="pt-2">
-                        <button
-                          type="button"
-                          onClick={() => setShowSecondaryOptions(false)}
-                          className="text-white/40 hover:text-white/60 text-xs transition-colors duration-300"
-                        >
-                          ← Hide options
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
+              {/* Manual Token Entry Option - Keep as secondary option for crew */}
+              <div className="mt-8 sm:mt-12 text-center">
+                <button
+                  type="button"
+                  onClick={() => setLoginType('token')}
+                  className="text-white/60 hover:text-white/80 text-sm font-medium transition-colors duration-300 underline decoration-dotted underline-offset-4 py-3 px-4 min-h-[44px] touch-manipulation"
+                >
+                  Already have a login code? Enter it here
+                </button>
               </div>
             </div>
           )}
@@ -542,118 +546,132 @@ const LoginPage = () => {
             </form>
           )}
 
-          {/* TERTIARY ACTION - Staff Login */}
+          {/* STAFF LOGIN - Enhanced Design */}
           {loginType === 'staff' && (
-            <div>
-              {/* Back Button */}
-              <div className="mb-8">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setLoginType('request');
-                    reset(); // Clear form validation errors
-                  }}
-                  className="text-burando-bright-teal hover:text-white text-sm font-medium transition-colors duration-200 flex items-center mb-6"
-                >
-                  <ChevronDown className="h-4 w-4 mr-2 rotate-90" />
-                  {t('login_methods.admin.back_button')}
-                </button>
-              </div>
-
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-                <>
-                  {/* TERTIARY ACTION - Staff Login */}
-                  <div className="space-y-6">
-                  <div className="text-center mb-6">
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full mb-4 shadow-lg">
-                      <Shield className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2">Staff Login</h3>
-                    <p className="text-white/60 text-xs">
-                      For administrators and managers with password access
-                    </p>
+            <div className="mb-6 sm:mb-8">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
+                {/* Staff Login Header */}
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-burando-navy to-burando-teal rounded-full mb-6 shadow-2xl animate-pulse">
+                    <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-white" />
                   </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 drop-shadow-xl" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.8)'}}>
+                    Staff Access
+                  </h3>
+                  <p className="text-white/90 text-base sm:text-lg leading-relaxed font-medium px-2 mb-2">
+                    Administrator & Manager Login
+                  </p>
+                  <p className="text-white/70 text-sm leading-relaxed max-w-md mx-auto">
+                    Secure access for staff members with enhanced authentication
+                  </p>
+                </div>
 
-                  <div className="space-y-4">
-                    <div className="form-group">
-                      <label className="form-label text-white text-sm font-medium mb-2 block" htmlFor="staff-email">
+                {/* Form Fields */}
+                <div className="space-y-6">
+                  <div className="form-group">
+                    <label className="form-label text-white text-lg font-semibold mb-3 block" htmlFor="staff-email">
+                      <div className="flex items-center">
+                        <Mail className="h-5 w-5 mr-2 text-burando-bright-teal" />
                         Email Address
-                      </label>
-                      <input
-                        id="staff-email"
-                        type="email"
-                        className={`glass-input text-sm py-3 px-4 text-white placeholder-white/40 rounded-lg border ${errors.email ? 'border-red-400' : 'border-white/20 focus:border-red-400'} transition-all duration-300`}
-                        placeholder="Enter your email address"
-                        autoComplete="email"
-                        {...register('email', {
-                          required: t('validation.admin_email_required'),
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: t('validation.email_invalid')
-                          }
-                        })}
-                      />
-                      {errors.email && (
-                        <p className="text-red-300 text-xs mt-1 flex items-center" role="alert">
-                          <AlertCircle className="h-3 w-3 mr-1" />
-                          {errors.email.message}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label text-white text-sm font-medium mb-2 block" htmlFor="staff-password">
-                        Password
-                      </label>
-                      <input
-                        id="staff-password"
-                        type="password"
-                        className={`glass-input text-sm py-3 px-4 text-white placeholder-white/40 rounded-lg border ${errors.password ? 'border-red-400' : 'border-white/20 focus:border-red-400'} transition-all duration-300`}
-                        placeholder="Enter your password"
-                        autoComplete="current-password"
-                        {...register('password', {
-                          required: t('validation.admin_password_required'),
-                          minLength: {
-                            value: 8,
-                            message: t('validation.admin_password_min_length')
-                          }
-                        })}
-                      />
-                      {errors.password && (
-                        <p className="text-red-300 text-xs mt-1 flex items-center" role="alert">
-                          <AlertCircle className="h-3 w-3 mr-1" />
-                          {errors.password.message}
-                        </p>
-                      )}
-                    </div>
+                      </div>
+                    </label>
+                    <input
+                      id="staff-email"
+                      type="email"
+                      className={`glass-input w-full text-lg sm:text-xl py-5 sm:py-6 px-5 sm:px-6 text-white placeholder-white/50 rounded-xl border-2 ${errors.email ? 'border-red-400' : 'border-white/20 focus:border-burando-bright-teal'} transition-all duration-300 min-h-[56px] touch-manipulation text-center sm:text-left`}
+                      placeholder="admin@maritime-onboarding.local"
+                      autoComplete="email"
+                      autoFocus
+                      {...register('email', {
+                        required: 'Email address is required',
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: 'Please enter a valid email address'
+                        }
+                      })}
+                    />
+                    {errors.email && (
+                      <p className="text-red-300 text-base mt-3 flex items-center" role="alert">
+                        <AlertCircle className="h-4 w-4 mr-2" />
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-medium py-3 px-4 rounded-lg text-sm transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-red-500/50"
-                  >
-                    {isLoading ? (
-                      <div className="flex items-center justify-center">
-                        <LoadingSpinner size="small" message="" />
-                        <span className="ml-2">Signing in...</span>
+                  <div className="form-group">
+                    <label className="form-label text-white text-lg font-semibold mb-3 block" htmlFor="staff-password">
+                      <div className="flex items-center">
+                        <Lock className="h-5 w-5 mr-2 text-burando-bright-teal" />
+                        Password
                       </div>
-                    ) : (
-                      <div className="flex items-center justify-center">
-                        <Shield className="h-4 w-4 mr-2" />
-                        <span>Staff Login</span>
-                      </div>
+                    </label>
+                    <input
+                      id="staff-password"
+                      type="password"
+                      className={`glass-input w-full text-lg sm:text-xl py-5 sm:py-6 px-5 sm:px-6 text-white placeholder-white/50 rounded-xl border-2 ${errors.password ? 'border-red-400' : 'border-white/20 focus:border-burando-bright-teal'} transition-all duration-300 min-h-[56px] touch-manipulation text-center sm:text-left`}
+                      placeholder="Enter your password"
+                      autoComplete="current-password"
+                      {...register('password', {
+                        required: 'Password is required',
+                        minLength: {
+                          value: 1,
+                          message: 'Password is required'
+                        }
+                      })}
+                    />
+                    {errors.password && (
+                      <p className="text-red-300 text-base mt-3 flex items-center" role="alert">
+                        <AlertCircle className="h-4 w-4 mr-2" />
+                        {errors.password.message}
+                      </p>
                     )}
-                  </button>
-
-                  {/* Security Notice */}
-                  <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                    <p className="text-red-200 text-xs text-center">
-                      🔐 Multi-factor authentication required for all staff accounts
-                    </p>
                   </div>
                 </div>
-              </>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-gradient-to-r from-burando-navy to-burando-teal text-white font-bold py-7 sm:py-8 px-6 sm:px-8 rounded-2xl text-xl sm:text-2xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-burando-teal/50 focus:ring-offset-2 shadow-2xl animate-pulse hover:animate-none min-h-[64px] touch-manipulation"
+                >
+                  {isLoading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
+                      <span className="text-lg sm:text-xl">Signing in...</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center">
+                      <Shield className="h-7 w-7 sm:h-8 sm:w-8 mr-3 sm:mr-4" />
+                      <span>Staff Login</span>
+                    </div>
+                  )}
+                </button>
+
+                {/* Security Notice */}
+                <div className="mt-8 glass-card p-6 border-l-4 border-burando-teal">
+                  <div className="flex items-start">
+                    <div className="bg-burando-teal/20 p-2 rounded-full mr-4 mt-1">
+                      <Shield className="h-5 w-5 text-burando-teal" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-white mb-2">Secure Staff Access</h4>
+                      <p className="text-gray-200 text-sm leading-relaxed">
+                        This login is for authorized staff members only. Multi-factor authentication may be required for enhanced security.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Switch to Crew Login */}
+                <div className="mt-8 sm:mt-12 text-center">
+                  <button
+                    type="button"
+                    onClick={() => setLoginType('request')}
+                    className="text-white/60 hover:text-white/80 text-sm font-medium transition-colors duration-300 underline decoration-dotted underline-offset-4 py-3 px-4 min-h-[44px] touch-manipulation"
+                  >
+                    Not a staff member? Use Crew Login instead
+                  </button>
+                </div>
               </form>
             </div>
           )}

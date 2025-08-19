@@ -144,6 +144,9 @@ services:
       DATABASE_URL: postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@database:5432/${DB_NAME:-maritime}
       # PostgREST
       POSTGREST_URL: http://postgrest:3000
+      # Supabase
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
       # Storage
       MINIO_ENDPOINT: minio
       MINIO_PORT: 9000

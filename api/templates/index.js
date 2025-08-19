@@ -64,18 +64,14 @@ async function getTemplates(req, res, user) {
     // Only filter by user for personal template management
     const showAllTemplates = req.query.browse === 'true' || user.role === 'manager';
 
-    let query = supabase
-      .from('pdf_templates')
-      .select('*');
+    const whereClause = !showAllTemplates ? { created_by: user.userId } : {};
 
-    if (!showAllTemplates) {
-      query = query.eq('created_by', user.userId);
-    }
+    const templates = await supabase.helpers.select('pdf_templates',
+      whereClause,
+      { orderBy: { 'updated_at': 'DESC' } }
+    );
 
-    const { data: templates, error } = await query.order('updated_at', { ascending: false });
-
-    if (error) {
-      // console.error('Error fetching templates:', _error);
+    if (!templates) {
       return res.status(500).json({ error: 'Failed to fetch templates' });
     }
 

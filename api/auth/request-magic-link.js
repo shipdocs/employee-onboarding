@@ -114,8 +114,8 @@ async function handler(req, res) {
     }
 
     // Check if user is active (different checks for crew vs manager)
-    // Crew members can log in if they're in progress or beyond (not if not_started or suspended)
-    const allowedCrewStatuses = ['in_progress', 'forms_completed', 'training_completed', 'fully_completed'];
+    // Crew members can log in if they're active or in progress states
+    const allowedCrewStatuses = ['active', 'in_progress', 'forms_completed', 'training_completed', 'fully_completed'];
     if (user.role === 'crew' && !allowedCrewStatuses.includes(user.status)) {
       return res.status(403).json({
         error: `Your account is not active (status: ${user.status}). Please contact your manager.`
@@ -135,6 +135,7 @@ async function handler(req, res) {
     const { error: linkError } = await supabase
       .from('magic_links')
       .insert({
+        user_id: user.id,
         email: user.email,
         token,
         expires_at: expiresAt.toISOString()

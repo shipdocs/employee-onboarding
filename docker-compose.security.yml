@@ -1,0 +1,189 @@
+# Maritime Onboarding System - Security Hardened Configuration
+# Use: docker compose -f docker-compose.yml -f docker-compose.security.yml up -d
+
+version: '3.8'
+
+services:
+  # Frontend - Only accessible via reverse proxy
+  frontend:
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    user: "101:101"  # nginx user
+    networks:
+      - frontend_network
+    # Remove direct port exposure - only via nginx proxy
+    ports: []
+
+  # Backend - Internal network only
+  backend:
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    user: "1000:1000"  # Non-root user
+    networks:
+      - backend_network
+      - frontend_network
+    # Remove direct port exposure
+    ports: []
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          memory: 512M
+    environment:
+      # Security headers
+      - SECURITY_HEADERS=true
+      - RATE_LIMIT_ENABLED=true
+      - CORS_ORIGIN=${FRONTEND_URL:-http://localhost}
+
+  # Database - Backend network only
+  database:
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+    networks:
+      - backend_network
+    # Remove direct port exposure
+    ports: []
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          memory: 256M
+
+  # PostgREST - Backend network only
+  postgrest:
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    networks:
+      - backend_network
+    # Remove direct port exposure
+    ports: []
+
+  # Redis - Backend network only
+  redis:
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    user: "999:999"  # redis user
+    networks:
+      - backend_network
+    # Remove direct port exposure
+    ports: []
+
+  # MinIO - Backend network only
+  minio:
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - backend_network
+    # Remove direct port exposure
+    ports: []
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  # pgAdmin - Admin network only
+  pgadmin:
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - admin_network
+      - backend_network
+    # Remove direct port exposure
+    ports: []
+
+  # MailHog - Admin network only
+  mailhog:
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    networks:
+      - admin_network
+    # Remove direct port exposure
+    ports: []
+
+  # Nginx Reverse Proxy - Only exposed service
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: maritime_nginx_proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/logs:/var/log/nginx
+    networks:
+      - frontend_network
+      - admin_network
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      - frontend
+      - backend
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  # Frontend network - for web traffic
+  frontend_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+  # Backend network - internal services only
+  backend_network:
+    driver: bridge
+    internal: true  # No internet access
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+
+  # Admin network - for admin tools
+  admin_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/24
+
+# Secrets management
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  jwt_secret:
+    file: ./secrets/jwt_secret.txt
+  minio_secret:
+    file: ./secrets/minio_secret.txt

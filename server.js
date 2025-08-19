@@ -22,7 +22,9 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json({ limit: '50mb' }));
+// Use custom JSON parser that properly handles special characters
+const { customJsonParser } = require('./lib/middleware/jsonParser');
+app.use(customJsonParser({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Initialize Redis-based rate limiter
@@ -71,9 +73,9 @@ function loadApiRoutes(dir, basePath = '/api') {
       if (typeof handler === 'function') {
         const expressHandler = (req, res, next) => {
           try {
-            const result = handler(req, res);
-            if (result && typeof result.catch === 'function') {
-              result.catch(next);
+            const indexResult = handler(req, res);
+            if (indexResult && typeof indexResult.catch === 'function') {
+              indexResult.catch(next);
             }
           } catch (error) {
             next(error);
@@ -97,6 +99,12 @@ function loadApiRoutes(dir, basePath = '/api') {
   items.forEach(item => {
     if (item === 'index.js') return; // Skip index.js as we handle it above
     
+    // Skip problematic nested dynamic routes temporarily
+    if (item.includes('[') && item.includes(']') && dir.includes('[') && dir.includes(']')) {
+      console.log(`⏭️ Skipping nested dynamic route: ${dir}/${item}`);
+      return;
+    }
+    
     const itemPath = path.join(dir, item);
     const stat = fs.statSync(itemPath);
     
@@ -116,9 +124,9 @@ function loadApiRoutes(dir, basePath = '/api') {
               const expressHandler = (req, res, next) => {
                 req.query[param] = req.params[param];
                 try {
-                  const result = handler(req, res);
-                  if (result && typeof result.catch === 'function') {
-                    result.catch(next);
+                  const dynamicParamResult = handler(req, res);
+                  if (dynamicParamResult && typeof dynamicParamResult.catch === 'function') {
+                    dynamicParamResult.catch(next);
                   }
                 } catch (error) {
                   next(error);
@@ -150,17 +158,19 @@ function loadApiRoutes(dir, basePath = '/api') {
                 const expressHandler = (req, res, next) => {
                   req.query[param] = req.params[param];
                   try {
-                    const result = handler(req, res);
-                    if (result && typeof result.catch === 'function') {
-                      result.catch(next);
+                    const nestedDynamicResult = handler(req, res);
+                    if (nestedDynamicResult && typeof nestedDynamicResult.catch === 'function') {
+                      nestedDynamicResult.catch(next);
                     }
                   } catch (error) {
                     next(error);
                   }
                 };
                 try {
-                  app.all(`${basePath}/:${param}/${routeName}`, expressHandler);
-                  console.log(`✅ Loaded dynamic nested route: ${basePath}/:${param}/${routeName}`);
+                  const nestedRoute = `${basePath}/:${param}/${routeName}`;
+                  console.log(`🔍 Attempting to register nested route: ${nestedRoute}`);
+                  app.all(nestedRoute, expressHandler);
+                  console.log(`✅ Loaded dynamic nested route: ${nestedRoute}`);
                 } catch (routeError) {
                   console.error(`❌ Failed to register nested route ${basePath}/:${param}/${routeName}:`, routeError.message);
                 }
@@ -190,9 +200,9 @@ function loadApiRoutes(dir, basePath = '/api') {
               const expressHandler = (req, res, next) => {
                 req.query[param] = req.params[param];
                 try {
-                  const result = handler(req, res);
-                  if (result && typeof result.catch === 'function') {
-                    result.catch(next);
+                  const dynamicParamResult = handler(req, res);
+                  if (dynamicParamResult && typeof dynamicParamResult.catch === 'function') {
+                    dynamicParamResult.catch(next);
                   }
                 } catch (error) {
                   next(error);
@@ -225,15 +235,16 @@ function loadApiRoutes(dir, basePath = '/api') {
           // Wrap Next.js style handlers for Express
           const expressHandler = (req, res, next) => {
             try {
-              const result = handler(req, res);
-              if (result && typeof result.catch === 'function') {
-                result.catch(next);
+              const regularResult = handler(req, res);
+              if (regularResult && typeof regularResult.catch === 'function') {
+                regularResult.catch(next);
               }
             } catch (error) {
               next(error);
             }
           };
           try {
+            console.log(`🔍 Attempting to register route: ${routePath}`);
             app.all(routePath, expressHandler);
             console.log(`✅ Loaded API route: ${routePath}`);
           } catch (routeError) {
@@ -243,9 +254,9 @@ function loadApiRoutes(dir, basePath = '/api') {
           // Support ES6 default exports
           const expressHandler = (req, res, next) => {
             try {
-              const result = handler.default(req, res);
-              if (result && typeof result.catch === 'function') {
-                result.catch(next);
+              const defaultResult = handler.default(req, res);
+              if (defaultResult && typeof defaultResult.catch === 'function') {
+                defaultResult.catch(next);
               }
             } catch (error) {
               next(error);
@@ -267,6 +278,9 @@ function loadApiRoutes(dir, basePath = '/api') {
             !error.message.includes('Cannot find module') &&
             !error.message.includes('Missing parameter name')) {
           console.log(`⚠️  Failed to load ${routePath}: ${error.message}`);
+          if (routePath.includes('admin-login')) {
+            console.error(`Full error for ${routePath}:`, error);
+          }
         }
       }
     }

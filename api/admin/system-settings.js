@@ -53,14 +53,13 @@ async function handler(req, res) {
  */
 async function handleGet(req, res) {
   try {
-    const { data: settings, error } = await supabase
-      .from('system_settings')
-      .select('*')
-      .order('category', { ascending: true })
-      .order('key', { ascending: true });
+    // Use helpers method for secure database access
+    const settings = await supabase.helpers.select('system_settings',
+      {},
+      { orderBy: { 'category': 'ASC', 'key': 'ASC' } }
+    );
 
-    if (error) {
-      // console.error('Error fetching settings:', _error);
+    if (!settings) {
       return res.status(500).json({ error: 'Failed to fetch settings' });
     }
 

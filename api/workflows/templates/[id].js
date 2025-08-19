@@ -1,13 +1,7 @@
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../../../lib/supabase');
 const { requireManagerOrAdmin } = require('../../../lib/auth.js');
 const { apiRateLimit } = require('../../../lib/rateLimit');
-const configManager = require('../../../lib/security/SecureConfigManager');
 const { handleErrorAndRespond, createSimpleError } = require('../../../lib/security/secureErrorHandlerHelper');
-
-const supabase = createClient(
-  configManager.getString('SUPABASE_URL'), 
-  configManager.getString('SUPABASE_SERVICE_ROLE_KEY')
-);
 
 /**
  * Workflow Template by ID API

@@ -1,12 +1,10 @@
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../../../lib/supabase');
 const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
 const { requireAuth } = require('../../../lib/auth.js');
 const fs = require('fs');
 const path = require('path');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 const { handleErrorAndRespond, createSimpleError } = require('../../../lib/security/secureErrorHandlerHelper');
-
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
 /**
  * Workflow PDF Generation API
