@@ -1,3 +1,60 @@
+/**
+ * @file CrewDashboard.js
+ * @brief Main dashboard interface for crew members in the Maritime Onboarding System
+ *
+ * @details This component serves as the primary interface for crew members to access
+ * and manage their onboarding training progress. It provides a comprehensive overview
+ * of training status, quick access to training phases, quiz results, and personal
+ * profile information. The dashboard is optimized for maritime environments with
+ * responsive design and offline capabilities.
+ *
+ * **Key Features for Crew Members:**
+ * - **Training Progress Overview**: Visual progress tracking across all training phases
+ * - **Quick Access Navigation**: Direct links to current training activities
+ * - **Phase Management**: Sequential training phase completion tracking
+ * - **Quiz Integration**: Access to assessments and results viewing
+ * - **Profile Management**: Personal information and vessel assignment details
+ * - **Certificate Access**: Download and view completed training certificates
+ * - **Mobile Optimization**: Touch-friendly interface for shipboard use
+ *
+ * **Dashboard Components:**
+ * - **Welcome Header**: Personalized greeting with overall progress
+ * - **Quick Stats**: Key metrics and current training status
+ * - **Training Phases**: Detailed phase-by-phase progress tracking
+ * - **Next Steps**: Guidance for continuing training progression
+ * - **Completion Message**: Congratulations and certificate information
+ *
+ * **User Experience Features:**
+ * - Responsive design for various screen sizes
+ * - Multilingual support (English/Dutch)
+ * - Real-time progress updates
+ * - Intuitive navigation and clear visual hierarchy
+ * - Error handling with user-friendly messages
+ * - Loading states for better perceived performance
+ *
+ * **Training Workflow Integration:**
+ * - Phase 1: Basic safety and orientation training
+ * - Phase 2: Advanced procedures and documentation
+ * - Phase 3: Final assessment and certification
+ * - Automatic progression based on completion criteria
+ *
+ * **Technical Implementation:**
+ * - React hooks for state management
+ * - Custom hooks for data fetching and caching
+ * - Component composition for maintainability
+ * - Performance optimization with lazy loading
+ * - Error boundaries for graceful failure handling
+ *
+ * @author Maritime Onboarding System
+ * @version 1.0
+ * @since 2024
+ *
+ * @see TrainingPage For detailed training phase interfaces
+ * @see QuizPage For assessment and quiz functionality
+ * @see ProfilePage For personal information management
+ * @see useCrewDashboard For data fetching and state management
+ */
+
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
@@ -10,8 +67,44 @@ import NextSteps from '../components/CrewDashboard/NextSteps';
 import CompletionMessage from '../components/CrewDashboard/CompletionMessage';
 
 /**
- * CrewDashboard - Main dashboard component for crew members
- * Refactored to use smaller, focused sub-components and custom hooks
+ * @brief Main dashboard component for crew members
+ *
+ * @details Provides a comprehensive overview of training progress, quick access to
+ * training activities, and personalized guidance for crew members. The component
+ * orchestrates multiple sub-components to create a cohesive user experience.
+ *
+ * **Component Architecture:**
+ * - Modular design with focused sub-components
+ * - Custom hooks for data management
+ * - Responsive layout with mobile optimization
+ * - Error handling and loading states
+ * - Internationalization support
+ *
+ * **Data Management:**
+ * - Real-time training progress tracking
+ * - Quiz history and results
+ * - Personal profile information
+ * - Training statistics and metrics
+ * - Certificate status and availability
+ *
+ * **User Interface:**
+ * - Clean, maritime-themed design
+ * - Intuitive navigation and clear visual hierarchy
+ * - Progress indicators and status badges
+ * - Touch-friendly controls for mobile devices
+ * - Accessibility features for inclusive design
+ *
+ * @returns {JSX.Element} Rendered crew dashboard with training overview and navigation
+ *
+ * @example
+ * // Basic usage in routing
+ * <Route path="/crew/dashboard" element={<CrewDashboard />} />
+ *
+ * @example
+ * // Component renders different states based on training progress
+ * // - Loading state while fetching data
+ * // - Error state if data loading fails
+ * // - Complete dashboard with all training information
  */
 const CrewDashboard = () => {
   const { user } = useAuth();

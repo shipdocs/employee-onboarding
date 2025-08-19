@@ -1,3 +1,44 @@
+/**
+ * @file LoginPage.js
+ * @brief Primary authentication interface for the Maritime Onboarding System
+ *
+ * @details This component serves as the main entry point for all user authentication
+ * in the maritime crew onboarding system. It provides three distinct authentication
+ * methods tailored to different user roles and security requirements:
+ *
+ * **For Crew Members:**
+ * - Magic link authentication via email (passwordless)
+ * - Secure token-based access with automatic URL processing
+ * - Mobile-optimized interface for shipboard use
+ *
+ * **For Managers and Administrators:**
+ * - Traditional email/password authentication
+ * - Multi-factor authentication (MFA) support
+ * - Enhanced security features for privileged accounts
+ *
+ * **Key Features:**
+ * - Responsive design optimized for maritime environments
+ * - Multilingual support (English/Dutch)
+ * - Real-time form validation and error handling
+ * - Automatic token processing from email links
+ * - Progressive enhancement for offline scenarios
+ *
+ * **Security Implementation:**
+ * - JWT token-based session management
+ * - Rate limiting and brute force protection
+ * - Secure token transmission and validation
+ * - Session timeout and automatic logout
+ *
+ * @author Maritime Onboarding System
+ * @version 1.0
+ * @since 2024
+ *
+ * @see AuthContext For authentication state management
+ * @see authService For authentication API calls
+ * @see ManagerDashboard For manager interface post-login
+ * @see CrewDashboard For crew interface post-login
+ */
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -10,6 +51,35 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 
+/**
+ * @brief Main authentication component for the Maritime Onboarding System
+ *
+ * @details Provides a unified login interface supporting multiple authentication
+ * methods based on user role. Handles magic link processing, staff authentication,
+ * and multi-factor authentication challenges.
+ *
+ * **Authentication Flow:**
+ * 1. User selects authentication method (magic link request, token entry, or staff login)
+ * 2. System validates credentials and processes authentication
+ * 3. On success, user is redirected to role-appropriate dashboard
+ * 4. On failure, appropriate error messages are displayed
+ *
+ * **Supported Authentication Methods:**
+ * - **Magic Link Request**: Crew members request login link via email
+ * - **Magic Link Token**: Automatic processing of tokens from email links
+ * - **Staff Login**: Traditional email/password for managers and administrators
+ *
+ * @returns {JSX.Element} Rendered login interface with dynamic authentication options
+ *
+ * @example
+ * // Basic usage in routing
+ * <Route path="/login" element={<LoginPage />} />
+ *
+ * @example
+ * // Magic link URL processing
+ * // URL: /login?token=abc123
+ * // Component automatically processes token and authenticates user
+ */
 const LoginPage = () => {
   const [searchParams] = useSearchParams();
   const { login, user } = useAuth();

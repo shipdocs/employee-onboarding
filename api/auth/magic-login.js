@@ -1,3 +1,64 @@
+/**
+ * @file magic-login.js
+ * @brief Passwordless authentication endpoint for crew members
+ *
+ * @details This API endpoint implements secure magic link authentication specifically
+ * designed for maritime crew members. It provides a passwordless login system that
+ * enhances security while simplifying the authentication process for users who may
+ * have limited access to traditional password management tools in maritime environments.
+ *
+ * **Authentication Process:**
+ * 1. Crew member receives magic link via email
+ * 2. Link contains secure token with limited validity period
+ * 3. Token is validated against database records
+ * 4. Valid tokens generate JWT session tokens
+ * 5. User is authenticated and redirected to crew dashboard
+ *
+ * **Security Features:**
+ * - Time-limited token validity (configurable expiration)
+ * - Single-use token consumption
+ * - Database-backed token verification
+ * - JWT session token generation
+ * - Automatic token cleanup on use
+ *
+ * **Error Handling:**
+ * - Invalid or expired tokens
+ * - Missing user accounts
+ * - Database connectivity issues
+ * - Configuration errors
+ *
+ * @endpoint POST /api/auth/magic-login
+ * @param {string} token - Magic link token from email
+ * @returns {Object} Authentication response with JWT token and user data
+ *
+ * @example
+ * // Request body
+ * {
+ *   "token": "abc123def456ghi789"
+ * }
+ *
+ * @example
+ * // Success response
+ * {
+ *   "success": true,
+ *   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+ *   "user": {
+ *     "id": "crew_123",
+ *     "email": "crew@vessel.com",
+ *     "role": "crew",
+ *     "firstName": "John",
+ *     "lastName": "Sailor"
+ *   }
+ * }
+ *
+ * @author Maritime Onboarding System
+ * @version 1.0
+ * @since 2024
+ *
+ * @see CrewDashboard For post-authentication interface
+ * @see emailService For magic link generation and delivery
+ */
+
 // Magic Link Login for Crew Members (PostgreSQL)
 const { Pool } = require('pg');
 const jwt = require('jsonwebtoken');
@@ -7,6 +68,33 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
+/**
+ * @brief Handles magic link authentication for crew members
+ *
+ * @details Processes magic link tokens sent via email to authenticate crew members
+ * without requiring passwords. Validates token expiration, user existence, and
+ * generates JWT session tokens for authenticated sessions.
+ *
+ * **Request Processing:**
+ * 1. Validates request method and token presence
+ * 2. Queries database for valid, non-expired magic link
+ * 3. Retrieves associated user account information
+ * 4. Generates JWT session token with user data
+ * 5. Marks magic link as used (single-use security)
+ * 6. Returns authentication response
+ *
+ * @param {Object} req - Express request object
+ * @param {Object} req.body - Request body containing token
+ * @param {string} req.body.token - Magic link token to validate
+ * @param {Object} res - Express response object
+ *
+ * @returns {Promise<void>} Sends JSON response with authentication result
+ *
+ * @throws {401} Invalid or expired magic link
+ * @throws {404} User account not found
+ * @throws {405} Invalid HTTP method
+ * @throws {500} Server configuration or database errors
+ */
 module.exports = async function handler(req, res) {
   // Only allow POST
   if (req.method !== 'POST') {
