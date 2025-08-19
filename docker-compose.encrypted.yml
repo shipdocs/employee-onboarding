@@ -69,8 +69,12 @@ services:
     environment:
       NODE_ENV: production
       PORT: 3000
-      # Database connection
-      DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD}@database:5432/${DB_NAME:-maritime}
+      # Database connection (password injected via secrets)
+      DB_USER: ${DB_USER:-postgres}
+      DB_NAME: ${DB_NAME:-maritime}
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_PASSWORD_FILE: /run/secrets/postgres_password
       # Encryption configuration
       FIELD_ENCRYPTION_KEY_FILE: /run/secrets/field_encryption_key
       DATABASE_ENCRYPTION_KEY_FILE: /run/secrets/database_encryption_key
@@ -93,6 +97,7 @@ services:
     networks:
       - maritime_network
     secrets:
+      - postgres_password
       - field_encryption_key
       - database_encryption_key
       - jwt_secret

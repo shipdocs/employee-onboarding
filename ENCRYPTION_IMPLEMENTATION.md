@@ -207,11 +207,19 @@ secrets:
 ### Encrypted Backups
 
 ```bash
-# Create encrypted backup
-docker exec maritime_backup_encrypted /app/scripts/backup-encrypted.sh
+# Create encrypted backup with error handling
+if ! docker exec maritime_backup_encrypted /app/scripts/backup-encrypted.sh; then
+    echo "ERROR: Backup failed!" >&2
+    exit 1
+fi
+echo "Backup completed successfully"
 
-# Restore from encrypted backup
-docker exec maritime_backup_encrypted /app/scripts/restore-encrypted.sh backup_20250819.sql.gpg
+# Restore from encrypted backup with validation
+if ! docker exec maritime_backup_encrypted /app/scripts/restore-encrypted.sh backup_20250819.sql.gpg; then
+    echo "ERROR: Restore failed!" >&2
+    exit 1
+fi
+echo "Restore completed successfully"
 ```
 
 ### Disaster Recovery
