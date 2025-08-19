@@ -295,6 +295,21 @@ loadApiRoutes(apiDir, '/api');
 // Serve static files from uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Serve documentation from doxygen-docs/html directory
+app.use('/docs', express.static(path.join(__dirname, 'doxygen-docs/html'), {
+  index: 'index.html',
+  setHeaders: (res, path) => {
+    // Set proper MIME types for CSS and JS files
+    if (path.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    } else if (path.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
+    }
+    // Enable caching for static documentation assets
+    res.setHeader('Cache-Control', 'public, max-age=3600'); // 1 hour cache
+  }
+}));
+
 // 404 handler for API routes
 app.use('/api/*', (req, res) => {
   res.status(404).json({ 

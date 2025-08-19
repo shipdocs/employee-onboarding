@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$langISO">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen $doxygenversion"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Maritime Onboarding System - Complete documentation for crew training, certification, and onboarding workflows"/>
+<meta name="keywords" content="maritime, onboarding, crew training, certification, documentation, API"/>
+<meta name="author" content="Maritime Onboarding System"/>
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="$title"/>
+<meta property="og:description" content="Professional maritime crew onboarding and training management system"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://your-domain.com/assets/maritime-og-image.png"/>
+<meta property="og:url" content="$relpath$"/>
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="$title"/>
+<meta name="twitter:description" content="Professional maritime crew onboarding and training management system"/>
+<meta name="twitter:image" content="https://your-domain.com/assets/maritime-twitter-image.png"/>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="$relpath$favicon.svg"/>
+<link rel="icon" type="image/png" href="$relpath$favicon.png"/>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<!-- Stylesheets -->
+<link href="$relpath$modern-doxygen.css" rel="stylesheet" type="text/css" />
+<!--BEGIN PROJECT_BRIEF--><meta name="description" content="$projectbrief"/><!--END PROJECT_BRIEF-->
+<!--BEGIN PROJECT_NAME--><title>$projectname: $title</title><!--END PROJECT_NAME-->
+<!--BEGIN !PROJECT_NAME--><title>$title</title><!--END !PROJECT_NAME-->
+
+<!-- Doxygen JavaScript Dependencies -->
+<script type="text/javascript" src="$relpath$jquery.js"></script>
+<script type="text/javascript" src="$relpath$search/search.js"></script>
+<script type="text/javascript" src="$relpath$search/searchdata.js"></script>
+
+<!-- Custom JavaScript for Enhanced Features -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling to all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add copy button to code blocks
+    document.querySelectorAll('pre, .fragment').forEach(block => {
+        const button = document.createElement('button');
+        button.className = 'copy-button';
+        button.textContent = 'Copy';
+        button.style.cssText = `
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s;
+        `;
+        
+        block.style.position = 'relative';
+        block.appendChild(button);
+        
+        block.addEventListener('mouseenter', () => button.style.opacity = '1');
+        block.addEventListener('mouseleave', () => button.style.opacity = '0');
+        
+        button.addEventListener('click', () => {
+            const text = block.textContent || block.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => button.textContent = 'Copy', 2000);
+            });
+        });
+    });
+
+    // Add dark mode toggle
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.innerHTML = '🌙';
+    darkModeToggle.className = 'dark-mode-toggle';
+    darkModeToggle.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(255,255,255,0.9);
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1001;
+        transition: all 0.2s ease;
+    `;
+    
+    document.body.appendChild(darkModeToggle);
+    
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        darkModeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+    
+    // Restore dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.innerHTML = '☀️';
+    }
+
+    // Add progress indicator for long pages
+    const progressBar = document.createElement('div');
+    progressBar.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+        z-index: 1002;
+        transition: width 0.1s ease;
+    `;
+    document.body.appendChild(progressBar);
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        progressBar.style.width = scrolled + '%';
+    });
+
+    // Add back to top button
+    const backToTop = document.createElement('button');
+    backToTop.innerHTML = '↑';
+    backToTop.className = 'back-to-top';
+    backToTop.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1001;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    `;
+    
+    document.body.appendChild(backToTop);
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.style.opacity = '1';
+            backToTop.style.transform = 'translateY(0)';
+        } else {
+            backToTop.style.opacity = '0';
+            backToTop.style.transform = 'translateY(20px)';
+        }
+    });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+</script>
+
+<!-- Additional CSS for dark mode and enhancements -->
+<style>
+.dark-mode {
+    --gray-50: #0f172a !important;
+    --gray-100: #1e293b !important;
+    --gray-200: #334155 !important;
+    --gray-800: #e2e8f0 !important;
+    --gray-900: #f1f5f9 !important;
+}
+
+.dark-mode body {
+    background-color: var(--gray-100) !important;
+    color: var(--gray-800) !important;
+}
+
+.dark-mode #doc-content {
+    background: var(--gray-100) !important;
+    border: 1px solid var(--gray-200) !important;
+}
+
+.dark-mode #top {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+.dark-mode .dark-mode-toggle {
+    background: rgba(30, 41, 59, 0.9) !important;
+    color: white !important;
+}
+
+/* Enhanced animations */
+@keyframes slideInFromTop {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+#top {
+    animation: slideInFromTop 0.6s ease-out;
+}
+
+#side-nav {
+    animation: slideInFromLeft 0.8s ease-out;
+}
+
+/* Enhanced focus styles for accessibility */
+*:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Print optimizations */
+@media print {
+    .dark-mode-toggle,
+    .back-to-top,
+    .copy-button {
+        display: none !important;
+    }
+}
+</style>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div class="header">
+  <div class="title">
+<!--BEGIN PROJECT_NAME-->
+    <span>$projectname</span>
+<!--END PROJECT_NAME-->
+<!--BEGIN PROJECT_BRIEF-->
+    <div class="subtitle">$projectbrief</div>
+<!--END PROJECT_BRIEF-->
+  </div>
+  <div class="header-right">
+    <div class="version">
+      <span class="version-label">Version</span>
+      <span class="version-number">2.0</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Additional header styling -->
+<style>
+.header .subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.9;
+    margin-top: 0.25rem;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.version {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.version-label {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    margin-right: 0.5rem;
+}
+
+.version-number {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .header-right {
+        margin-top: 1rem;
+    }
+    
+    .version {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}
+</style>

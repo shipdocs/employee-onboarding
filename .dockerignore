@@ -45,10 +45,13 @@ Dockerfile*
 docker-compose*.yml
 .dockerignore
 
-# Documentation
+# Documentation (but keep files needed for docs generation)
 README.md
 DOCKER_SETUP.md
 *.md
+!Doxyfile
+!generate-docs.sh
+!modern-doxygen.css
 
 # Logs
 logs/
