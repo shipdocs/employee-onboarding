@@ -1,3 +1,68 @@
+/**
+ * @file ManagerDashboard.js
+ * @brief Comprehensive management interface for maritime training supervisors
+ *
+ * @details This component provides a complete management dashboard for maritime
+ * training managers to oversee crew onboarding, monitor training progress, manage
+ * assessments, and handle certificate generation. It serves as the central control
+ * panel for all manager-level operations in the maritime onboarding system.
+ *
+ * **Core Management Features:**
+ * - **Crew Management**: Add, edit, and monitor crew member accounts
+ * - **Training Oversight**: Track progress across all training phases
+ * - **Quiz Management**: Review and approve quiz submissions
+ * - **Certificate Generation**: Create and distribute training certificates
+ * - **Progress Analytics**: Monitor completion rates and performance metrics
+ * - **Communication Tools**: Send notifications and updates to crew
+ *
+ * **Manager Workflow Support:**
+ * - **Dashboard Overview**: Real-time statistics and key metrics
+ * - **Crew Directory**: Comprehensive crew member management
+ * - **Training Monitoring**: Phase-by-phase progress tracking
+ * - **Assessment Review**: Quiz result evaluation and approval
+ * - **Certificate Management**: Generation, distribution, and tracking
+ * - **Reporting Tools**: Progress reports and compliance documentation
+ *
+ * **Key Manager Benefits:**
+ * - Centralized crew management interface
+ * - Real-time training progress visibility
+ * - Streamlined quiz review and approval process
+ * - Automated certificate generation and distribution
+ * - Comprehensive reporting and analytics
+ * - Mobile-responsive design for shipboard use
+ *
+ * **Administrative Capabilities:**
+ * - Bulk crew member operations
+ * - Training content management
+ * - Custom certificate templates
+ * - Progress tracking and reporting
+ * - Communication and notification management
+ * - Compliance monitoring and documentation
+ *
+ * **Integration Features:**
+ * - Email integration for notifications
+ * - PDF generation for certificates
+ * - Database integration for data management
+ * - Real-time updates and synchronization
+ * - Audit logging for compliance tracking
+ *
+ * **User Experience:**
+ * - Intuitive navigation and clear visual hierarchy
+ * - Responsive design for various devices
+ * - Multilingual support for international crews
+ * - Efficient workflows for common tasks
+ * - Comprehensive search and filtering capabilities
+ *
+ * @author Maritime Onboarding System
+ * @version 1.0
+ * @since 2024
+ *
+ * @see CrewDashboard For crew member interface
+ * @see AdminDashboard For system administration
+ * @see CertificateManagement For certificate operations
+ * @see managerService For backend API integration
+ */
+
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +99,33 @@ import managerService from '../services/managerService';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * @brief Main dashboard component for maritime training managers
+ *
+ * @details Provides comprehensive management interface for overseeing crew training,
+ * managing assessments, and handling certificate generation. The component integrates
+ * multiple management functions into a cohesive, user-friendly interface.
+ *
+ * **Component Architecture:**
+ * - Modular design with specialized sub-components
+ * - Real-time data fetching and updates
+ * - Responsive layout for various screen sizes
+ * - Comprehensive error handling and user feedback
+ * - Internationalization support for global operations
+ *
+ * **Management Functions:**
+ * - Crew member lifecycle management
+ * - Training progress monitoring and reporting
+ * - Quiz review and approval workflows
+ * - Certificate generation and distribution
+ * - Communication and notification management
+ *
+ * @returns {JSX.Element} Rendered manager dashboard with full management interface
+ *
+ * @example
+ * // Basic usage in routing
+ * <Route path="/manager/dashboard" element={<ManagerDashboard />} />
+ */
 const ManagerDashboard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();

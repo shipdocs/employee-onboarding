@@ -1,3 +1,67 @@
+##
+# @file docker-compose.yml
+# @brief Docker Compose configuration for Maritime Onboarding System deployment
+#
+# @details This Docker Compose file defines a complete, self-contained maritime
+# onboarding system deployment suitable for production environments. It orchestrates
+# multiple services including database, API, frontend, email, and storage components
+# with proper networking, security, and monitoring configurations.
+#
+# **System Architecture:**
+# - **Database Layer**: PostgreSQL with PostgREST API
+# - **Application Layer**: Node.js backend with React frontend
+# - **Storage Layer**: MinIO for file and certificate storage
+# - **Email Layer**: MailHog for development email testing
+# - **Proxy Layer**: Nginx for load balancing and SSL termination
+# - **Monitoring Layer**: Health checks and logging
+#
+# **Deployment Features:**
+# - Complete containerized deployment
+# - No external dependencies required
+# - Automatic service discovery and networking
+# - Persistent data storage with volume management
+# - Health monitoring and automatic restart policies
+# - Environment-based configuration management
+# - SSL/TLS support for production security
+#
+# **Webhost/Infrastructure Benefits:**
+# - **Single Command Deployment**: `docker-compose up -d`
+# - **Scalable Architecture**: Easy horizontal scaling of services
+# - **Resource Management**: Configurable CPU and memory limits
+# - **Backup Integration**: Automated database and file backups
+# - **Monitoring Ready**: Built-in health checks and logging
+# - **Security Hardened**: Network isolation and access controls
+# - **Update Management**: Rolling updates with zero downtime
+#
+# **Production Considerations:**
+# - Configure environment variables for production settings
+# - Set up SSL certificates for HTTPS termination
+# - Configure backup schedules and retention policies
+# - Set appropriate resource limits for each service
+# - Configure monitoring and alerting systems
+# - Implement log aggregation and analysis
+#
+# **Service Dependencies:**
+# - Database must be healthy before API services start
+# - Storage services must be available for file operations
+# - Email service required for user notifications
+# - Frontend depends on backend API availability
+#
+# **Network Architecture:**
+# - Internal network for service-to-service communication
+# - Exposed ports only for necessary external access
+# - Load balancer for high availability and SSL termination
+# - Service discovery through Docker DNS
+#
+# @author Maritime Onboarding System
+# @version 3.0.0
+# @since 2024
+#
+# @see README.md For deployment instructions
+# @see DEPLOYMENT_OPTIES.md For production deployment options
+# @see SECURITY_GUIDE.md For security configuration
+##
+
 # Maritime Onboarding System - Pure Docker Architecture
 # Complete self-contained system with no external dependencies
 # Version: 3.0.0

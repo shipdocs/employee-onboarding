@@ -1,9 +1,54 @@
 /**
- * AutomatedCertificateService
+ * @file automated-certificate-service.js
+ * @brief Automated certificate generation and distribution service
  *
- * This service is responsible for generating, storing, and distributing PDF certificates
- * for the maritime onboarding application. It uses the "Intro Kapitein" template and
- * populates it with user profile data, quiz results, and training progress.
+ * @details This service provides comprehensive certificate management for the Maritime
+ * Onboarding System. It handles the complete certificate lifecycle from generation
+ * through distribution, supporting multiple certificate types and templates for
+ * different training programs and compliance requirements.
+ *
+ * **Core Functionality:**
+ * - PDF certificate generation from templates
+ * - Dynamic data population (user info, quiz results, training progress)
+ * - Certificate storage and version management
+ * - Automated email distribution
+ * - Certificate validation and verification
+ * - Audit trail and compliance tracking
+ *
+ * **Certificate Types:**
+ * - Standard onboarding certificates
+ * - Specialized training certificates
+ * - Compliance certificates
+ * - Custom template certificates
+ *
+ * **Manager Benefits:**
+ * - Automated certificate generation upon training completion
+ * - Bulk certificate processing for multiple crew members
+ * - Certificate regeneration and reissue capabilities
+ * - Progress tracking and completion reporting
+ * - Compliance documentation and audit support
+ *
+ * **Technical Features:**
+ * - PDF template manipulation using pdf-lib
+ * - Secure file storage and access control
+ * - Email integration for automatic distribution
+ * - Database integration for metadata tracking
+ * - Error handling and retry mechanisms
+ *
+ * **Security and Compliance:**
+ * - Certificate authenticity verification
+ * - Secure storage with access controls
+ * - Audit logging for all certificate operations
+ * - Data privacy and GDPR compliance
+ * - Certificate expiration and renewal tracking
+ *
+ * @author Maritime Onboarding System
+ * @version 1.0
+ * @since 2024
+ *
+ * @see ManagerDashboard For certificate management interface
+ * @see emailService For certificate distribution
+ * @see PDFDocument For PDF manipulation
  */
 
 import { promises as fs } from 'fs';
@@ -19,7 +64,34 @@ const __dirname = path.dirname(__filename);
 // Use the database compatibility layer
 import supabase from '../lib/supabase.js';
 
+/**
+ * @brief Automated certificate generation and distribution service class
+ *
+ * @details Provides comprehensive certificate management functionality for maritime
+ * training programs. Handles PDF generation, data population, storage, and distribution
+ * with support for multiple certificate types and templates.
+ *
+ * **Service Capabilities:**
+ * - Template-based PDF certificate generation
+ * - Dynamic content population from user data
+ * - Secure certificate storage and retrieval
+ * - Automated email distribution
+ * - Certificate verification and validation
+ * - Audit trail maintenance
+ *
+ * **Integration Points:**
+ * - Database integration for user and training data
+ * - Email service for certificate distribution
+ * - Storage service for PDF file management
+ * - Template engine for dynamic content generation
+ */
 class AutomatedCertificateService {
+  /**
+   * @brief Initialize the certificate service with default configuration
+   *
+   * @details Sets up template paths, storage buckets, and service dependencies
+   * required for certificate generation and distribution operations.
+   */
   constructor() {
     this.templatePath = path.join(__dirname, '..', 'appendix05_03a-Introduction personnel.pdf');
     this.introKapiteinTemplatePath = path.join(__dirname, '..', 'appendix05_03a-Introduction personnel.pdf'); // Using same template for now
@@ -27,15 +99,52 @@ class AutomatedCertificateService {
   }
 
   /**
-   * Main method to generate and distribute a certificate for a user
-   * @param {string|number} userId - The user ID
-   * @returns {Object} - Certificate metadata including URL and certificate number
-   */
-  /**
-   * Main method to generate and distribute a certificate for a user
-   * @param {string|number} userId - The user ID
-   * @param {string} certificateType - The type of certificate to generate (default: 'standard')
-   * @returns {Object} - Certificate metadata including URL and certificate number
+   * @brief Generate and distribute a certificate for a crew member
+   *
+   * @details This is the primary method for certificate processing. It orchestrates
+   * the complete certificate lifecycle from data collection through distribution.
+   * The method handles multiple certificate types and ensures proper data validation,
+   * PDF generation, storage, and email delivery.
+   *
+   * **Process Flow:**
+   * 1. Fetch user profile and training data
+   * 2. Retrieve quiz results and completion status
+   * 3. Prepare template data with validation
+   * 4. Generate PDF certificate from template
+   * 5. Store certificate in secure storage
+   * 6. Send certificate via email to recipient
+   * 7. Log certificate generation for audit trail
+   *
+   * **Manager Usage:**
+   * - Automatically triggered upon training completion
+   * - Can be manually invoked for certificate regeneration
+   * - Supports bulk processing for multiple crew members
+   * - Provides detailed status and error reporting
+   *
+   * @param {string|number} userId - Unique identifier for the crew member
+   * @param {string} certificateType - Type of certificate to generate (default: 'standard')
+   *
+   * @returns {Promise<Object>} Certificate metadata object containing:
+   *   - certificateId: Unique certificate identifier
+   *   - certificateNumber: Human-readable certificate number
+   *   - downloadUrl: Secure URL for certificate download
+   *   - generatedAt: Timestamp of certificate generation
+   *   - expiresAt: Certificate expiration date (if applicable)
+   *   - emailSent: Boolean indicating successful email delivery
+   *
+   * @throws {Error} User not found or invalid user ID
+   * @throws {Error} Insufficient training data for certificate generation
+   * @throws {Error} Template processing or PDF generation failure
+   * @throws {Error} Storage or email delivery failure
+   *
+   * @example
+   * // Generate standard certificate for crew member
+   * const result = await service.generateAndDistributeCertificate('crew_123');
+   * console.log(`Certificate generated: ${result.certificateNumber}`);
+   *
+   * @example
+   * // Generate specialized certificate type
+   * const result = await service.generateAndDistributeCertificate('crew_456', 'advanced_safety');
    */
   async generateAndDistributeCertificate(userId, certificateType = 'standard') {
     try {
