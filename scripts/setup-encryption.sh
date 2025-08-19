@@ -18,8 +18,22 @@ ENCRYPTED_VOLUME_SIZE="10G"
 ENCRYPTED_VOLUME_PATH="/opt/maritime-encrypted.img"
 MOUNT_POINT="/mnt/maritime_encrypted"
 
-echo -e "${BLUE}🔒 Maritime Onboarding System - Encryption Setup${NC}"
+echo -e "${RED}🚨 CRITICAL: ENCRYPTION SETUP${NC}"
 echo "=================================================="
+echo -e "${YELLOW}⚠️  WARNING: This will enable encryption for your Maritime Onboarding System${NC}"
+echo ""
+echo -e "${RED}🔑 KEY MANAGEMENT RESPONSIBILITY:${NC}"
+echo "• YOU are responsible for backing up encryption keys"
+echo "• LOST KEYS = PERMANENT DATA LOSS (no recovery possible)"
+echo "• You MUST store keys in multiple secure locations"
+echo "• You MUST test key recovery procedures"
+echo ""
+echo -e "${BLUE}📋 What this script will do:${NC}"
+echo "• Generate strong encryption keys"
+echo "• Set up encrypted storage volumes"
+echo "• Configure database encryption"
+echo "• Create backup procedures"
+echo ""
 
 # Function to generate secure random key
 generate_key() {
@@ -182,10 +196,36 @@ create_encrypted_volume() {
     echo -e "${GREEN}✅ Encrypted volume created and mounted${NC}"
 }
 
+# Function to get user confirmation
+get_user_confirmation() {
+    echo -e "${YELLOW}Do you understand and accept the key management responsibility?${NC}"
+    echo "Type 'I UNDERSTAND AND ACCEPT' to continue:"
+    read -r user_response
+
+    if [[ "$user_response" != "I UNDERSTAND AND ACCEPT" ]]; then
+        echo -e "${RED}❌ Setup cancelled. Encryption not enabled.${NC}"
+        echo -e "${GREEN}💡 Your system will continue to work normally without encryption.${NC}"
+        exit 0
+    fi
+
+    echo ""
+    echo -e "${YELLOW}Are you ready to proceed with encryption setup?${NC}"
+    echo "Type 'YES' to continue:"
+    read -r final_confirmation
+
+    if [[ "$final_confirmation" != "YES" ]]; then
+        echo -e "${RED}❌ Setup cancelled.${NC}"
+        exit 0
+    fi
+}
+
 # Main execution
 main() {
     echo -e "${BLUE}Starting encryption setup...${NC}"
-    
+
+    # Get user confirmation first
+    get_user_confirmation
+
     # Check if Docker is running
     if ! docker info &> /dev/null; then
         echo -e "${RED}❌ Docker is not running. Please start Docker first.${NC}"

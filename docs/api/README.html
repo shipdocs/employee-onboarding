@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Maritime Onboarding System - Maritime Onboarding System 2025</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 8px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            padding-left: 20px;
+            color: #666;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            .footer {
+                page-break-before: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>API Reference - Maritime Onboarding System</h1>
+<p>Complete REST API documentation for the Maritime Onboarding System Docker-based architecture.</p>
+<h2>🔗 <strong>Base URLs</strong></h2>
+<ul>
+<li><strong>Production</strong>: <code>https://your-domain.com/api</code></li>
+<li><strong>Development</strong>: <code>http://localhost:3000/api</code></li>
+</ul>
+<h2>🔐 <strong>Authentication</strong></h2>
+<p>All API requests require authentication via JWT token in the Authorization header:</p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+</code></pre>
+<h3><strong>Getting a Token</strong></h3>
+<h4>Admin/Manager Login</h4>
+<pre><code class="language-http">POST /api/auth/login
+Content-Type: application/json
+
+{
+  &quot;email&quot;: &quot;admin@company.com&quot;,
+  &quot;password&quot;: &quot;your-password&quot;
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&quot;,
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;user_123&quot;,
+    &quot;email&quot;: &quot;admin@company.com&quot;,
+    &quot;role&quot;: &quot;admin&quot;,
+    &quot;name&quot;: &quot;Admin User&quot;
+  }
+}
+</code></pre>
+<h4>Magic Link for Crew</h4>
+<pre><code class="language-http">POST /api/auth/magic-link
+Content-Type: application/json
+
+{
+  &quot;email&quot;: &quot;crew@company.com&quot;
+}
+</code></pre>
+<h2>📚 <strong>API Endpoints</strong></h2>
+<h3><strong>Authentication</strong></h3>
+<h4><code>POST /api/auth/login</code></h4>
+<p>Authenticate admin or manager users with email and password.</p>
+<p><strong>Request Body:</strong></p>
+<pre><code class="language-json">{
+  &quot;email&quot;: &quot;string&quot;,
+  &quot;password&quot;: &quot;string&quot;,
+  &quot;mfaToken&quot;: &quot;string (optional)&quot;
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;token&quot;: &quot;string&quot;,
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;,
+    &quot;role&quot;: &quot;admin|manager&quot;,
+    &quot;name&quot;: &quot;string&quot;
+  }
+}
+</code></pre>
+<h4><code>POST /api/auth/magic-link</code></h4>
+<p>Request a magic link for crew member authentication.</p>
+<p><strong>Request Body:</strong></p>
+<pre><code class="language-json">{
+  &quot;email&quot;: &quot;string&quot;
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Magic link sent to email&quot;
+}
+</code></pre>
+<h4><code>POST /api/auth/logout</code></h4>
+<p>Logout and invalidate the current JWT token.</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Logged out successfully&quot;
+}
+</code></pre>
+<h3><strong>User Management</strong></h3>
+<h4><code>GET /api/users</code></h4>
+<p>Get all users in the system (admin/manager only).</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+</code></pre>
+<p><strong>Query Parameters:</strong></p>
+<ul>
+<li><code>role</code> (optional): Filter by user role (admin, manager, crew)</li>
+<li><code>limit</code> (optional): Number of results to return (default: 50)</li>
+<li><code>offset</code> (optional): Number of results to skip (default: 0)</li>
+</ul>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;email&quot;: &quot;string&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;role&quot;: &quot;string&quot;,
+      &quot;created_at&quot;: &quot;ISO 8601 date&quot;,
+      &quot;last_login&quot;: &quot;ISO 8601 date&quot;
+    }
+  ],
+  &quot;total&quot;: 123,
+  &quot;limit&quot;: 50,
+  &quot;offset&quot;: 0
+}
+</code></pre>
+<h4><code>POST /api/users</code></h4>
+<p>Create a new user account.</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: application/json
+</code></pre>
+<p><strong>Request Body:</strong></p>
+<pre><code class="language-json">{
+  &quot;email&quot;: &quot;string&quot;,
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;role&quot;: &quot;crew|manager&quot;,
+  &quot;company_id&quot;: &quot;string (optional)&quot;,
+  &quot;vessel_id&quot;: &quot;string (optional)&quot;
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;role&quot;: &quot;string&quot;,
+    &quot;created_at&quot;: &quot;ISO 8601 date&quot;
+  }
+}
+</code></pre>
+<h4><code>GET /api/crew/{id}</code></h4>
+<p>Get crew member profile and training progress.</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;email&quot;: &quot;string&quot;,
+    &quot;name&quot;: &quot;string&quot;,
+    &quot;role&quot;: &quot;crew&quot;,
+    &quot;company_id&quot;: &quot;string&quot;,
+    &quot;vessel_id&quot;: &quot;string&quot;,
+    &quot;training_progress&quot;: {
+      &quot;completed_phases&quot;: 5,
+      &quot;total_phases&quot;: 10,
+      &quot;completion_percentage&quot;: 50,
+      &quot;certificates&quot;: [
+        {
+          &quot;id&quot;: &quot;string&quot;,
+          &quot;name&quot;: &quot;string&quot;,
+          &quot;issued_date&quot;: &quot;ISO 8601 date&quot;,
+          &quot;download_url&quot;: &quot;string&quot;
+        }
+      ]
+    }
+  }
+}
+</code></pre>
+<h3><strong>Training System</strong></h3>
+<h4><code>GET /api/training-phases</code></h4>
+<p>Get all training phases.</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;description&quot;: &quot;string&quot;,
+      &quot;order&quot;: 1,
+      &quot;required&quot;: true,
+      &quot;content&quot;: {
+        &quot;videos&quot;: [&quot;url1&quot;, &quot;url2&quot;],
+        &quot;documents&quot;: [&quot;url1&quot;, &quot;url2&quot;],
+        &quot;quiz_id&quot;: &quot;string&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<h4><code>POST /api/training-phases</code></h4>
+<p>Create a new training phase (admin only).</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: application/json
+</code></pre>
+<p><strong>Request Body:</strong></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;string&quot;,
+  &quot;description&quot;: &quot;string&quot;,
+  &quot;order&quot;: 1,
+  &quot;required&quot;: true,
+  &quot;content&quot;: {
+    &quot;videos&quot;: [&quot;url1&quot;, &quot;url2&quot;],
+    &quot;documents&quot;: [&quot;url1&quot;, &quot;url2&quot;]
+  }
+}
+</code></pre>
+<h3><strong>Assessment System</strong></h3>
+<h4><code>GET /api/quiz/{phaseId}</code></h4>
+<p>Get quiz questions for a training phase.</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;string&quot;,
+    &quot;phase_id&quot;: &quot;string&quot;,
+    &quot;questions&quot;: [
+      {
+        &quot;id&quot;: &quot;string&quot;,
+        &quot;question&quot;: &quot;string&quot;,
+        &quot;type&quot;: &quot;multiple_choice|true_false&quot;,
+        &quot;options&quot;: [&quot;option1&quot;, &quot;option2&quot;, &quot;option3&quot;],
+        &quot;correct_answer&quot;: &quot;hidden from response&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<h4><code>POST /api/quiz/submit</code></h4>
+<p>Submit quiz answers for evaluation.</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: application/json
+</code></pre>
+<p><strong>Request Body:</strong></p>
+<pre><code class="language-json">{
+  &quot;quiz_id&quot;: &quot;string&quot;,
+  &quot;answers&quot;: [
+    {
+      &quot;question_id&quot;: &quot;string&quot;,
+      &quot;answer&quot;: &quot;string&quot;
+    }
+  ]
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;score&quot;: 85,
+    &quot;passed&quot;: true,
+    &quot;total_questions&quot;: 10,
+    &quot;correct_answers&quot;: 8,
+    &quot;feedback&quot;: &quot;Excellent work!&quot;
+  }
+}
+</code></pre>
+<h3><strong>File Management</strong></h3>
+<h4><code>POST /api/upload/image</code></h4>
+<p>Upload training content images.</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: multipart/form-data
+</code></pre>
+<p><strong>Request Body:</strong></p>
+<pre><code>image: File (JPEG, PNG, GIF - max 10MB)
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;url&quot;: &quot;string&quot;,
+    &quot;filename&quot;: &quot;string&quot;,
+    &quot;size&quot;: 1024000,
+    &quot;type&quot;: &quot;image/jpeg&quot;
+  }
+}
+</code></pre>
+<h4><code>POST /api/upload/video</code></h4>
+<p>Upload training content videos.</p>
+<p><strong>Headers:</strong></p>
+<pre><code class="language-http">Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: multipart/form-data
+</code></pre>
+<p><strong>Request Body:</strong></p>
+<pre><code>video: File (MP4, WebM - max 100MB)
+</code></pre>
+<h2>⚠️ <strong>Error Handling</strong></h2>
+<h3><strong>Error Response Format</strong></h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: false,
+  &quot;error&quot;: {
+    &quot;code&quot;: &quot;ERROR_CODE&quot;,
+    &quot;message&quot;: &quot;Human readable error message&quot;,
+    &quot;details&quot;: {}
+  }
+}
+</code></pre>
+<h3><strong>HTTP Status Codes</strong></h3>
+<ul>
+<li><code>200</code> - Success</li>
+<li><code>201</code> - Created</li>
+<li><code>400</code> - Bad Request</li>
+<li><code>401</code> - Unauthorized</li>
+<li><code>403</code> - Forbidden</li>
+<li><code>404</code> - Not Found</li>
+<li><code>422</code> - Validation Error</li>
+<li><code>429</code> - Rate Limit Exceeded</li>
+<li><code>500</code> - Internal Server Error</li>
+</ul>
+<h3><strong>Common Error Codes</strong></h3>
+<ul>
+<li><code>AUTH_INVALID_TOKEN</code> - Invalid or expired JWT token</li>
+<li><code>AUTH_INSUFFICIENT_PERMISSIONS</code> - User lacks required permissions</li>
+<li><code>VALIDATION_ERROR</code> - Request validation failed</li>
+<li><code>RATE_LIMIT_EXCEEDED</code> - Too many requests</li>
+<li><code>RESOURCE_NOT_FOUND</code> - Requested resource not found</li>
+</ul>
+<h2>🔒 <strong>Rate Limiting</strong></h2>
+<ul>
+<li><strong>100 requests per minute</strong> per IP address</li>
+<li><strong>1000 requests per hour</strong> per authenticated user</li>
+<li><strong>Special limits</strong> for file uploads and authentication endpoints</li>
+</ul>
+<p>Rate limit headers are included in responses:</p>
+<pre><code class="language-http">X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 95
+X-RateLimit-Reset: 1640995200
+</code></pre>
+<h2>📝 <strong>Request/Response Examples</strong></h2>
+<h3><strong>Complete User Creation Flow</strong></h3>
+<pre><code class="language-bash"># 1. Login as admin
+curl -X POST https://your-domain.com/api/auth/login \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;email&quot;:&quot;admin@company.com&quot;,&quot;password&quot;:&quot;password&quot;}&#39;
+
+# 2. Create new crew member
+curl -X POST https://your-domain.com/api/users \
+  -H &quot;Authorization: Bearer YOUR_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;email&quot;:&quot;crew@company.com&quot;,&quot;name&quot;:&quot;John Doe&quot;,&quot;role&quot;:&quot;crew&quot;}&#39;
+
+# 3. Send magic link to crew member
+curl -X POST https://your-domain.com/api/auth/magic-link \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;email&quot;:&quot;crew@company.com&quot;}&#39;
+</code></pre>
+<hr>
+<p><strong>For more detailed examples and advanced usage, see the <a href="../developer-guides/">Developer Guides</a>.</strong></p>
+
+    </div>
+    <div class="footer">
+        <p>Maritime Onboarding System 2025 - Documentation</p>
+        <p>Generated: 2025-08-19T12:00:22.195Z</p>
+    </div>
+</body>
+</html>
