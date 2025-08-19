@@ -18,6 +18,8 @@ A complete maritime crew onboarding and training management system featuring aut
 ### **For Production Deployment**
 **🚀 [DEPLOYMENT_OPTIES.md](DEPLOYMENT_OPTIES.md)** - **Real deployment options: VPS, Cloud, Enterprise**
 **🛡️ [SECURITY_GUIDE.md](SECURITY_GUIDE.md)** - **Complete security implementation guide**
+**🔒 [ENCRYPTION_IMPLEMENTATION.md](ENCRYPTION_IMPLEMENTATION.md)** - **Optional encryption at rest (advanced security)**
+**🔑 [KEY_MANAGEMENT_DISASTER_RECOVERY.md](KEY_MANAGEMENT_DISASTER_RECOVERY.md)** - **Critical key management procedures**
 **📖 [Complete Documentation](docs/README.md)** - Comprehensive guides and references
 
 ### **For End Users**

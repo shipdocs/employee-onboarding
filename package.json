@@ -154,6 +154,7 @@
     "isomorphic-dompurify": "^2.26.0",
     "jsonwebtoken": "^9.0.2",
     "jszip": "3.10.1",
+    "lru-cache": "10.4.3",
     "mailersend": "^2.6.0",
     "mailparser": "^3.7.4",
     "minio": "8.0.5",
