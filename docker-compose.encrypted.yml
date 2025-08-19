@@ -1,0 +1,304 @@
+# Maritime Onboarding System - Encrypted Docker Stack
+# This configuration includes encryption at rest and enhanced security
+
+version: '3.8'
+
+services:
+  # ===========================================
+  # DATABASE LAYER (ENCRYPTED)
+  # ===========================================
+  
+  # PostgreSQL Database with Encryption
+  database:
+    image: postgres:15-alpine
+    container_name: maritime_database_encrypted
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-maritime}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --data-checksums"
+      # Enable encryption extensions
+      POSTGRES_SHARED_PRELOAD_LIBRARIES: "pg_stat_statements"
+    # Internal access only (no external ports)
+    expose:
+      - "5432"
+    volumes:
+      # Use encrypted volume for data
+      - postgres_encrypted_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d:ro
+      - ./database/encryption:/docker-entrypoint-initdb.d/encryption:ro
+      - ./backups:/backups:ro
+    networks:
+      - maritime_network
+    secrets:
+      - postgres_password
+      - database_encryption_key
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  # ===========================================
+  # APPLICATION LAYER (SECURED)
+  # ===========================================
+  
+  # Backend API with Encryption Support
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend.encrypted
+    container_name: maritime_backend_encrypted
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      # Database connection
+      DATABASE_URL: postgresql://${DB_USER:-postgres}:${DB_PASSWORD}@database:5432/${DB_NAME:-maritime}
+      # Encryption configuration
+      FIELD_ENCRYPTION_KEY_FILE: /run/secrets/field_encryption_key
+      DATABASE_ENCRYPTION_KEY_FILE: /run/secrets/database_encryption_key
+      JWT_SECRET_FILE: /run/secrets/jwt_secret
+      # Security settings
+      ENCRYPTION_ENABLED: "true"
+      BACKUP_ENCRYPTION_ENABLED: "true"
+      # CORS and security
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost}
+      RATE_LIMIT_WINDOW_MS: ${RATE_LIMIT_WINDOW_MS:-900000}
+      RATE_LIMIT_MAX_REQUESTS: ${RATE_LIMIT_MAX_REQUESTS:-100}
+    # Internal access only
+    expose:
+      - "3000"
+    volumes:
+      # Use encrypted volumes for sensitive data
+      - uploads_encrypted_data:/app/uploads
+      - logs_encrypted_data:/app/logs
+      - certificates_encrypted_data:/app/certificates
+    networks:
+      - maritime_network
+    secrets:
+      - field_encryption_key
+      - database_encryption_key
+      - jwt_secret
+      - backup_encryption_key
+    depends_on:
+      database:
+        condition: service_healthy
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/temp
+    user: "1000:1000"  # Non-root user
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 1G
+
+  # ===========================================
+  # FRONTEND LAYER
+  # ===========================================
+  
+  # Frontend (React Application)
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.production
+    container_name: maritime_frontend_encrypted
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      REACT_APP_API_URL: http://backend:3000
+      REACT_APP_ENCRYPTION_ENABLED: "true"
+    # Internal access only
+    expose:
+      - "80"
+    networks:
+      - maritime_network
+    depends_on:
+      - backend
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    user: "101:101"  # nginx user
+
+  # ===========================================
+  # REVERSE PROXY (SSL TERMINATION)
+  # ===========================================
+  
+  # Nginx Reverse Proxy with SSL
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: maritime_nginx_encrypted
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx-encrypted.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/logs:/var/log/nginx
+    networks:
+      - maritime_network
+    depends_on:
+      - frontend
+      - backend
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    user: "101:101"  # nginx user
+
+  # ===========================================
+  # MONITORING & UTILITIES
+  # ===========================================
+  
+  # Redis for Caching (Encrypted)
+  redis:
+    image: redis:7-alpine
+    container_name: maritime_redis_encrypted
+    restart: unless-stopped
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD}
+      --appendonly yes
+      --appendfsync everysec
+    expose:
+      - "6379"
+    volumes:
+      - redis_encrypted_data:/data
+    networks:
+      - maritime_network
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    user: "999:999"  # redis user
+
+  # Backup Service (Encrypted Backups)
+  backup:
+    build:
+      context: .
+      dockerfile: Dockerfile.backup
+    container_name: maritime_backup_encrypted
+    restart: "no"  # Run manually or via cron
+    environment:
+      BACKUP_ENCRYPTION_ENABLED: "true"
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-30}
+    volumes:
+      - postgres_encrypted_data:/source/database:ro
+      - uploads_encrypted_data:/source/uploads:ro
+      - ./backups:/backups
+    networks:
+      - maritime_network
+    secrets:
+      - backup_encryption_key
+      - postgres_password
+    depends_on:
+      - database
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    user: "1000:1000"
+
+# ===========================================
+# ENCRYPTED VOLUMES
+# ===========================================
+volumes:
+  # Database volume (will be mounted to encrypted filesystem)
+  postgres_encrypted_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/maritime_encrypted/postgres
+
+  # Application data volumes (encrypted)
+  uploads_encrypted_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/maritime_encrypted/uploads
+
+  logs_encrypted_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/maritime_encrypted/logs
+
+  certificates_encrypted_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/maritime_encrypted/certificates
+
+  redis_encrypted_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/maritime_encrypted/redis
+
+# ===========================================
+# SECURE NETWORKS
+# ===========================================
+networks:
+  maritime_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+    # Enable encryption for network traffic
+    driver_opts:
+      encrypted: "true"
+
+# ===========================================
+# DOCKER SECRETS
+# ===========================================
+secrets:
+  postgres_password:
+    file: ./secrets/passwords/postgres_admin.txt
+  field_encryption_key:
+    file: ./secrets/keys/field_encryption.key
+  database_encryption_key:
+    file: ./secrets/keys/database_encryption.key
+  jwt_secret:
+    file: ./secrets/keys/jwt_secret.key
+  backup_encryption_key:
+    file: ./secrets/keys/backup_encryption.key
