@@ -75,8 +75,8 @@ global.adminRateLimit = rateLimit(15 * 60 * 1000, 50); // 50 requests per 15 min
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'healthy', 
+  res.json({
+    status: 'healthy',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
     version: '2.0.1'
@@ -89,13 +89,13 @@ function loadApiRoutes(dir, basePath = '/api') {
     console.log(`⚠️  API directory not found: ${dir}`);
     return;
   }
-  
+
   const items = fs.readdirSync(dir);
-  
+
   items.forEach(item => {
     const itemPath = path.join(dir, item);
     const stat = fs.statSync(itemPath);
-    
+
     if (stat.isDirectory()) {
       // Recursively load subdirectories
       loadApiRoutes(itemPath, `${basePath}/${item}`);
@@ -183,7 +183,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // 404 handler for API routes
 app.use('/api/*', (req, res) => {
-  res.status(404).json({ 
+  res.status(404).json({
     error: 'API endpoint not found',
     path: req.path,
     method: req.method,
@@ -240,7 +240,7 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🔗 API base: http://localhost:${PORT}/api`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  
+
   // Log loaded routes
   console.log('\n📋 Available routes:');
   console.log('   GET  /health');

@@ -2,14 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  
+
   // Serve static files from build directory
   async rewrites() {
     return [
       {
         source: '/build/:path*',
-        destination: '/build/:path*',
-      },
+        destination: '/build/:path*'
+      }
     ];
   },
 
@@ -21,9 +21,9 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
       },
       {
         // Apply security headers to all pages
@@ -44,7 +44,7 @@ const nextConfig = {
               "base-uri 'self'",
               "form-action 'self'",
               "frame-ancestors 'none'",
-              "upgrade-insecure-requests"
+              'upgrade-insecure-requests'
             ].join('; ')
           },
           {
@@ -83,10 +83,10 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'off'
           }
-        ],
-      },
+        ]
+      }
     ];
-  },
+  }
 };
 
 module.exports = nextConfig;

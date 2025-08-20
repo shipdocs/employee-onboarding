@@ -23,14 +23,14 @@ async function getQuarantinedFiles(req, res) {
 
     // Get quarantined files from file processor
     const quarantinedFiles = await fileProcessor.getQuarantinedFiles();
-    
+
     // Get malware scanner statistics
     const scannerStats = malwareScanner.getStatistics();
 
     // Filter by type if specified
     let filteredFiles = quarantinedFiles;
     if (type !== 'all') {
-      filteredFiles = quarantinedFiles.filter(file => 
+      filteredFiles = quarantinedFiles.filter(file =>
         file.analysis?.threats?.some(threat => threat.includes(type))
       );
     }
@@ -77,7 +77,7 @@ async function cleanupQuarantine(req, res) {
 
     // Cleanup file processor quarantine
     const fileCleanup = await fileProcessor.cleanupQuarantine(parseInt(retentionDays));
-    
+
     res.json({
       success: true,
       cleanup: {

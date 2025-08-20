@@ -46,14 +46,14 @@ async function handler(req, res) {
     // Return as downloadable JSON file
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Disposition', `attachment; filename="data-export-${userId}-${new Date().toISOString().split('T')[0]}.json"`);
-    
+
     return res.status(200).json(exportData);
 
   } catch (error) {
     console.error('Export download error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to download export',
-      details: error.message 
+      details: error.message
     });
   }
 }

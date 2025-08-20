@@ -29,16 +29,16 @@ module.exports = adminRateLimit(async (req, res) => {
     }
   } catch (error) {
     console.error('Compliance reports API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 });
 
 async function getComplianceReports(req, res) {
   try {
-    const { 
+    const {
       type = 'all',
       status = 'all',
       limit = 50,
@@ -140,11 +140,11 @@ async function getComplianceReports(req, res) {
 
     // Apply filters
     let filteredReports = reports || [];
-    
+
     if (type !== 'all') {
       filteredReports = filteredReports.filter(report => report.type === type);
     }
-    
+
     if (status !== 'all') {
       filteredReports = filteredReports.filter(report => report.status === status);
     }
@@ -178,9 +178,9 @@ async function getComplianceReports(req, res) {
 
   } catch (error) {
     console.error('Get compliance reports error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to fetch compliance reports',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -196,14 +196,14 @@ async function createComplianceReport(req, res, user) {
     } = req.body;
 
     if (!type || !title) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: type, title' 
+      return res.status(400).json({
+        error: 'Missing required fields: type, title'
       });
     }
 
     const validTypes = [
       'gdpr_audit',
-      'security_assessment', 
+      'security_assessment',
       'training_compliance',
       'data_processing',
       'incident_summary',
@@ -211,9 +211,9 @@ async function createComplianceReport(req, res, user) {
     ];
 
     if (!validTypes.includes(type)) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Invalid report type',
-        validTypes 
+        validTypes
       });
     }
 
@@ -282,9 +282,9 @@ async function createComplianceReport(req, res, user) {
 
   } catch (error) {
     console.error('Create compliance report error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to create compliance report',
-      details: error.message 
+      details: error.message
     });
   }
 }

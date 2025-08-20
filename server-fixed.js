@@ -51,20 +51,20 @@ const rateLimit = (windowMs = 15 * 60 * 1000, max = 100) => {
   return (req, res, next) => {
     const key = req.ip;
     const now = Date.now();
-    
+
     if (!requests.has(key)) {
       requests.set(key, []);
     }
-    
+
     const userRequests = requests.get(key).filter(time => now - time < windowMs);
-    
+
     if (userRequests.length >= max) {
-      return res.status(429).json({ 
+      return res.status(429).json({
         error: 'Too many requests',
         retryAfter: Math.ceil(windowMs / 1000)
       });
     }
-    
+
     userRequests.push(now);
     requests.set(key, userRequests);
     next();
@@ -77,8 +77,8 @@ global.adminRateLimit = rateLimit(15 * 60 * 1000, 50); // 50 requests per 15 min
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'healthy', 
+  res.json({
+    status: 'healthy',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
     version: '2.0.1'
@@ -91,16 +91,16 @@ function loadApiRoutes(dir, basePath = '/api') {
     console.log(`⚠️  API directory not found: ${dir}`);
     return;
   }
-  
+
   const items = fs.readdirSync(dir);
-  
+
   // First, load index.js if it exists in current directory
   const currentIndexPath = path.join(dir, 'index.js');
   if (fs.existsSync(currentIndexPath)) {
     try {
       delete require.cache[require.resolve(currentIndexPath)];
       const handler = require(currentIndexPath);
-      
+
       if (typeof handler === 'function') {
         const expressHandler = (req, res, next) => {
           try {
@@ -121,25 +121,25 @@ function loadApiRoutes(dir, basePath = '/api') {
       }
     }
   }
-  
+
   items.forEach(item => {
     if (item === 'index.js') return; // Skip index.js as we handle it above
-    
+
     const itemPath = path.join(dir, item);
     const stat = fs.statSync(itemPath);
-    
+
     if (stat.isDirectory()) {
       // Handle dynamic routes like [id]
       if (item.startsWith('[') && item.endsWith(']')) {
         const param = item.slice(1, -1);
-        
+
         // Load [id].js file if it exists
         const dynamicFilePath = path.join(dir, `${item}.js`);
         if (fs.existsSync(dynamicFilePath)) {
           try {
             delete require.cache[require.resolve(dynamicFilePath)];
             const handler = require(dynamicFilePath);
-            
+
             if (typeof handler === 'function') {
               const expressHandler = (req, res, next) => {
                 req.query[param] = req.params[param];
@@ -159,7 +159,7 @@ function loadApiRoutes(dir, basePath = '/api') {
             console.log(`⚠️  Failed to load ${dynamicFilePath}: ${error.message}`);
           }
         }
-        
+
         // Load routes inside [id] directory
         const dynamicItems = fs.readdirSync(itemPath);
         dynamicItems.forEach(dynamicItem => {
@@ -168,7 +168,7 @@ function loadApiRoutes(dir, basePath = '/api') {
             try {
               delete require.cache[require.resolve(dynamicItemPath)];
               const handler = require(dynamicItemPath);
-              
+
               if (typeof handler === 'function') {
                 const routeName = dynamicItem.replace('.js', '');
                 const expressHandler = (req, res, next) => {
@@ -261,7 +261,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // 404 handler for API routes
 app.use('/api/*', (req, res) => {
-  res.status(404).json({ 
+  res.status(404).json({
     error: 'API endpoint not found',
     path: req.path.replace('/api', ''),
     method: req.method,
@@ -272,7 +272,7 @@ app.use('/api/*', (req, res) => {
 // Global error handler
 app.use((err, req, res, next) => {
   console.error('❌ Server error:', err);
-  
+
   // Handle specific error types
   if (err.name === 'ValidationError') {
     return res.status(400).json({
@@ -280,14 +280,14 @@ app.use((err, req, res, next) => {
       details: err.message
     });
   }
-  
+
   if (err.name === 'UnauthorizedError') {
     return res.status(401).json({
       error: 'Unauthorized',
       details: 'Invalid or missing authentication'
     });
   }
-  
+
   // Generic error response
   res.status(err.status || 500).json({
     error: err.message || 'Internal server error',

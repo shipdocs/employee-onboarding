@@ -18,15 +18,15 @@ async function handler(req, res) {
   // Additional check using X-Forwarded-Host for proxy scenarios
   const forwardedHost = req.headers['x-forwarded-host'] || '';
   const host = req.headers.host || '';
-  if (host.includes('burando.online') || host.includes('vercel.app') ||
-      forwardedHost.includes('burando.online') || forwardedHost.includes('vercel.app')) {
+  if (host.includes('maritime-onboarding.example.com') || host.includes('vercel.app') ||
+      forwardedHost.includes('maritime-onboarding.example.com') || forwardedHost.includes('vercel.app')) {
     return res.status(404).json({ error: 'Not found' });
   }
 
   // Only allow in development
   if (process.env.NODE_ENV !== 'development') {
-    return res.status(403).json({ 
-      error: 'This endpoint is only available in development mode' 
+    return res.status(403).json({
+      error: 'This endpoint is only available in development mode'
     });
   }
 
@@ -36,7 +36,7 @@ async function handler(req, res) {
 
     // Check authorization header
     const authHeader = req.headers.authorization;
-    
+
     if (!authHeader) {
       return res.status(401).json({
         error: 'No authorization header',
@@ -53,7 +53,7 @@ async function handler(req, res) {
     }
 
     const token = authHeader.substring(7); // Remove 'Bearer ' prefix
-    
+
     if (!token || token.trim() === '') {
       return res.status(401).json({
         error: 'No token in authorization header',

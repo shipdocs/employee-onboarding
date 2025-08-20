@@ -129,7 +129,7 @@ const workflowService = {
   }
 };
 
-// Upload service  
+// Upload service
 const uploadService = {
   uploadFile: async (file, type = 'general') => {
     const formData = new FormData();
@@ -138,8 +138,8 @@ const uploadService = {
 
     const response = await apiClient.post('/upload', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+        'Content-Type': 'multipart/form-data'
+      }
     });
     return response.data;
   },
@@ -150,8 +150,8 @@ const uploadService = {
 
     const response = await apiClient.post('/upload/profile-photo', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+        'Content-Type': 'multipart/form-data'
+      }
     });
     return response.data;
   },
@@ -165,8 +165,8 @@ const uploadService = {
 
     const response = await apiClient.post('/upload/document', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+        'Content-Type': 'multipart/form-data'
+      }
     });
     return response.data;
   }

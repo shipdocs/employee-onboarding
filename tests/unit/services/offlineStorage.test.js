@@ -31,19 +31,19 @@ global.localStorage = localStorageMock;
 // Mock the offline storage service
 const mockOfflineStorage = {
   STORAGE_KEYS: {
-    QUIZ_PROGRESS: 'burando_quiz_progress',
-    COMPLETED_QUIZZES: 'burando_completed_quizzes',
-    TRAINING_PROGRESS: 'burando_training_progress',
-    PENDING_SYNC: 'burando_pending_sync',
-    USER_PROFILE: 'burando_user_profile',
-    CACHED_CONTENT: 'burando_cached_content'
+    QUIZ_PROGRESS: 'maritime_quiz_progress',
+    COMPLETED_QUIZZES: 'maritime_completed_quizzes',
+    TRAINING_PROGRESS: 'maritime_training_progress',
+    PENDING_SYNC: 'maritime_pending_sync',
+    USER_PROFILE: 'maritime_user_profile',
+    CACHED_CONTENT: 'maritime_cached_content'
   },
 
   saveQuizProgress: jest.fn((phaseId, progress) => {
     try {
-      const allProgress = JSON.parse(localStorage.getItem('burando_quiz_progress') || '{}');
+      const allProgress = JSON.parse(localStorage.getItem('maritime_quiz_progress') || '{}');
       allProgress[phaseId] = { ...progress, timestamp: Date.now(), offline: true };
-      localStorage.setItem('burando_quiz_progress', JSON.stringify(allProgress));
+      localStorage.setItem('maritime_quiz_progress', JSON.stringify(allProgress));
       return true;
     } catch (error) {
       return false;
@@ -52,7 +52,7 @@ const mockOfflineStorage = {
 
   getQuizProgress: jest.fn((phaseId = null) => {
     try {
-      const progressData = localStorage.getItem('burando_quiz_progress');
+      const progressData = localStorage.getItem('maritime_quiz_progress');
       if (!progressData) return null;
       const allProgress = JSON.parse(progressData);
       return phaseId ? allProgress[phaseId] : allProgress;
@@ -63,17 +63,17 @@ const mockOfflineStorage = {
 
   saveCompletedQuiz: jest.fn((phaseId, quizData) => {
     try {
-      const completedQuizzes = JSON.parse(localStorage.getItem('burando_completed_quizzes') || '{}');
+      const completedQuizzes = JSON.parse(localStorage.getItem('maritime_completed_quizzes') || '{}');
       completedQuizzes[phaseId] = {
         ...quizData,
         completedAt: Date.now(),
         offline: true,
         needsSync: true
       };
-      localStorage.setItem('burando_completed_quizzes', JSON.stringify(completedQuizzes));
+      localStorage.setItem('maritime_completed_quizzes', JSON.stringify(completedQuizzes));
 
       // Add to pending sync
-      const pendingSync = JSON.parse(localStorage.getItem('burando_pending_sync') || '[]');
+      const pendingSync = JSON.parse(localStorage.getItem('maritime_pending_sync') || '[]');
       pendingSync.push({
         type: 'quiz',
         id: phaseId,
@@ -81,7 +81,7 @@ const mockOfflineStorage = {
         timestamp: Date.now(),
         retryCount: 0
       });
-      localStorage.setItem('burando_pending_sync', JSON.stringify(pendingSync));
+      localStorage.setItem('maritime_pending_sync', JSON.stringify(pendingSync));
 
       return true;
     } catch (error) {
@@ -91,7 +91,7 @@ const mockOfflineStorage = {
 
   getCompletedQuizzes: jest.fn((phaseId = null) => {
     try {
-      const quizzesData = localStorage.getItem('burando_completed_quizzes');
+      const quizzesData = localStorage.getItem('maritime_completed_quizzes');
       if (!quizzesData) return null;
       const allQuizzes = JSON.parse(quizzesData);
       return phaseId ? allQuizzes[phaseId] : allQuizzes;
@@ -102,14 +102,14 @@ const mockOfflineStorage = {
 
   saveTrainingProgress: jest.fn((progress) => {
     try {
-      const currentProgress = JSON.parse(localStorage.getItem('burando_training_progress') || '{}');
+      const currentProgress = JSON.parse(localStorage.getItem('maritime_training_progress') || '{}');
       const updatedProgress = {
         ...currentProgress,
         ...progress,
         lastUpdated: Date.now(),
         offline: true
       };
-      localStorage.setItem('burando_training_progress', JSON.stringify(updatedProgress));
+      localStorage.setItem('maritime_training_progress', JSON.stringify(updatedProgress));
       return true;
     } catch (error) {
       return false;
@@ -118,7 +118,7 @@ const mockOfflineStorage = {
 
   getTrainingProgress: jest.fn(() => {
     try {
-      const progressData = localStorage.getItem('burando_training_progress');
+      const progressData = localStorage.getItem('maritime_training_progress');
       return progressData ? JSON.parse(progressData) : null;
     } catch (error) {
       return null;
@@ -127,7 +127,7 @@ const mockOfflineStorage = {
 
   addToPendingSync: jest.fn((type, id, data) => {
     try {
-      const pendingSync = JSON.parse(localStorage.getItem('burando_pending_sync') || '[]');
+      const pendingSync = JSON.parse(localStorage.getItem('maritime_pending_sync') || '[]');
       const filteredSync = pendingSync.filter(item => !(item.type === type && item.id === id));
       filteredSync.push({
         type,
@@ -136,7 +136,7 @@ const mockOfflineStorage = {
         timestamp: Date.now(),
         retryCount: 0
       });
-      localStorage.setItem('burando_pending_sync', JSON.stringify(filteredSync));
+      localStorage.setItem('maritime_pending_sync', JSON.stringify(filteredSync));
       return true;
     } catch (error) {
       return false;
@@ -145,7 +145,7 @@ const mockOfflineStorage = {
 
   getPendingSync: jest.fn(() => {
     try {
-      const syncData = localStorage.getItem('burando_pending_sync');
+      const syncData = localStorage.getItem('maritime_pending_sync');
       return syncData ? JSON.parse(syncData) : [];
     } catch (error) {
       return [];
@@ -154,9 +154,9 @@ const mockOfflineStorage = {
 
   removePendingSync: jest.fn((type, id) => {
     try {
-      const pendingSync = JSON.parse(localStorage.getItem('burando_pending_sync') || '[]');
+      const pendingSync = JSON.parse(localStorage.getItem('maritime_pending_sync') || '[]');
       const filteredSync = pendingSync.filter(item => !(item.type === type && item.id === id));
-      localStorage.setItem('burando_pending_sync', JSON.stringify(filteredSync));
+      localStorage.setItem('maritime_pending_sync', JSON.stringify(filteredSync));
       return true;
     } catch (error) {
       return false;
@@ -166,7 +166,7 @@ const mockOfflineStorage = {
   saveUserProfile: jest.fn((profile) => {
     try {
       const profileData = { ...profile, cachedAt: Date.now() };
-      localStorage.setItem('burando_user_profile', JSON.stringify(profileData));
+      localStorage.setItem('maritime_user_profile', JSON.stringify(profileData));
       return true;
     } catch (error) {
       return false;
@@ -175,7 +175,7 @@ const mockOfflineStorage = {
 
   getUserProfile: jest.fn(() => {
     try {
-      const profileData = localStorage.getItem('burando_user_profile');
+      const profileData = localStorage.getItem('maritime_user_profile');
       return profileData ? JSON.parse(profileData) : null;
     } catch (error) {
       return null;
@@ -250,9 +250,9 @@ describe('Offline Storage Service', () => {
     // Re-implement ALL mocks with fresh state
     mockOfflineStorage.saveQuizProgress.mockImplementation((phaseId, progress) => {
       try {
-        const allProgress = JSON.parse(localStorageMock.getItem('burando_quiz_progress') || '{}');
+        const allProgress = JSON.parse(localStorageMock.getItem('maritime_quiz_progress') || '{}');
         allProgress[phaseId] = { ...progress, timestamp: Date.now(), offline: true };
-        localStorageMock.setItem('burando_quiz_progress', JSON.stringify(allProgress));
+        localStorageMock.setItem('maritime_quiz_progress', JSON.stringify(allProgress));
         return true;
       } catch (error) {
         return false;
@@ -261,7 +261,7 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.getQuizProgress.mockImplementation((phaseId = null) => {
       try {
-        const progressData = localStorageMock.getItem('burando_quiz_progress');
+        const progressData = localStorageMock.getItem('maritime_quiz_progress');
         if (!progressData) return null;
         const allProgress = JSON.parse(progressData);
         return phaseId ? (allProgress[phaseId] || null) : allProgress;
@@ -272,17 +272,17 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.saveCompletedQuiz.mockImplementation((phaseId, quizData) => {
       try {
-        const completedQuizzes = JSON.parse(localStorageMock.getItem('burando_completed_quizzes') || '{}');
+        const completedQuizzes = JSON.parse(localStorageMock.getItem('maritime_completed_quizzes') || '{}');
         completedQuizzes[phaseId] = {
           ...quizData,
           completedAt: Date.now(),
           offline: true,
           needsSync: true
         };
-        localStorageMock.setItem('burando_completed_quizzes', JSON.stringify(completedQuizzes));
+        localStorageMock.setItem('maritime_completed_quizzes', JSON.stringify(completedQuizzes));
 
         // Add to pending sync
-        const pendingSync = JSON.parse(localStorageMock.getItem('burando_pending_sync') || '[]');
+        const pendingSync = JSON.parse(localStorageMock.getItem('maritime_pending_sync') || '[]');
         pendingSync.push({
           type: 'quiz',
           id: phaseId,
@@ -290,7 +290,7 @@ describe('Offline Storage Service', () => {
           timestamp: Date.now(),
           retryCount: 0
         });
-        localStorageMock.setItem('burando_pending_sync', JSON.stringify(pendingSync));
+        localStorageMock.setItem('maritime_pending_sync', JSON.stringify(pendingSync));
 
         return true;
       } catch (error) {
@@ -300,7 +300,7 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.getCompletedQuizzes.mockImplementation((phaseId = null) => {
       try {
-        const quizzesData = localStorageMock.getItem('burando_completed_quizzes');
+        const quizzesData = localStorageMock.getItem('maritime_completed_quizzes');
         if (!quizzesData) return null;
         const allQuizzes = JSON.parse(quizzesData);
         return phaseId ? (allQuizzes[phaseId] || null) : allQuizzes;
@@ -311,14 +311,14 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.saveTrainingProgress.mockImplementation((progress) => {
       try {
-        const currentProgress = JSON.parse(localStorageMock.getItem('burando_training_progress') || '{}');
+        const currentProgress = JSON.parse(localStorageMock.getItem('maritime_training_progress') || '{}');
         const updatedProgress = {
           ...currentProgress,
           ...progress,
           lastUpdated: Date.now(),
           offline: true
         };
-        localStorageMock.setItem('burando_training_progress', JSON.stringify(updatedProgress));
+        localStorageMock.setItem('maritime_training_progress', JSON.stringify(updatedProgress));
         return true;
       } catch (error) {
         return false;
@@ -327,7 +327,7 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.getTrainingProgress.mockImplementation(() => {
       try {
-        const progressData = localStorageMock.getItem('burando_training_progress');
+        const progressData = localStorageMock.getItem('maritime_training_progress');
         return progressData ? JSON.parse(progressData) : null;
       } catch (error) {
         return null;
@@ -336,7 +336,7 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.addToPendingSync.mockImplementation((type, id, data) => {
       try {
-        const pendingSync = JSON.parse(localStorageMock.getItem('burando_pending_sync') || '[]');
+        const pendingSync = JSON.parse(localStorageMock.getItem('maritime_pending_sync') || '[]');
         const filteredSync = pendingSync.filter(item => !(item.type === type && item.id === id));
         filteredSync.push({
           type,
@@ -345,7 +345,7 @@ describe('Offline Storage Service', () => {
           timestamp: Date.now(),
           retryCount: 0
         });
-        localStorageMock.setItem('burando_pending_sync', JSON.stringify(filteredSync));
+        localStorageMock.setItem('maritime_pending_sync', JSON.stringify(filteredSync));
         return true;
       } catch (error) {
         return false;
@@ -354,7 +354,7 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.getPendingSync.mockImplementation(() => {
       try {
-        const syncData = localStorageMock.getItem('burando_pending_sync');
+        const syncData = localStorageMock.getItem('maritime_pending_sync');
         return syncData ? JSON.parse(syncData) : [];
       } catch (error) {
         return [];
@@ -363,9 +363,9 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.removePendingSync.mockImplementation((type, id) => {
       try {
-        const pendingSync = JSON.parse(localStorageMock.getItem('burando_pending_sync') || '[]');
+        const pendingSync = JSON.parse(localStorageMock.getItem('maritime_pending_sync') || '[]');
         const filteredSync = pendingSync.filter(item => !(item.type === type && item.id === id));
-        localStorageMock.setItem('burando_pending_sync', JSON.stringify(filteredSync));
+        localStorageMock.setItem('maritime_pending_sync', JSON.stringify(filteredSync));
         return true;
       } catch (error) {
         return false;
@@ -375,7 +375,7 @@ describe('Offline Storage Service', () => {
     mockOfflineStorage.saveUserProfile.mockImplementation((profile) => {
       try {
         const profileData = { ...profile, cachedAt: Date.now() };
-        localStorageMock.setItem('burando_user_profile', JSON.stringify(profileData));
+        localStorageMock.setItem('maritime_user_profile', JSON.stringify(profileData));
         return true;
       } catch (error) {
         return false;
@@ -384,7 +384,7 @@ describe('Offline Storage Service', () => {
 
     mockOfflineStorage.getUserProfile.mockImplementation(() => {
       try {
-        const profileData = localStorageMock.getItem('burando_user_profile');
+        const profileData = localStorageMock.getItem('maritime_user_profile');
         return profileData ? JSON.parse(profileData) : null;
       } catch (error) {
         return null;
@@ -681,12 +681,12 @@ describe('Offline Storage Service', () => {
 
     it('should handle corrupted data gracefully', () => {
       // Set invalid JSON data directly in localStorage
-      localStorageMock.setItem('burando_quiz_progress', 'invalid-json');
+      localStorageMock.setItem('maritime_quiz_progress', 'invalid-json');
 
       // Override the mock to simulate parsing corrupted data
       mockOfflineStorage.getQuizProgress.mockImplementationOnce(() => {
         try {
-          const data = localStorageMock.getItem('burando_quiz_progress');
+          const data = localStorageMock.getItem('maritime_quiz_progress');
           if (!data) return null;
           JSON.parse(data); // This will throw for invalid JSON
           return {};

@@ -66,8 +66,8 @@ export const trainingService = {
   uploadTrainingProof: async (itemId, formData) => {
     const response = await api.post(`/upload/training-proof/${itemId}`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+        'Content-Type': 'multipart/form-data'
+      }
     });
     return response.data;
   }

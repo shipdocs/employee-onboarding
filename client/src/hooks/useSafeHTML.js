@@ -87,13 +87,13 @@ export const useSafeText = (content) => {
  * @param {string} props.className - CSS class name
  * @returns {JSX.Element} - Safe HTML component
  */
-export const SafeHTMLRenderer = ({ 
-  content, 
-  tag: Tag = 'div', 
-  options = {}, 
-  style = {}, 
+export const SafeHTMLRenderer = ({
+  content,
+  tag: Tag = 'div',
+  options = {},
+  style = {},
   className = '',
-  ...props 
+  ...props
 }) => {
   const safeHTML = useSafeHTML(content, options);
 

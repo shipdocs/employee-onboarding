@@ -18,7 +18,7 @@ jobs:
           echo "🔄 Triggering backup email cleanup..."
           
           # Get the production URL
-          CLEANUP_URL="${{ secrets.VERCEL_URL || 'https://onboarding.burando.online' }}/api/cron/email-cleanup"
+          CLEANUP_URL="${{ secrets.VERCEL_URL || 'https://onboarding.maritime.online' }}/api/cron/email-cleanup"
           
           # Trigger the cleanup endpoint
           response=$(curl -s -w "%{http_code}" -X POST "$CLEANUP_URL" \
@@ -83,7 +83,7 @@ jobs:
           echo "🔍 Verifying email retention status..."
           
           # Get the production URL
-          STATUS_URL="${{ secrets.VERCEL_URL || 'https://onboarding.burando.online' }}/api/admin/email-retention-status"
+          STATUS_URL="${{ secrets.VERCEL_URL || 'https://onboarding.maritime.online' }}/api/admin/email-retention-status"
           
           # Note: This would require admin authentication
           # For now, just log that verification should be done manually

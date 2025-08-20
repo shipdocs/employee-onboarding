@@ -10,7 +10,7 @@ const { adminRateLimit } = require('../../lib/rateLimit');
 
 async function getUserFeedback(req, res) {
   try {
-    const { 
+    const {
       status = 'all',
       type = 'all',
       rating = 'all',
@@ -99,15 +99,15 @@ async function getUserFeedback(req, res) {
 
       // Apply filters to mock data
       let filteredFeedback = mockFeedback;
-      
+
       if (status !== 'all') {
         filteredFeedback = filteredFeedback.filter(fb => fb.status === status);
       }
-      
+
       if (type !== 'all') {
         filteredFeedback = filteredFeedback.filter(fb => fb.type === type);
       }
-      
+
       if (rating !== 'all') {
         const ratingNum = parseInt(rating);
         filteredFeedback = filteredFeedback.filter(fb => fb.rating === ratingNum);
@@ -164,15 +164,15 @@ async function getUserFeedback(req, res) {
 
     // Apply filters to real data
     let filteredFeedback = feedback || [];
-    
+
     if (status !== 'all') {
       filteredFeedback = filteredFeedback.filter(fb => fb.status === status);
     }
-    
+
     if (type !== 'all') {
       filteredFeedback = filteredFeedback.filter(fb => fb.type === type);
     }
-    
+
     if (rating !== 'all') {
       const ratingNum = parseInt(rating);
       filteredFeedback = filteredFeedback.filter(fb => fb.rating === ratingNum);
@@ -223,9 +223,9 @@ async function getUserFeedback(req, res) {
 
   } catch (error) {
     console.error('Get user feedback error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to fetch user feedback',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -252,9 +252,9 @@ async function handler(req, res) {
     }
   } catch (error) {
     console.error('User feedback API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 }

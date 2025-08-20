@@ -41,9 +41,9 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     if (exportRecord.status !== 'completed') {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Export is not ready for download',
-        status: exportRecord.status 
+        status: exportRecord.status
       });
     }
 
@@ -67,7 +67,7 @@ module.exports = adminRateLimit(async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
     res.setHeader('Content-Length', buffer.length);
-    
+
     // Log the download
     await supabase
       .from('audit_log')
@@ -90,9 +90,9 @@ module.exports = adminRateLimit(async (req, res) => {
 
   } catch (error) {
     console.error('Data export download error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to download export file',
-      details: error.message 
+      details: error.message
     });
   }
 });

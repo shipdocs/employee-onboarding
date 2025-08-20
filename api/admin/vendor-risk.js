@@ -15,9 +15,9 @@ module.exports = async function handler(req, res) {
   // Apply rate limiting
   const rateLimitResult = await adminRateLimit(req, res);
   if (!rateLimitResult.success) {
-    return res.status(429).json({ 
+    return res.status(429).json({
       error: 'Too many requests',
-      retryAfter: rateLimitResult.retryAfter 
+      retryAfter: rateLimitResult.retryAfter
     });
   }
 
@@ -99,8 +99,8 @@ async function updateVendorRisk(req, res, user) {
     const { vendorId, riskScore, riskLevel, notes, nextReview } = req.body;
 
     if (!vendorId || !riskScore || !riskLevel) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: vendorId, riskScore, riskLevel' 
+      return res.status(400).json({
+        error: 'Missing required fields: vendorId, riskScore, riskLevel'
       });
     }
 
@@ -132,7 +132,7 @@ async function updateVendorRisk(req, res, user) {
         action: 'update_vendor_risk_assessment',
         resource_type: 'vendor_risk',
         resource_id: vendorId,
-        details: { 
+        details: {
           vendorId,
           oldRiskLevel: req.body.oldRiskLevel,
           newRiskLevel: riskLevel,
@@ -197,12 +197,12 @@ function calculateRiskSummary(vendors) {
   }, vendors[0].last_assessment);
 
   // Calculate compliance score (simplified)
-  const compliantVendors = vendors.filter(v => 
-    v.compliance_status && 
-    v.compliance_status.soc2 === 'valid' && 
+  const compliantVendors = vendors.filter(v =>
+    v.compliance_status &&
+    v.compliance_status.soc2 === 'valid' &&
     v.compliance_status.gdpr === 'valid'
   ).length;
-  
+
   summary.complianceScore = Math.round((compliantVendors / vendors.length) * 100);
 
   return summary;

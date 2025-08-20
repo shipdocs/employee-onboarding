@@ -59,7 +59,7 @@ const SecurityMonitoringDashboard = () => {
             duration: 4000,
             style: {
               background: '#dc2626',
-              color: '#fff',
+              color: '#fff'
             }
           });
         }, 1000);
@@ -129,7 +129,7 @@ const SecurityMonitoringDashboard = () => {
           duration: 5000,
           style: {
             background: '#059669',
-            color: '#fff',
+            color: '#fff'
           }
         });
       } else {
@@ -138,7 +138,7 @@ const SecurityMonitoringDashboard = () => {
             duration: 4000,
             style: {
               background: '#d97706',
-              color: '#fff',
+              color: '#fff'
             }
           });
         } else {
@@ -146,7 +146,7 @@ const SecurityMonitoringDashboard = () => {
             duration: 4000,
             style: {
               background: '#dc2626',
-              color: '#fff',
+              color: '#fff'
             }
           });
         }
@@ -157,7 +157,7 @@ const SecurityMonitoringDashboard = () => {
         duration: 4000,
         style: {
           background: '#dc2626',
-          color: '#fff',
+          color: '#fff'
         }
       });
     } finally {

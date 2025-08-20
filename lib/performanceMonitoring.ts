@@ -82,14 +82,14 @@ class PerformanceMonitor {
   private updateBaseline(metric: PerformanceMetric): void {
     const key = `${metric.name}_${metric.unit}`;
     const recentMetrics = this.getRecentMetrics(metric.name, 24 * 60 * 60 * 1000); // Last 24 hours
-    
+
     if (recentMetrics.length === 0) return;
 
     const values = recentMetrics.map(m => m.value).sort((a, b) => a - b);
     const p50Index = Math.floor(values.length * 0.5);
     const p95Index = Math.floor(values.length * 0.95);
     const p99Index = Math.floor(values.length * 0.99);
-    
+
     const baseline: PerformanceBaseline = {
       metric: metric.name,
       p50: values[p50Index] || 0,
@@ -190,14 +190,14 @@ class PerformanceMonitor {
     const recentDbMetrics = this.getRecentMetrics('database_query_time', 60 * 60 * 1000);
     const recentPageMetrics = this.getRecentMetrics('page_load_time', 60 * 60 * 1000);
 
-    const avgApiTime = recentApiMetrics.length > 0 
-      ? recentApiMetrics.reduce((sum, m) => sum + m.value, 0) / recentApiMetrics.length 
+    const avgApiTime = recentApiMetrics.length > 0
+      ? recentApiMetrics.reduce((sum, m) => sum + m.value, 0) / recentApiMetrics.length
       : 0;
-    const avgDbTime = recentDbMetrics.length > 0 
-      ? recentDbMetrics.reduce((sum, m) => sum + m.value, 0) / recentDbMetrics.length 
+    const avgDbTime = recentDbMetrics.length > 0
+      ? recentDbMetrics.reduce((sum, m) => sum + m.value, 0) / recentDbMetrics.length
       : 0;
-    const avgPageTime = recentPageMetrics.length > 0 
-      ? recentPageMetrics.reduce((sum, m) => sum + m.value, 0) / recentPageMetrics.length 
+    const avgPageTime = recentPageMetrics.length > 0
+      ? recentPageMetrics.reduce((sum, m) => sum + m.value, 0) / recentPageMetrics.length
       : 0;
 
     return {
@@ -253,7 +253,7 @@ class PerformanceMonitor {
   private async sendAlertToMonitoringService(alert: PerformanceAlert): Promise<void> {
     try {
       // Implementation would depend on monitoring service (e.g., Datadog, New Relic, etc.)
-      
+
     } catch (error) {
       // console.error('Failed to send performance alert to monitoring service:', error);
     }
@@ -273,7 +273,7 @@ class PerformanceMonitor {
    */
   private cleanup(): void {
     const cutoff = Date.now() - (7 * 24 * 60 * 60 * 1000); // 7 days
-    
+
     this.metrics = this.metrics.filter(metric => metric.timestamp.getTime() > cutoff);
     this.alerts = this.alerts.filter(alert => alert.timestamp.getTime() > cutoff);
   }
@@ -312,7 +312,7 @@ export const performanceMonitor = new PerformanceMonitor();
 // Helper functions for common performance measurements
 export const measureApiPerformance = (endpoint: string) => {
   const start = Date.now();
-  
+
   return {
     end: (statusCode?: number) => {
       const duration = Date.now() - start;
@@ -327,7 +327,7 @@ export const measureApiPerformance = (endpoint: string) => {
 
 export const measureDatabasePerformance = (query: string) => {
   const start = Date.now();
-  
+
   return {
     end: () => {
       const duration = Date.now() - start;

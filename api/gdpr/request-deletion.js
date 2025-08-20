@@ -15,9 +15,9 @@ module.exports = async function handler(req, res) {
   // Apply strict rate limiting for deletion requests
   const rateLimitResult = await userRateLimit(req, res, { max: 2, windowMs: 24 * 60 * 60 * 1000 }); // 2 per day
   if (!rateLimitResult.success) {
-    return res.status(429).json({ 
+    return res.status(429).json({
       error: 'Too many deletion requests. Please contact support if you need assistance.',
-      retryAfter: rateLimitResult.retryAfter 
+      retryAfter: rateLimitResult.retryAfter
     });
   }
 
@@ -36,8 +36,8 @@ module.exports = async function handler(req, res) {
 
     // Validate confirmation text
     if (confirmationText !== 'DELETE MY DATA') {
-      return res.status(400).json({ 
-        error: 'Invalid confirmation text. Please type exactly "DELETE MY DATA" to confirm.' 
+      return res.status(400).json({
+        error: 'Invalid confirmation text. Please type exactly "DELETE MY DATA" to confirm.'
       });
     }
 
@@ -55,7 +55,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (existingRequests && existingRequests.length > 0) {
-      return res.status(409).json({ 
+      return res.status(409).json({
         error: 'You already have a pending deletion request. Please contact support for assistance.',
         existingRequest: existingRequests[0]
       });
@@ -137,7 +137,7 @@ module.exports = async function handler(req, res) {
         action: 'request_data_deletion',
         resource_type: 'data_deletion',
         resource_id: newRequest.id,
-        details: { 
+        details: {
           deletionType,
           requestId: newRequest.id,
           retentionNotice,
@@ -163,7 +163,7 @@ module.exports = async function handler(req, res) {
 
     res.status(201).json({
       success: true,
-      message: deletionType === 'complete' 
+      message: deletionType === 'complete'
         ? 'Data deletion request created successfully. Processing will begin shortly.'
         : 'Data deletion request created successfully. Manual review required due to legal retention requirements.',
       request: {
@@ -173,7 +173,7 @@ module.exports = async function handler(req, res) {
         status: newRequest.status,
         createdAt: newRequest.created_at,
         retentionNotice,
-        estimatedCompletion: deletionType === 'complete' 
+        estimatedCompletion: deletionType === 'complete'
           ? new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString()
           : new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString()
       }
@@ -183,7 +183,7 @@ module.exports = async function handler(req, res) {
     console.error('Deletion request API error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
-}
+};
 
 /**
  * Notify compliance team for manual review
@@ -192,7 +192,7 @@ async function notifyComplianceTeam(deletionRequest, user) {
   try {
     // In production, this would send an email or create a ticket
     console.log(`Manual deletion review required for user ${user.id}, request ${deletionRequest.id}`);
-    
+
     // Create a notification record
     await supabase
       .from('compliance_notifications')
@@ -246,7 +246,7 @@ async function processDataDeletion(requestId, userId, deletionType) {
 
   } catch (error) {
     console.error('Deletion processing error:', error);
-    
+
     // Update request status to failed
     await supabase
       .from('data_deletions')
@@ -265,7 +265,7 @@ async function processDataDeletion(requestId, userId, deletionType) {
 async function performCompleteDeletion(userId) {
   // In production, this would carefully delete data while preserving referential integrity
   console.log(`Performing complete deletion for user ${userId}`);
-  
+
   // This is a simulation - in production you'd need to:
   // 1. Delete user data from all tables
   // 2. Anonymize audit logs
@@ -280,7 +280,7 @@ async function performCompleteDeletion(userId) {
 async function performPartialDeletion(userId) {
   // In production, this would anonymize personal data while retaining required records
   console.log(`Performing partial deletion (anonymization) for user ${userId}`);
-  
+
   // This is a simulation - in production you'd need to:
   // 1. Replace personal identifiers with anonymous IDs
   // 2. Remove contact information

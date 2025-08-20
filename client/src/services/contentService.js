@@ -28,7 +28,7 @@ export const contentService = {
     const response = await api.get(`/content/training/phases/${id}`);
     return response.data;
   },
-  
+
   getTrainingPhase: async (id) => {
     const response = await api.get(`/content/training/phases/${id}`);
     return response.data;
@@ -88,7 +88,7 @@ export const contentService = {
 
     const response = await api.post('/content/media/upload', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data'
       }
     });
     return response.data;
@@ -103,8 +103,8 @@ export const contentService = {
   uploadContentImage: async (formData) => {
     const response = await api.post('/upload/content-image', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+        'Content-Type': 'multipart/form-data'
+      }
     });
     return response.data;
   },
@@ -112,8 +112,8 @@ export const contentService = {
   uploadContentVideo: async (formData) => {
     const response = await api.post('/upload/content-video', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+        'Content-Type': 'multipart/form-data'
+      }
     });
     return response.data;
   },
@@ -165,7 +165,7 @@ export const contentService = {
 
     const response = await api.post('/content/import', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data'
       }
     });
     return response.data;
@@ -205,8 +205,8 @@ export const contentService = {
 
   // Content Scheduling
   schedulePublication: async (phaseId, publishDate) => {
-    const response = await api.post(`/content/training/phases/${phaseId}/schedule`, { 
-      publish_date: publishDate 
+    const response = await api.post(`/content/training/phases/${phaseId}/schedule`, {
+      publish_date: publishDate
     });
     return response.data;
   },
@@ -223,9 +223,9 @@ export const contentService = {
   },
 
   addCollaborator: async (phaseId, userId, role = 'editor') => {
-    const response = await api.post(`/content/training/phases/${phaseId}/collaborators`, { 
-      user_id: userId, 
-      role 
+    const response = await api.post(`/content/training/phases/${phaseId}/collaborators`, {
+      user_id: userId,
+      role
     });
     return response.data;
   },
@@ -242,16 +242,16 @@ export const contentService = {
   },
 
   addComment: async (phaseId, comment, parentId = null) => {
-    const response = await api.post(`/content/training/phases/${phaseId}/comments`, { 
-      comment, 
-      parent_id: parentId 
+    const response = await api.post(`/content/training/phases/${phaseId}/comments`, {
+      comment,
+      parent_id: parentId
     });
     return response.data;
   },
 
   updateComment: async (phaseId, commentId, comment) => {
-    const response = await api.put(`/content/training/phases/${phaseId}/comments/${commentId}`, { 
-      comment 
+    const response = await api.put(`/content/training/phases/${phaseId}/comments/${commentId}`, {
+      comment
     });
     return response.data;
   },

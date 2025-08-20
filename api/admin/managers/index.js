@@ -186,7 +186,7 @@ async function createManager(req, res) {
     // Enhanced password validation
     const EnhancedPasswordValidator = require('../../../lib/security/EnhancedPasswordValidator');
     const PasswordHistoryService = require('../../../lib/security/PasswordHistoryService');
-    
+
     const passwordValidator = new EnhancedPasswordValidator();
     const userInfo = {
       firstName,

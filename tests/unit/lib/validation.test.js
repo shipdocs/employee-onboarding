@@ -363,7 +363,7 @@ describe('Validation Library', () => {
         const longName = 'a'.repeat(300) + '.txt';
         const sanitized = sanitizers.filename(longName);
         expect(sanitized.length).toBeLessThanOrEqual(255);
-        expect(sanitized).toEndWith('.txt');
+        expect(sanitized.endsWith('.txt')).toBe(true);
       });
     });
 

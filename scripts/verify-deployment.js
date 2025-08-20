@@ -8,7 +8,7 @@
 const axios = require('axios');
 const { performance } = require('perf_hooks');
 
-const BASE_URL = 'https://onboarding.burando.online';
+const BASE_URL = 'https://maritime-onboarding.example.com';
 const TIMEOUT = 10000; // 10 seconds
 
 // Test results tracking
@@ -175,7 +175,7 @@ async function verifyDeployment() {
   });
   
   await runTest('Custom domain working', async () => {
-    if (!BASE_URL.includes('onboarding.burando.online')) {
+    if (!BASE_URL.includes('maritime-onboarding.example.com')) {
       throw new Error('Not using custom domain');
     }
     const res = await axios.get(BASE_URL, { timeout: TIMEOUT });

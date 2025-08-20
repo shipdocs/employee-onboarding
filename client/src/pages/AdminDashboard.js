@@ -101,7 +101,7 @@ const AdminDashboard = () => {
           duration: 4000,
           style: {
             background: '#dc2626',
-            color: '#fff',
+            color: '#fff'
           }
         });
       }

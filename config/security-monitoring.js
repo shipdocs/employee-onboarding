@@ -82,8 +82,8 @@ module.exports = {
     email: {
       enabled: process.env.NODE_ENV === 'production',
       recipients: [
-        'security@burando.com',
-        'dev-team@burando.com'
+        'security@maritime-example.com',
+        'dev-team@maritime-example.com'
       ]
     },
     slack: {
@@ -175,10 +175,10 @@ module.exports = {
     responseTime: 4,
     
     // Emergency contact
-    contact: 'security@burando.com',
+    contact: 'security@maritime-example.com',
     
     // Emergency procedures document
-    proceduresUrl: 'https://docs.burando.com/security/emergency-response',
+    proceduresUrl: 'https://docs.maritime-example.com/security/emergency-response',
     
     // Automatic actions for critical vulnerabilities
     automaticActions: [

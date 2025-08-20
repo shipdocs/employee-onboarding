@@ -98,7 +98,7 @@ const ThemeToggle = ({
           text-white
           transition-all duration-300 ease-in-out
           hover:scale-110 hover:shadow-lg
-          focus:outline-none focus:ring-2 focus:ring-burando-teal focus:ring-opacity-50
+          focus:outline-none focus:ring-2 focus:ring-maritime-teal focus:ring-opacity-50
           active:scale-95
           group
         `}
@@ -108,7 +108,7 @@ const ThemeToggle = ({
         title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
       >
         {/* Background overlay for smooth transitions */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-burando-teal to-burando-teal-light opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-maritime-teal to-maritime-teal-light opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Icon container */}
         <div className="relative flex items-center justify-center">

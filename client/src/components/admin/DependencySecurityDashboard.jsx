@@ -1,6 +1,6 @@
 /**
  * Dependency Security Dashboard
- * 
+ *
  * Web interface for managing dependency vulnerabilities, running scans,
  * and executing remediation actions.
  */
@@ -67,7 +67,7 @@ const DependencySecurityDashboard = () => {
     try {
       const response = await fetch('/api/security/dependency-management?action=dashboard');
       const data = await response.json();
-      
+
       if (data.success) {
         setDashboardData(data.data);
       }
@@ -82,7 +82,7 @@ const DependencySecurityDashboard = () => {
     try {
       const response = await fetch('/api/security/dependency-management?action=scan-history&limit=10');
       const data = await response.json();
-      
+
       if (data.success) {
         setScanHistory(data.data.scans);
       }
@@ -94,7 +94,7 @@ const DependencySecurityDashboard = () => {
   const runScan = async (options = {}) => {
     setIsScanning(true);
     setScanDialog(false);
-    
+
     try {
       const response = await fetch('/api/security/dependency-management', {
         method: 'POST',
@@ -104,9 +104,9 @@ const DependencySecurityDashboard = () => {
           ...options
         })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         // Poll for scan completion
         setTimeout(() => {
@@ -132,9 +132,9 @@ const DependencySecurityDashboard = () => {
           actionIds
         })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         setRemediationDialog(false);
         // Refresh data after remediation
@@ -245,7 +245,7 @@ const DependencySecurityDashboard = () => {
                 Last Scan
               </Typography>
               <Typography variant="body1">
-                {stats.lastScanDate 
+                {stats.lastScanDate
                   ? new Date(stats.lastScanDate).toLocaleString()
                   : 'Never'
                 }
@@ -259,9 +259,9 @@ const DependencySecurityDashboard = () => {
       {stats.criticalCount > 0 && (
         <Alert severity="error" sx={{ mb: 3 }}>
           <strong>Critical vulnerabilities detected!</strong> Immediate action required.
-          <Button 
-            color="inherit" 
-            size="small" 
+          <Button
+            color="inherit"
+            size="small"
             onClick={() => runScan({ autoRemediate: true })}
             sx={{ ml: 2 }}
           >
@@ -368,7 +368,7 @@ const DependencySecurityDashboard = () => {
                         </Typography>
                       </TableCell>
                       <TableCell>
-                        <Chip 
+                        <Chip
                           label={scan.summary.totalVulnerabilities}
                           color={scan.summary.totalVulnerabilities > 0 ? 'error' : 'success'}
                           size="small"
@@ -380,7 +380,7 @@ const DependencySecurityDashboard = () => {
                       <TableCell>{scan.summary.lowCount}</TableCell>
                       <TableCell>
                         <Tooltip title="View Details">
-                          <IconButton 
+                          <IconButton
                             size="small"
                             onClick={() => setSelectedScan(scan)}
                           >
@@ -407,15 +407,15 @@ const DependencySecurityDashboard = () => {
           <List>
             <ListItem>
               <ListItemIcon><Security /></ListItemIcon>
-              <ListItemText 
-                primary="Full Scan" 
+              <ListItemText
+                primary="Full Scan"
                 secondary="Scan both server and client dependencies"
               />
             </ListItem>
             <ListItem>
               <ListItemIcon><Build /></ListItemIcon>
-              <ListItemText 
-                primary="Auto-Remediation" 
+              <ListItemText
+                primary="Auto-Remediation"
                 secondary="Automatically fix vulnerabilities where possible"
               />
             </ListItem>
@@ -426,7 +426,7 @@ const DependencySecurityDashboard = () => {
           <Button onClick={() => runScan({ includeClient: true, autoRemediate: false })}>
             Scan Only
           </Button>
-          <Button 
+          <Button
             onClick={() => runScan({ includeClient: true, autoRemediate: true })}
             variant="contained"
           >
@@ -443,13 +443,13 @@ const DependencySecurityDashboard = () => {
             This will automatically fix vulnerabilities where patches are available.
           </Typography>
           <Alert severity="warning" sx={{ mt: 2 }}>
-            <strong>Warning:</strong> This action will update your dependencies. 
+            <strong>Warning:</strong> This action will update your dependencies.
             Make sure you have a backup and test thoroughly after remediation.
           </Alert>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setRemediationDialog(false)}>Cancel</Button>
-          <Button 
+          <Button
             onClick={() => executeRemediation(scanHistory[0]?.id)}
             variant="contained"
             color="warning"
@@ -461,10 +461,10 @@ const DependencySecurityDashboard = () => {
 
       {/* Scan Details Dialog */}
       {selectedScan && (
-        <Dialog 
-          open={!!selectedScan} 
-          onClose={() => setSelectedScan(null)} 
-          maxWidth="lg" 
+        <Dialog
+          open={!!selectedScan}
+          onClose={() => setSelectedScan(null)}
+          maxWidth="lg"
           fullWidth
         >
           <DialogTitle>
@@ -486,7 +486,7 @@ const DependencySecurityDashboard = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => setSelectedScan(null)}>Close</Button>
-            <Button 
+            <Button
               variant="contained"
               onClick={() => {
                 setSelectedScan(null);

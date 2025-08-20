@@ -66,7 +66,7 @@ async function handleEscalateEvent(req, res) {
         .single();
 
       if (existingIncident) {
-        return res.status(409).json({ 
+        return res.status(409).json({
           error: 'Security event already escalated',
           incident_id: existingIncident.incident_id
         });
@@ -94,9 +94,9 @@ async function handleEscalateEvent(req, res) {
 
   } catch (error) {
     console.error('Error escalating security event:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to escalate security event',
-      details: error.message 
+      details: error.message
     });
   }
 }

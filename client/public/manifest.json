@@ -1,7 +1,7 @@
 {
-  "short_name": "Burando Training",
-  "name": "Burando Maritime Onboarding - Offline Ready",
-  "description": "Maritime crew onboarding and safety training platform - works offline at sea",
+  "short_name": "Maritime Training",
+  "name": "Maritime Onboarding Platform - Offline Ready",
+  "description": "Open source maritime crew onboarding and safety training platform - works offline at sea",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,7 +21,7 @@
       "purpose": "maskable"
     },
     {
-      "src": "burando-logo-white.svg",
+      "src": "maritime-logo-white.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

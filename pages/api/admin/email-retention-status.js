@@ -1,7 +1,7 @@
 /**
  * Admin API: Email Retention Status
  * Provides real-time monitoring of email log retention compliance
- * 
+ *
  * Authentication: Requires admin role
  * Purpose: Monitoring, compliance reporting, and operational visibility
  */

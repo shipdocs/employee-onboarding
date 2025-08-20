@@ -145,7 +145,7 @@ const MFASetup = ({
     if (!setupData?.backupCodes) return;
 
     const content = [
-      'Burando Maritime Services - MFA Backup Codes',
+      'Maritime Onboarding Platform - MFA Backup Codes',
       '===========================================',
       '',
       'IMPORTANT: Store these codes in a secure location.',
@@ -161,7 +161,7 @@ const MFASetup = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `burando-mfa-backup-codes-${new Date().toISOString().split('T')[0]}.txt`;
+    a.download = `maritime-mfa-backup-codes-${new Date().toISOString().split('T')[0]}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -205,7 +205,7 @@ const MFASetup = ({
               <div className={`
                 w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium
                 ${currentStep >= step
-                  ? 'bg-burando-teal text-white'
+                  ? 'bg-maritime-teal text-white'
                   : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                 }
               `}>
@@ -214,7 +214,7 @@ const MFASetup = ({
               {step < 4 && (
                 <div className={`
                   w-16 h-1 mx-2
-                  ${currentStep > step ? 'bg-burando-teal' : 'bg-gray-200 dark:bg-gray-700'}
+                  ${currentStep > step ? 'bg-maritime-teal' : 'bg-gray-200 dark:bg-gray-700'}
                 `} />
               )}
             </div>
@@ -233,7 +233,7 @@ const MFASetup = ({
         {/* Step 1: Introduction */}
         {currentStep === 1 && (
           <div className="text-center">
-            <Shield className="h-16 w-16 text-burando-teal mx-auto mb-4" />
+            <Shield className="h-16 w-16 text-maritime-teal mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Set Up Multi-Factor Authentication
             </h2>
@@ -382,7 +382,7 @@ const MFASetup = ({
         {/* Step 3: Verification */}
         {currentStep === 3 && (
           <div className="text-center">
-            <Smartphone className="h-16 w-16 text-burando-teal mx-auto mb-4" />
+            <Smartphone className="h-16 w-16 text-maritime-teal mx-auto mb-4" />
             <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Verify Your Setup
             </h2>
@@ -400,7 +400,7 @@ const MFASetup = ({
                   setError('');
                 }}
                 placeholder="000000"
-                className="w-full px-4 py-3 text-center text-2xl font-mono border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-burando-teal focus:border-transparent"
+                className="w-full px-4 py-3 text-center text-2xl font-mono border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-maritime-teal focus:border-transparent"
                 maxLength={6}
                 autoComplete="off"
               />

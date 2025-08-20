@@ -214,7 +214,7 @@ async function handleIncidentCreated(webhookData) {
     throw new Error(`Failed to create incident from webhook: ${error.message}`);
   }
 
-  console.log(`Created incident from external system`, {
+  console.log('Created incident from external system', {
     incident_id: localIncidentId,
     source_system,
     external_incident_id: external_reference,

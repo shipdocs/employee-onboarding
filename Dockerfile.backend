@@ -1,8 +1,8 @@
 # Maritime Onboarding System - Backend Dockerfile
 FROM node:20-alpine
 
-# Install system dependencies including doxygen for documentation generation
-RUN apk add --no-cache curl doxygen graphviz ttf-dejavu bash
+# Install system dependencies
+RUN apk add --no-cache curl bash
 
 # Set working directory
 WORKDIR /app
@@ -17,8 +17,6 @@ RUN npm ci && npm cache clean --force
 COPY . .
 
 # Generate documentation during build
-RUN chmod +x generate-docs.sh && bash generate-docs.sh
-
 # Create directories
 RUN mkdir -p uploads logs
 

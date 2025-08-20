@@ -34,7 +34,7 @@ async function handler(req, res) {
     // Batch fetch all training sessions at once (avoid N+1)
     const userPhases = pendingQuizzes.map(q => ({ user_id: q.user_id, phase: q.phase }));
     const uniqueUserPhases = Array.from(new Set(userPhases.map(JSON.stringify))).map(JSON.parse);
-    
+
     const sessionPromises = uniqueUserPhases.map(({ user_id, phase }) =>
       supabase
         .from('training_sessions')

@@ -30,7 +30,7 @@ const REPLACEMENTS = [
   { pattern: /hr@shipdocs\.app/gi, replacement: 'hr@example.com' },
   { pattern: /noreply@shipdocs\.app/gi, replacement: 'noreply@example.com' },
   { pattern: /security@shipdocs\.app/gi, replacement: 'security@example.com' },
-  { pattern: /burando_onboarding_[\w]+@shipdocs\.app/gi, replacement: 'onboarding@example.com' },
+  { pattern: /maritime_onboarding_[\w]+@shipdocs\.app/gi, replacement: 'onboarding@example.com' },
   { pattern: /@shipdocs\.app/gi, replacement: '@example.com' }, // Generic catch-all for any remaining @shipdocs.app
 
   // Passwords
@@ -60,7 +60,7 @@ const REPLACEMENTS = [
   { pattern: /new-onboarding-2025-git-[\w-]+\.vercel\.app/g, replacement: 'your-project.vercel.app' },
   
   // Custom domain
-  { pattern: /onboarding\.burando\.online/g, replacement: 'your-domain.com' },
+  { pattern: /maritime-onboarding\.example\.com/g, replacement: 'your-domain.com' },
   
   // Supabase keys (if any appear in examples)
   { pattern: /anon-key:\s*[\w-]+/g, replacement: 'anon-key: YOUR_ANON_KEY' },

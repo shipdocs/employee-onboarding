@@ -23,7 +23,7 @@ module.exports = adminRateLimit(async (req, res) => {
 
     const token = authHeader.split(' ')[1];
     const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-    
+
     if (authError || !user) {
       return res.status(401).json({ error: 'Invalid token' });
     }
@@ -53,9 +53,9 @@ module.exports = adminRateLimit(async (req, res) => {
     // Validate status
     const validStatuses = ['active', 'acknowledged', 'resolved'];
     if (!validStatuses.includes(status)) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Invalid status',
-        validStatuses 
+        validStatuses
       });
     }
 
@@ -139,9 +139,9 @@ module.exports = adminRateLimit(async (req, res) => {
 
   } catch (error) {
     console.error('Update alert status API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 });

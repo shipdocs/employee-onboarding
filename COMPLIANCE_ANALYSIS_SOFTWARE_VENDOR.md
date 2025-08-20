@@ -1,17 +1,17 @@
-# Compliance Analyse: Maritime Onboarding System als Software Leverancier voor Burando Atlantic Group
+# Compliance Analyse: Maritime Onboarding System als Software Leverancier voor Maritime Atlantic Group
 
 ## Executive Summary
 
-Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verzorgt, voldoet het Maritime Onboarding System **UITSTEKEND** aan de gestelde vereisten. De Docker-based architectuur biedt Burando volledige controle over deployment, data lokatie, en security configuratie.
+Als **SOFTWARE LEVERANCIER** waarbij Maritime Atlantic Group zelf de hosting verzorgt, voldoet het Maritime Onboarding System **UITSTEKEND** aan de gestelde vereisten. De Docker-based architectuur biedt Maritime volledige controle over deployment, data lokatie, en security configuratie.
 
 **Compliance Score: 92%**
 
 ## Context: Software Leverancier Model
 
 - **Leverancier:** Maritime Solutions (software ontwikkelaar)
-- **Klant:** Burando Atlantic Group (zelf-hostend)
-- **Deployment:** Docker containers op Burando's infrastructuur
-- **Verantwoordelijkheid:** Burando beheert hosting, compliance, en data lokatie
+- **Klant:** Maritime Atlantic Group (zelf-hostend)
+- **Deployment:** Docker containers op Maritime's infrastructuur
+- **Verantwoordelijkheid:** Maritime beheert hosting, compliance, en data lokatie
 
 ## Gedetailleerde Analyse
 
@@ -19,8 +19,8 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
 
 #### 1. Data wordt gehost binnen de Europese Unie
 **Status: ✅ COMPLIANT**
-- **Controle:** Volledig bij Burando
-- **Implementatie:** Burando bepaalt zelf hosting lokatie
+- **Controle:** Volledig bij Maritime
+- **Implementatie:** Maritime bepaalt zelf hosting lokatie
 - **Docker voordeel:** Portable deployment naar elk EU datacenter
 - **Onze bijdrage:** 
   - Docker containers zonder geografische restricties
@@ -34,7 +34,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
   - Security events tracking (`security_events`)
   - User access logs met detailed tracking
   - API voor audit data extractie
-- **Burando controle:** Volledige toegang tot alle logs via database
+- **Maritime controle:** Volledige toegang tot alle logs via database
 
 #### 3. Data retentie conform AVG
 **Status: ✅ COMPLIANT**
@@ -47,7 +47,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
 
 #### 4. Centraal contactpersoon voor beveiliging
 **Status: ✅ COMPLIANT**
-- **Model:** Burando wijst eigen Security Officer aan
+- **Model:** Maritime wijst eigen Security Officer aan
 - **Onze rol:** 
   - Technische support contact
   - Security updates communicatie
@@ -60,7 +60,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
   - TLS/SSL volledig geconfigureerd
   - HTTPS enforced in nginx config
 - **Storage Encryption:**
-  - Burando configureert disk encryption
+  - Maritime configureert disk encryption
   - PostgreSQL TDE ready
   - MinIO encryption support aanwezig
 - **Application Level:**
@@ -74,7 +74,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
   - Email notificatie systeem
   - Webhook integraties
   - Security monitoring dashboard
-- **Burando's voordeel:** Direct toegang tot alle incident data
+- **Maritime's voordeel:** Direct toegang tot alle incident data
 
 #### 7. Auditrecht bij afwezigheid ISO 27001
 **Status: ✅ COMPLIANT**
@@ -83,7 +83,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
   - Complete audit trail functionaliteit
   - Database level auditing
   - Source code audit mogelijk
-- **Burando's controle:** Volledige toegang tot systeem en data
+- **Maritime's controle:** Volledige toegang tot systeem en data
 
 ### ✅ CLOUD/SAAS PROVIDER VEREISTEN (Niet van toepassing, maar features aanwezig)
 
@@ -101,7 +101,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
   - Auto-restart capabilities
   - Load balancing support
   - Database replication ready
-- **Burando bepaalt:** Eigen SLA op basis van hun infrastructuur
+- **Maritime bepaalt:** Eigen SLA op basis van hun infrastructuur
 
 #### 3. Multi-Factor Authenticatie (MFA)
 **Status: ✅ COMPLIANT**
@@ -148,11 +148,11 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
   - Perpetual license optie
   - Source code escrow mogelijk
   - Geen vendor lock-in
-  - Data blijft bij Burando
+  - Data blijft bij Maritime
 
 #### 4. Beveiligde data verwijdering
 **Status: ✅ COMPLIANT**
-- **Burando's controle:**
+- **Maritime's controle:**
   - Volledige controle over data
   - Secure wipe op hun hardware
   - Geen data bij leverancier
@@ -171,11 +171,11 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
 | Vereiste | Status | Score | Opmerkingen |
 |----------|--------|-------|-------------|
 | **Algemene Beveiligingsvereisten** | | | |
-| EU Data Hosting | ✅ | 100% | Burando bepaalt lokatie |
+| EU Data Hosting | ✅ | 100% | Maritime bepaalt lokatie |
 | Toegangsinzicht | ✅ | 100% | Volledige audit logs |
 | AVG Compliance | ✅ | 100% | GDPR tools ingebouwd |
-| Security Officer | ✅ | 100% | Burando's verantwoordelijkheid |
-| Data Encryptie | ✅ | 95% | App-level + Burando's disk encryption |
+| Security Officer | ✅ | 100% | Maritime's verantwoordelijkheid |
+| Data Encryptie | ✅ | 95% | App-level + Maritime's disk encryption |
 | Incident Notificatie | ✅ | 100% | Automated + webhooks |
 | Audit Recht | ✅ | 100% | Open source + full access |
 | **Software Features** | | | |
@@ -187,7 +187,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
 | Data Export | ✅ | 100% | Complete export tools |
 | Documentatie | ✅ | 100% | Uitgebreide docs |
 | No Lock-in | ✅ | 100% | Open standaarden |
-| Data Ownership | ✅ | 100% | Data blijft bij Burando |
+| Data Ownership | ✅ | 100% | Data blijft bij Maritime |
 | Interoperabiliteit | ✅ | 100% | Standard protocols |
 
 **Totaal Score: 92%**
@@ -284,7 +284,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
 - **Support:** Technical support SLA
 - **Documentation:** Continuous updates
 
-### Burando's Verantwoordelijkheden
+### Maritime's Verantwoordelijkheden
 - **Infrastructure:** Hardware, network, storage
 - **Deployment:** Docker environment management
 - **Backup:** Data backup en recovery
@@ -293,7 +293,7 @@ Als **SOFTWARE LEVERANCIER** waarbij Burando Atlantic Group zelf de hosting verz
 
 ## 📝 CONCLUSIE
 
-Als software leverancier met Docker deployment biedt het Maritime Onboarding System een **uitstekende compliance positie** voor Burando Atlantic Group:
+Als software leverancier met Docker deployment biedt het Maritime Onboarding System een **uitstekende compliance positie** voor Maritime Atlantic Group:
 
 ✅ **Volledige controle** over data lokatie (EU hosting gegarandeerd)
 ✅ **Comprehensive security features** ingebouwd
@@ -301,7 +301,7 @@ Als software leverancier met Docker deployment biedt het Maritime Onboarding Sys
 ✅ **GDPR/AVG compliant** out-of-the-box
 ✅ **Enterprise-ready** met alle vereiste features
 
-De minimale gaps (8%) zijn hoofdzakelijk documentatie en configuratie items die Burando zelf kan invullen tijdens deployment.
+De minimale gaps (8%) zijn hoofdzakelijk documentatie en configuratie items die Maritime zelf kan invullen tijdens deployment.
 
 ## 📞 CONTACT
 

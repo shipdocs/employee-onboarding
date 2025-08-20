@@ -87,9 +87,9 @@ module.exports = adminRateLimit(async (req, res) => {
 
   } catch (error) {
     console.error('Resolve incident API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 });

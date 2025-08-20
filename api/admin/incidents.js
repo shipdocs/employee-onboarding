@@ -10,7 +10,7 @@ const { adminRateLimit } = require('../../lib/rateLimit');
 
 async function getIncidents(req, res) {
   try {
-    const { 
+    const {
       status = 'all',
       severity = 'all',
       limit = 50,
@@ -40,7 +40,7 @@ async function getIncidents(req, res) {
         '7d': 24 * 7,
         '30d': 24 * 30
       };
-      
+
       const hours = timeRangeMap[timeRange] || 24 * 7;
       const since = new Date(Date.now() - (hours * 60 * 60 * 1000));
       query = query.gte('detection_time', since.toISOString());
@@ -76,7 +76,7 @@ async function getIncidents(req, res) {
         '7d': 24 * 7,
         '30d': 24 * 30
       };
-      
+
       const hours = timeRangeMap[timeRange] || 24 * 7;
       const since = new Date(Date.now() - (hours * 60 * 60 * 1000));
       countQuery = countQuery.gte('detection_time', since.toISOString());
@@ -129,9 +129,9 @@ async function getIncidents(req, res) {
 
   } catch (error) {
     console.error('Get incidents error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to fetch incidents',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -148,8 +148,8 @@ async function createIncident(req, res, user) {
     } = req.body;
 
     if (!type || !severity || !title) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: type, severity, title' 
+      return res.status(400).json({
+        error: 'Missing required fields: type, severity, title'
       });
     }
 
@@ -188,9 +188,9 @@ async function createIncident(req, res, user) {
 
   } catch (error) {
     console.error('Create incident error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to create incident',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -222,9 +222,9 @@ async function handler(req, res) {
     }
   } catch (error) {
     console.error('Admin incidents API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 }

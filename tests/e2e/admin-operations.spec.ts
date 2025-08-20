@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 
 // Test data
 const testAdmin = {
-  email: 'admin@maritime-system.com',
+  email: 'admin@onboarding-system.com',
   password: 'SuperSecureAdminPass123!',
   name: 'System Administrator',
   twoFactorEnabled: true
@@ -325,7 +325,7 @@ test.describe('System Configuration', () => {
     await expect(page.locator('input[name="smtpPort"]')).toHaveValue('587');
     
     // Update settings
-    await page.fill('input[name="fromEmail"]', 'noreply@maritime-system.com');
+    await page.fill('input[name="fromEmail"]', 'noreply@onboarding-system.com');
     await page.fill('input[name="fromName"]', 'Maritime Onboarding System');
     
     // Test configuration

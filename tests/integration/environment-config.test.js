@@ -126,19 +126,19 @@ describe('Environment Configuration Tests', () => {
   describe('Environment-Specific Behaviors', () => {
     test('should use production API URL in production', () => {
       process.env.NODE_ENV = 'production';
-      process.env.API_URL = 'https://api.burando.online';
+      process.env.API_URL = 'https://api.maritime-onboarding.example.com';
       process.env.DEV_API_URL = 'http://localhost:3000';
       
       const apiUrl = process.env.NODE_ENV === 'production' 
         ? process.env.API_URL 
         : process.env.DEV_API_URL;
       
-      expect(apiUrl).toBe('https://api.burando.online');
+      expect(apiUrl).toBe('https://api.maritime-onboarding.example.com');
     });
 
     test('should use development API URL in development', () => {
       process.env.NODE_ENV = 'development';
-      process.env.API_URL = 'https://api.burando.online';
+      process.env.API_URL = 'https://api.maritime-onboarding.example.com';
       process.env.DEV_API_URL = 'http://localhost:3000';
       
       const apiUrl = process.env.NODE_ENV === 'production' 

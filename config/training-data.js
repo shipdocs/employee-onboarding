@@ -439,7 +439,7 @@ const trainingData = {
           description: "Zero tolerance policy for substance abuse",
           category: "policy",
           content: {
-            overview: "Burando Maritime Services maintains a strict zero tolerance policy for alcohol and drugs to ensure the safety of crew, vessel, and environment.",
+            overview: "Maritime Onboarding Services maintains a strict zero tolerance policy for alcohol and drugs to ensure the safety of crew, vessel, and environment.",
             objectives: [
               "Understand the zero tolerance policy completely",
               "Know testing procedures and consequences",
@@ -839,7 +839,7 @@ const trainingData = {
           "Captain's discretion"
         ],
         correct: 2,
-        explanation: "Burando Maritime Services maintains a strict zero tolerance policy for alcohol and drugs to ensure safety of crew and vessel."
+        explanation: "Maritime Onboarding Services maintains a strict zero tolerance policy for alcohol and drugs to ensure safety of crew and vessel."
       },
       {
         question: "According to the Safety Management System, who has ultimate responsibility for vessel safety?",

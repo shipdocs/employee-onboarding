@@ -7,7 +7,7 @@
 const axios = require('axios');
 const { performance } = require('perf_hooks');
 
-const BASE_URL = 'https://onboarding.burando.online';
+const BASE_URL = 'https://maritime-onboarding.example.com';
 const NUM_REQUESTS = 10;
 
 async function performanceTest() {

@@ -359,8 +359,8 @@ class ServiceWorkerService {
       if ('caches' in window) {
         const cacheNames = await caches.keys();
         const oldCaches = cacheNames.filter(name =>
-          name.startsWith('burando-maritime-') &&
-          name !== 'burando-maritime-v1.0.0'
+          name.startsWith('maritime-onboarding-') &&
+          name !== 'maritime-onboarding-v1.0.0'
         );
 
         await Promise.all(oldCaches.map(name => caches.delete(name)));

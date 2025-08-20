@@ -15,9 +15,9 @@ module.exports = async function handler(req, res) {
   // Apply rate limiting
   const rateLimitResult = await userRateLimit(req, res);
   if (!rateLimitResult.success) {
-    return res.status(429).json({ 
+    return res.status(429).json({
       error: 'Too many requests',
-      retryAfter: rateLimitResult.retryAfter 
+      retryAfter: rateLimitResult.retryAfter
     });
   }
 
@@ -116,4 +116,4 @@ module.exports = async function handler(req, res) {
     console.error('GDPR requests API error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
-}
+};

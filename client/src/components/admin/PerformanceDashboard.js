@@ -53,7 +53,7 @@ const PerformanceDashboard = () => {
             duration: 4000,
             style: {
               background: '#dc2626',
-              color: '#fff',
+              color: '#fff'
             }
           });
         }, 1000);

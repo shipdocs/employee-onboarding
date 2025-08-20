@@ -7,12 +7,12 @@ const TrainingPhases = ({ progress, quizHistory }) => {
   const { t } = useTranslation('dashboard');
 
   return (
-    <div className="burando-card">
-      <div className="burando-card-header">
-        <h2 className="burando-heading-2 text-burando-navy">{t('crew.training_phases.title')}</h2>
-        <p className="burando-text-muted">{t('crew.training_phases.subtitle')}</p>
+    <div className="maritime-card">
+      <div className="maritime-card-header">
+        <h2 className="maritime-heading-2 text-maritime-navy">{t('crew.training_phases.title')}</h2>
+        <p className="maritime-text-muted">{t('crew.training_phases.subtitle')}</p>
       </div>
-      <div className="burando-card-body">
+      <div className="maritime-card-body">
         <div className="space-y-4">
           {(progress?.phases || []).map((phase) => (
             <PhaseCard

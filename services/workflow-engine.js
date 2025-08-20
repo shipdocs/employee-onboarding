@@ -191,7 +191,7 @@ class WorkflowEngine {
 
       try {
         await this.updateWorkflowPhases(data.id, phasesToCreate);
-        
+
         // Fetch the complete workflow with phases
         const completeWorkflow = await this.getWorkflowById(data.id);
         return completeWorkflow;
@@ -201,7 +201,7 @@ class WorkflowEngine {
         return data;
       }
     }
-    
+
     return data;
   }
 
@@ -237,7 +237,7 @@ class WorkflowEngine {
 
       try {
         await this.updateWorkflowPhases(id, phasesToUpdate);
-        
+
       } catch (phaseError) {
         // console.error('❌ [WORKFLOW-ENGINE] Phase update failed:', phaseError);
         // console.error('❌ [WORKFLOW-ENGINE] Phase error details:', {
@@ -254,7 +254,7 @@ class WorkflowEngine {
     // Return complete workflow with phases
     try {
       const completeWorkflow = await this.getWorkflowById(id);
-      
+
       return completeWorkflow;
     } catch (getError) {
       // console.error('❌ [WORKFLOW-ENGINE] Failed to retrieve updated workflow:', getError);
@@ -264,9 +264,9 @@ class WorkflowEngine {
       //   details: getError.details,
       //   hint: getError.hint
       // });
-      
+
       // If we can't get the complete workflow, at least return the updated basic data
-      
+
       return {
         ...updatedWorkflow,
         workflow_phases: []
@@ -285,7 +285,7 @@ class WorkflowEngine {
 
     try {
       // Get existing phases
-      
+
       const { data: existingPhases, error: fetchError } = await supabase
         .from('workflow_phases')
         .select('id, phase_number')
@@ -412,7 +412,7 @@ class WorkflowEngine {
 
           // Handle phase items if provided
           if (workflow_phase_items && Array.isArray(workflow_phase_items)) {
-            
+
             await this.updatePhaseItems(id, workflow_phase_items);
           }
         } catch (updErr) {
@@ -424,17 +424,17 @@ class WorkflowEngine {
       // Insert new phases
       if (newPhases.length > 0) {
         const newPhaseData = newPhases.map(phase => {
-          const { 
-            id, 
-            workflow_phase_items, 
+          const {
+            id,
+            workflow_phase_items,
             translations,
             titleTranslations,
             descriptionTranslations,
             adaptedTitle,
             adaptedDescription,
-            ...phaseData 
+            ...phaseData
           } = phase; // Remove all non-db fields
-          
+
           // Only include valid workflow_phases columns
           const validPhaseData = {
             phase_number: phaseData.phase_number,
@@ -448,7 +448,7 @@ class WorkflowEngine {
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
           };
-          
+
           return validPhaseData;
         });
 
@@ -469,7 +469,7 @@ class WorkflowEngine {
             const insertedPhase = insertedPhases[i];
 
             if (originalPhase.workflow_phase_items && Array.isArray(originalPhase.workflow_phase_items)) {
-              
+
               await this.updatePhaseItems(insertedPhase.id, originalPhase.workflow_phase_items);
             }
           }
@@ -823,7 +823,7 @@ class WorkflowEngine {
   async initializePhaseProgress(instanceId, phase) {
     if (!phase || !phase.workflow_phase_items) return;
 
-    const progressPromises = phase.workflow_phase_items.map(item => 
+    const progressPromises = phase.workflow_phase_items.map(item =>
       this.updateWorkflowProgress(instanceId, phase.id, item.id, {
         status: 'not_started'
       })
@@ -950,20 +950,20 @@ class WorkflowEngine {
 
       // Get workflow progress for dynamic data
       const progress = await this.getWorkflowProgress(instanceId);
-      
+
       // Prepare data for PDF generation
       const pdfData = await this.preparePDFData(instance, progress, template);
-      
+
       // Check if we have a template_id (existing PDF template)
       if (template.template_data?.template_id) {
         // Use existing PDF template system
         const pdfGenerationAPI = require('../api/pdf/generate-certificate');
         return await pdfGenerationAPI.generateFromWorkflow(template.template_data.template_id, pdfData);
       }
-      
+
       // For workflow-specific templates, we need to create them dynamically
       return await this.generateDynamicPDF(template, pdfData);
-      
+
     } catch (error) {
       // console.error('Failed to generate workflow PDF:', error);
       throw error;
@@ -1025,7 +1025,7 @@ class WorkflowEngine {
 
   applyDataMapping(data, mapping) {
     const mappedData = {};
-    
+
     for (const [key, path] of Object.entries(mapping)) {
       try {
         // Simple path resolution (e.g., "user.full_name" -> data.user.full_name)
@@ -1037,21 +1037,21 @@ class WorkflowEngine {
           }
           return obj?.[prop];
         }, data);
-        
+
         mappedData[key] = value || `[${key}]`; // Fallback to placeholder
       } catch (error) {
-        
+
         mappedData[key] = `[${key}]`;
       }
     }
-    
+
     return mappedData;
   }
 
   async generateDynamicPDF(template, data) {
     // For now, return a success indicator
     // In a full implementation, this would generate PDFs using a template engine
-    
+
     return {
       success: true,
       template_name: template.name,
@@ -1184,7 +1184,7 @@ class WorkflowEngine {
     for (const item of items) {
       if (item.content_source === 'training_reference' && item.training_phase_id) {
         const trainingPhase = trainingPhaseMap.get(item.training_phase_id);
-        
+
         if (trainingPhase && trainingPhase.items) {
           // Find the specific training item
           const trainingItem = trainingPhase.items.find(

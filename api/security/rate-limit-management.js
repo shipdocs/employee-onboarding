@@ -44,7 +44,7 @@ async function handler(req, res) {
           // Clear single key
           const cleared = await globalRateLimiter.clearRateLimit(key);
           result = { key: key, cleared: cleared };
-          
+
           // Log the admin action
           await logAdminAction(authResult.user, 'clear_rate_limit', { key: key, reason: reason });
         } else if (keys && Array.isArray(keys)) {
@@ -54,7 +54,7 @@ async function handler(req, res) {
             results[k] = await globalRateLimiter.clearRateLimit(k);
           }
           result = { keys: results };
-          
+
           // Log the admin action
           await logAdminAction(authResult.user, 'clear_rate_limits', { keys: keys, reason: reason });
         }

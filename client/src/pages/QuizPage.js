@@ -459,11 +459,11 @@ const QuizPage = () => {
   if (quizLoading || historyLoading) {
     return (
       <div className="space-y-6">
-        <div className="burando-card">
-          <div className="burando-card-body text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-burando-teal mx-auto mb-4"></div>
-            <h2 className="burando-heading-2 text-burando-navy mb-2">{t('common:loading.quiz')}</h2>
-            <p className="burando-text-muted">{t('quiz:loading.preparing_quiz', { phase })}</p>
+        <div className="maritime-card">
+          <div className="maritime-card-body text-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-maritime-teal mx-auto mb-4"></div>
+            <h2 className="maritime-heading-2 text-maritime-navy mb-2">{t('common:loading.quiz')}</h2>
+            <p className="maritime-text-muted">{t('quiz:loading.preparing_quiz', { phase })}</p>
           </div>
         </div>
       </div>
@@ -474,17 +474,17 @@ const QuizPage = () => {
   if (quizError) {
     return (
       <div className="space-y-6">
-        <div className="burando-card">
-          <div className="burando-card-body text-center py-12">
+        <div className="maritime-card">
+          <div className="maritime-card-body text-center py-12">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h2 className="burando-heading-2 text-burando-navy mb-2">{t('common:quiz_errors.loading_failed')}</h2>
-            <p className="burando-text-muted">
+            <h2 className="maritime-heading-2 text-maritime-navy mb-2">{t('common:quiz_errors.loading_failed')}</h2>
+            <p className="maritime-text-muted">
               {t('common:quiz_errors.failed_message', { phase })}
               {quizError?.response?.data?.error || quizError?.message || t('common:quiz_errors.unknown_error')}
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="burando-btn burando-btn-primary mt-4"
+              className="maritime-btn maritime-btn-primary mt-4"
             >
               {t('common:quiz_errors.try_again')}
             </button>
@@ -497,11 +497,11 @@ const QuizPage = () => {
   if (!currentQuiz) {
     return (
       <div className="space-y-6">
-        <div className="burando-card">
-          <div className="burando-card-body text-center py-12">
+        <div className="maritime-card">
+          <div className="maritime-card-body text-center py-12">
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h2 className="burando-heading-2 text-burando-navy mb-2">{t('quiz:errors.not_found')}</h2>
-            <p className="burando-text-muted">{t('quiz:errors.not_available', { phase })}</p>
+            <h2 className="maritime-heading-2 text-maritime-navy mb-2">{t('quiz:errors.not_found')}</h2>
+            <p className="maritime-text-muted">{t('quiz:errors.not_available', { phase })}</p>
           </div>
         </div>
       </div>
@@ -511,35 +511,35 @@ const QuizPage = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 px-4 sm:px-6 lg:px-8">
       {/* Quiz Header */}
-      <div className="burando-card">
-        <div className="burando-card-header">
+      <div className="maritime-card">
+        <div className="maritime-card-header">
           <div className="flex items-center justify-between">
             <div className="flex-1">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="burando-heading-1 text-burando-navy">{currentQuiz.title}</h1>
-                  <p className="burando-text-muted">{currentQuiz.description}</p>
+                  <h1 className="maritime-heading-1 text-maritime-navy">{currentQuiz.title}</h1>
+                  <p className="maritime-text-muted">{currentQuiz.description}</p>
                 </div>
 
                 {/* Language Dropdown */}
                 <div className="relative language-dropdown">
                   <button
                     onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                    className="flex items-center space-x-2 px-3 py-2 bg-burando-teal/10 hover:bg-burando-teal/20 border border-burando-teal/30 rounded-lg transition-colors"
+                    className="flex items-center space-x-2 px-3 py-2 bg-maritime-teal/10 hover:bg-maritime-teal/20 border border-maritime-teal/30 rounded-lg transition-colors"
                     disabled={translationLoading}
                   >
                     {translationLoading ? (
                       <>
-                        <div className="animate-spin h-4 w-4 border-2 border-burando-teal border-t-transparent rounded-full"></div>
-                        <span className="text-sm text-burando-teal">Loading...</span>
+                        <div className="animate-spin h-4 w-4 border-2 border-maritime-teal border-t-transparent rounded-full"></div>
+                        <span className="text-sm text-maritime-teal">Loading...</span>
                       </>
                     ) : (
                       <>
-                        <Globe className="h-4 w-4 text-burando-teal" />
-                        <span className="text-sm text-burando-teal font-medium">
+                        <Globe className="h-4 w-4 text-maritime-teal" />
+                        <span className="text-sm text-maritime-teal font-medium">
                           {languages.find(lang => lang.code === currentLanguage)?.flag || 'EN'}
                         </span>
-                        <ChevronDown className="h-4 w-4 text-burando-teal" />
+                        <ChevronDown className="h-4 w-4 text-maritime-teal" />
                       </>
                     )}
                   </button>
@@ -553,9 +553,9 @@ const QuizPage = () => {
                             changeLanguage(language.code);
                             setShowLanguageDropdown(false);
                           }}
-                          className={`w-full text-left px-4 py-2 text-sm hover:bg-burando-teal/10 first:rounded-t-lg last:rounded-b-lg transition-colors ${
+                          className={`w-full text-left px-4 py-2 text-sm hover:bg-maritime-teal/10 first:rounded-t-lg last:rounded-b-lg transition-colors ${
                             currentLanguage === language.code
-                              ? 'bg-burando-teal/10 text-burando-teal font-medium'
+                              ? 'bg-maritime-teal/10 text-maritime-teal font-medium'
                               : 'text-gray-700'
                           }`}
                         >
@@ -596,10 +596,10 @@ const QuizPage = () => {
 
               {/* Timer */}
               {quizStarted && timeRemaining !== null && !showResults && !quizCompleted && (
-                <div className="flex items-center space-x-2 bg-gradient-to-r from-burando-teal/10 to-burando-bright-teal/10 border border-burando-teal/20 px-4 py-2 rounded-lg">
-                  <Clock className="h-5 w-5 text-burando-teal" />
+                <div className="flex items-center space-x-2 bg-gradient-to-r from-maritime-teal/10 to-maritime-bright-teal/10 border border-maritime-teal/20 px-4 py-2 rounded-lg">
+                  <Clock className="h-5 w-5 text-maritime-teal" />
                   <span className={`font-mono text-lg font-semibold ${
-                    timeRemaining < 300 ? 'text-red-600' : 'text-burando-navy'
+                    timeRemaining < 300 ? 'text-red-600' : 'text-maritime-navy'
                   }`}>
                     {formatTime(timeRemaining)}
                   </span>
@@ -612,26 +612,26 @@ const QuizPage = () => {
 
       {/* Quiz Start Screen */}
       {!quizStarted && (
-        <div className="burando-card">
-          <div className="burando-card-body text-center py-12">
-            <Target className="h-16 w-16 text-burando-teal mx-auto mb-6" />
-            <h2 className="burando-heading-2 text-burando-navy mb-4">{t('navigation.ready_to_begin')}</h2>
+        <div className="maritime-card">
+          <div className="maritime-card-body text-center py-12">
+            <Target className="h-16 w-16 text-maritime-teal mx-auto mb-6" />
+            <h2 className="maritime-heading-2 text-maritime-navy mb-4">{t('navigation.ready_to_begin')}</h2>
             <div className="max-w-2xl mx-auto space-y-4 mb-8">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                <div className="bg-gradient-to-br from-burando-teal/10 to-burando-teal/5 border border-burando-teal/20 p-4 rounded-lg">
-                  <Clock className="h-6 w-6 text-burando-teal mx-auto mb-2" />
-                  <div className="font-semibold text-burando-navy">{t('navigation.time_limit_label')}</div>
-                  <div className="text-burando-teal">{currentQuiz.timeLimit} minutes</div>
+                <div className="bg-gradient-to-br from-maritime-teal/10 to-maritime-teal/5 border border-maritime-teal/20 p-4 rounded-lg">
+                  <Clock className="h-6 w-6 text-maritime-teal mx-auto mb-2" />
+                  <div className="font-semibold text-maritime-navy">{t('navigation.time_limit_label')}</div>
+                  <div className="text-maritime-teal">{currentQuiz.timeLimit} minutes</div>
                 </div>
-                <div className="bg-gradient-to-br from-burando-bright-teal/10 to-burando-bright-teal/5 border border-burando-bright-teal/20 p-4 rounded-lg">
-                  <FileText className="h-6 w-6 text-burando-bright-teal mx-auto mb-2" />
-                  <div className="font-semibold text-burando-navy">{t('navigation.questions_label')}</div>
-                  <div className="text-burando-bright-teal">{t('navigation.questions_count', { count: totalQuestions })}</div>
+                <div className="bg-gradient-to-br from-maritime-bright-teal/10 to-maritime-bright-teal/5 border border-maritime-bright-teal/20 p-4 rounded-lg">
+                  <FileText className="h-6 w-6 text-maritime-bright-teal mx-auto mb-2" />
+                  <div className="font-semibold text-maritime-navy">{t('navigation.questions_label')}</div>
+                  <div className="text-maritime-bright-teal">{t('navigation.questions_count', { count: totalQuestions })}</div>
                 </div>
-                <div className="bg-gradient-to-br from-burando-light-green/10 to-burando-light-green/5 border border-burando-light-green/20 p-4 rounded-lg">
-                  <Award className="h-6 w-6 text-burando-light-green mx-auto mb-2" />
-                  <div className="font-semibold text-burando-navy">{t('navigation.passing_score_label')}</div>
-                  <div className="text-burando-light-green">{currentQuiz.passingScore}%</div>
+                <div className="bg-gradient-to-br from-maritime-light-green/10 to-maritime-light-green/5 border border-maritime-light-green/20 p-4 rounded-lg">
+                  <Award className="h-6 w-6 text-maritime-light-green mx-auto mb-2" />
+                  <div className="font-semibold text-maritime-navy">{t('navigation.passing_score_label')}</div>
+                  <div className="text-maritime-light-green">{currentQuiz.passingScore}%</div>
                 </div>
               </div>
 
@@ -649,7 +649,7 @@ const QuizPage = () => {
 
             <button
               onClick={handleStartQuiz}
-              className="burando-btn burando-btn-primary burando-btn-lg text-lg px-8 py-3"
+              className="maritime-btn maritime-btn-primary maritime-btn-lg text-lg px-8 py-3"
             >
               <Play className="h-5 w-5 mr-2" />
               {t('navigation.start_quiz')}
@@ -662,19 +662,19 @@ const QuizPage = () => {
       {quizStarted && !showResults && currentQuestion && (
         <div className="space-y-6">
           {/* Progress Bar */}
-          <div className="burando-card">
-            <div className="burando-card-body py-4">
+          <div className="maritime-card">
+            <div className="maritime-card-body py-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-burando-navy">
+                <span className="text-sm font-medium text-maritime-navy">
                   {t('navigation.question_progress')} {currentQuestionIndex + 1} {t('common:general.of')} {totalQuestions}
                 </span>
-                <span className="text-sm text-burando-teal">
+                <span className="text-sm text-maritime-teal">
                   {currentQuestion.points || 1} points
                 </span>
               </div>
-              <div className="burando-progress">
+              <div className="maritime-progress">
                 <div
-                  className="burando-progress-bar transition-all duration-300"
+                  className="maritime-progress-bar transition-all duration-300"
                   style={{ width: `${((currentQuestionIndex + 1) / totalQuestions) * 100}%` }}
                 ></div>
               </div>
@@ -682,28 +682,28 @@ const QuizPage = () => {
           </div>
 
           {/* Question Card */}
-          <div className="burando-card">
-            <div className="burando-card-header">
+          <div className="maritime-card">
+            <div className="maritime-card-header">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-2">
-                    <span className="burando-badge burando-badge-info">
+                    <span className="maritime-badge maritime-badge-info">
                       {currentQuestion.category ? String(currentQuestion.category).replace('_', ' ').toUpperCase() : 'GENERAL'}
                     </span>
                     {currentQuestion.required && (
-                      <span className="burando-badge burando-badge-error">
+                      <span className="maritime-badge maritime-badge-error">
                         REQUIRED
                       </span>
                     )}
                   </div>
-                  <h2 className="burando-heading-2 text-burando-navy">
+                  <h2 className="maritime-heading-2 text-maritime-navy">
                     {currentQuestion.question}
                   </h2>
                 </div>
               </div>
             </div>
 
-            <div className="burando-card-body">
+            <div className="maritime-card-body">
               {/* Render question based on type */}
               {currentQuestion.type === 'file_upload' && (
                 <FileUploadQuestion
@@ -776,14 +776,14 @@ const QuizPage = () => {
           </div>
 
           {/* Streamlined Navigation */}
-          <div className="burando-card border-t-4 border-t-burando-teal">
-            <div className="burando-card-body py-6">
+          <div className="maritime-card border-t-4 border-t-maritime-teal">
+            <div className="maritime-card-body py-6">
               {/* Status Indicators */}
               <div className="flex items-center justify-center mb-6 space-x-4">
                 {/* Auto-advance indicator */}
                 {shouldAutoAdvance(currentQuestion?.type) && autoAdvanceTimeout && (
-                  <div className="flex items-center space-x-2 text-sm text-burando-teal bg-burando-teal/10 px-4 py-2 rounded-full border border-burando-teal/20">
-                    <div className="w-2 h-2 bg-burando-teal rounded-full animate-pulse"></div>
+                  <div className="flex items-center space-x-2 text-sm text-maritime-teal bg-maritime-teal/10 px-4 py-2 rounded-full border border-maritime-teal/20">
+                    <div className="w-2 h-2 bg-maritime-teal rounded-full animate-pulse"></div>
                     <span className="font-medium">{t('quiz:ui.auto_advance')}</span>
                   </div>
                 )}
@@ -811,7 +811,7 @@ const QuizPage = () => {
                 <div className="flex items-center justify-center sm:hidden">
                   <div className="text-center">
                     <div className="text-sm text-gray-500 mb-1">{t('quiz:ui.question_progress')}</div>
-                    <div className="text-lg font-semibold text-burando-navy">
+                    <div className="text-lg font-semibold text-maritime-navy">
                       {currentQuestionIndex + 1} {t('common:general.of')} {totalQuestions}
                     </div>
                   </div>
@@ -823,7 +823,7 @@ const QuizPage = () => {
                   <button
                     onClick={handlePreviousQuestion}
                     disabled={currentQuestionIndex === 0}
-                    className="burando-btn burando-btn-outline disabled:opacity-50 disabled:cursor-not-allowed touch-target"
+                    className="maritime-btn maritime-btn-outline disabled:opacity-50 disabled:cursor-not-allowed touch-target"
                   >
                     <ArrowLeft className="h-4 w-4 mr-2" />
                     <span className="hidden sm:inline">{t('common:buttons.previous')}</span>
@@ -835,7 +835,7 @@ const QuizPage = () => {
                     {/* Progress indicator */}
                     <div className="text-center">
                       <div className="text-sm text-gray-500 mb-1">{t('quiz:ui.question_progress')}</div>
-                      <div className="text-lg font-semibold text-burando-navy">
+                      <div className="text-lg font-semibold text-maritime-navy">
                         {currentQuestionIndex + 1} {t('common:general.of')} {totalQuestions}
                       </div>
                     </div>
@@ -845,7 +845,7 @@ const QuizPage = () => {
                       onClick={() => {
                         toast.success(t('common:success.saved'));
                       }}
-                      className="burando-btn burando-btn-outline burando-btn-sm touch-target"
+                      className="maritime-btn maritime-btn-outline maritime-btn-sm touch-target"
                       title={t('quiz:ui.save_progress')}
                     >
                       <Save className="h-4 w-4 mr-2" />
@@ -858,7 +858,7 @@ const QuizPage = () => {
                     <button
                       onClick={handleSubmitQuiz}
                       disabled={!isCurrentQuestionAnswered()}
-                      className="burando-btn burando-btn-success burando-btn-lg disabled:opacity-50 disabled:cursor-not-allowed touch-target"
+                      className="maritime-btn maritime-btn-success maritime-btn-lg disabled:opacity-50 disabled:cursor-not-allowed touch-target"
                     >
                       <Send className="h-5 w-5 mr-2" />
                       <span className="hidden sm:inline">{t('navigation.submit_quiz')}</span>
@@ -875,7 +875,7 @@ const QuizPage = () => {
                         handleNextQuestion();
                       }}
                       disabled={!isCurrentQuestionAnswered()}
-                      className="burando-btn burando-btn-primary burando-btn-lg disabled:opacity-50 disabled:cursor-not-allowed touch-target"
+                      className="maritime-btn maritime-btn-primary maritime-btn-lg disabled:opacity-50 disabled:cursor-not-allowed touch-target"
                     >
                       <span className="hidden sm:inline">{t('common:buttons.continue')}</span>
                       <span className="sm:hidden">Next</span>
@@ -890,7 +890,7 @@ const QuizPage = () => {
                     onClick={() => {
                       toast.success(t('common:success.saved'));
                     }}
-                    className="burando-btn burando-btn-outline burando-btn-sm touch-target"
+                    className="maritime-btn maritime-btn-outline maritime-btn-sm touch-target"
                     title={t('quiz:ui.save_progress')}
                   >
                     <Save className="h-4 w-4 mr-2" />
@@ -906,23 +906,23 @@ const QuizPage = () => {
 
       {/* Quiz Results */}
       {showResults && (
-        <div className="burando-card">
-          <div className="burando-card-body text-center py-12">
-            <CheckCircle className="h-16 w-16 text-burando-light-green mx-auto mb-6" />
-            <h2 className="burando-heading-2 text-burando-navy mb-4">{t('quiz:ui.quiz_completed_title')}</h2>
-            <p className="burando-text-muted mb-8">
+        <div className="maritime-card">
+          <div className="maritime-card-body text-center py-12">
+            <CheckCircle className="h-16 w-16 text-maritime-light-green mx-auto mb-6" />
+            <h2 className="maritime-heading-2 text-maritime-navy mb-4">{t('quiz:ui.quiz_completed_title')}</h2>
+            <p className="maritime-text-muted mb-8">
               {t('quiz:ui.quiz_completed_message')}
             </p>
             <div className="space-x-4">
               <button
                 onClick={() => navigate(`/crew/training/${phase}`)}
-                className="burando-btn burando-btn-primary"
+                className="maritime-btn maritime-btn-primary"
               >
                 {t('quiz:ui.return_to_training')}
               </button>
               <button
                 onClick={() => navigate('/crew/dashboard')}
-                className="burando-btn burando-btn-outline"
+                className="maritime-btn maritime-btn-outline"
               >
                 {t('quiz:ui.go_to_dashboard')}
               </button>
@@ -1040,9 +1040,9 @@ const FileUploadQuestion = ({ question, answer, uploadedFile, onAnswerChange, on
   return (
     <div className="space-y-4">
       {/* Instructions */}
-      <div className="bg-gradient-to-r from-burando-bright-teal/10 to-burando-light-green/10 border border-burando-bright-teal/20 rounded-lg p-4">
-        <h4 className="font-semibold text-burando-navy mb-2">📸 Photo Requirements:</h4>
-        <div className="text-burando-teal text-sm whitespace-pre-line">
+      <div className="bg-gradient-to-r from-maritime-bright-teal/10 to-maritime-light-green/10 border border-maritime-bright-teal/20 rounded-lg p-4">
+        <h4 className="font-semibold text-maritime-navy mb-2">📸 Photo Requirements:</h4>
+        <div className="text-maritime-teal text-sm whitespace-pre-line">
           {question.instructions}
         </div>
       </div>
@@ -1051,10 +1051,10 @@ const FileUploadQuestion = ({ question, answer, uploadedFile, onAnswerChange, on
       <div
         className={`relative border-2 border-dashed rounded-lg p-4 sm:p-8 text-center transition-colors ${
           dragActive
-            ? 'border-burando-bright-teal bg-burando-bright-teal/10'
+            ? 'border-maritime-bright-teal bg-maritime-bright-teal/10'
             : uploadedFile
-            ? 'border-burando-light-green bg-burando-light-green/10'
-            : 'border-gray-300 hover:border-burando-teal'
+            ? 'border-maritime-light-green bg-maritime-light-green/10'
+            : 'border-gray-300 hover:border-maritime-teal'
         }`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
@@ -1162,7 +1162,7 @@ const MultipleChoiceQuestion = ({ question, answer, onAnswerChange }) => {
           key={index}
           className={`flex items-start p-4 sm:p-4 border rounded-lg cursor-pointer transition-all duration-200 touch-target mobile-quiz-button ${
             answer === index
-              ? 'border-burando-teal bg-burando-teal/10 shadow-sm'
+              ? 'border-maritime-teal bg-maritime-teal/10 shadow-sm'
               : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
           }`}
         >
@@ -1175,17 +1175,17 @@ const MultipleChoiceQuestion = ({ question, answer, onAnswerChange }) => {
             className="sr-only"
           />
           <div className={`w-6 h-6 sm:w-5 sm:h-5 rounded-full border-2 mr-3 mt-0.5 flex items-center justify-center transition-all duration-200 flex-shrink-0 ${
-            answer === index ? 'border-burando-teal bg-burando-teal' : 'border-gray-300'
+            answer === index ? 'border-maritime-teal bg-maritime-teal' : 'border-gray-300'
           }`}>
             {answer === index && (
               <CheckCircle className="w-3 h-3 text-white" />
             )}
           </div>
-          <span className={`flex-1 text-base sm:text-sm leading-relaxed ${answer === index ? 'text-burando-navy font-medium' : 'text-gray-900'}`}>
+          <span className={`flex-1 text-base sm:text-sm leading-relaxed ${answer === index ? 'text-maritime-navy font-medium' : 'text-gray-900'}`}>
             {option}
           </span>
           {answer === index && (
-            <div className="ml-2 text-burando-teal">
+            <div className="ml-2 text-maritime-teal">
               <CheckCircle className="h-5 w-5" />
             </div>
           )}
@@ -1349,7 +1349,7 @@ const FillInGapsQuestion = ({ question, answer, onAnswerChange }) => {
                   type="text"
                   value={answers[index] || ''}
                   onChange={(e) => handleInputChange(index, e.target.value)}
-                  className="inline-block mx-2 px-3 py-2 border-2 border-gray-300 rounded-md min-w-[120px] text-base focus:border-burando-teal focus:ring-2 focus:ring-burando-teal/20 focus:outline-none transition-colors"
+                  className="inline-block mx-2 px-3 py-2 border-2 border-gray-300 rounded-md min-w-[120px] text-base focus:border-maritime-teal focus:ring-2 focus:ring-maritime-teal/20 focus:outline-none transition-colors"
                   placeholder={`Enter answer ${index + 1}`}
                   autoComplete="off"
                 />
@@ -1585,7 +1585,7 @@ const DragOrderQuestion = ({ question, answer, onAnswerChange }) => {
               draggedIndex === index
                 ? 'opacity-50 transform rotate-2'
                 : dragOverIndex === index
-                ? 'border-burando-teal bg-burando-teal/10 transform scale-105'
+                ? 'border-maritime-teal bg-maritime-teal/10 transform scale-105'
                 : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
             } cursor-move`}
           >
@@ -1594,7 +1594,7 @@ const DragOrderQuestion = ({ question, answer, onAnswerChange }) => {
 
             {/* Position indicator */}
             <div className="flex items-center space-x-2 mr-3">
-              <span className="text-sm font-semibold text-burando-teal bg-burando-teal/10 px-2 py-1 rounded">
+              <span className="text-sm font-semibold text-maritime-teal bg-maritime-teal/10 px-2 py-1 rounded">
                 #{index + 1}
               </span>
             </div>
@@ -1787,7 +1787,7 @@ const MatchingQuestion = ({ question, answer, onAnswerChange }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Left Column - Items to Match */}
         <div className="space-y-3">
-          <h4 className="font-semibold text-burando-navy text-lg border-b border-gray-200 pb-2">
+          <h4 className="font-semibold text-maritime-navy text-lg border-b border-gray-200 pb-2">
             Equipment & Items
           </h4>
           {leftColumn.map((item, leftIndex) => {
@@ -1834,7 +1834,7 @@ const MatchingQuestion = ({ question, answer, onAnswerChange }) => {
 
         {/* Right Column - Match Targets */}
         <div className="space-y-3">
-          <h4 className="font-semibold text-burando-navy text-lg border-b border-gray-200 pb-2">
+          <h4 className="font-semibold text-maritime-navy text-lg border-b border-gray-200 pb-2">
             Uses & Functions
           </h4>
           {rightColumn.map((item, rightIndex) => {
@@ -1856,7 +1856,7 @@ const MatchingQuestion = ({ question, answer, onAnswerChange }) => {
                   isUsed
                     ? 'bg-green-50 border-green-300 text-green-800 cursor-move'
                     : dragOverTarget?.type === 'right' && dragOverTarget?.index === rightIndex
-                    ? 'border-burando-teal bg-burando-teal/10 transform scale-105'
+                    ? 'border-maritime-teal bg-maritime-teal/10 transform scale-105'
                     : 'bg-orange-50 border-orange-200 hover:border-orange-300 hover:bg-orange-100 cursor-pointer'
                 }`}
               >

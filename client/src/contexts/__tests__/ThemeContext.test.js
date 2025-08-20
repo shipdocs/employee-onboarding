@@ -136,7 +136,7 @@ describe('ThemeContext', () => {
 
     await waitFor(() => {
       expect(localStorageMock.setItem).toHaveBeenCalledWith(
-        'burando-theme-preference',
+        'maritime-theme-preference',
         expect.stringContaining('"theme":"dark"')
       );
     });

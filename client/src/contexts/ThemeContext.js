@@ -10,7 +10,7 @@ export const useTheme = () => {
   return context;
 };
 
-const THEME_STORAGE_KEY = 'burando-theme-preference';
+const THEME_STORAGE_KEY = 'maritime-theme-preference';
 const THEME_VERSION = '1.0';
 
 // Theme configuration

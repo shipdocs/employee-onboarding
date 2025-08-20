@@ -49,9 +49,9 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     if (report.status !== 'completed') {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Report is not ready for download',
-        status: report.status 
+        status: report.status
       });
     }
 
@@ -67,9 +67,9 @@ module.exports = adminRateLimit(async (req, res) => {
 
   } catch (error) {
     console.error('Download compliance report API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 });
@@ -79,7 +79,7 @@ function generateMockPDF(res, reportId, report = null) {
   const reportTitle = report?.title || `Compliance Report ${reportId}`;
   const reportType = report?.type || 'general';
   const createdAt = report?.created_at || new Date().toISOString();
-  
+
   const pdfContent = `%PDF-1.4
 1 0 obj
 <<

@@ -43,12 +43,12 @@ export function generateMagicToken(): string;
 /**
  * Generate a JWT token
  */
-export function generateJWT(user: { 
-  id: string; 
-  email: string; 
-  role: string; 
-  first_name?: string; 
-  last_name?: string 
+export function generateJWT(user: {
+  id: string;
+  email: string;
+  role: string;
+  first_name?: string;
+  last_name?: string
 }): string;
 
 /**

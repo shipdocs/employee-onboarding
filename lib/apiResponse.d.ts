@@ -58,26 +58,26 @@ export interface CreatedResponse<T = any> {
 
 // Function declarations
 export declare function success<T = any>(
-  data: T, 
+  data: T,
   meta?: Record<string, any>
 ): SuccessResponse<T>;
 
 export declare function error(
-  code: string, 
-  message: string, 
+  code: string,
+  message: string,
   details?: ErrorDetails | Record<string, any>
 ): ErrorResponse;
 
 export declare function paginated<T = any>(
-  data: T[], 
-  page: number, 
-  limit: number, 
+  data: T[],
+  page: number,
+  limit: number,
   total: number
 ): PaginatedResponse<T>;
 
 export declare function noContent(): NoContentResponse;
 
 export declare function created<T = any>(
-  data: T, 
+  data: T,
   location?: string | null
 ): CreatedResponse<T>;

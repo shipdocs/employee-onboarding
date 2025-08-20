@@ -11,7 +11,7 @@ export declare const ERROR_CODES: {
   AUTH_ACCOUNT_NOT_ACTIVE: string;
   AUTH_ACCOUNT_NOT_CONFIGURED: string;
   AUTH_SESSION_EXPIRED: string;
-  
+
   // Validation
   VALIDATION_REQUIRED_FIELD: string;
   VALIDATION_INVALID_FORMAT: string;
@@ -24,14 +24,14 @@ export declare const ERROR_CODES: {
   VALIDATION_INVALID_LANGUAGE_PAIR: string;
   VALIDATION_PASSWORD_TOO_WEAK: string;
   VALIDATION_DUPLICATE_ENTRY: string;
-  
+
   // Database
   DB_CONNECTION_ERROR: string;
   DB_QUERY_ERROR: string;
   DB_CONSTRAINT_VIOLATION: string;
   DB_RECORD_NOT_FOUND: string;
   DB_TRANSACTION_FAILED: string;
-  
+
   // External Services
   SERVICE_TRANSLATION_UNAVAILABLE: string;
   SERVICE_TRANSLATION_ERROR: string;
@@ -39,25 +39,25 @@ export declare const ERROR_CODES: {
   SERVICE_STORAGE_ERROR: string;
   SERVICE_TIMEOUT: string;
   SERVICE_QUOTA_EXCEEDED: string;
-  
+
   // Rate Limiting
   RATE_LIMIT_EXCEEDED: string;
   RATE_LIMIT_QUOTA_EXCEEDED: string;
   RATE_LIMIT_TOO_MANY_REQUESTS: string;
-  
+
   // System
   SYSTEM_INTERNAL_ERROR: string;
   SYSTEM_CONFIGURATION_ERROR: string;
   SYSTEM_MAINTENANCE: string;
   SYSTEM_TIMEOUT: string;
   SYSTEM_UNAVAILABLE: string;
-  
+
   // File Operations
   FILE_NOT_FOUND: string;
   FILE_TOO_LARGE: string;
   FILE_INVALID_TYPE: string;
   FILE_UPLOAD_FAILED: string;
-  
+
   // Training & Content
   TRAINING_PHASE_NOT_FOUND: string;
   TRAINING_ITEM_NOT_FOUND: string;
@@ -82,7 +82,7 @@ export declare class APIError extends Error {
   code: string;
   details: ErrorDetails | null;
   statusCode: number;
-  
+
   constructor(code: string, message: string, details?: ErrorDetails | null, statusCode?: number | null);
 }
 

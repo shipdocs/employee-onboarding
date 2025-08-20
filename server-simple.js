@@ -48,30 +48,30 @@ function loadSimpleApiRoutes(dir, basePath = '') {
     console.log(`⚠️  API directory not found: ${dir}`);
     return;
   }
-  
+
   const items = fs.readdirSync(dir);
-  
+
   items.forEach(item => {
     const itemPath = path.join(dir, item);
     const stat = fs.statSync(itemPath);
-    
+
     // Skip files/dirs with brackets (dynamic routes) for now
     if (item.includes('[') || item.includes(']')) {
       console.log(`⏭️  Skipping dynamic route: ${item}`);
       return;
     }
-    
+
     if (stat.isDirectory()) {
       // Recursively load subdirectories
       loadSimpleApiRoutes(itemPath, `${basePath}/${item}`);
     } else if (item.endsWith('.js')) {
       const routeName = item === 'index.js' ? '' : `/${item.replace('.js', '')}`;
       const routePath = `${basePath}${routeName}`;
-      
+
       try {
         delete require.cache[require.resolve(itemPath)];
         const handler = require(itemPath);
-        
+
         if (typeof handler === 'function') {
           const expressHandler = async (req, res, next) => {
             try {
@@ -81,7 +81,7 @@ function loadSimpleApiRoutes(dir, basePath = '') {
               res.status(500).json({ error: 'Internal server error' });
             }
           };
-          
+
           app.all(routePath, expressHandler);
           console.log(`✅ Loaded API route: ${routePath}`);
         }

@@ -69,7 +69,7 @@ async function handler(req, res) {
     const { width, height } = page1.getSize();
 
     // Header
-    page1.drawText('BURANDO MARITIME SERVICES', {
+    page1.drawText('MARITIME ONBOARDING SERVICES', {
       x: 50,
       y: height - 50,
       size: 20,
@@ -203,7 +203,7 @@ async function handler(req, res) {
       font: timesRomanFont
     });
 
-    page1.drawText('Burando Maritime Services', {
+    page1.drawText('Maritime Onboarding Services', {
       x: 50,
       y: 85,
       size: 10,
@@ -234,7 +234,7 @@ async function handler(req, res) {
         certificate_type: 'Maritime Onboarding Training',
         issue_date: new Date().toISOString().split('T')[0],
         certificate_number: `BMS-${userId}-${Date.now()}`,
-        issuing_authority: 'Burando Maritime Services',
+        issuing_authority: 'Maritime Onboarding Services',
         file_path: uploadResult.path,
         verified: true
       })

@@ -110,7 +110,7 @@ async function runSMTPMigration() {
       // Email Settings
       { category: 'email', key: 'email_provider', value: 'smtp', description: 'Email service provider (smtp or mailersend)', type: 'select', options: ['smtp', 'mailersend'] },
       { category: 'email', key: 'from_email', value: 'noreply@example.com', description: 'Default from email address', type: 'email' },
-      { category: 'email', key: 'from_name', value: 'Burando Maritime Services', description: 'Default from name', type: 'string' },
+      { category: 'email', key: 'from_name', value: 'Maritime Onboarding Services', description: 'Default from name', type: 'string' },
       { category: 'email', key: 'admin_notifications', value: 'true', description: 'Send admin notifications', type: 'boolean' },
 
       // SMTP Settings

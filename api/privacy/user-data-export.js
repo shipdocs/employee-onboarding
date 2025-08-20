@@ -70,9 +70,9 @@ async function handler(req, res) {
 
   } catch (error) {
     console.error('Data export request error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to request data export',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -161,7 +161,7 @@ async function processDataExport(exportId, userId) {
 
   } catch (error) {
     console.error('Export processing error:', error);
-    
+
     // Mark export as failed
     await supabase
       .from('data_exports')

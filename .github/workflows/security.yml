@@ -245,7 +245,6 @@ jobs:
           name: security-gate-report
           path: security-gate-report.md
 
-jobs:
   dependency-scan:
     name: Dependency Vulnerability Scan
     runs-on: ubuntu-latest

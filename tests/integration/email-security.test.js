@@ -29,11 +29,11 @@ const sanitizeHtmlContent = (html) => {
 
 describe('Email Security Tests', () => {
   describe('Domain Whitelisting', () => {
-    const whitelist = ['burando.nl', 'shipdocs.app', 'trusted-partner.com'];
+    const whitelist = ['maritime-example.com', 'shipdocs.app', 'trusted-partner.com'];
 
     test('should allow emails to whitelisted domains', () => {
       const validEmails = [
-        'user@burando.nl',
+        'user@maritime-example.com',
         'admin@shipdocs.app',
         'partner@trusted-partner.com'
       ];
@@ -89,7 +89,7 @@ describe('Email Security Tests', () => {
 
     test('should allow emails to non-blacklisted domains', () => {
       const validEmails = [
-        'user@burando.nl',
+        'user@maritime-example.com',
         'admin@shipdocs.app',
         'test@gmail.com'
       ];
@@ -113,7 +113,7 @@ describe('Email Security Tests', () => {
   describe('Email Interception in Dev/Staging', () => {
     test('should intercept emails in development', () => {
       process.env.NODE_ENV = 'development';
-      process.env.DEV_EMAIL_RECIPIENT = 'dev@burando.nl';
+      process.env.DEV_EMAIL_RECIPIENT = 'dev@maritime-example.com';
 
       const interceptEmail = (originalTo) => {
         if (process.env.NODE_ENV === 'development' && process.env.DEV_EMAIL_RECIPIENT) {
@@ -126,14 +126,14 @@ describe('Email Security Tests', () => {
       };
 
       const result = interceptEmail('user@production.com');
-      expect(result.to).toBe('dev@burando.nl');
+      expect(result.to).toBe('dev@maritime-example.com');
       expect(result.originalTo).toBe('user@production.com');
     });
 
     test('should intercept emails in staging', () => {
       process.env.NODE_ENV = 'production';
       process.env.VERCEL_ENV = 'preview';
-      process.env.STAGING_EMAIL_RECIPIENT = 'staging@burando.nl';
+      process.env.STAGING_EMAIL_RECIPIENT = 'staging@maritime-example.com';
 
       const interceptEmail = (originalTo) => {
         if (process.env.VERCEL_ENV === 'preview' && process.env.STAGING_EMAIL_RECIPIENT) {
@@ -146,7 +146,7 @@ describe('Email Security Tests', () => {
       };
 
       const result = interceptEmail('user@production.com');
-      expect(result.to).toBe('staging@burando.nl');
+      expect(result.to).toBe('staging@maritime-example.com');
       expect(result.originalTo).toBe('user@production.com');
     });
 
@@ -312,8 +312,8 @@ describe('Email Security Tests', () => {
       const safeHtml = `
         <h1>Welcome</h1>
         <p>This is a <strong>safe</strong> email.</p>
-        <a href="https://burando.nl">Visit our website</a>
-        <img src="https://burando.nl/logo.png" alt="Logo">
+        <a href="https://maritime-example.com">Visit our website</a>
+        <img src="https://maritime-example.com/logo.png" alt="Logo">
         <ul>
           <li>Item 1</li>
           <li>Item 2</li>
@@ -348,13 +348,13 @@ describe('Email Security Tests', () => {
       };
 
       const validHeaders = {
-        From: 'noreply@burando.nl',
+        From: 'noreply@maritime-example.com',
         To: 'user@example.com',
         Subject: 'Test Email'
       };
 
       const invalidHeaders = {
-        From: 'noreply@burando.nl',
+        From: 'noreply@maritime-example.com',
         Subject: 'Test Email'
         // Missing 'To'
       };
@@ -381,7 +381,7 @@ describe('Email Security Tests', () => {
       const addSecurityHeaders = (headers) => {
         return {
           ...headers,
-          'X-Mailer': 'Burando Maritime Services',
+          'X-Mailer': 'Maritime Onboarding Services',
           'X-Priority': '3',
           'X-MSMail-Priority': 'Normal',
           'Importance': 'Normal'
@@ -389,16 +389,16 @@ describe('Email Security Tests', () => {
       };
 
       const baseHeaders = {
-        From: 'noreply@burando.nl',
+        From: 'noreply@maritime-example.com',
         To: 'user@example.com',
         Subject: 'Test'
       };
 
       const secureHeaders = addSecurityHeaders(baseHeaders);
       
-      expect(secureHeaders['X-Mailer']).toBe('Burando Maritime Services');
+      expect(secureHeaders['X-Mailer']).toBe('Maritime Onboarding Services');
       expect(secureHeaders['X-Priority']).toBe('3');
-      expect(secureHeaders.From).toBe('noreply@burando.nl');
+      expect(secureHeaders.From).toBe('noreply@maritime-example.com');
     });
   });
 

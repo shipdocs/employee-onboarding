@@ -9,7 +9,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { migrateTokenStorage, getAuthToken } from './utils/tokenMigration';
 import tokenService from './services/tokenService';
 import './i18n'; // Initialize i18n
-import './styles/burando-theme.css';
+import './styles/maritime-theme.css';
 
 // Pages
 import LoginPage from './pages/LoginPage';

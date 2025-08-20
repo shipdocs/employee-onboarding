@@ -138,7 +138,7 @@ async function updateManager(req, res, id) {
       // Enhanced password validation
       const EnhancedPasswordValidator = require('../../../lib/security/EnhancedPasswordValidator');
       const PasswordHistoryService = require('../../../lib/security/PasswordHistoryService');
-      
+
       const passwordValidator = new EnhancedPasswordValidator();
       const userInfo = {
         firstName: existingManager.first_name,
@@ -177,7 +177,7 @@ async function updateManager(req, res, id) {
 
       const saltRounds = 12;
       updateData.password_hash = await bcrypt.hash(password, saltRounds);
-      
+
       // Store password for history tracking after successful update
       updateData._passwordForHistory = password;
     }

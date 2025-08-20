@@ -17,7 +17,7 @@ export interface CacheStats {
 export declare class CacheEntry<T = any> {
   data: T;
   expiresAt: number;
-  
+
   constructor(data: T, ttl: number);
   isExpired(): boolean;
 }

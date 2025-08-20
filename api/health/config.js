@@ -11,10 +11,10 @@ async function handler(req, res) {
   try {
     // Get configuration health status
     const health = getConfigurationHealth();
-    
+
     // Determine HTTP status based on health
     const httpStatus = health.status === 'healthy' ? 200 : 503;
-    
+
     // Return health information
     res.status(httpStatus).json({
       status: health.status,

@@ -1472,7 +1472,7 @@ const { t, i18n } = useTranslation(['manager', 'dashboard', 'common', 'forms', '
                 <input
                   type="text"
                   className={`form-input ${errors.vesselAssignment ? 'error' : ''}`}
-                  placeholder="e.g., MS Burando Atlantic"
+                  placeholder="e.g., MS Maritime Explorer"
                   {...register('vesselAssignment', { required: 'Vessel assignment is required' })}
                 />
                 {errors.vesselAssignment && (
@@ -1653,7 +1653,7 @@ const { t, i18n } = useTranslation(['manager', 'dashboard', 'common', 'forms', '
                 <input
                   type="text"
                   className={`form-input ${errorsEdit.vesselAssignment ? 'error' : ''}`}
-                  placeholder="e.g., MS Burando Atlantic"
+                  placeholder="e.g., MS Maritime Explorer"
                   {...registerEdit('vesselAssignment', { required: 'Vessel assignment is required' })}
                 />
                 {errorsEdit.vesselAssignment && (

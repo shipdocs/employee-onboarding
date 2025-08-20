@@ -52,9 +52,9 @@ module.exports = {
         enabled: true,
         apiKey: process.env.UPTIME_ROBOT_API_KEY,
         monitors: [
-          { name: 'API Health', url: 'https://onboarding.burando.online/api/health' },
-          { name: 'Login Page', url: 'https://onboarding.burando.online' },
-          { name: 'Manager Dashboard', url: 'https://onboarding.burando.online/manager' }
+          { name: 'API Health', url: 'https://maritime-onboarding.example.com/api/health' },
+          { name: 'Login Page', url: 'https://maritime-onboarding.example.com' },
+          { name: 'Manager Dashboard', url: 'https://maritime-onboarding.example.com/manager' }
         ]
       },
       {

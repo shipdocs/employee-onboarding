@@ -19,7 +19,7 @@ async function testManagerLogin() {
       .from('users')
       .select('email, role, status, is_active, password_hash')
       .eq('role', 'manager')
-      .eq('email', 'martin.splinter@burando.eu')
+      .eq('email', 'martin.splinter@maritime-example.com')
       .single();
       
     if (dbError || !manager) {

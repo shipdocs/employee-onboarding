@@ -222,7 +222,6 @@ const FileUploadQuestion = ({
         </div>
       )}
 
-
     </div>
   );
 };

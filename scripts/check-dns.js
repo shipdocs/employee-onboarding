@@ -1,14 +1,14 @@
-// Check DNS records for burando.online
+// Check DNS records for maritime-example.com
 const dns = require('dns').promises;
 
 async function checkDNS() {
-  console.log('🔍 Checking DNS records for burando.online');
+  console.log('🔍 Checking DNS records for maritime-example.com');
   console.log('===========================================');
   
   try {
     // Check TXT records (includes SPF and DMARC)
     console.log('\n📋 TXT Records:');
-    const txtRecords = await dns.resolveTxt('burando.online');
+    const txtRecords = await dns.resolveTxt('maritime-example.com');
     txtRecords.forEach((record, index) => {
       const recordText = record.join('');
       console.log(`${index + 1}. ${recordText}`);
@@ -22,9 +22,9 @@ async function checkDNS() {
     });
     
     // Check DMARC specifically
-    console.log('\n🔒 DMARC Records (_dmarc.burando.online):');
+    console.log('\n🔒 DMARC Records (_dmarc.maritime-example.com):');
     try {
-      const dmarcRecords = await dns.resolveTxt('_dmarc.burando.online');
+      const dmarcRecords = await dns.resolveTxt('_dmarc.maritime-example.com');
       dmarcRecords.forEach((record, index) => {
         console.log(`${index + 1}. ${record.join('')}`);
       });
@@ -38,7 +38,7 @@ async function checkDNS() {
 
     for (const selector of dkimSelectors) {
       try {
-        const dkimDomain = `${selector}._domainkey.burando.online`;
+        const dkimDomain = `${selector}._domainkey.maritime-example.com`;
         const dkimRecords = await dns.resolveTxt(dkimDomain);
         console.log(`✅ ${selector}: Found DKIM record`);
         dkimRecords.forEach((record, index) => {
@@ -52,7 +52,7 @@ async function checkDNS() {
     
     // Check MX records
     console.log('\n📬 MX Records:');
-    const mxRecords = await dns.resolveMx('burando.online');
+    const mxRecords = await dns.resolveMx('maritime-example.com');
     mxRecords.forEach((record, index) => {
       console.log(`${index + 1}. Priority: ${record.priority}, Exchange: ${record.exchange}`);
     });

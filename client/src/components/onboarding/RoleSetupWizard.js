@@ -129,7 +129,7 @@ const RoleSetupWizard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-burando-navy via-burando-teal to-burando-bright-teal flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-maritime-navy via-maritime-teal to-maritime-bright-teal flex items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <div className="glass-card-elevated p-6 sm:p-8">
           {/* Header */}
@@ -154,15 +154,15 @@ const RoleSetupWizard = () => {
                   onClick={() => setSelectedFocus(key)}
                   className={`glass-card p-6 cursor-pointer transition-all duration-300 transform hover:scale-[1.02] ${
                     isSelected
-                      ? 'ring-4 ring-burando-light-green bg-burando-bright-teal/20'
+                      ? 'ring-4 ring-maritime-light-green bg-maritime-bright-teal/20'
                       : 'hover:bg-white/10'
                   }`}
                 >
                   <div className="flex items-start space-x-4">
                     <div className={`p-3 rounded-full ${
                       isSelected
-                        ? 'bg-burando-light-green'
-                        : 'bg-burando-bright-teal'
+                        ? 'bg-maritime-light-green'
+                        : 'bg-maritime-bright-teal'
                     }`}>
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
@@ -171,7 +171,7 @@ const RoleSetupWizard = () => {
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="text-xl font-bold text-white">{focus.title}</h3>
                         {isSelected && (
-                          <CheckCircle className="h-6 w-6 text-burando-light-green" />
+                          <CheckCircle className="h-6 w-6 text-maritime-light-green" />
                         )}
                       </div>
 
@@ -192,7 +192,7 @@ const RoleSetupWizard = () => {
                         <p className="text-white/90 text-sm font-medium">Training Modules:</p>
                         {focus.modules.map((module, index) => (
                           <div key={index} className="flex items-center text-white/70 text-xs">
-                            <div className="w-1.5 h-1.5 bg-burando-bright-teal rounded-full mr-2"></div>
+                            <div className="w-1.5 h-1.5 bg-maritime-bright-teal rounded-full mr-2"></div>
                             <span>{module}</span>
                           </div>
                         ))}
@@ -206,7 +206,7 @@ const RoleSetupWizard = () => {
 
           {/* Selected Focus Summary */}
           {selectedFocus && (
-            <div className="glass-card p-6 mb-8 bg-burando-bright-teal/20 border border-burando-light-green/30">
+            <div className="glass-card p-6 mb-8 bg-maritime-bright-teal/20 border border-maritime-light-green/30">
               <h3 className="text-lg font-bold text-white mb-2">
                 ✅ Selected: {trainingFocuses[selectedFocus].title}
               </h3>
@@ -232,7 +232,7 @@ const RoleSetupWizard = () => {
               disabled={!selectedFocus}
               className={`flex items-center justify-center px-8 py-3 rounded-lg font-semibold transition-all duration-300 min-h-[48px] touch-manipulation ${
                 selectedFocus
-                  ? 'bg-gradient-to-r from-burando-light-green to-burando-bright-teal text-white hover:shadow-lg transform hover:scale-[1.02]'
+                  ? 'bg-gradient-to-r from-maritime-light-green to-maritime-bright-teal text-white hover:shadow-lg transform hover:scale-[1.02]'
                   : 'bg-gray-500 text-gray-300 cursor-not-allowed'
               }`}
             >
