@@ -102,7 +102,7 @@
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "migrate:smtp": "node scripts/run-smtp-migration.js",
     "deploy": "docker compose -f docker-compose.yml up -d",
-    "setup:database": "docker exec maritime_database psql -U postgres -d maritime -f /docker-entrypoint-initdb.d/init-db.sql",
+    "setup:database": "docker exec employee-onboarding-database psql -U postgres -d employee_onboarding -f /docker-entrypoint-initdb.d/01-init.sql",
     "setup:environments": "node scripts/setup-environments.js",
     "setup:admin": "node scripts/setup-admin-user.js",
     "test:permissions": "node scripts/test-file-permissions.js",
