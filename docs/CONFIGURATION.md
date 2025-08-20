@@ -81,8 +81,8 @@ EMAIL_FROM_NAME=Maritime Onboarding           # Default sender name
 SMTP_HOST=smtp.gmail.com                      # SMTP server host
 SMTP_PORT=587                                 # SMTP port (587 for TLS, 465 for SSL)
 SMTP_SECURE=false                             # true for port 465, false for other ports
-SMTP_USER=your-email@gmail.com                # SMTP username
-SMTP_PASSWORD=your-app-password               # SMTP password or app password
+SMTP_USER=<your-email@example.com>            # SMTP username (replace with your email)
+SMTP_PASSWORD=<your-app-specific-password>    # SMTP password (replace with your app password)
 ```
 
 ### SendGrid Configuration

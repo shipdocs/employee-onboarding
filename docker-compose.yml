@@ -80,7 +80,7 @@ services:
     environment:
       POSTGRES_DB: ${DB_NAME:-employee_onboarding}
       POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
     ports:
       - "5432:5432"
     volumes:
@@ -101,7 +101,7 @@ services:
     container_name: employee-onboarding-postgrest
     restart: unless-stopped
     environment:
-      PGRST_DB_URI: postgres://${DB_USER:-postgres}:${DB_PASSWORD}@database:5432/${DB_NAME:-employee_onboarding}
+      PGRST_DB_URI: postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@database:5432/${DB_NAME:-employee_onboarding}
       PGRST_DB_SCHEMAS: public
       PGRST_DB_ANON_ROLE: anon
       PGRST_JWT_SECRET: ${JWT_SECRET}

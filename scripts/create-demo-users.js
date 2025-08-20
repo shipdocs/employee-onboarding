@@ -31,14 +31,12 @@ async function createDemoUsers() {
 
     // Clear existing demo data
     console.log('🧹 Cleaning existing demo data...');
-    await pool.query(`
-      DELETE FROM quiz_results WHERE user_id LIKE 'demo-%';
-      DELETE FROM training_progress WHERE user_id LIKE 'demo-%';
-      DELETE FROM onboarding_progress WHERE user_id LIKE 'demo-%';
-      DELETE FROM crew_members WHERE id LIKE 'demo-%';
-      DELETE FROM managers WHERE id LIKE 'demo-%';
-      DELETE FROM admin_users WHERE id LIKE 'demo-%';
-    `);
+    await pool.query("DELETE FROM quiz_results WHERE user_id LIKE 'demo-%'");
+    await pool.query("DELETE FROM training_progress WHERE user_id LIKE 'demo-%'");
+    await pool.query("DELETE FROM onboarding_progress WHERE user_id LIKE 'demo-%'");
+    await pool.query("DELETE FROM crew_members WHERE id LIKE 'demo-%'");
+    await pool.query("DELETE FROM managers WHERE id LIKE 'demo-%'");
+    await pool.query("DELETE FROM admin_users WHERE id LIKE 'demo-%'");
 
     // Create admin user
     console.log('👤 Creating admin user (admin@admin.com / admin.com)...');
