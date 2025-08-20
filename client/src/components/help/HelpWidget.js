@@ -61,7 +61,7 @@ const HelpWidget = () => {
   // Help content based on user role
   const getHelpContent = () => {
     const role = user?.role || 'crew';
-    
+
     const content = {
       crew: {
         quick: [
@@ -158,7 +158,7 @@ const HelpWidget = () => {
         <div className="help-widget-panel">
           <div className="help-header">
             <h3>Need Help?</h3>
-            <button 
+            <button
               className="help-close"
               onClick={() => setIsOpen(false)}
               aria-label="Close"
@@ -274,7 +274,7 @@ const HelpWidget = () => {
 
       {/* Overlay */}
       {isOpen && (
-        <div 
+        <div
           className="help-overlay"
           onClick={() => setIsOpen(false)}
         />

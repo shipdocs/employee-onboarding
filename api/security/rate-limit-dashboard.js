@@ -24,7 +24,7 @@ async function handler(req, res) {
     // Calculate time range
     const now = new Date();
     let startTime;
-    
+
     switch (timeRange) {
       case '1h':
         startTime = new Date(now.getTime() - 60 * 60 * 1000);

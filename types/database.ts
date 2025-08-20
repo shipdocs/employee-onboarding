@@ -222,7 +222,7 @@ export interface ManagerPermission {
   updated_at: string;
 }
 
-export type PermissionKey = 
+export type PermissionKey =
   | 'can_add_crew'
   | 'can_edit_crew'
   | 'can_delete_crew'

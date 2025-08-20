@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 
     // Construct the path to the API file in the /api directory
     const apiFilePath = path.join(process.cwd(), 'api', `${sanitizedApiPath}.js`);
-    
+
     // Try to require the API handler
     let apiHandler;
     try {
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: 'API endpoint not found' });
       }
     }
-    
+
     // Call the API handler
     if (typeof apiHandler === 'function') {
       return await apiHandler(req, res);

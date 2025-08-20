@@ -27,7 +27,7 @@ async function getSecurityEvents(req, res) {
 
     // Build filters
     const filters = {};
-    
+
     if (type) filters.type = type;
     if (severity) filters.severity = severity;
     if (userId) filters.userId = userId;

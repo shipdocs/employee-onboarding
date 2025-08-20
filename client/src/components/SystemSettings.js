@@ -35,7 +35,7 @@ const SystemSettings = () => {
   const [vercelFirewallEnabled, setVercelFirewallEnabled] = useState(false); // Track Vercel Firewall status
   const [testingIntegration, setTestingIntegration] = useState(null);
   const queryClient = useQueryClient();
-  
+
   // Update provider states when category changes
   useEffect(() => {
     if (settings && activeCategory === 'email') {
@@ -81,7 +81,7 @@ const SystemSettings = () => {
         const currentProvider = emailSettings.email_service_provider?.value ||
                                emailSettings.email_provider?.value || 'smtp';
         setEmailProvider(currentProvider);
-        
+
         // Set initial translation provider from settings
         const translationSettings = validData.translation || {};
         const currentTranslationProvider = translationSettings.translation_provider?.value || 'claude';
@@ -110,7 +110,7 @@ const SystemSettings = () => {
     async (settingsToUpdate) => {
       // Process settings to update each changed setting individually
       const updates = [];
-      
+
       Object.entries(settingsToUpdate).forEach(([category, categorySettings]) => {
         if (categorySettings && typeof categorySettings === 'object') {
           Object.entries(categorySettings).forEach(([key, setting]) => {
@@ -124,14 +124,14 @@ const SystemSettings = () => {
           });
         }
       });
-      
+
       // Update all settings
       const results = await Promise.all(
-        updates.map(update => 
+        updates.map(update =>
           adminService.updateSystemSetting(update.category, update.key, update.value)
         )
       );
-      
+
       return results;
     },
     {

@@ -26,7 +26,7 @@ async function getSecurityStatistics(req, res) {
 
     // Get statistics
     const statsResult = await securityAuditLogger.getStatistics(timeframe);
-    
+
     if (!statsResult.success) {
       return res.status(500).json({
         error: 'Failed to retrieve security statistics',
@@ -36,7 +36,7 @@ async function getSecurityStatistics(req, res) {
 
     // Get security alerts
     const alertsResult = await securityAuditLogger.getSecurityAlerts(10);
-    
+
     if (!alertsResult.success) {
       return res.status(500).json({
         error: 'Failed to retrieve security alerts',

@@ -19,7 +19,7 @@ module.exports = adminRateLimit(async (req, res) => {
 
     const token = authHeader.split(' ')[1];
     const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-    
+
     if (authError || !user) {
       return res.status(401).json({ error: 'Invalid token' });
     }
@@ -45,9 +45,9 @@ module.exports = adminRateLimit(async (req, res) => {
     }
   } catch (error) {
     console.error('Security config API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 });
@@ -81,7 +81,7 @@ async function getSecurityConfig(req, res) {
           require_symbols: false
         }
       },
-      
+
       // Monitoring settings
       monitoring: {
         log_failed_logins: true,
@@ -90,7 +90,7 @@ async function getSecurityConfig(req, res) {
         alert_threshold: 5,
         monitoring_enabled: true
       },
-      
+
       // Firewall settings
       firewall: {
         enabled: !!process.env.VERCEL_ACCESS_TOKEN,
@@ -99,7 +99,7 @@ async function getSecurityConfig(req, res) {
         block_duration: 60, // minutes
         whitelist_ips: []
       },
-      
+
       // Notification settings
       notifications: {
         email_alerts: true,
@@ -107,7 +107,7 @@ async function getSecurityConfig(req, res) {
         alert_recipients: [],
         webhook_url: ''
       },
-      
+
       // Data retention
       retention: {
         security_events_days: 90,
@@ -123,7 +123,7 @@ async function getSecurityConfig(req, res) {
         if (keyParts.length >= 2) {
           const category = keyParts[1];
           const subKey = keyParts.slice(2).join('_');
-          
+
           if (config[category] && subKey) {
             try {
               config[category][subKey] = JSON.parse(setting.value);
@@ -163,9 +163,9 @@ async function getSecurityConfig(req, res) {
 
   } catch (error) {
     console.error('Get security config error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to fetch security configuration',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -190,7 +190,7 @@ async function updateSecurityConfig(req, res, user) {
       for (const [key, value] of Object.entries(settings)) {
         const settingKey = `security_${category}_${key}`;
         const settingValue = typeof value === 'object' ? JSON.stringify(value) : String(value);
-        
+
         updates.push({
           key: settingKey,
           value: settingValue,
@@ -240,9 +240,9 @@ async function updateSecurityConfig(req, res, user) {
 
   } catch (error) {
     console.error('Update security config error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to update security configuration',
-      details: error.message 
+      details: error.message
     });
   }
 }

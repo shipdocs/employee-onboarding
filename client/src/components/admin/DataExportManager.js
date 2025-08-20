@@ -305,7 +305,7 @@ const DataExportManager = () => {
       )}
 
       {activeTab === 'deletions' && (
-        <DeletionsTable 
+        <DeletionsTable
           deletions={filteredDeletions}
           isLoading={deletionLoading}
           error={deletionError}

@@ -205,7 +205,7 @@ describe('Input Sanitization', () => {
       const sanitized = sanitizers.filename(longFilename);
       
       expect(sanitized.length).toBeLessThanOrEqual(255);
-      expect(sanitized).toEndWith('.txt');
+      expect(sanitized.endsWith('.txt')).toBe(true);
     });
 
     test('should handle unicode and special characters', () => {

@@ -33,7 +33,7 @@ const rateLimiter = require('./lib/rate-limiter');
 // Initialize rate limiter on startup
 (async () => {
   await rateLimiter.init();
-  
+
   // Create rate limiting instances
   const limiters = rateLimiter.createLimiters();
   global.apiRateLimit = limiters.api;
@@ -46,8 +46,8 @@ const rateLimiter = require('./lib/rate-limiter');
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'healthy', 
+  res.json({
+    status: 'healthy',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
     version: '2.0.1'
@@ -60,16 +60,16 @@ function loadApiRoutes(dir, basePath = '/api') {
     console.log(`⚠️  API directory not found: ${dir}`);
     return;
   }
-  
+
   const items = fs.readdirSync(dir);
-  
+
   // First, load index.js if it exists in current directory
   const currentIndexPath = path.join(dir, 'index.js');
   if (fs.existsSync(currentIndexPath)) {
     try {
       delete require.cache[require.resolve(currentIndexPath)];
       const handler = require(currentIndexPath);
-      
+
       if (typeof handler === 'function') {
         const expressHandler = (req, res, next) => {
           try {
@@ -95,31 +95,31 @@ function loadApiRoutes(dir, basePath = '/api') {
       }
     }
   }
-  
+
   items.forEach(item => {
     if (item === 'index.js') return; // Skip index.js as we handle it above
-    
+
     // Skip problematic nested dynamic routes temporarily
     if (item.includes('[') && item.includes(']') && dir.includes('[') && dir.includes(']')) {
       console.log(`⏭️ Skipping nested dynamic route: ${dir}/${item}`);
       return;
     }
-    
+
     const itemPath = path.join(dir, item);
     const stat = fs.statSync(itemPath);
-    
+
     if (stat.isDirectory()) {
       // Handle dynamic routes like [id]
       if (item.startsWith('[') && item.endsWith(']')) {
         const param = item.slice(1, -1);
-        
+
         // Load [id].js file if it exists
         const dynamicFilePath = path.join(dir, `${item}.js`);
         if (fs.existsSync(dynamicFilePath)) {
           try {
             delete require.cache[require.resolve(dynamicFilePath)];
             const handler = require(dynamicFilePath);
-            
+
             if (typeof handler === 'function') {
               const expressHandler = (req, res, next) => {
                 req.query[param] = req.params[param];
@@ -143,7 +143,7 @@ function loadApiRoutes(dir, basePath = '/api') {
             console.log(`⚠️  Failed to load ${dynamicFilePath}: ${error.message}`);
           }
         }
-        
+
         // Load routes inside [id] directory
         const dynamicItems = fs.readdirSync(itemPath);
         dynamicItems.forEach(dynamicItem => {
@@ -152,7 +152,7 @@ function loadApiRoutes(dir, basePath = '/api') {
             try {
               delete require.cache[require.resolve(dynamicItemPath)];
               const handler = require(dynamicItemPath);
-              
+
               if (typeof handler === 'function') {
                 const routeName = dynamicItem.replace('.js', '');
                 const expressHandler = (req, res, next) => {
@@ -195,7 +195,7 @@ function loadApiRoutes(dir, basePath = '/api') {
           try {
             delete require.cache[require.resolve(itemFilePath)];
             const handler = require(itemFilePath);
-            
+
             if (typeof handler === 'function') {
               const expressHandler = (req, res, next) => {
                 req.query[param] = req.params[param];
@@ -294,7 +294,7 @@ const swaggerSpec = require('./swagger-config');
 // Serve Swagger UI at /api-docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   customCss: '.swagger-ui .topbar { display: none }',
-  customSiteTitle: "Maritime API Documentation"
+  customSiteTitle: 'Maritime API Documentation'
 }));
 console.log('✅ Swagger API documentation available at /api-docs');
 
@@ -323,7 +323,7 @@ app.use('/docs', express.static(path.join(__dirname, 'docs'), {
 
 // 404 handler for API routes
 app.use('/api/*', (req, res) => {
-  res.status(404).json({ 
+  res.status(404).json({
     error: 'API endpoint not found',
     path: req.path.replace('/api', ''),
     method: req.method,

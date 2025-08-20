@@ -17,8 +17,8 @@ async function handler(req, res) {
   try {
     // Validate confirmation
     if (confirmation !== 'DELETE MY ACCOUNT') {
-      return res.status(400).json({ 
-        error: 'Invalid confirmation. Please type "DELETE MY ACCOUNT" exactly.' 
+      return res.status(400).json({
+        error: 'Invalid confirmation. Please type "DELETE MY ACCOUNT" exactly.'
       });
     }
 
@@ -36,7 +36,7 @@ async function handler(req, res) {
       });
 
     // Delete user data in correct order (respecting foreign key constraints)
-    
+
     // 1. Delete quiz results
     await supabase
       .from('quiz_results')
@@ -92,14 +92,14 @@ async function handler(req, res) {
         }
       });
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       message: 'Account successfully deleted',
       timestamp: new Date().toISOString()
     });
 
   } catch (error) {
     console.error('Account deletion error:', error);
-    
+
     // Log the failed deletion attempt
     try {
       await supabase
@@ -117,9 +117,9 @@ async function handler(req, res) {
       console.error('Failed to log deletion error:', logError);
     }
 
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to delete account',
-      details: error.message 
+      details: error.message
     });
   }
 }

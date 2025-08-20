@@ -1,6 +1,6 @@
 /**
  * Dependency Management API
- * 
+ *
  * Provides API endpoints for dependency vulnerability scanning,
  * management, and remediation through the web interface.
  */
@@ -22,20 +22,20 @@ async function handler(req, res) {
     switch (method) {
       case 'GET':
         return handleGetRequest(req, res, dependencyManager);
-      
+
       case 'POST':
         return handlePostRequest(req, res, dependencyManager);
-      
+
       case 'PUT':
         return handlePutRequest(req, res, dependencyManager);
-      
+
       default:
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
   } catch (error) {
     console.error('Dependency management API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
       message: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
@@ -51,19 +51,19 @@ async function handleGetRequest(req, res, dependencyManager) {
   switch (action) {
     case 'dashboard':
       return handleGetDashboard(req, res, dependencyManager);
-    
+
     case 'scan-history':
       return handleGetScanHistory(req, res, dependencyManager);
-    
+
     case 'scan-results':
       return handleGetScanResults(req, res, dependencyManager, scanId);
-    
+
     case 'vulnerability-stats':
       return handleGetVulnerabilityStats(req, res, dependencyManager);
-    
+
     case 'recommendations':
       return handleGetRecommendations(req, res, dependencyManager, scanId);
-    
+
     default:
       return handleGetDashboard(req, res, dependencyManager);
   }
@@ -78,13 +78,13 @@ async function handlePostRequest(req, res, dependencyManager) {
   switch (action) {
     case 'run-scan':
       return handleRunScan(req, res, dependencyManager);
-    
+
     case 'execute-remediation':
       return handleExecuteRemediation(req, res, dependencyManager);
-    
+
     case 'schedule-scans':
       return handleScheduleScans(req, res, dependencyManager);
-    
+
     default:
       return res.status(400).json({ error: 'Invalid action' });
   }
@@ -99,7 +99,7 @@ async function handlePutRequest(req, res, dependencyManager) {
   switch (action) {
     case 'update-scan-config':
       return handleUpdateScanConfig(req, res, dependencyManager);
-    
+
     default:
       return res.status(400).json({ error: 'Invalid action' });
   }
@@ -112,7 +112,7 @@ async function handleGetDashboard(req, res, dependencyManager) {
   try {
     const stats = dependencyManager.getVulnerabilityStatistics();
     const recentScans = dependencyManager.getScanHistory(5);
-    
+
     const dashboard = {
       vulnerabilityStats: stats,
       recentScans,
@@ -155,9 +155,9 @@ async function handleGetDashboard(req, res, dependencyManager) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to get dashboard data',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -179,9 +179,9 @@ async function handleGetScanHistory(req, res, dependencyManager) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to get scan history',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -206,9 +206,9 @@ async function handleGetScanResults(req, res, dependencyManager, scanId) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to get scan results',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -226,9 +226,9 @@ async function handleGetVulnerabilityStats(req, res, dependencyManager) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to get vulnerability statistics',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -262,9 +262,9 @@ async function handleGetRecommendations(req, res, dependencyManager, scanId) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to get recommendations',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -307,9 +307,9 @@ async function handleRunScan(req, res, dependencyManager) {
     }
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to start dependency scan',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -355,9 +355,9 @@ async function handleExecuteRemediation(req, res, dependencyManager) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to execute remediation',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -371,7 +371,7 @@ async function handleScheduleScans(req, res, dependencyManager) {
 
     if (enabled) {
       dependencyManager.scheduleAutomatedScans(intervalHours);
-      
+
       return res.status(200).json({
         success: true,
         message: `Automated scans scheduled every ${intervalHours} hours`,
@@ -392,9 +392,9 @@ async function handleScheduleScans(req, res, dependencyManager) {
     }
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to schedule scans',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -419,9 +419,9 @@ async function handleUpdateScanConfig(req, res, dependencyManager) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to update scan configuration',
-      message: error.message 
+      message: error.message
     });
   }
 }

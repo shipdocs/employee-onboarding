@@ -4,16 +4,16 @@ module.exports = {
       '@babel/preset-env',
       {
         targets: {
-          node: 'current',
+          node: 'current'
         },
-        modules: 'commonjs',
-      },
+        modules: 'commonjs'
+      }
     ],
     '@babel/preset-react',
-    '@babel/preset-typescript',
+    '@babel/preset-typescript'
   ],
   plugins: [
-    '@babel/plugin-transform-modules-commonjs',
+    '@babel/plugin-transform-modules-commonjs'
   ],
   env: {
     test: {
@@ -22,12 +22,12 @@ module.exports = {
           '@babel/preset-env',
           {
             targets: {
-              node: 'current',
+              node: 'current'
             },
-            modules: 'commonjs',
-          },
-        ],
-      ],
-    },
-  },
+            modules: 'commonjs'
+          }
+        ]
+      ]
+    }
+  }
 };

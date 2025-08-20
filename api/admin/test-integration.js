@@ -100,7 +100,7 @@ async function handler(req, res) {
               } : undefined
             });
           }
-          
+
           const pagerdutyConfig = {
             enabled: true,
             integration_key: pagerdutyKey,
@@ -115,7 +115,7 @@ async function handler(req, res) {
               low: 'info'
             }
           };
-          
+
           try {
             await externalIntegrationService.sendPagerDutyNotification(testIncident, pagerdutyConfig);
             result = { success: true, message: 'PagerDuty test notification sent successfully' };
@@ -143,46 +143,46 @@ async function handler(req, res) {
 
         case 'slack':
           if (!settings['integrations.slack_webhook_url']) {
-            return res.status(400).json({ 
-              success: false, 
-              error: 'Slack webhook URL is required' 
+            return res.status(400).json({
+              success: false,
+              error: 'Slack webhook URL is required'
             });
           }
-          
+
           const slackConfig = {
             enabled: true,
             webhook_url: settings['integrations.slack_webhook_url'],
             channel: settings['integrations.slack_channel'] || '#incidents',
             severity_filter: ['critical', 'high', 'medium', 'low']
           };
-          
+
           await externalIntegrationService.sendSlackNotification(testIncident, slackConfig);
           result = { success: true, message: 'Slack test notification sent successfully' };
           break;
 
         case 'webhook':
           if (!settings['integrations.webhook_url']) {
-            return res.status(400).json({ 
-              success: false, 
-              error: 'Webhook URL is required' 
+            return res.status(400).json({
+              success: false,
+              error: 'Webhook URL is required'
             });
           }
-          
+
           const webhookConfig = {
             enabled: true,
             url: settings['integrations.webhook_url'],
             secret: settings['integrations.webhook_secret'] || '',
             timeout: 10000
           };
-          
+
           await externalIntegrationService.sendWebhookNotification(testIncident, webhookConfig);
           result = { success: true, message: 'Webhook test notification sent successfully' };
           break;
 
         default:
-          return res.status(400).json({ 
-            success: false, 
-            error: `Unsupported integration type: ${integrationType}` 
+          return res.status(400).json({
+            success: false,
+            error: `Unsupported integration type: ${integrationType}`
           });
       }
 
@@ -240,9 +240,9 @@ async function handler(req, res) {
 
   } catch (error) {
     console.error('Test integration error:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Internal server error' 
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error'
     });
   }
 }

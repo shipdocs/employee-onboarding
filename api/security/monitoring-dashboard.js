@@ -1,6 +1,6 @@
 /**
  * Security Monitoring Dashboard API
- * 
+ *
  * Provides real-time security monitoring data and dashboard functionality.
  */
 
@@ -29,26 +29,26 @@ async function handler(req, res) {
     switch (action) {
       case 'dashboard':
         return handleDashboardData(req, res, securityMonitoring);
-      
+
       case 'metrics':
         return handleMetricsData(req, res, securityMonitoring, timeRange);
-      
+
       case 'alerts':
         return handleAlertsData(req, res, securityMonitoring, timeRange);
-      
+
       case 'report':
         return handleReportData(req, res, securityMonitoring, timeRange, format);
-      
+
       case 'status':
         return handleStatusData(req, res, securityMonitoring);
-      
+
       default:
         return handleDashboardData(req, res, securityMonitoring);
     }
 
   } catch (error) {
     console.error('Security monitoring dashboard error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
       message: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
@@ -60,7 +60,7 @@ async function handler(req, res) {
  */
 function handleDashboardData(req, res, securityMonitoring) {
   const dashboardData = securityMonitoring.getDashboardData();
-  
+
   return res.status(200).json({
     success: true,
     data: dashboardData,
@@ -73,7 +73,7 @@ function handleDashboardData(req, res, securityMonitoring) {
  */
 function handleMetricsData(req, res, securityMonitoring, timeRange) {
   const { startTime, endTime } = req.query;
-  
+
   let metrics;
   if (startTime && endTime) {
     metrics = securityMonitoring.getMetricsForTimeRange(startTime, endTime);
@@ -81,7 +81,7 @@ function handleMetricsData(req, res, securityMonitoring, timeRange) {
     // Calculate time range
     const now = new Date();
     let start;
-    
+
     switch (timeRange) {
       case '1h':
         start = new Date(now.getTime() - 60 * 60 * 1000);
@@ -95,10 +95,10 @@ function handleMetricsData(req, res, securityMonitoring, timeRange) {
       default:
         start = new Date(now.getTime() - 24 * 60 * 60 * 1000);
     }
-    
+
     metrics = securityMonitoring.getMetricsForTimeRange(start, now);
   }
-  
+
   return res.status(200).json({
     success: true,
     data: {
@@ -115,7 +115,7 @@ function handleMetricsData(req, res, securityMonitoring, timeRange) {
  */
 function handleAlertsData(req, res, securityMonitoring, timeRange) {
   const { startTime, endTime, type, limit = 50 } = req.query;
-  
+
   let alerts;
   if (startTime && endTime) {
     alerts = securityMonitoring.getAlertsForTimeRange(startTime, endTime);
@@ -123,7 +123,7 @@ function handleAlertsData(req, res, securityMonitoring, timeRange) {
     // Calculate time range
     const now = new Date();
     let start;
-    
+
     switch (timeRange) {
       case '1h':
         start = new Date(now.getTime() - 60 * 60 * 1000);
@@ -137,18 +137,18 @@ function handleAlertsData(req, res, securityMonitoring, timeRange) {
       default:
         start = new Date(now.getTime() - 24 * 60 * 60 * 1000);
     }
-    
+
     alerts = securityMonitoring.getAlertsForTimeRange(start, now);
   }
-  
+
   // Filter by alert type if specified
   if (type) {
     alerts = alerts.filter(alert => alert.type === type);
   }
-  
+
   // Limit results
   alerts = alerts.slice(0, parseInt(limit));
-  
+
   return res.status(200).json({
     success: true,
     data: {
@@ -166,14 +166,14 @@ function handleAlertsData(req, res, securityMonitoring, timeRange) {
  */
 function handleReportData(req, res, securityMonitoring, timeRange, format) {
   const report = securityMonitoring.generateReport(timeRange);
-  
+
   if (format === 'csv') {
     const csvData = securityMonitoring.exportData('csv');
     res.setHeader('Content-Type', 'text/csv');
     res.setHeader('Content-Disposition', `attachment; filename="security-report-${timeRange}.csv"`);
     return res.status(200).send(csvData);
   }
-  
+
   return res.status(200).json({
     success: true,
     data: report,
@@ -193,7 +193,7 @@ function handleStatusData(req, res, securityMonitoring) {
     environment: process.env.NODE_ENV || 'development',
     timestamp: new Date().toISOString()
   };
-  
+
   return res.status(200).json({
     success: true,
     data: status,

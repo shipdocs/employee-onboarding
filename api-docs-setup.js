@@ -6,7 +6,7 @@ const swaggerSpec = require('./swagger-config');
 // Serve Swagger UI at /api-docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   customCss: '.swagger-ui .topbar { display: none }',
-  customSiteTitle: "Maritime API Documentation"
+  customSiteTitle: 'Maritime API Documentation'
 }));
 
 // Example of how to document an API endpoint:

@@ -60,7 +60,7 @@ const RichTextEditor = ({
         // Use a temporary div to safely set content
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = safeInitialHTML.__html;
-        
+
         // Clear existing content and append sanitized content
         editorRef.current.innerHTML = '';
         while (tempDiv.firstChild) {

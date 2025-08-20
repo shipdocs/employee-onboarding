@@ -49,21 +49,21 @@ export interface CacheStatsWithMemory extends CacheStats {
 // Cache Service Class
 export declare class CacheService {
   constructor(config?: CacheConfig);
-  
+
   // Core methods
   get<T = any>(key: string): T | null;
   set<T = any>(key: string, data: T, ttl?: number): void;
   delete(key: string): boolean;
   has(key: string): boolean;
   clear(): void;
-  
+
   // Pattern-based operations
   invalidatePattern(pattern: string | RegExp): number;
-  
+
   // Statistics and monitoring
   getStats(): CacheStatsWithMemory;
   resetStats(): void;
-  
+
   // Internal methods
   isExpired(entry: CacheEntry): boolean;
   evictLRU(): void;

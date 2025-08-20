@@ -451,7 +451,7 @@ class AutomatedCertificateService {
           try {
             if (fieldType === 'PDFTextField') {
               field.setText(String(value));
-              
+
             } else if (fieldType === 'PDFCheckBox') {
               // Check boxes for completed phases
               if (fieldName.includes('phase1') && templateData.phase1_completed !== 'Not Completed') {
@@ -463,10 +463,10 @@ class AutomatedCertificateService {
               } else if (fieldName.includes('complete') || fieldName.includes('certified')) {
                 field.check();
               }
-              
+
             }
           } catch (fieldError) {
-            
+
           }
         }
       });
@@ -836,7 +836,7 @@ class AutomatedCertificateService {
 
       // Clean up the temporary file
       await fs.unlink(tempFilePath).catch(err => {
-        
+
       });
 
       return result;
@@ -882,7 +882,7 @@ class AutomatedCertificateService {
           try {
             if (fieldType === 'PDFTextField') {
               field.setText(String(value));
-              
+
             } else if (fieldType === 'PDFCheckBox') {
               // Check boxes for completed phases
               if (fieldName.includes('phase1') && templateData.phase1_completed !== 'Not Completed') {
@@ -894,10 +894,10 @@ class AutomatedCertificateService {
               } else if (fieldName.includes('complete') || fieldName.includes('certified')) {
                 field.check();
               }
-              
+
             }
           } catch (fieldError) {
-            
+
           }
         }
       });
@@ -1116,7 +1116,7 @@ class AutomatedCertificateService {
 
       // Clean up the temporary file
       await fs.unlink(tempFilePath).catch(err => {
-        
+
       });
 
       return result;

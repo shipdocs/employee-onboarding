@@ -1,6 +1,6 @@
 /**
  * Security Incident Response API
- * 
+ *
  * Provides API endpoints for security incident management,
  * escalation, and forensic data access.
  */
@@ -22,23 +22,23 @@ async function handler(req, res) {
     switch (method) {
       case 'GET':
         return handleGetRequest(req, res, securityIncidentResponse);
-      
+
       case 'POST':
         return handlePostRequest(req, res, securityIncidentResponse);
-      
+
       case 'PUT':
         return handlePutRequest(req, res, securityIncidentResponse);
-      
+
       case 'DELETE':
         return handleDeleteRequest(req, res, securityIncidentResponse);
-      
+
       default:
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
   } catch (error) {
     console.error('Security incident response API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
       message: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
@@ -54,19 +54,19 @@ async function handleGetRequest(req, res, securityIncidentResponse) {
   switch (action) {
     case 'list':
       return handleListIncidents(req, res, securityIncidentResponse);
-    
+
     case 'get':
       return handleGetIncident(req, res, securityIncidentResponse, id);
-    
+
     case 'report':
       return handleGetReport(req, res, securityIncidentResponse);
-    
+
     case 'playbooks':
       return handleGetPlaybooks(req, res, securityIncidentResponse);
-    
+
     case 'forensics':
       return handleGetForensics(req, res, securityIncidentResponse, id);
-    
+
     default:
       return handleListIncidents(req, res, securityIncidentResponse);
   }
@@ -81,13 +81,13 @@ async function handlePostRequest(req, res, securityIncidentResponse) {
   switch (action) {
     case 'create':
       return handleCreateIncident(req, res, securityIncidentResponse);
-    
+
     case 'escalate':
       return handleEscalateIncident(req, res, securityIncidentResponse);
-    
+
     case 'test':
       return handleTestIncident(req, res, securityIncidentResponse);
-    
+
     default:
       return handleCreateIncident(req, res, securityIncidentResponse);
   }
@@ -138,8 +138,8 @@ async function handleDeleteRequest(req, res, securityIncidentResponse) {
 
   try {
     const incident = securityIncidentResponse.closeIncident(
-      id, 
-      resolution, 
+      id,
+      resolution,
       req.user?.email || 'api'
     );
 
@@ -178,7 +178,7 @@ function handleListIncidents(req, res, securityIncidentResponse) {
   const allIncidents = securityIncidentResponse.getIncidents(filters);
   const total = allIncidents.length;
   const incidents = allIncidents.slice(
-    parseInt(offset), 
+    parseInt(offset),
     parseInt(offset) + parseInt(limit)
   );
 
@@ -221,9 +221,9 @@ function handleGetIncident(req, res, securityIncidentResponse, id) {
  */
 function handleGetReport(req, res, securityIncidentResponse) {
   const { timeRange = '24h' } = req.query;
-  
+
   const report = securityIncidentResponse.generateIncidentReport(timeRange);
-  
+
   return res.status(200).json({
     success: true,
     data: report
@@ -300,9 +300,9 @@ async function handleCreateIncident(req, res, securityIncidentResponse) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to create incident',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -332,9 +332,9 @@ async function handleEscalateIncident(req, res, securityIncidentResponse) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to escalate incident',
-      message: error.message 
+      message: error.message
     });
   }
 }
@@ -367,9 +367,9 @@ async function handleTestIncident(req, res, securityIncidentResponse) {
     });
 
   } catch (error) {
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to create test incident',
-      message: error.message 
+      message: error.message
     });
   }
 }

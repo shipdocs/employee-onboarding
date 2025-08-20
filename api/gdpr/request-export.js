@@ -15,9 +15,9 @@ module.exports = async function handler(req, res) {
   // Apply rate limiting (stricter for export requests)
   const rateLimitResult = await userRateLimit(req, res, { max: 5, windowMs: 60 * 60 * 1000 }); // 5 per hour
   if (!rateLimitResult.success) {
-    return res.status(429).json({ 
+    return res.status(429).json({
       error: 'Too many export requests. Please wait before requesting again.',
-      retryAfter: rateLimitResult.retryAfter 
+      retryAfter: rateLimitResult.retryAfter
     });
   }
 
@@ -37,8 +37,8 @@ module.exports = async function handler(req, res) {
     // Validate export type
     const validExportTypes = ['personal', 'complete'];
     if (!exportType || !validExportTypes.includes(exportType)) {
-      return res.status(400).json({ 
-        error: 'Invalid export type. Must be "personal" or "complete"' 
+      return res.status(400).json({
+        error: 'Invalid export type. Must be "personal" or "complete"'
       });
     }
 
@@ -64,7 +64,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (existingRequests && existingRequests.length > 0) {
-      return res.status(409).json({ 
+      return res.status(409).json({
         error: 'You already have a pending export request. Please wait for it to complete.',
         existingRequest: existingRequests[0]
       });
@@ -124,7 +124,7 @@ module.exports = async function handler(req, res) {
         action: 'request_data_export',
         resource_type: 'data_export',
         resource_id: newRequest.id,
-        details: { 
+        details: {
           exportType,
           requestId: newRequest.id,
           estimatedProcessingTime: exportType === 'complete' ? '2-4 hours' : '30-60 minutes'
@@ -160,7 +160,7 @@ module.exports = async function handler(req, res) {
     console.error('Export request API error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
-}
+};
 
 /**
  * Background function to process data export
@@ -214,7 +214,7 @@ async function processDataExport(requestId, userId, exportType) {
 
   } catch (error) {
     console.error('Export processing error:', error);
-    
+
     // Update request status to failed
     await supabase
       .from('data_exports')

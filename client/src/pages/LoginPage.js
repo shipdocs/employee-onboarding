@@ -89,7 +89,7 @@ const LoginPage = () => {
   const [staffCredentials, setStaffCredentials] = useState(null);
   const [mfaCode, setMfaCode] = useState('');
   const { t } = useTranslation('auth');
-  
+
   // Prevent rendering login page if already authenticated
   useEffect(() => {
     if (user) {
@@ -108,7 +108,7 @@ const LoginPage = () => {
 
   // Track if we've already attempted login with token
   const [tokenProcessed, setTokenProcessed] = useState(false);
-  
+
   // Check for magic link token in URL
   useEffect(() => {
     const token = searchParams.get('token');

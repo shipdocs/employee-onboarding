@@ -1,7 +1,7 @@
 /**
  * Admin API: Manual Email Log Cleanup
  * Allows administrators to manually trigger email log cleanup
- * 
+ *
  * Authentication: Requires admin role
  * Purpose: Manual cleanup, testing, and emergency maintenance
  */
@@ -11,7 +11,7 @@ import { createAPIHandler } from '../../../lib/apiHandler';
 
 async function handleEmailCleanup(req, res) {
   const startTime = Date.now();
-  
+
   try {
     // Parse request options
     const {
@@ -78,7 +78,7 @@ async function handleEmailCleanup(req, res) {
 
   } catch (error) {
     const executionTime = Date.now() - startTime;
-    
+
     console.error('📧 [ADMIN] Manual email cleanup crashed', {
       user: req.user?.email,
       error: error.message,

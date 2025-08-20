@@ -71,7 +71,7 @@ async function handler(req, res) {
       requestData: req.body,
       userInput: req.query.q || req.body?.content || req.body?.message
     };
-    
+
     const result = await secureErrorHandler.handleError(error, context);
     res.status(result.clientResponse.error.statusCode)
        .json(result.clientResponse);

@@ -187,9 +187,9 @@ export const AuthProvider = ({ children }) => {
     if (isLoggingOut) {
       return;
     }
-    
+
     setIsLoggingOut(true);
-    
+
     try {
       // Call logout endpoint to blacklist the token
       await authService.logout();
@@ -229,7 +229,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error('Failed to clear storage:', error);
     }
-    
+
     // Reset logout flag after a delay
     setTimeout(() => {
       setIsLoggingOut(false);

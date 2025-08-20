@@ -220,20 +220,20 @@ function assessComplianceStatus(auditResults) {
   // Check for critical failures that affect compliance
   auditResults.checks.forEach(check => {
     const criticalFindings = check.findings.filter(f => f.severity === 'critical' && f.status === 'failed');
-    
+
     if (criticalFindings.length > 0) {
       compliance.overall_status = 'non_compliant';
-      
+
       if (check.category === 'authentication' || check.category === 'authorization') {
         compliance.access_controls = 'non_compliant';
         compliance.issues.push('Access control failures detected');
       }
-      
+
       if (check.category === 'audit_trail') {
         compliance.audit_requirements = 'non_compliant';
         compliance.issues.push('Audit trail integrity issues detected');
       }
-      
+
       if (check.category === 'encryption' || check.category === 'data_access') {
         compliance.data_protection = 'non_compliant';
         compliance.gdpr_compliance = 'non_compliant';

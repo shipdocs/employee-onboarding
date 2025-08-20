@@ -172,7 +172,7 @@ const VercelFirewallManager = () => {
             )}
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
@@ -219,8 +219,8 @@ const VercelFirewallManager = () => {
       {/* Connection Test Results */}
       {firewallData?.connectionTest && (
         <div className={`border rounded-lg p-4 ${
-          firewallData.connectionTest.success 
-            ? 'bg-green-50 border-green-200' 
+          firewallData.connectionTest.success
+            ? 'bg-green-50 border-green-200'
             : 'bg-red-50 border-red-200'
         }`}>
           <div className="flex items-center">
@@ -249,7 +249,7 @@ const VercelFirewallManager = () => {
       {isEnabled && (
         <div className="bg-white rounded-lg border border-gray-200 p-6">
           <h3 className="text-lg font-medium text-gray-900 mb-4">Manual IP Management</h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -335,8 +335,8 @@ const VercelFirewallManager = () => {
                     </p>
                   </div>
                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    action.details?.success 
-                      ? 'bg-green-100 text-green-800' 
+                    action.details?.success
+                      ? 'bg-green-100 text-green-800'
                       : 'bg-red-100 text-red-800'
                   }`}>
                     {action.details?.success ? 'Success' : 'Failed'}

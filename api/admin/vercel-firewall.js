@@ -31,9 +31,9 @@ module.exports = adminRateLimit(async (req, res) => {
     }
   } catch (error) {
     console.error('Vercel Firewall API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 });
@@ -42,7 +42,7 @@ async function getFirewallStatus(req, res) {
   try {
     // Get firewall status from integration service
     const status = await securityFirewallIntegration.getFirewallStatus();
-    
+
     // Get configuration
     const config = securityFirewallIntegration.getConfiguration();
 
@@ -61,9 +61,9 @@ async function getFirewallStatus(req, res) {
 
   } catch (error) {
     console.error('Get firewall status error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to get firewall status',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -84,8 +84,8 @@ async function executeFirewallAction(req, res, user) {
           return res.status(400).json({ error: 'IP address is required for blocking' });
         }
         result = await securityFirewallIntegration.manuallyBlockIP(
-          ipAddress, 
-          reason || 'Manual admin block', 
+          ipAddress,
+          reason || 'Manual admin block',
           user.id
         );
         break;
@@ -95,8 +95,8 @@ async function executeFirewallAction(req, res, user) {
           return res.status(400).json({ error: 'IP address is required for unblocking' });
         }
         result = await securityFirewallIntegration.manuallyUnblockIP(
-          ipAddress, 
-          reason || 'Manual admin unblock', 
+          ipAddress,
+          reason || 'Manual admin unblock',
           user.id
         );
         break;
@@ -123,7 +123,7 @@ async function executeFirewallAction(req, res, user) {
           return res.status(400).json({ error: 'IP address is required for bypass rule' });
         }
         result = await vercelFirewallService.createBypassRule(
-          ipAddress, 
+          ipAddress,
           reason || 'Manual admin bypass'
         );
         break;
@@ -134,10 +134,10 @@ async function executeFirewallAction(req, res, user) {
           return res.status(400).json({ error: 'Thresholds are required' });
         }
         securityFirewallIntegration.updateBlockThresholds(thresholds);
-        result = { 
-          success: true, 
+        result = {
+          success: true,
           message: 'Block thresholds updated',
-          newThresholds: thresholds 
+          newThresholds: thresholds
         };
         break;
 
@@ -154,10 +154,10 @@ async function executeFirewallAction(req, res, user) {
 
   } catch (error) {
     console.error('Execute firewall action error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       success: false,
       error: 'Failed to execute firewall action',
-      details: error.message 
+      details: error.message
     });
   }
 }

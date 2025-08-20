@@ -36,7 +36,7 @@ async function handler(req, res) {
     // Generate a secure temporary password using enhanced password validator
     const EnhancedPasswordValidator = require('../../../../lib/security/EnhancedPasswordValidator');
     const PasswordHistoryService = require('../../../../lib/security/PasswordHistoryService');
-    
+
     const passwordValidator = new EnhancedPasswordValidator();
     const suggestions = passwordValidator.generateSuggestions(16);
     const newPassword = suggestions[0]; // Use the first generated suggestion
@@ -75,12 +75,12 @@ async function handler(req, res) {
         alternativePassword,
         { checkLastN: 12 }
       );
-      
+
       if (!altValidation.valid) {
         console.error('Unable to generate unique password for manager');
         return res.status(500).json({ error: 'Failed to generate unique password' });
       }
-      
+
       newPassword = alternativePassword;
     }
 

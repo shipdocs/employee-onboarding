@@ -34,7 +34,7 @@ async function handler(req, res) {
 
     // Get general rate limiting statistics
     const storeStats = await globalRateLimiter.getStoreStats();
-    
+
     // Get recent rate limit violations from security_events
     const { data: recentViolations, error: violationsError } = await supabase
       .from('security_events')
@@ -63,20 +63,20 @@ async function handler(req, res) {
 
       recentViolations.forEach(violation => {
         const createdAt = new Date(violation.created_at);
-        
+
         if (createdAt > oneDayAgo) {
           violationStats.last24Hours++;
         }
-        
+
         if (createdAt > oneHourAgo) {
           violationStats.lastHour++;
         }
-        
+
         // Count by severity
         if (violation.severity && violationStats.bySeverity[violation.severity] !== undefined) {
           violationStats.bySeverity[violation.severity]++;
         }
-        
+
         // Count by endpoint type
         const endpoint = violation.details?.endpoint || 'unknown';
         const endpointType = endpoint.split('/')[2] || 'unknown'; // Extract type from /api/type/...

@@ -33,7 +33,7 @@ async function handler(req, res) {
       .select('*')
       .eq('id', userId)
       .single();
-    
+
     if (profileError && profileError.code !== 'PGRST116') {
       throw profileError;
     }
@@ -89,7 +89,7 @@ async function handler(req, res) {
         details: {
           user_email: userEmail,
           timestamp: new Date().toISOString(),
-          data_categories: Object.keys(userData).filter(key => 
+          data_categories: Object.keys(userData).filter(key =>
             Array.isArray(userData[key]) ? userData[key].length > 0 : userData[key] !== null
           )
         }
@@ -98,14 +98,14 @@ async function handler(req, res) {
     // Return as downloadable JSON
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Disposition', `attachment; filename="access-report-${userId}-${new Date().toISOString().split('T')[0]}.json"`);
-    
+
     return res.status(200).json(userData);
 
   } catch (error) {
     console.error('Access report generation error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to generate access report',
-      details: error.message 
+      details: error.message
     });
   }
 }

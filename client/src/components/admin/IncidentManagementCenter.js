@@ -311,9 +311,9 @@ const IncidentManagementCenter = () => {
                       </button>
                       {incident.status === 'detected' && (
                         <button
-                          onClick={() => acknowledgeIncidentMutation.mutate({ 
-                            incidentId: incident.id, 
-                            notes: 'Acknowledged by admin' 
+                          onClick={() => acknowledgeIncidentMutation.mutate({
+                            incidentId: incident.id,
+                            notes: 'Acknowledged by admin'
                           })}
                           className="text-yellow-600 hover:text-yellow-900"
                           title="Acknowledge incident"
@@ -323,9 +323,9 @@ const IncidentManagementCenter = () => {
                       )}
                       {['detected', 'acknowledged', 'investigating'].includes(incident.status) && (
                         <button
-                          onClick={() => resolveIncidentMutation.mutate({ 
-                            incidentId: incident.id, 
-                            resolution: 'Resolved by admin' 
+                          onClick={() => resolveIncidentMutation.mutate({
+                            incidentId: incident.id,
+                            resolution: 'Resolved by admin'
                           })}
                           className="text-green-600 hover:text-green-900"
                           title="Resolve incident"
@@ -362,16 +362,16 @@ const IncidentManagementCenter = () => {
           isOpen={!!selectedIncident}
           onClose={() => setSelectedIncident(null)}
           onAcknowledge={(notes) => {
-            acknowledgeIncidentMutation.mutate({ 
-              incidentId: selectedIncident.id, 
-              notes 
+            acknowledgeIncidentMutation.mutate({
+              incidentId: selectedIncident.id,
+              notes
             });
             setSelectedIncident(null);
           }}
           onResolve={(resolution) => {
-            resolveIncidentMutation.mutate({ 
-              incidentId: selectedIncident.id, 
-              resolution 
+            resolveIncidentMutation.mutate({
+              incidentId: selectedIncident.id,
+              resolution
             });
             setSelectedIncident(null);
           }}
@@ -402,7 +402,7 @@ const IncidentDetailModal = ({ incident, isOpen, onClose, onAcknowledge, onResol
             ×
           </button>
         </div>
-        
+
         <div className="space-y-4">
           <div>
             <h4 className="font-medium text-gray-900">{incident.title}</h4>

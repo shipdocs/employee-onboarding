@@ -17,7 +17,7 @@ async function getSecurityAlerts(req, res) {
 
     // Get security alerts
     const result = await securityAuditLogger.getSecurityAlerts(parseInt(limit));
-    
+
     if (!result.success) {
       return res.status(500).json({
         error: 'Failed to retrieve security alerts',

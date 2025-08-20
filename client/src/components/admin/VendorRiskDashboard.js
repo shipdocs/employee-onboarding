@@ -401,8 +401,8 @@ const VendorRiskDashboard = () => {
               <span className="text-sm text-gray-600">Critical Risk</span>
               <div className="flex items-center">
                 <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
-                  <div 
-                    className="bg-red-600 h-2 rounded-full" 
+                  <div
+                    className="bg-red-600 h-2 rounded-full"
                     style={{ width: `${(displayData.summary.criticalRisk / displayData.summary.totalVendors) * 100}%` }}
                   ></div>
                 </div>
@@ -413,8 +413,8 @@ const VendorRiskDashboard = () => {
               <span className="text-sm text-gray-600">High Risk</span>
               <div className="flex items-center">
                 <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
-                  <div 
-                    className="bg-orange-600 h-2 rounded-full" 
+                  <div
+                    className="bg-orange-600 h-2 rounded-full"
                     style={{ width: `${(displayData.summary.highRisk / displayData.summary.totalVendors) * 100}%` }}
                   ></div>
                 </div>
@@ -425,8 +425,8 @@ const VendorRiskDashboard = () => {
               <span className="text-sm text-gray-600">Medium Risk</span>
               <div className="flex items-center">
                 <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
-                  <div 
-                    className="bg-yellow-600 h-2 rounded-full" 
+                  <div
+                    className="bg-yellow-600 h-2 rounded-full"
                     style={{ width: `${(displayData.summary.mediumRisk / displayData.summary.totalVendors) * 100}%` }}
                   ></div>
                 </div>
@@ -437,8 +437,8 @@ const VendorRiskDashboard = () => {
               <span className="text-sm text-gray-600">Low Risk</span>
               <div className="flex items-center">
                 <div className="w-32 bg-gray-200 rounded-full h-2 mr-3">
-                  <div 
-                    className="bg-green-600 h-2 rounded-full" 
+                  <div
+                    className="bg-green-600 h-2 rounded-full"
                     style={{ width: `${(displayData.summary.lowRisk / displayData.summary.totalVendors) * 100}%` }}
                   ></div>
                 </div>

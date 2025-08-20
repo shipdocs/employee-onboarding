@@ -57,7 +57,7 @@ async function simulateIncidentCreation(req, res) {
   const webhookResponse = await fetch(`${baseUrl}/api/incidents/webhook`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(testWebhookData)
   });
@@ -80,7 +80,7 @@ async function simulateIncidentCreation(req, res) {
 
 async function simulateIncidentAcknowledge(req, res) {
   const { incident_id } = req.body;
-  
+
   if (!incident_id) {
     return res.status(400).json({ error: 'incident_id is required' });
   }
@@ -100,7 +100,7 @@ async function simulateIncidentAcknowledge(req, res) {
   const webhookResponse = await fetch(`${baseUrl}/api/incidents/webhook`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(testWebhookData)
   });
@@ -123,7 +123,7 @@ async function simulateIncidentAcknowledge(req, res) {
 
 async function simulateIncidentResolve(req, res) {
   const { incident_id } = req.body;
-  
+
   if (!incident_id) {
     return res.status(400).json({ error: 'incident_id is required' });
   }
@@ -143,7 +143,7 @@ async function simulateIncidentResolve(req, res) {
   const webhookResponse = await fetch(`${baseUrl}/api/incidents/webhook`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(testWebhookData)
   });

@@ -15,9 +15,9 @@ module.exports = async function handler(req, res) {
   // Apply rate limiting
   const rateLimitResult = await userRateLimit(req, res, { max: 10, windowMs: 60 * 60 * 1000 }); // 10 per hour
   if (!rateLimitResult.success) {
-    return res.status(429).json({ 
+    return res.status(429).json({
       error: 'Too many download requests',
-      retryAfter: rateLimitResult.retryAfter 
+      retryAfter: rateLimitResult.retryAfter
     });
   }
 
@@ -52,16 +52,16 @@ module.exports = async function handler(req, res) {
 
     // Check if export is completed
     if (exportRequest.status !== 'completed') {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Export is not ready for download',
-        status: exportRequest.status 
+        status: exportRequest.status
       });
     }
 
     // Check if export has expired
     if (exportRequest.expires_at && new Date(exportRequest.expires_at) < new Date()) {
-      return res.status(410).json({ 
-        error: 'Export has expired. Please request a new export.' 
+      return res.status(410).json({
+        error: 'Export has expired. Please request a new export.'
       });
     }
 
@@ -85,7 +85,7 @@ module.exports = async function handler(req, res) {
         action: 'download_data_export',
         resource_type: 'data_export',
         resource_id: requestId,
-        details: { 
+        details: {
           fileName: exportRequest.file_name,
           fileSize: exportRequest.file_size,
           exportType: exportRequest.export_type
@@ -127,4 +127,4 @@ module.exports = async function handler(req, res) {
     console.error('Download API error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
-}
+};

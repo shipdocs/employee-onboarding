@@ -53,12 +53,12 @@ let isRedirecting = false;
 api.interceptors.request.use(
   (config) => {
     const token = tokenService.getToken();
-    
+
     if (token) {
       // Check if token is expired
       if (isTokenExpired(token)) {
         tokenService.clearToken();
-        
+
         // Only redirect if we're not already redirecting and not on login page
         if (!isRedirecting && !window.location.pathname.includes('/login')) {
           isRedirecting = true;
@@ -70,7 +70,7 @@ api.interceptors.request.use(
         }
         return Promise.reject(new Error('Token expired'));
       }
-      
+
       // Check if token is expiring soon
       if (isTokenExpiringSoon(token, 5)) {
         toast.error('Your session will expire soon. Please save your work and log in again.', {
@@ -78,15 +78,15 @@ api.interceptors.request.use(
           id: 'token-expiring-warning'
         });
       }
-      
+
       config.headers.Authorization = `Bearer ${token}`;
     }
-    
+
     // Reset redirect flag when on login page
     if (window.location.pathname.includes('/login')) {
       isRedirecting = false;
     }
-    
+
     return config;
   },
   (error) => {
@@ -103,17 +103,17 @@ api.interceptors.response.use(
   },
   (error) => {
     const response = error.response;
-    
+
     // Handle authentication errors
     if (response?.status === 401) {
       // Clear token
       tokenService.clearToken();
-      
+
       // Only redirect if we're not already redirecting and not on login page
       if (!isRedirecting && !window.location.pathname.includes('/login')) {
         isRedirecting = true;
         errorHandler.showError(error, 'authentication');
-        
+
         // Use replace to avoid adding to browser history
         setTimeout(() => {
           window.location.replace('/login');

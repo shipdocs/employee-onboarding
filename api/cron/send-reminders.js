@@ -4,7 +4,7 @@ const { generateMagicToken } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 module.exports = async function handler(req, res) {;
   const configManager = require('../../lib/security/SecureConfigManager');
-  
+
   // Verify this is a cron request
   const cronSecret = configManager.getString('CRON_SECRET');
   if (!cronSecret || req.headers.authorization !== `Bearer ${cronSecret}`) {

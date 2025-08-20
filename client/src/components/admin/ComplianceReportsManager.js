@@ -113,7 +113,7 @@ const ComplianceReportsManager = () => {
     const matchesSearch = report.report_type.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          report.title?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === 'all' || report.report_type === filterType;
-    const matchesPeriod = filterPeriod === 'all' || 
+    const matchesPeriod = filterPeriod === 'all' ||
                          (filterPeriod === 'recent' && new Date(report.created_at) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000));
     return matchesSearch && matchesType && matchesPeriod;
   });
@@ -325,7 +325,7 @@ const ComplianceReportsManager = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {report.period_start && report.period_end ? 
+                    {report.period_start && report.period_end ?
                       `${new Date(report.period_start).toLocaleDateString()} - ${new Date(report.period_end).toLocaleDateString()}` :
                       'All time'
                     }
@@ -427,7 +427,7 @@ const GenerateReportModal = ({ isOpen, onClose, onGenerate }) => {
         <h3 className="text-lg font-medium text-gray-900 mb-4">
           Generate Compliance Report
         </h3>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">

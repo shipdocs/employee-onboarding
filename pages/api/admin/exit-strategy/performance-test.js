@@ -132,7 +132,7 @@ function generateRecommendations(testResults) {
             recommendation: 'Consider implementing data pagination or background processing for large exports'
           });
         }
-        
+
         if (warning.includes('Memory usage')) {
           recommendations.push({
             type: 'memory',
@@ -141,7 +141,7 @@ function generateRecommendations(testResults) {
             recommendation: 'Implement streaming data processing to reduce memory footprint'
           });
         }
-        
+
         if (warning.includes('file size')) {
           recommendations.push({
             type: 'storage',
@@ -150,7 +150,7 @@ function generateRecommendations(testResults) {
             recommendation: 'Consider data compression or selective export options'
           });
         }
-        
+
         if (warning.includes('concurrent requests failed')) {
           recommendations.push({
             type: 'concurrency',

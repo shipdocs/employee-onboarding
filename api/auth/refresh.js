@@ -19,9 +19,9 @@ async function handler(req, res) {
 
     // Check if access token actually needs refresh (optional optimization)
     if (accessToken && !shouldRefreshToken(accessToken)) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Access token does not need refresh yet',
-        shouldRefresh: false 
+        shouldRefresh: false
       });
     }
 

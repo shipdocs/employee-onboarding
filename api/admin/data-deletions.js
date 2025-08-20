@@ -9,7 +9,7 @@ const { adminRateLimit } = require('../../lib/rateLimit');
 
 async function getDataDeletions(req, res) {
   try {
-    const { 
+    const {
       status = 'all',
       limit = 50,
       offset = 0
@@ -112,9 +112,9 @@ async function getDataDeletions(req, res) {
 
   } catch (error) {
     console.error('Get data deletions error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to fetch data deletions',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -129,16 +129,16 @@ async function createDataDeletion(req, res, user) {
     } = req.body;
 
     if (!type || !reason) {
-      return res.status(400).json({ 
-        error: 'Missing required fields: type, reason' 
+      return res.status(400).json({
+        error: 'Missing required fields: type, reason'
       });
     }
 
     const validTypes = ['user_data', 'expired_sessions', 'old_logs', 'training_data', 'custom'];
     if (!validTypes.includes(type)) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: 'Invalid deletion type',
-        validTypes 
+        validTypes
       });
     }
 
@@ -207,9 +207,9 @@ async function createDataDeletion(req, res, user) {
 
   } catch (error) {
     console.error('Create data deletion error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to create data deletion job',
-      details: error.message 
+      details: error.message
     });
   }
 }
@@ -236,9 +236,9 @@ async function handler(req, res) {
     }
   } catch (error) {
     console.error('Data deletions API error:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Internal server error',
-      details: error.message 
+      details: error.message
     });
   }
 }

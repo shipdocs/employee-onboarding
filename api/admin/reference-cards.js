@@ -105,7 +105,7 @@ async function handler(req, res) {
     // Set appropriate headers for HTML content
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Content-Disposition', `inline; filename="${type}-reference-card.html"`);
-    
+
     return res.status(200).send(htmlContent);
 
   } catch (error) {

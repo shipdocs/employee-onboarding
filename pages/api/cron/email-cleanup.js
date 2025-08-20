@@ -1,7 +1,7 @@
 /**
  * Vercel Cron Job: Email Log Cleanup
  * Automated data retention enforcement for email logging compliance
- * 
+ *
  * Schedule: Daily at 1:00 AM UTC (configured in vercel.json)
  * Purpose: Remove expired email logs based on retention categories
  */
@@ -10,28 +10,28 @@ import { emailLogCleanupService } from '../../../lib/emailLogCleanupService';
 
 export default async function handler(req, res) {
   const startTime = Date.now();
-  
+
   try {
     // Security: Verify this is a legitimate cron request
     const authHeader = req.headers.authorization;
     const expectedAuth = `Bearer ${process.env.CRON_SECRET}`;
-    
+
     if (!process.env.CRON_SECRET) {
       console.error('📧 [CRON] CRON_SECRET environment variable not set');
-      return res.status(500).json({ 
+      return res.status(500).json({
         error: 'Server configuration error',
         timestamp: new Date().toISOString()
       });
     }
-    
+
     if (authHeader !== expectedAuth) {
       console.error('📧 [CRON] Unauthorized email cleanup attempt', {
         receivedAuth: authHeader ? 'Bearer [REDACTED]' : 'none',
         userAgent: req.headers['user-agent'],
         ip: req.headers['x-forwarded-for'] || req.connection?.remoteAddress
       });
-      
-      return res.status(401).json({ 
+
+      return res.status(401).json({
         error: 'Unauthorized',
         timestamp: new Date().toISOString()
       });
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 
     // Only allow POST requests for security
     if (req.method !== 'POST') {
-      return res.status(405).json({ 
+      return res.status(405).json({
         error: 'Method not allowed',
         allowed: ['POST'],
         timestamp: new Date().toISOString()
@@ -94,7 +94,7 @@ export default async function handler(req, res) {
 
   } catch (error) {
     const executionTime = Date.now() - startTime;
-    
+
     console.error('📧 [CRON] Email cleanup crashed', {
       error: error.message,
       stack: error.stack,

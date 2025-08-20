@@ -143,7 +143,7 @@ async function processDataExportAsync(exportId, exportType, userId, options) {
     // Update status to processing
     await supabase
       .from('data_exports')
-      .update({ 
+      .update({
         status: 'processing',
         started_at: new Date().toISOString()
       })
@@ -160,7 +160,7 @@ async function processDataExportAsync(exportId, exportType, userId, options) {
           .select('*')
           .eq('id', userId)
           .single();
-        
+
         userData.profile = profile;
       }
 
@@ -171,7 +171,7 @@ async function processDataExportAsync(exportId, exportType, userId, options) {
           .select('*')
           .eq('user_id', userId)
           .order('created_at', { ascending: false });
-        
+
         userData.activities = activities;
 
         // Get training progress
@@ -179,7 +179,7 @@ async function processDataExportAsync(exportId, exportType, userId, options) {
           .from('training_progress')
           .select('*')
           .eq('user_id', userId);
-        
+
         userData.training = training;
 
         // Get quiz results
@@ -187,7 +187,7 @@ async function processDataExportAsync(exportId, exportType, userId, options) {
           .from('quiz_results')
           .select('*')
           .eq('user_id', userId);
-        
+
         userData.quizzes = quizzes;
       }
     }
@@ -221,7 +221,7 @@ async function processDataExportAsync(exportId, exportType, userId, options) {
     }
 
     const fileSize = JSON.stringify(exportData).length;
-    
+
     // Update export record with completion
     await supabase
       .from('data_exports')
@@ -234,10 +234,10 @@ async function processDataExportAsync(exportId, exportType, userId, options) {
       .eq('id', exportId);
 
     console.log(`Data export ${exportId} completed successfully`);
-    
+
   } catch (error) {
     console.error(`Data export ${exportId} failed:`, error);
-    
+
     // Update export record with error
     await supabase
       .from('data_exports')

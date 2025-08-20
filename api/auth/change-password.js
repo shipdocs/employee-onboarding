@@ -217,7 +217,7 @@ async function handler(req, res) {
       decoded.userId,
       'PASSWORD_CHANGED'
     );
-    
+
     if (!sessionTermination.success) {
       console.error('Failed to terminate sessions after password change:', sessionTermination.error);
       // Don't fail the password change, but log the issue
