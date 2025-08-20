@@ -34,6 +34,11 @@ compliance-docs/audits/
 compliance-docs/internal/
 # Note: policies and procedures ARE committed
 
+# Internal documentation - NEVER commit
+internal-docs/
+!internal-docs/.gitignore
+!internal-docs/WARNING-DO-NOT-COMMIT.txt
+
 # Security scan results
 security-reports/
 vulnerability-reports/
