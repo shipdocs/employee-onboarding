@@ -67,7 +67,7 @@ async function generateCrewMagicLink() {
     const baseUrl = process.env.VERCEL_URL 
       ? `https://${process.env.VERCEL_URL}` 
       : process.env.NEXT_PUBLIC_APP_URL 
-      || 'https://onboarding.burando.online';
+      || 'https://maritime-onboarding.example.com';
     
     const loginUrl = `${baseUrl}/login?token=${token}`;
 

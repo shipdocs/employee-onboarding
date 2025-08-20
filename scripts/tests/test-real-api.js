@@ -6,7 +6,7 @@
 
 const axios = require('axios');
 
-const BASE_URL = 'https://onboarding.burando.online';
+const BASE_URL = 'https://maritime-onboarding.example.com';
 
 async function testAPI() {
   console.log('🧪 Testing Real API Endpoints\n');

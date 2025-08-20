@@ -15,7 +15,7 @@ export default defineConfig({
   ],
   
   use: {
-    baseURL: 'https://onboarding.burando.online',
+    baseURL: 'https://maritime-onboarding.example.com',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

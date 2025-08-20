@@ -10,7 +10,7 @@ require('dotenv').config();
 // Test manager user data
 const testUser = {
   id: 84, // Martin's user ID from the database
-  email: 'martin.splinter@burando.eu',
+  email: 'martin.splinter@maritime-example.com',
   role: 'manager',
   first_name: 'Martin',
   last_name: 'Splinter'

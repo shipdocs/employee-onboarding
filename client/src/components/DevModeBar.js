@@ -50,7 +50,7 @@ const DevModeBar = () => {
   if (typeof window !== 'undefined') {
     const hostname = window.location.hostname;
     const isProductionDomain =
-      hostname.includes('burando.online') ||
+      hostname.includes('maritime-onboarding.com') ||
       (hostname.includes('.vercel.app') && !hostname.includes('staging') && !hostname.includes('preview'));
 
     if (isProductionDomain && process.env.REACT_APP_FORCE_DEV_MODE !== 'true') {

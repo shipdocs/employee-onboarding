@@ -35,7 +35,7 @@ global.fetch = jest.fn();
 
 // Mock request queue service
 const mockRequestQueue = {
-  QUEUE_KEY: 'burando_request_queue',
+  QUEUE_KEY: 'maritime_request_queue',
   MAX_RETRY_ATTEMPTS: 3,
 
   generateRequestId: jest.fn(() => `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`),
@@ -69,7 +69,7 @@ const mockRequestQueue = {
 
   getQueue: jest.fn(() => {
     try {
-      const queueData = localStorage.getItem('burando_request_queue');
+      const queueData = localStorage.getItem('maritime_request_queue');
       return queueData ? JSON.parse(queueData) : [];
     } catch (error) {
       return [];
@@ -78,7 +78,7 @@ const mockRequestQueue = {
 
   saveQueue: jest.fn((queue) => {
     try {
-      localStorage.setItem('burando_request_queue', JSON.stringify(queue));
+      localStorage.setItem('maritime_request_queue', JSON.stringify(queue));
       return true;
     } catch (error) {
       return false;
@@ -153,7 +153,7 @@ const mockRequestQueue = {
 
   clearQueue: jest.fn(() => {
     try {
-      localStorage.removeItem('burando_request_queue');
+      localStorage.removeItem('maritime_request_queue');
       return true;
     } catch (error) {
       return false;
@@ -264,7 +264,7 @@ describe('Request Queue Service', () => {
 
     mockRequestQueue.getQueue.mockImplementation(() => {
       try {
-        const queueData = localStorageMock.getItem('burando_request_queue');
+        const queueData = localStorageMock.getItem('maritime_request_queue');
         return queueData ? JSON.parse(queueData) : [];
       } catch (error) {
         return [];
@@ -273,7 +273,7 @@ describe('Request Queue Service', () => {
 
     mockRequestQueue.saveQueue.mockImplementation((queue) => {
       try {
-        localStorageMock.setItem('burando_request_queue', JSON.stringify(queue));
+        localStorageMock.setItem('maritime_request_queue', JSON.stringify(queue));
         return true;
       } catch (error) {
         return false;
@@ -349,7 +349,7 @@ describe('Request Queue Service', () => {
 
     mockRequestQueue.clearQueue.mockImplementation(() => {
       try {
-        localStorageMock.removeItem('burando_request_queue');
+        localStorageMock.removeItem('maritime_request_queue');
         return true;
       } catch (error) {
         return false;
@@ -594,7 +594,7 @@ describe('Request Queue Service', () => {
       };
 
       const queue = [oldRequest, recentRequest];
-      localStorageMock.setItem('burando_request_queue', JSON.stringify(queue));
+      localStorageMock.setItem('maritime_request_queue', JSON.stringify(queue));
 
       requestQueue.cleanupQueue();
 
@@ -610,7 +610,7 @@ describe('Request Queue Service', () => {
         { id: 'old-completed', status: 'completed', completedAt: Date.now() - (2 * 60 * 60 * 1000) }
       ];
 
-      localStorageMock.setItem('burando_request_queue', JSON.stringify(requests));
+      localStorageMock.setItem('maritime_request_queue', JSON.stringify(requests));
 
       requestQueue.cleanupQueue();
 
@@ -649,7 +649,7 @@ describe('Request Queue Service', () => {
           queue.push(request);
 
           // This will throw due to our mock
-          localStorageMock.setItem('burando_request_queue', JSON.stringify(queue));
+          localStorageMock.setItem('maritime_request_queue', JSON.stringify(queue));
 
           return request.id;
         } catch (error) {
@@ -662,7 +662,7 @@ describe('Request Queue Service', () => {
     });
 
     it('should handle corrupted queue data', () => {
-      localStorageMock.setItem('burando_request_queue', 'invalid-json');
+      localStorageMock.setItem('maritime_request_queue', 'invalid-json');
 
       const queue = requestQueue.getQueue();
       expect(queue).toEqual([]);

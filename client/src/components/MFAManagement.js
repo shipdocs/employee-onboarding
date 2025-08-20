@@ -132,7 +132,7 @@ const MFAManagement = ({
    */
   const downloadBackupCodes = (codes) => {
     const content = [
-      'Burando Maritime Services - MFA Backup Codes',
+      'Maritime Onboarding Platform - MFA Backup Codes',
       '===========================================',
       '',
       'IMPORTANT: Store these codes in a secure location.',
@@ -148,7 +148,7 @@ const MFAManagement = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `burando-mfa-backup-codes-${new Date().toISOString().split('T')[0]}.txt`;
+    a.download = `maritime-mfa-backup-codes-${new Date().toISOString().split('T')[0]}.txt`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -186,7 +186,7 @@ const MFAManagement = ({
     return (
       <div className={`glass-card p-6 ${className}`}>
         <div className="text-center">
-          <RefreshCw className="h-8 w-8 text-burando-teal mx-auto mb-4 animate-spin" />
+          <RefreshCw className="h-8 w-8 text-maritime-teal mx-auto mb-4 animate-spin" />
           <p className="text-gray-600 dark:text-gray-400">Loading MFA status...</p>
         </div>
       </div>
@@ -349,8 +349,8 @@ const MFAManagement = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-start">
-              <div className="w-8 h-8 bg-burando-teal/10 rounded-full flex items-center justify-center mr-3 mt-1">
-                <span className="text-burando-teal font-semibold text-sm">1</span>
+              <div className="w-8 h-8 bg-maritime-teal/10 rounded-full flex items-center justify-center mr-3 mt-1">
+                <span className="text-maritime-teal font-semibold text-sm">1</span>
               </div>
               <div>
                 <h5 className="font-medium text-gray-900 dark:text-gray-100 mb-1">
@@ -363,8 +363,8 @@ const MFAManagement = ({
             </div>
 
             <div className="flex items-start">
-              <div className="w-8 h-8 bg-burando-teal/10 rounded-full flex items-center justify-center mr-3 mt-1">
-                <span className="text-burando-teal font-semibold text-sm">2</span>
+              <div className="w-8 h-8 bg-maritime-teal/10 rounded-full flex items-center justify-center mr-3 mt-1">
+                <span className="text-maritime-teal font-semibold text-sm">2</span>
               </div>
               <div>
                 <h5 className="font-medium text-gray-900 dark:text-gray-100 mb-1">
@@ -377,8 +377,8 @@ const MFAManagement = ({
             </div>
 
             <div className="flex items-start">
-              <div className="w-8 h-8 bg-burando-teal/10 rounded-full flex items-center justify-center mr-3 mt-1">
-                <span className="text-burando-teal font-semibold text-sm">3</span>
+              <div className="w-8 h-8 bg-maritime-teal/10 rounded-full flex items-center justify-center mr-3 mt-1">
+                <span className="text-maritime-teal font-semibold text-sm">3</span>
               </div>
               <div>
                 <h5 className="font-medium text-gray-900 dark:text-gray-100 mb-1">
@@ -391,8 +391,8 @@ const MFAManagement = ({
             </div>
 
             <div className="flex items-start">
-              <div className="w-8 h-8 bg-burando-teal/10 rounded-full flex items-center justify-center mr-3 mt-1">
-                <span className="text-burando-teal font-semibold text-sm">4</span>
+              <div className="w-8 h-8 bg-maritime-teal/10 rounded-full flex items-center justify-center mr-3 mt-1">
+                <span className="text-maritime-teal font-semibold text-sm">4</span>
               </div>
               <div>
                 <h5 className="font-medium text-gray-900 dark:text-gray-100 mb-1">

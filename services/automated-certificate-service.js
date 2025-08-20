@@ -344,8 +344,8 @@ class AutomatedCertificateService {
       valid_until: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toLocaleDateString(), // 1 year validity
 
       // Company Information
-      company: 'Burando Maritime Services',
-      issuing_authority: 'Burando Maritime Services Training Department'
+      company: 'Maritime Onboarding Platform',
+      issuing_authority: 'Maritime Onboarding Platform Training Department'
     };
   }
 
@@ -658,7 +658,7 @@ class AutomatedCertificateService {
       });
 
       yPos -= 20;
-      page.drawText('completed the required maritime safety training in accordance with', {
+      page.drawText('completed the required safety and onboarding training in accordance with', {
         x: 50,
         y: yPos,
         size: 12,
@@ -666,7 +666,7 @@ class AutomatedCertificateService {
       });
 
       yPos -= 20;
-      page.drawText('Burando Maritime Services Safety Management System.', {
+      page.drawText('Company Safety Management System.', {
         x: 50,
         y: yPos,
         size: 12,
@@ -699,7 +699,7 @@ class AutomatedCertificateService {
       });
 
       yPos -= 15;
-      page.drawText('Burando Maritime Services', {
+      page.drawText('Maritime Onboarding Platform', {
         x: 50,
         y: yPos,
         size: 10,
@@ -1010,7 +1010,7 @@ class AutomatedCertificateService {
       });
 
       yPos -= 20;
-      page.drawText('perform the duties of a Kapitein in accordance with Burando Maritime', {
+      page.drawText('perform the duties of a Kapitein in accordance with Maritime Onboarding Platform', {
         x: 50,
         y: yPos,
         size: 12,
@@ -1068,7 +1068,7 @@ class AutomatedCertificateService {
       });
 
       yPos -= 15;
-      page.drawText('Burando Maritime Services', {
+      page.drawText('Maritime Onboarding Platform', {
         x: 50,
         y: yPos,
         size: 10,

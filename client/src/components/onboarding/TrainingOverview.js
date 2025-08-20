@@ -102,11 +102,11 @@ const TrainingOverview = () => {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'ready':
-        return <Play className="h-5 w-5 text-burando-light-green" />;
+        return <Play className="h-5 w-5 text-maritime-light-green" />;
       case 'locked':
         return <Clock className="h-5 w-5 text-white/50" />;
       default:
-        return <CheckCircle className="h-5 w-5 text-burando-light-green" />;
+        return <CheckCircle className="h-5 w-5 text-maritime-light-green" />;
     }
   };
 
@@ -128,12 +128,12 @@ const TrainingOverview = () => {
       case 'locked':
         return 'text-white/50';
       default:
-        return 'text-burando-light-green font-semibold';
+        return 'text-maritime-light-green font-semibold';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-burando-navy via-burando-teal to-burando-bright-teal flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-maritime-navy via-maritime-teal to-maritime-bright-teal flex items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <div className="glass-card-elevated p-6 sm:p-8">
           {/* Header */}
@@ -144,8 +144,8 @@ const TrainingOverview = () => {
             <p className="text-white/90 text-lg mb-2">
               Welcome to your personalized maritime training journey
             </p>
-            <div className="inline-flex items-center px-4 py-2 bg-burando-bright-teal/20 rounded-full">
-              <Award className="h-5 w-5 text-burando-light-green mr-2" />
+            <div className="inline-flex items-center px-4 py-2 bg-maritime-bright-teal/20 rounded-full">
+              <Award className="h-5 w-5 text-maritime-light-green mr-2" />
               <span className="text-white font-medium">
                 Focus: {trainingFocus.charAt(0).toUpperCase() + trainingFocus.slice(1).replace('-', ' ')}
               </span>
@@ -155,19 +155,19 @@ const TrainingOverview = () => {
           {/* Training Progress Overview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div className="glass-card p-4 text-center">
-              <BookOpen className="h-8 w-8 text-burando-bright-teal mx-auto mb-2" />
+              <BookOpen className="h-8 w-8 text-maritime-bright-teal mx-auto mb-2" />
               <h3 className="font-semibold text-white">3 Phases</h3>
               <p className="text-white/70 text-sm">Comprehensive training program</p>
             </div>
 
             <div className="glass-card p-4 text-center">
-              <Clock className="h-8 w-8 text-burando-bright-teal mx-auto mb-2" />
+              <Clock className="h-8 w-8 text-maritime-bright-teal mx-auto mb-2" />
               <h3 className="font-semibold text-white">6 Hours Total</h3>
               <p className="text-white/70 text-sm">Flexible self-paced learning</p>
             </div>
 
             <div className="glass-card p-4 text-center">
-              <Users className="h-8 w-8 text-burando-bright-teal mx-auto mb-2" />
+              <Users className="h-8 w-8 text-maritime-bright-teal mx-auto mb-2" />
               <h3 className="font-semibold text-white">Expert Support</h3>
               <p className="text-white/70 text-sm">Maritime professionals available</p>
             </div>
@@ -183,13 +183,13 @@ const TrainingOverview = () => {
                 <div
                   key={phase.phase}
                   className={`glass-card p-6 transition-all duration-300 ${
-                    isReady ? 'ring-2 ring-burando-light-green' : ''
+                    isReady ? 'ring-2 ring-maritime-light-green' : ''
                   }`}
                 >
                   <div className="flex items-start space-x-4">
                     <div className={`p-3 rounded-full ${
                       isReady
-                        ? 'bg-burando-light-green'
+                        ? 'bg-maritime-light-green'
                         : 'bg-white/20'
                     }`}>
                       <IconComponent className="h-8 w-8 text-white" />
@@ -218,7 +218,7 @@ const TrainingOverview = () => {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {phase.modules.map((module, index) => (
                           <div key={index} className="flex items-center text-white/70 text-sm">
-                            <div className="w-1.5 h-1.5 bg-burando-bright-teal rounded-full mr-2"></div>
+                            <div className="w-1.5 h-1.5 bg-maritime-bright-teal rounded-full mr-2"></div>
                             <span>{module}</span>
                           </div>
                         ))}
@@ -231,9 +231,9 @@ const TrainingOverview = () => {
           </div>
 
           {/* Important Information */}
-          <div className="glass-card p-6 mb-8 bg-burando-bright-teal/20 border border-burando-light-green/30">
+          <div className="glass-card p-6 mb-8 bg-maritime-bright-teal/20 border border-maritime-light-green/30">
             <h3 className="text-lg font-bold text-white mb-3 flex items-center">
-              <AlertTriangle className="h-5 w-5 mr-2 text-burando-light-green" />
+              <AlertTriangle className="h-5 w-5 mr-2 text-maritime-light-green" />
               Important Information
             </h3>
             <div className="space-y-2 text-white/90 text-sm">
@@ -249,7 +249,7 @@ const TrainingOverview = () => {
           <div className="text-center">
             <button
               onClick={handleStartTraining}
-              className="w-full sm:w-auto bg-gradient-to-r from-burando-light-green to-burando-bright-teal text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-burando-bright-teal/50 focus:ring-offset-2 shadow-xl min-h-[56px] touch-manipulation"
+              className="w-full sm:w-auto bg-gradient-to-r from-maritime-light-green to-maritime-bright-teal text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-maritime-bright-teal/50 focus:ring-offset-2 shadow-xl min-h-[56px] touch-manipulation"
             >
               <div className="flex items-center justify-center">
                 <Play className="h-6 w-6 mr-3" />

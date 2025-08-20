@@ -66,7 +66,6 @@
 # Complete self-contained system with no external dependencies
 # Version: 3.0.0
 
-version: '3.8'
 
 services:
   # ===========================================
@@ -76,12 +75,12 @@ services:
   # PostgreSQL Database
   database:
     image: postgres:15-alpine
-    container_name: maritime_database
+    container_name: employee-onboarding-database
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${DB_NAME:-maritime}
+      POSTGRES_DB: ${DB_NAME:-employee_onboarding}
       POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -89,7 +88,7 @@ services:
       - ./database/init:/docker-entrypoint-initdb.d:ro
       - ./backups:/backups
     networks:
-      - maritime_network
+      - employee-onboarding-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -99,10 +98,10 @@ services:
   # PostgREST API
   postgrest:
     image: postgrest/postgrest:v12.0.2
-    container_name: maritime_postgrest
+    container_name: employee-onboarding-postgrest
     restart: unless-stopped
     environment:
-      PGRST_DB_URI: postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@database:5432/${DB_NAME:-maritime}
+      PGRST_DB_URI: postgres://${DB_USER:-postgres}:${DB_PASSWORD}@database:5432/${DB_NAME:-employee_onboarding}
       PGRST_DB_SCHEMAS: public
       PGRST_DB_ANON_ROLE: anon
       PGRST_JWT_SECRET: ${JWT_SECRET}
@@ -111,7 +110,7 @@ services:
     ports:
       - "3001:3000"
     networks:
-      - maritime_network
+      - employee-onboarding-network
     depends_on:
       database:
         condition: service_healthy
@@ -119,11 +118,11 @@ services:
   # PgAdmin Database Management
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: maritime_pgadmin
+    container_name: employee-onboarding-pgadmin
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@maritime.com}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin123}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
       PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
     ports:
@@ -131,7 +130,7 @@ services:
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     networks:
-      - maritime_network
+      - employee-onboarding-network
     depends_on:
       database:
         condition: service_healthy
@@ -143,12 +142,12 @@ services:
   # MinIO Object Storage (S3-compatible)
   minio:
     image: minio/minio:latest
-    container_name: maritime_minio
+    container_name: employee-onboarding-minio
     restart: unless-stopped
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
       MINIO_BROWSER_REDIRECT_URL: http://localhost:9001
     ports:
       - "9000:9000"  # API
@@ -156,7 +155,7 @@ services:
     volumes:
       - minio_data:/data
     networks:
-      - maritime_network
+      - employee-onboarding-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
@@ -166,16 +165,16 @@ services:
   # MinIO Client for bucket initialization
   minio-init:
     image: minio/mc:latest
-    container_name: maritime_minio_init
+    container_name: employee-onboarding-minio_init
     depends_on:
       minio:
         condition: service_healthy
     networks:
-      - maritime_network
+      - employee-onboarding-network
     entrypoint: >
       /bin/sh -c "
       sleep 5;
-      mc alias set minio http://minio:9000 ${MINIO_ROOT_USER:-minioadmin} ${MINIO_ROOT_PASSWORD:-minioadmin};
+      mc alias set minio http://minio:9000 ${MINIO_ROOT_USER:-minioadmin} ${MINIO_ROOT_PASSWORD};
       mc mb --ignore-existing minio/uploads;
       mc mb --ignore-existing minio/certificates;
       mc mb --ignore-existing minio/training-proofs;
@@ -194,7 +193,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
-    container_name: maritime_backend
+    container_name: employee-onboarding-backend
     restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV:-development}
@@ -202,10 +201,10 @@ services:
       # Database
       DB_HOST: database
       DB_PORT: 5432
-      DB_NAME: ${DB_NAME:-maritime}
+      DB_NAME: ${DB_NAME:-employee_onboarding}
       DB_USER: ${DB_USER:-postgres}
-      DB_PASSWORD: ${DB_PASSWORD:-postgres}
-      DATABASE_URL: postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@database:5432/${DB_NAME:-maritime}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DATABASE_URL: postgres://${DB_USER:-postgres}:${DB_PASSWORD}@database:5432/${DB_NAME:-employee_onboarding}
       # PostgREST
       POSTGREST_URL: http://postgrest:3000
       # Supabase
@@ -216,7 +215,7 @@ services:
       MINIO_PORT: 9000
       MINIO_USE_SSL: 'false'
       MINIO_ACCESS_KEY: ${MINIO_ROOT_USER:-minioadmin}
-      MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD}
       # JWT & Auth
       JWT_SECRET: ${JWT_SECRET}
       NEXTAUTH_SECRET: ${JWT_SECRET}
@@ -235,7 +234,7 @@ services:
       - ./services:/app/services:ro
       - ./uploads:/app/uploads
     networks:
-      - maritime_network
+      - employee-onboarding-network
     depends_on:
       database:
         condition: service_healthy
@@ -252,9 +251,9 @@ services:
   # Frontend (React)
   frontend:
     build:
-      context: ./client
-      dockerfile: Dockerfile
-    container_name: maritime_frontend
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: employee-onboarding-frontend
     restart: unless-stopped
     environment:
       REACT_APP_API_URL: ${API_URL:-http://localhost:3000}
@@ -264,15 +263,15 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./client/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./ssl:/etc/nginx/ssl:ro
     networks:
-      - maritime_network
+      - employee-onboarding-network
     depends_on:
       backend:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:80"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -284,18 +283,18 @@ services:
   # Email Service (MailHog for development)
   mailhog:
     image: mailhog/mailhog:latest
-    container_name: maritime_mailhog
+    container_name: employee-onboarding-mailhog
     restart: unless-stopped
     ports:
       - "1025:1025"  # SMTP
       - "8025:8025"  # Web UI
     networks:
-      - maritime_network
+      - employee-onboarding-network
 
   # Redis Cache (Optional but recommended)
   redis:
     image: redis:7-alpine
-    container_name: maritime_redis
+    container_name: employee-onboarding-redis
     restart: unless-stopped
     command: redis-server --appendonly yes
     ports:
@@ -303,7 +302,7 @@ services:
     volumes:
       - redis_data:/data
     networks:
-      - maritime_network
+      - employee-onboarding-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -313,22 +312,22 @@ services:
   # Backup Service
   backup:
     image: postgres:15-alpine
-    container_name: maritime_backup
+    container_name: employee-onboarding-backup
     restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./backups:/backups
       - ./scripts/backup.sh:/backup.sh:ro
     networks:
-      - maritime_network
+      - employee-onboarding-network
     depends_on:
       database:
         condition: service_healthy
     command: >
       sh -c "
       while true; do
-        PGPASSWORD=${DB_PASSWORD:-postgres} pg_dump -h database -U ${DB_USER:-postgres} ${DB_NAME:-maritime} > /backups/backup_$$(date +%Y%m%d_%H%M%S).sql
+        PGPASSWORD=${DB_PASSWORD} pg_dump -h database -U ${DB_USER:-postgres} ${DB_NAME:-employee_onboarding} > /backups/backup_$$(date +%Y%m%d_%H%M%S).sql
         find /backups -name 'backup_*.sql' -mtime +7 -delete
         sleep 86400
       done
@@ -338,7 +337,7 @@ services:
 # NETWORKS
 # ===========================================
 networks:
-  maritime_network:
+  employee-onboarding-network:
     driver: bridge
     ipam:
       config:

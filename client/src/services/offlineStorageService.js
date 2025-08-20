@@ -5,7 +5,7 @@ import errorHandler from './errorHandlingService';
 
 class OfflineStorageService {
   constructor() {
-    this.storagePrefix = 'burando_maritime_';
+    this.storagePrefix = 'maritime_onboarding_';
     this.maxStorageSize = 50 * 1024 * 1024; // 50MB limit for localStorage
     this.compressionEnabled = true;
   }

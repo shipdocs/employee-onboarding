@@ -24,7 +24,7 @@ describe('Production Readiness Integration Tests', () => {
     // Set production environment
     process.env.NODE_ENV = 'production';
     process.env.VERCEL_ENV = 'production';
-    process.env.BASE_URL = 'https://app.burando.online';
+    process.env.BASE_URL = 'https://app.maritime-onboarding.example.com';
   });
 
   describe('Full Email Flow in Different Environments', () => {
@@ -35,7 +35,7 @@ describe('Production Readiness Integration Tests', () => {
 
       const mockUser = {
         id: 'prod-user-id',
-        email: 'crew@burando.nl',
+        email: 'crew@maritime-onboarding.example.com',
         first_name: 'Production',
         last_name: 'User',
         role: 'crew'
@@ -64,7 +64,7 @@ describe('Production Readiness Integration Tests', () => {
 
     test('should intercept emails in development environment', async () => {
       process.env.NODE_ENV = 'development';
-      process.env.DEV_EMAIL_RECIPIENT = 'dev@burando.nl';
+      process.env.DEV_EMAIL_RECIPIENT = 'dev@maritime-example.com';
       process.env.DISABLE_EMAILS = 'true';
 
       const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
@@ -85,7 +85,7 @@ describe('Production Readiness Integration Tests', () => {
     test('should intercept emails in staging environment', async () => {
       process.env.NODE_ENV = 'production';
       process.env.VERCEL_ENV = 'preview';
-      process.env.STAGING_EMAIL_RECIPIENT = 'staging@burando.nl';
+      process.env.STAGING_EMAIL_RECIPIENT = 'staging@maritime-example.com';
 
       const result = await emailServiceFactory.sendEmail({
         to: 'production@example.com',
@@ -201,7 +201,7 @@ describe('Production Readiness Integration Tests', () => {
         id: 'cert-user-id',
         first_name: 'John',
         last_name: 'Doe',
-        email: 'john.doe@burando.nl',
+        email: 'john.doe@maritime-example.com',
         vessel: 'MS Horizon',
         completion_date: new Date().toISOString()
       };
@@ -246,7 +246,7 @@ describe('Production Readiness Integration Tests', () => {
         'test@example.com',
         'test@test.com',
         'demo@demo.com',
-        'test.user@burando.nl'
+        'test.user@maritime-example.com'
       ];
 
       const isTestAccount = (email) => {
@@ -333,7 +333,7 @@ describe('Production Readiness Integration Tests', () => {
         password: 'secret123',
         token: 'jwt-token-here',
         api_key: 'api-key-12345',
-        email: 'john@burando.nl'
+        email: 'john@maritime-example.com'
       };
 
       const logged = logData(sensitiveData);
@@ -342,7 +342,7 @@ describe('Production Readiness Integration Tests', () => {
       expect(logged.token).toBeUndefined();
       expect(logged.api_key).toBeUndefined();
       expect(logged.user).toBe('john.doe');
-      expect(logged.email).toBe('john@burando.nl');
+      expect(logged.email).toBe('john@maritime-example.com');
     });
   });
 
@@ -391,9 +391,9 @@ describe('Production Readiness Integration Tests', () => {
 
     test('should enforce CORS in production', async () => {
       const allowedOrigins = [
-        'https://app.burando.online',
-        'https://burando.online',
-        'https://www.burando.nl'
+        'https://app.maritime-example.com',
+        'https://maritime-example.com',
+        'https://www.maritime-example.com'
       ];
 
       const checkCORS = (origin) => {
@@ -402,7 +402,7 @@ describe('Production Readiness Integration Tests', () => {
           : true; // Allow all in development
       };
 
-      expect(checkCORS('https://app.burando.online')).toBe(true);
+      expect(checkCORS('https://app.maritime-example.com')).toBe(true);
       expect(checkCORS('https://malicious.site')).toBe(false);
       expect(checkCORS('http://localhost:3000')).toBe(false);
     });

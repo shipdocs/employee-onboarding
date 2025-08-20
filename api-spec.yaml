@@ -5,12 +5,12 @@ info:
   version: 1.0.0
   contact:
     name: API Support
-    email: support@burando.online
+    email: support@maritime.online
   license:
     name: Proprietary
     
 servers:
-  - url: https://onboarding.burando.online/api
+  - url: https://onboarding.maritime.online/api
     description: Production server
   - url: http://localhost:3000/api
     description: Development server

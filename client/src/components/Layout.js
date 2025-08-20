@@ -52,7 +52,7 @@ const Layout = () => {
   };
 
   return (
-    <div className="min-h-screen burando-bg">
+    <div className="min-h-screen maritime-bg">
       {/* Header */}
       <header className="nav-glass sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -60,13 +60,13 @@ const Layout = () => {
             {/* Logo */}
             <div className="flex items-center">
               <img
-                src="/burando-logo.svg"
-                alt="Burando Maritime Services"
+                src="/maritime-logo.svg"
+                alt="Maritime Onboarding Platform"
                 className="h-10 w-auto mr-4"
               />
               <div>
                 <h1 className="text-xl font-bold text-gradient-navy">
-                  {t('general.burando_maritime')}
+                  {t('general.maritime_platform')}
                 </h1>
                 <p className="text-sm text-gradient-primary font-medium">{t('crew.onboarding')}</p>
               </div>
@@ -122,7 +122,7 @@ const Layout = () => {
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-3 rounded-lg text-gray-700 hover:text-burando-teal hover:bg-gray-100 touch-target transition-all duration-200"
+                className="md:hidden p-3 rounded-lg text-gray-700 hover:text-maritime-teal hover:bg-gray-100 touch-target transition-all duration-200"
                 aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
                 {isMobileMenuOpen ? (
@@ -163,10 +163,10 @@ const Layout = () => {
                     key={item.name}
                     to={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`burando-nav-link flex items-center px-4 py-4 rounded-lg text-base font-medium transition-all duration-200 touch-target ${
+                    className={`maritime-nav-link flex items-center px-4 py-4 rounded-lg text-base font-medium transition-all duration-200 touch-target ${
                       isActive(item.href)
-                        ? 'text-burando-teal bg-burando-teal/10 active shadow-sm'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-burando-teal hover:bg-gray-100 dark:hover:bg-gray-700'
+                        ? 'text-maritime-teal bg-maritime-teal/10 active shadow-sm'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-maritime-teal hover:bg-gray-100 dark:hover:bg-gray-700'
                     }`}
                   >
                     <Icon className="h-5 w-5 mr-4" />
@@ -201,12 +201,12 @@ const Layout = () => {
           <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">
               <img
-                src="/burando-logo.svg"
-                alt="Burando Maritime Services"
+                src="/maritime-logo.svg"
+                alt="Maritime Onboarding Platform"
                 className="h-6 w-auto mr-0 md:mr-3 mb-2 md:mb-0"
               />
               <span className="text-xs md:text-sm text-slate-600 dark:text-slate-400">
-                © 2024 {t('general.burando_maritime')} {t('general.maritime_services')}. {t('general.all_rights_reserved')}.
+                © 2024 {t('general.maritime_platform')} {t('general.maritime_services')}. {t('general.all_rights_reserved')}.
               </span>
             </div>
             <div className="text-xs md:text-sm text-gradient-primary font-medium">

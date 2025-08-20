@@ -42,15 +42,15 @@ const QuickStats = ({ stats, progress, profile, quizHistory }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
       <div
-        className="burando-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
+        className="maritime-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
         onClick={handleCurrentTrainingClick}
       >
-        <div className="burando-card-body">
+        <div className="maritime-card-body">
           <div className="flex items-center">
-            <BookOpen className="h-8 w-8 text-burando-teal" />
+            <BookOpen className="h-8 w-8 text-maritime-teal" />
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Current Training</p>
-              <p className="text-2xl font-bold text-burando-navy">
+              <p className="text-2xl font-bold text-maritime-navy">
                 {getCurrentTrainingText()}
               </p>
             </div>
@@ -58,13 +58,13 @@ const QuickStats = ({ stats, progress, profile, quizHistory }) => {
         </div>
       </div>
 
-      <div className="burando-card">
-        <div className="burando-card-body">
+      <div className="maritime-card">
+        <div className="maritime-card-body">
           <div className="flex items-center">
-            <CheckCircle className="h-8 w-8 text-burando-light-green" />
+            <CheckCircle className="h-8 w-8 text-maritime-light-green" />
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Items Completed</p>
-              <p className="text-2xl font-bold text-burando-navy">
+              <p className="text-2xl font-bold text-maritime-navy">
                 {stats?.completedItems || 0}/{stats?.totalItems || 0}
               </p>
             </div>
@@ -73,15 +73,15 @@ const QuickStats = ({ stats, progress, profile, quizHistory }) => {
       </div>
 
       <div
-        className="burando-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
+        className="maritime-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
         onClick={handleQuizResultsClick}
       >
-        <div className="burando-card-body">
+        <div className="maritime-card-body">
           <div className="flex items-center">
-            <Trophy className="h-8 w-8 text-burando-bright-teal" />
+            <Trophy className="h-8 w-8 text-maritime-bright-teal" />
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Quiz Results</p>
-              <p className="text-2xl font-bold text-burando-navy">
+              <p className="text-2xl font-bold text-maritime-navy">
                 {stats?.quizStats?.completed || 0}/3
               </p>
             </div>
@@ -90,15 +90,15 @@ const QuickStats = ({ stats, progress, profile, quizHistory }) => {
       </div>
 
       <div
-        className="burando-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
+        className="maritime-card cursor-pointer hover:shadow-lg transition-shadow duration-200"
         onClick={() => navigate('/crew/profile')}
       >
-        <div className="burando-card-body">
+        <div className="maritime-card-body">
           <div className="flex items-center">
-            <Clock className="h-8 w-8 text-burando-teal-light" />
+            <Clock className="h-8 w-8 text-maritime-teal-light" />
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">My Profile</p>
-              <p className="text-lg font-bold text-burando-navy capitalize">
+              <p className="text-lg font-bold text-maritime-navy capitalize">
                 {profile?.status || 'Active'}
               </p>
             </div>

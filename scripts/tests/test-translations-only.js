@@ -77,7 +77,7 @@ async function testTemplateGeneration() {
     preferred_language: 'en'
   };
 
-  const magicLink = 'https://onboarding.burando.online/login?token=test123';
+  const magicLink = 'https://maritime-onboarding.example.com/login?token=test123';
 
   console.log('1. Testing Manager Magic Link Template Generation:');
   

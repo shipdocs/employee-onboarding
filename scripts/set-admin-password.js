@@ -23,7 +23,7 @@ async function setAdminPassword() {
     const adminEmail = process.env.ADMIN_EMAIL || 'adminmartexx@shipdocs.app';
     const adminPassword = process.env.ADMIN_PASSWORD;
 
-    const managerEmail = process.env.MANAGER_EMAIL || 'martin.splinter@burando.eu';
+    const managerEmail = process.env.MANAGER_EMAIL || 'martin.splinter@maritime-example.com';
     const managerPassword = process.env.MANAGER_PASSWORD;
     
     if (!adminPassword || !managerPassword) {

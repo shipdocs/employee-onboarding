@@ -73,7 +73,7 @@ const PhaseCard = ({ phase, progress, quizHistory }) => {
   const renderActionButton = () => {
     if (!isAvailable) {
       return (
-        <button disabled className="burando-btn burando-btn-secondary opacity-50 text-sm px-3 py-2 touch-target">
+        <button disabled className="maritime-btn maritime-btn-secondary opacity-50 text-sm px-3 py-2 touch-target">
           <span className="hidden sm:inline">{t('common:buttons.locked')}</span>
           <span className="sm:hidden">Locked</span>
         </button>
@@ -87,7 +87,7 @@ const PhaseCard = ({ phase, progress, quizHistory }) => {
         return (
           <Link
             to={`/crew/quiz/${phase.phase_number}`}
-            className="burando-btn burando-btn-primary text-sm px-3 py-2 touch-target"
+            className="maritime-btn maritime-btn-primary text-sm px-3 py-2 touch-target"
           >
             <span className="hidden sm:inline">Take Quiz</span>
             <span className="sm:hidden">Quiz</span>
@@ -98,8 +98,8 @@ const PhaseCard = ({ phase, progress, quizHistory }) => {
         return (
           <Link
             to={`/crew/quiz/${phase.phase_number}`}
-            className={`burando-btn text-sm px-3 py-2 touch-target ${
-              quizResult.passed ? 'burando-btn-success' : 'burando-btn-outline'
+            className={`maritime-btn text-sm px-3 py-2 touch-target ${
+              quizResult.passed ? 'maritime-btn-success' : 'maritime-btn-outline'
             }`}
           >
             <span className="hidden sm:inline">View Results</span>
@@ -112,7 +112,7 @@ const PhaseCard = ({ phase, progress, quizHistory }) => {
       return (
         <Link
           to={`/crew/training/${phase.phase_number}`}
-          className="burando-btn burando-btn-primary text-sm px-3 py-2 touch-target"
+          className="maritime-btn maritime-btn-primary text-sm px-3 py-2 touch-target"
         >
           <span className="hidden sm:inline">{t('common:buttons.continue')}</span>
           <span className="sm:hidden">Continue</span>
@@ -123,7 +123,7 @@ const PhaseCard = ({ phase, progress, quizHistory }) => {
       return (
         <Link
           to={`/crew/training/${phase.phase_number}`}
-          className="burando-btn burando-btn-outline text-sm px-3 py-2 touch-target"
+          className="maritime-btn maritime-btn-outline text-sm px-3 py-2 touch-target"
         >
           <span className="hidden sm:inline">{t('common:buttons.start')}</span>
           <span className="sm:hidden">Start</span>
@@ -184,7 +184,7 @@ const PhaseCard = ({ phase, progress, quizHistory }) => {
             <div className="relative w-12 h-12 sm:w-16 sm:h-16">
               {renderProgressCircle(
                 phase.progressPercentage || 0,
-                phase.status === 'completed' ? 'text-burando-light-green' : 'text-burando-teal'
+                phase.status === 'completed' ? 'text-maritime-light-green' : 'text-maritime-teal'
               )}
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-xs sm:text-sm font-semibold">

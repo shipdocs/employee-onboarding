@@ -1,7 +1,7 @@
 {
   "welcome": {
-    "subject_en": "Welcome to Burando Maritime Services - Onboarding Training",
-    "subject_nl": "Welkom bij Burando Maritime Services - Inwerk Training",
+    "subject_en": "Welcome to Maritime Onboarding Platform - Onboarding Training",
+    "subject_nl": "Welkom bij Maritime Onboarding Platform - Inwerk Training",
     "template": "welcome_email_template",
     "variables": [
       "user.first_name",

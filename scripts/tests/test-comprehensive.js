@@ -7,7 +7,7 @@
 const axios = require('axios');
 require('dotenv').config();
 
-const BASE_URL = 'https://onboarding.burando.online';
+const BASE_URL = 'https://maritime-onboarding.example.com';
 const TEST_ACCOUNTS = {
   admin: { email: 'test-admin-001@shipdocs.app', password: 'TestPass123!' },
   crew: { email: 'test-crew-001@shipdocs.app' }

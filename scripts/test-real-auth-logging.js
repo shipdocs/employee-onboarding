@@ -10,7 +10,7 @@
 const fetch = require('node-fetch');
 require('dotenv').config();
 
-const API_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://onboarding.burando.online';
+const API_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://maritime-onboarding.example.com';
 
 async function testRealAuthLogging() {
   console.log('🔍 Testing Real Authentication Logging...\n');

@@ -78,7 +78,7 @@ export const getQuizStatusBadge = (phase, phaseStatus, quizHistory) => {
   const quizResult = getQuizStatus(phase.phase_number, quizHistory);
   if (!quizResult) {
     return (
-      <span className="burando-badge burando-badge-warning">
+      <span className="maritime-badge maritime-badge-warning">
         <AlertTriangle className="h-3 w-3 mr-1" />
         Quiz Required
       </span>
@@ -88,7 +88,7 @@ export const getQuizStatusBadge = (phase, phaseStatus, quizHistory) => {
   // Handle review status
   if (quizResult.review_status === 'pending_review') {
     return (
-      <span className="burando-badge burando-badge-info">
+      <span className="maritime-badge maritime-badge-info">
         <Eye className="h-3 w-3 mr-1" />
         Awaiting Review ({quizResult.score}%)
       </span>
@@ -97,7 +97,7 @@ export const getQuizStatusBadge = (phase, phaseStatus, quizHistory) => {
 
   if (quizResult.review_status === 'approved' && quizResult.passed) {
     return (
-      <span className="burando-badge burando-badge-success">
+      <span className="maritime-badge maritime-badge-success">
         <CheckCircle className="h-3 w-3 mr-1" />
         Quiz Approved ({quizResult.score}%)
       </span>
@@ -106,7 +106,7 @@ export const getQuizStatusBadge = (phase, phaseStatus, quizHistory) => {
 
   if (quizResult.review_status === 'rejected' || !quizResult.passed) {
     return (
-      <span className="burando-badge burando-badge-error">
+      <span className="maritime-badge maritime-badge-error">
         <AlertTriangle className="h-3 w-3 mr-1" />
         Quiz Failed ({quizResult.score}%) - Retake Required
       </span>
@@ -116,14 +116,14 @@ export const getQuizStatusBadge = (phase, phaseStatus, quizHistory) => {
   // Fallback for legacy data without review_status
   if (quizResult.passed) {
     return (
-      <span className="burando-badge burando-badge-success">
+      <span className="maritime-badge maritime-badge-success">
         <CheckCircle className="h-3 w-3 mr-1" />
         Quiz Passed ({quizResult.score}%)
       </span>
     );
   } else {
     return (
-      <span className="burando-badge burando-badge-error">
+      <span className="maritime-badge maritime-badge-error">
         <AlertTriangle className="h-3 w-3 mr-1" />
         Quiz Failed ({quizResult.score}%) - Retake Required
       </span>
@@ -152,7 +152,7 @@ export const getQuizCircleData = (quizResult) => {
     };
   } else if (quizResult.review_status === 'approved' && quizResult.passed) {
     return {
-      color: 'text-burando-light-green',
+      color: 'text-maritime-light-green',
       icon: '✓',
       fillOpacity: '0.1'
     };
@@ -165,7 +165,7 @@ export const getQuizCircleData = (quizResult) => {
   } else {
     // Fallback for legacy data
     return {
-      color: quizResult.passed ? 'text-burando-light-green' : 'text-orange-600',
+      color: quizResult.passed ? 'text-maritime-light-green' : 'text-orange-600',
       icon: quizResult.passed ? '✓' : '✗',
       fillOpacity: '0.1'
     };

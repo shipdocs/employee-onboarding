@@ -7,13 +7,13 @@ const WelcomeHeader = ({ user, profile, stats }) => {
   const { t } = useTranslation('dashboard');
 
   return (
-    <div className="bg-gradient-to-r from-burando-navy to-burando-teal rounded-lg text-white p-4 sm:p-6 shadow-burando-lg">
+    <div className="bg-gradient-to-r from-maritime-navy to-maritime-teal rounded-lg text-white p-4 sm:p-6 shadow-maritime-lg">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex-1">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">
             {t('crew.welcome', { name: user?.firstName })}
           </h1>
-          <p className="text-burando-light-green mb-4">
+          <p className="text-maritime-light-green mb-4">
             {t('crew.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-sm">
@@ -31,15 +31,15 @@ const WelcomeHeader = ({ user, profile, stats }) => {
           <div className="text-3xl font-bold">
             {stats?.overallProgress || 0}%
           </div>
-          <div className="text-burando-light-green">{t('crew.overall_progress')}</div>
+          <div className="text-maritime-light-green">{t('crew.overall_progress')}</div>
         </div>
       </div>
 
       {/* Progress Bar */}
       <div className="mt-4">
-        <div className="burando-progress">
+        <div className="maritime-progress">
           <div
-            className="burando-progress-bar"
+            className="maritime-progress-bar"
             style={{ width: `${stats?.overallProgress || 0}%` }}
           ></div>
         </div>

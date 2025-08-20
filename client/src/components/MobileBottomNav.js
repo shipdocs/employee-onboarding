@@ -65,8 +65,8 @@ const MobileBottomNav = () => {
               to={item.href}
               className={`flex flex-col items-center justify-center py-3 px-2 rounded-lg transition-all duration-200 mobile-nav-item ${
                 active
-                  ? 'bg-burando-teal text-white shadow-md'
-                  : 'text-gray-600 hover:text-burando-teal hover:bg-gray-100'
+                  ? 'bg-maritime-teal text-white shadow-md'
+                  : 'text-gray-600 hover:text-maritime-teal hover:bg-gray-100'
               }`}
             >
               <Icon className={`h-5 w-5 mb-1 ${active ? 'text-white' : ''}`} />

@@ -91,9 +91,9 @@ async function handler(req, res) {
       '{{SYSTEM_URL}}': contact.system_url,
       '{{EMAIL_RESPONSE_TIME}}': contact.email_response_time,
       // Legacy replacements for existing hard-coded values
-      'support@burando.online': contact.support_email,
+      'support@maritime-onboarding.local': contact.support_email,
       'admin@company.com': contact.admin_email,
-      'onboarding.burando.online': contact.system_url,
+      'maritime-onboarding.local': contact.system_url,
       'Maritime Onboarding System v2.0': `${contact.company_name} v2.0`
     };
 

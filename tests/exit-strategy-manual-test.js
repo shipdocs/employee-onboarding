@@ -287,7 +287,7 @@ async function testExitStrategyManual() {
 
     // Practical Next Steps
     console.log('\n📋 PRACTICAL TESTING RECOMMENDATIONS:');
-    console.log('1. 🌐 Test GDPR portal at: https://onboarding.burando.online/gdpr');
+    console.log('1. 🌐 Test GDPR portal at: https://maritime-onboarding.example.com/gdpr');
     console.log('2. 👤 Login as different user roles (crew, manager, admin)');
     console.log('3. 📤 Request data export and verify download');
     console.log('4. 🗑️  Test data deletion request process');

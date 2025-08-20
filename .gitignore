@@ -126,9 +126,11 @@ logs/
 *.key
 *.crt
 
-# Backup files
+# Backup files and directories
 *.backup
 *.bak
+backups/
+*.sql
 .vercel
 
 # Supabase
@@ -163,8 +165,18 @@ tests/e2e/mocks/
 test-results/
 playwright-report/
 .env.test
+
+# AI Development Tools and Configurations (exclude from public repo)
 .mcp.json
+.claude/
 .claude/settings.local.json
+.claude/settings.json
+.serena/
+.ai-collaboration/
+mcp-config.json
+claude-config.json
+*.mcp
+.anthropic/
 
 # Development and internal folders
 .ai-collaboration/
@@ -177,6 +189,23 @@ test-reports/
 refactor/
 improvement-plans/
 serena-mcp/
+
+# Business development and internal planning (not for public repo)
+business-development/
+project-management/
+TRANSFORMATION_ARCHIVE.md
+OPEN_SOURCE_BUSINESS_PLAN.md
+LAUNCH_EXECUTION_CHECKLIST.md
+CRITICAL_SECURITY_FIXES_REQUIRED.md
+
+# Internal strategy and planning documents (exclude from public repo)
+OPEN_SOURCE_STRATEGY_MASTER_PLAN.md
+OPEN_SOURCE_BRANDING_PLAN.md
+OPEN_SOURCE_BRANDING_TRANSFORMATION_COMPLETE.md
+OPEN_SOURCE_CHECKLIST.md
+OPEN_SOURCE_DEPLOYMENT_GUIDE.md
+CLAUDE.md
+CLEANUP_SUMMARY.md
 
 # Generated documentation (should not be in version control)
 doxygen-docs/

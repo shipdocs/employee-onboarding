@@ -8,14 +8,14 @@ const CompletionMessage = ({ completedPhases }) => {
   }
 
   return (
-    <div className="burando-card">
-      <div className="burando-card-body">
-        <div className="bg-gradient-to-r from-burando-light-green/20 to-burando-bright-teal/20 border border-burando-light-green/30 rounded-lg p-6 text-center">
-          <Trophy className="h-12 w-12 text-burando-light-green mx-auto mb-4" />
-          <h3 className="burando-heading-2 text-burando-navy mb-2">
+    <div className="maritime-card">
+      <div className="maritime-card-body">
+        <div className="bg-gradient-to-r from-maritime-light-green/20 to-maritime-bright-teal/20 border border-maritime-light-green/30 rounded-lg p-6 text-center">
+          <Trophy className="h-12 w-12 text-maritime-light-green mx-auto mb-4" />
+          <h3 className="maritime-heading-2 text-maritime-navy mb-2">
             Congratulations! 🎉
           </h3>
-          <p className="text-burando-teal">
+          <p className="text-maritime-teal">
             You have successfully completed all phases of the onboarding training program.
             Your completion certificate has been generated and sent to HR.
           </p>

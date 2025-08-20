@@ -8,7 +8,7 @@
 const https = require('https');
 const http = require('http');
 
-const PRODUCTION_URL = 'https://onboarding.burando.online';
+const PRODUCTION_URL = 'https://maritime-onboarding.example.com';
 const TEST_ENDPOINTS = [
   '/',
   '/api/health',

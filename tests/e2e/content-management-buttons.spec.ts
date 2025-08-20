@@ -10,7 +10,7 @@ import { test, expect, Page } from '@playwright/test';
  */
 
 // Test configuration
-const BASE_URL = 'https://onboarding.burando.online';
+const BASE_URL = 'https://maritime-onboarding.example.com';
 const ADMIN_EMAIL = 'adminmartexx@shipdocs.app';
 const ADMIN_PASSWORD = 'Yumminova211@#';
 

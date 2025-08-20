@@ -286,14 +286,14 @@ async function updateProfile(req, res) {
               }</p>
 
               <p style="margin-bottom: 0;">${isNL ? 'Met vriendelijke groet,' : 'Best regards,'}</p>
-              <p style="margin-top: 5px;"><strong style="color: #006A82;">Burando Maritime Services</strong></p>
+              <p style="margin-top: 5px;"><strong style="color: #006A82;">Maritime Onboarding Services</strong></p>
             </div>
             <div class="footer">
               <p>${isNL ?
-                'Deze e-mail is verzonden vanuit het Burando Maritime Services Onboarding Systeem' :
-                'This email was sent from the Burando Maritime Services Onboarding System'
+                'Deze e-mail is verzonden vanuit het Maritime Onboarding Services Onboarding Systeem' :
+                'This email was sent from the Maritime Onboarding Services Onboarding System'
               }</p>
-              <p style="margin: 5px 0;">© 2024 Burando Maritime Services. All rights reserved.</p>
+              <p style="margin: 5px 0;">© 2024 Maritime Onboarding Services. All rights reserved.</p>
             </div>
           </div>
         </body>

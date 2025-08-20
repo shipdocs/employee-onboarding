@@ -54,7 +54,7 @@ function TrainingErrorFallback({ moduleName, error, onRetry }) {
       <div className="space-y-2">
         <button
           onClick={onRetry}
-          className="w-full bg-burando-light-green text-white px-4 py-2 rounded-lg hover:bg-burando-green transition-colors flex items-center justify-center space-x-2"
+          className="w-full bg-maritime-light-green text-white px-4 py-2 rounded-lg hover:bg-maritime-green transition-colors flex items-center justify-center space-x-2"
         >
           <RefreshCw className="w-4 h-4" />
           <span>{t('errors:actions.retry_module')}</span>
@@ -104,7 +104,7 @@ function UserManagementErrorFallback({ error, onRetry }) {
       <div className="space-y-2">
         <button
           onClick={onRetry}
-          className="w-full bg-burando-light-green text-white px-4 py-2 rounded-lg hover:bg-burando-green transition-colors flex items-center justify-center space-x-2"
+          className="w-full bg-maritime-light-green text-white px-4 py-2 rounded-lg hover:bg-maritime-green transition-colors flex items-center justify-center space-x-2"
         >
           <RefreshCw className="w-4 h-4" />
           <span>{t('errors:actions.retry')}</span>
@@ -154,7 +154,7 @@ function SettingsErrorFallback({ error, onRetry }) {
       <div className="space-y-2">
         <button
           onClick={onRetry}
-          className="w-full bg-burando-light-green text-white px-4 py-2 rounded-lg hover:bg-burando-green transition-colors flex items-center justify-center space-x-2"
+          className="w-full bg-maritime-light-green text-white px-4 py-2 rounded-lg hover:bg-maritime-green transition-colors flex items-center justify-center space-x-2"
         >
           <RefreshCw className="w-4 h-4" />
           <span>{t('errors:actions.retry')}</span>
@@ -211,7 +211,7 @@ function FileUploadErrorFallback({ error, onRetry, onUploadError }) {
       <div className="space-y-2">
         <button
           onClick={handleClearFiles}
-          className="w-full bg-burando-light-green text-white px-4 py-2 rounded-lg hover:bg-burando-green transition-colors flex items-center justify-center space-x-2"
+          className="w-full bg-maritime-light-green text-white px-4 py-2 rounded-lg hover:bg-maritime-green transition-colors flex items-center justify-center space-x-2"
         >
           <RefreshCw className="w-4 h-4" />
           <span>{t('errors:actions.clear_and_retry')}</span>

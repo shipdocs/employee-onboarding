@@ -17,9 +17,9 @@ const OnboardingFlow = () => {
   // Show loading if enhanced onboarding is still loading
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-burando-deep-blue via-burando-navy to-burando-dark-blue flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-maritime-deep-blue via-maritime-navy to-maritime-dark-blue flex items-center justify-center">
         <div className="text-white text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-burando-light-green mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-maritime-light-green mx-auto mb-4"></div>
           <p>Loading your onboarding...</p>
         </div>
       </div>

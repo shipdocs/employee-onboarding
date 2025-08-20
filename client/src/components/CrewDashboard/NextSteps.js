@@ -21,19 +21,19 @@ const NextSteps = ({ completedPhases }) => {
   };
 
   return (
-    <div className="burando-card">
-      <div className="burando-card-header">
-        <h2 className="burando-heading-2 text-burando-navy">Next Steps</h2>
+    <div className="maritime-card">
+      <div className="maritime-card-header">
+        <h2 className="maritime-heading-2 text-maritime-navy">Next Steps</h2>
       </div>
-      <div className="burando-card-body">
-        <div className="bg-gradient-to-r from-burando-bright-teal/10 to-burando-light-green/10 border border-burando-bright-teal/20 rounded-lg p-4">
+      <div className="maritime-card-body">
+        <div className="bg-gradient-to-r from-maritime-bright-teal/10 to-maritime-light-green/10 border border-maritime-bright-teal/20 rounded-lg p-4">
           <div className="flex items-start">
-            <BookOpen className="h-5 w-5 text-burando-teal mt-0.5 mr-3 flex-shrink-0" />
+            <BookOpen className="h-5 w-5 text-maritime-teal mt-0.5 mr-3 flex-shrink-0" />
             <div>
-              <h3 className="font-medium text-burando-navy mb-1">
+              <h3 className="font-medium text-maritime-navy mb-1">
                 {t('crew.next_steps.continue_training')}
               </h3>
-              <p className="text-burando-teal text-sm">
+              <p className="text-maritime-teal text-sm">
                 {getNextStepMessage()}
               </p>
             </div>

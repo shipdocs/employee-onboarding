@@ -303,18 +303,18 @@ const LoginPage = () => {
           }}
         >
           <source
-            src="https://23g-sharedhosting-burando-dev.s3.eu-west-1.amazonaws.com/app/uploads/2024/01/15102006/burando-korter.mp4"
+            src="/videos/ocean-waves.mp4"
             type="video/mp4"
           />
         </video>
 
         {/* Glass overlay for better readability - removed backdrop-blur */}
-        <div className="absolute inset-0 bg-gradient-to-br from-burando-navy/40 via-burando-teal/25 to-burando-bright-teal/35"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-maritime-navy/40 via-maritime-teal/25 to-maritime-bright-teal/35"></div>
 
         {/* Animated Glass Elements */}
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-burando-bright-teal/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-burando-teal/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-maritime-bright-teal/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-maritime-teal/10 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       <div className="max-w-lg w-full relative z-20">
@@ -325,14 +325,14 @@ const LoginPage = () => {
             <LanguageSwitcher className="text-white" />
           </div>
 
-          {/* Burando Logo */}
+          {/* Maritime Logo */}
           <div className="flex justify-center mb-8">
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-burando-teal to-burando-bright-teal rounded-2xl blur-lg opacity-75 animate-pulse group-hover:opacity-90 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-maritime-teal to-maritime-bright-teal rounded-2xl blur-lg opacity-75 animate-pulse group-hover:opacity-90 transition-opacity duration-300"></div>
               <div className="relative glass-card-elevated p-6 hover-lift">
                 <img
-                  src="/burando-logo-white.svg"
-                  alt="Burando Maritime Services"
+                  src="/maritime-logo-white.svg"
+                  alt="Maritime Onboarding Platform"
                   className="h-16 w-auto mx-auto filter drop-shadow-lg"
                 />
               </div>
@@ -345,14 +345,14 @@ const LoginPage = () => {
           <p className="text-white text-lg sm:text-xl font-medium drop-shadow-xl mb-4" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.7)'}}>
             {t('tagline')}
           </p>
-          <div className="mt-6 h-1 w-32 bg-gradient-to-r from-burando-teal to-burando-bright-teal rounded-full mx-auto"></div>
+          <div className="mt-6 h-1 w-32 bg-gradient-to-r from-maritime-teal to-maritime-bright-teal rounded-full mx-auto"></div>
         </div>
 
         {/* Login Form - Mobile-First Design */}
         <div className="glass-card-elevated p-6 sm:p-8 lg:p-10 hover-lift fade-in">
           {/* Welcome Message & Login Type Selection */}
           <div className="text-center mb-6 sm:mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-burando-bright-teal to-burando-teal rounded-full mb-4 sm:mb-6 shadow-2xl">
+            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-maritime-bright-teal to-maritime-teal rounded-full mb-4 sm:mb-6 shadow-2xl">
               <span className="text-2xl sm:text-3xl">🚢</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 drop-shadow-xl" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.8)'}}>
@@ -367,7 +367,7 @@ const LoginPage = () => {
                   onClick={() => setLoginType('request')}
                   className={`py-4 px-6 rounded-xl text-sm font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
                     loginType === 'request'
-                      ? 'bg-gradient-to-br from-burando-bright-teal to-burando-teal text-white shadow-xl border-2 border-white/30'
+                      ? 'bg-gradient-to-br from-maritime-bright-teal to-maritime-teal text-white shadow-xl border-2 border-white/30'
                       : 'text-white/80 hover:text-white hover:bg-white/15 border-2 border-transparent hover:border-white/20'
                   }`}
                 >
@@ -384,7 +384,7 @@ const LoginPage = () => {
                   onClick={() => setLoginType('staff')}
                   className={`py-4 px-6 rounded-xl text-sm font-semibold transition-all duration-300 transform hover:scale-[1.02] ${
                     loginType === 'staff'
-                      ? 'bg-gradient-to-br from-burando-navy to-burando-teal text-white shadow-xl border-2 border-white/30'
+                      ? 'bg-gradient-to-br from-maritime-navy to-maritime-teal text-white shadow-xl border-2 border-white/30'
                       : 'text-white/80 hover:text-white hover:bg-white/15 border-2 border-transparent hover:border-white/20'
                   }`}
                 >
@@ -426,7 +426,7 @@ const LoginPage = () => {
           {loginType === 'request' && (
             <div className="mb-6 sm:mb-8">
               <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-burando-bright-teal to-burando-teal rounded-full mb-4 sm:mb-6 shadow-2xl animate-pulse">
+                <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-maritime-bright-teal to-maritime-teal rounded-full mb-4 sm:mb-6 shadow-2xl animate-pulse">
                   <Mail className="h-10 w-10 sm:h-12 sm:w-12 text-white" />
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">{t('login_methods.request.title')}</h3>
@@ -443,7 +443,7 @@ const LoginPage = () => {
                   <input
                     id="primary-email"
                     type="email"
-                    className={`glass-input w-full text-lg sm:text-xl py-5 sm:py-6 px-5 sm:px-6 text-white placeholder-white/50 rounded-xl border-2 ${errors.requestEmail ? 'border-red-400' : 'border-white/20 focus:border-burando-bright-teal'} transition-all duration-300 min-h-[56px] touch-manipulation text-center sm:text-left`}
+                    className={`glass-input w-full text-lg sm:text-xl py-5 sm:py-6 px-5 sm:px-6 text-white placeholder-white/50 rounded-xl border-2 ${errors.requestEmail ? 'border-red-400' : 'border-white/20 focus:border-maritime-bright-teal'} transition-all duration-300 min-h-[56px] touch-manipulation text-center sm:text-left`}
                     placeholder={t('login_methods.request.email_placeholder')}
                     autoComplete="email"
                     autoFocus
@@ -466,7 +466,7 @@ const LoginPage = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-burando-bright-teal to-burando-teal text-white font-bold py-7 sm:py-8 px-6 sm:px-8 rounded-2xl text-xl sm:text-2xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-burando-bright-teal/50 focus:ring-offset-2 shadow-2xl animate-pulse hover:animate-none min-h-[64px] touch-manipulation"
+                  className="w-full bg-gradient-to-r from-maritime-bright-teal to-maritime-teal text-white font-bold py-7 sm:py-8 px-6 sm:px-8 rounded-2xl text-xl sm:text-2xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-maritime-bright-teal/50 focus:ring-offset-2 shadow-2xl animate-pulse hover:animate-none min-h-[64px] touch-manipulation"
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center">
@@ -483,10 +483,10 @@ const LoginPage = () => {
               </form>
 
               {/* Success/Info Message */}
-              <div className="mt-8 glass-card p-6 border-l-4 border-burando-bright-teal">
+              <div className="mt-8 glass-card p-6 border-l-4 border-maritime-bright-teal">
                 <div className="flex items-start">
-                  <div className="bg-burando-bright-teal/20 p-2 rounded-full mr-4 mt-1">
-                    <AlertCircle className="h-5 w-5 text-burando-bright-teal" />
+                  <div className="bg-maritime-bright-teal/20 p-2 rounded-full mr-4 mt-1">
+                    <AlertCircle className="h-5 w-5 text-maritime-bright-teal" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-2">{t('login_methods.request.help_title')}</h4>
@@ -516,7 +516,7 @@ const LoginPage = () => {
               <button
                 type="button"
                 onClick={() => setLoginType('request')}
-                className="text-burando-bright-teal hover:text-white text-sm font-medium transition-colors duration-200 flex items-center mb-6"
+                className="text-maritime-bright-teal hover:text-white text-sm font-medium transition-colors duration-200 flex items-center mb-6"
               >
                 <ChevronDown className="h-4 w-4 mr-2 rotate-90" />
                 {t('login_methods.token.back_button')}
@@ -531,7 +531,7 @@ const LoginPage = () => {
                 {/* SECONDARY ACTION - Manual Token Entry */}
                 <div className="space-y-4 sm:space-y-6">
                   <div className="text-center mb-6 sm:mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-br from-burando-teal to-burando-navy rounded-full mb-4 sm:mb-6 shadow-lg">
+                    <div className="inline-flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-br from-maritime-teal to-maritime-navy rounded-full mb-4 sm:mb-6 shadow-lg">
                       <Key className="h-7 w-7 sm:h-8 sm:w-8 text-white" />
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-white mb-3">{t('login_methods.token.title')}</h3>
@@ -548,7 +548,7 @@ const LoginPage = () => {
                       <input
                         id="token-email"
                         type="email"
-                        className={`glass-input w-full text-base sm:text-lg py-4 px-5 text-white placeholder-white/50 rounded-lg border ${errors.tokenEmail ? 'border-red-400' : 'border-white/20 focus:border-burando-teal'} transition-all duration-300 min-h-[52px] touch-manipulation`}
+                        className={`glass-input w-full text-base sm:text-lg py-4 px-5 text-white placeholder-white/50 rounded-lg border ${errors.tokenEmail ? 'border-red-400' : 'border-white/20 focus:border-maritime-teal'} transition-all duration-300 min-h-[52px] touch-manipulation`}
                         placeholder={t('login_methods.token.email_placeholder')}
                         autoComplete="email"
                         {...register('tokenEmail', {
@@ -574,7 +574,7 @@ const LoginPage = () => {
                       <input
                         id="token-input"
                         type="text"
-                        className={`glass-input w-full text-base sm:text-lg py-4 px-5 text-white placeholder-white/50 font-mono rounded-lg border ${errors.token ? 'border-red-400' : 'border-white/20 focus:border-burando-teal'} transition-all duration-300 min-h-[52px] touch-manipulation`}
+                        className={`glass-input w-full text-base sm:text-lg py-4 px-5 text-white placeholder-white/50 font-mono rounded-lg border ${errors.token ? 'border-red-400' : 'border-white/20 focus:border-maritime-teal'} transition-all duration-300 min-h-[52px] touch-manipulation`}
                         placeholder={t('login_methods.token.token_placeholder')}
                         autoComplete="off"
                         {...register('token', {
@@ -597,7 +597,7 @@ const LoginPage = () => {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-gradient-to-r from-burando-teal to-burando-navy text-white font-semibold py-5 sm:py-5 px-6 rounded-lg text-base sm:text-lg transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-burando-teal/50 min-h-[52px] touch-manipulation"
+                    className="w-full bg-gradient-to-r from-maritime-teal to-maritime-navy text-white font-semibold py-5 sm:py-5 px-6 rounded-lg text-base sm:text-lg transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-maritime-teal/50 min-h-[52px] touch-manipulation"
                   >
                     {isLoading ? (
                       <div className="flex items-center justify-center">
@@ -622,7 +622,7 @@ const LoginPage = () => {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
                 {/* Staff Login Header */}
                 <div className="text-center mb-8">
-                  <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-burando-navy to-burando-teal rounded-full mb-6 shadow-2xl animate-pulse">
+                  <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-maritime-navy to-maritime-teal rounded-full mb-6 shadow-2xl animate-pulse">
                     <Shield className="h-10 w-10 sm:h-12 sm:w-12 text-white" />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 drop-shadow-xl" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.8)'}}>
@@ -641,14 +641,14 @@ const LoginPage = () => {
                   <div className="form-group">
                     <label className="form-label text-white text-lg font-semibold mb-3 block" htmlFor="staff-email">
                       <div className="flex items-center">
-                        <Mail className="h-5 w-5 mr-2 text-burando-bright-teal" />
+                        <Mail className="h-5 w-5 mr-2 text-maritime-bright-teal" />
                         Email Address
                       </div>
                     </label>
                     <input
                       id="staff-email"
                       type="email"
-                      className={`glass-input w-full text-lg sm:text-xl py-5 sm:py-6 px-5 sm:px-6 text-white placeholder-white/50 rounded-xl border-2 ${errors.email ? 'border-red-400' : 'border-white/20 focus:border-burando-bright-teal'} transition-all duration-300 min-h-[56px] touch-manipulation text-center sm:text-left`}
+                      className={`glass-input w-full text-lg sm:text-xl py-5 sm:py-6 px-5 sm:px-6 text-white placeholder-white/50 rounded-xl border-2 ${errors.email ? 'border-red-400' : 'border-white/20 focus:border-maritime-bright-teal'} transition-all duration-300 min-h-[56px] touch-manipulation text-center sm:text-left`}
                       placeholder="admin@maritime-onboarding.local"
                       autoComplete="email"
                       autoFocus
@@ -671,14 +671,14 @@ const LoginPage = () => {
                   <div className="form-group">
                     <label className="form-label text-white text-lg font-semibold mb-3 block" htmlFor="staff-password">
                       <div className="flex items-center">
-                        <Lock className="h-5 w-5 mr-2 text-burando-bright-teal" />
+                        <Lock className="h-5 w-5 mr-2 text-maritime-bright-teal" />
                         Password
                       </div>
                     </label>
                     <input
                       id="staff-password"
                       type="password"
-                      className={`glass-input w-full text-lg sm:text-xl py-5 sm:py-6 px-5 sm:px-6 text-white placeholder-white/50 rounded-xl border-2 ${errors.password ? 'border-red-400' : 'border-white/20 focus:border-burando-bright-teal'} transition-all duration-300 min-h-[56px] touch-manipulation text-center sm:text-left`}
+                      className={`glass-input w-full text-lg sm:text-xl py-5 sm:py-6 px-5 sm:px-6 text-white placeholder-white/50 rounded-xl border-2 ${errors.password ? 'border-red-400' : 'border-white/20 focus:border-maritime-bright-teal'} transition-all duration-300 min-h-[56px] touch-manipulation text-center sm:text-left`}
                       placeholder="Enter your password"
                       autoComplete="current-password"
                       {...register('password', {
@@ -702,7 +702,7 @@ const LoginPage = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-burando-navy to-burando-teal text-white font-bold py-7 sm:py-8 px-6 sm:px-8 rounded-2xl text-xl sm:text-2xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-burando-teal/50 focus:ring-offset-2 shadow-2xl animate-pulse hover:animate-none min-h-[64px] touch-manipulation"
+                  className="w-full bg-gradient-to-r from-maritime-navy to-maritime-teal text-white font-bold py-7 sm:py-8 px-6 sm:px-8 rounded-2xl text-xl sm:text-2xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-maritime-teal/50 focus:ring-offset-2 shadow-2xl animate-pulse hover:animate-none min-h-[64px] touch-manipulation"
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center">
@@ -718,10 +718,10 @@ const LoginPage = () => {
                 </button>
 
                 {/* Security Notice */}
-                <div className="mt-8 glass-card p-6 border-l-4 border-burando-teal">
+                <div className="mt-8 glass-card p-6 border-l-4 border-maritime-teal">
                   <div className="flex items-start">
-                    <div className="bg-burando-teal/20 p-2 rounded-full mr-4 mt-1">
-                      <Shield className="h-5 w-5 text-burando-teal" />
+                    <div className="bg-maritime-teal/20 p-2 rounded-full mr-4 mt-1">
+                      <Shield className="h-5 w-5 text-maritime-teal" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-white mb-2">Secure Staff Access</h4>
@@ -804,7 +804,7 @@ const LoginPage = () => {
         {/* Footer */}
         <div className="text-center mt-8">
           <div className="inline-flex items-center space-x-2 text-white text-sm glass-card px-6 py-3 hover-lift">
-            <div className="w-2 h-2 bg-burando-light-green rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-maritime-light-green rounded-full animate-pulse"></div>
             <span className="font-medium">{t('tagline')}</span>
           </div>
           <p className="text-white/70 text-xs mt-4">

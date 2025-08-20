@@ -287,16 +287,27 @@ function loadApiRoutes(dir, basePath = '/api') {
   });
 }
 
+// Set up Swagger API documentation
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger-config');
+
+// Serve Swagger UI at /api-docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: "Maritime API Documentation"
+}));
+console.log('✅ Swagger API documentation available at /api-docs');
+
 // Load all API routes from the api directory
 const apiDir = path.join(__dirname, 'api');
-console.log('\n🔄 Loading API routes...');
+console.log('🔄 Loading API routes...');
 loadApiRoutes(apiDir, '/api');
 
 // Serve static files from uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Serve documentation from doxygen-docs/html directory
-app.use('/docs', express.static(path.join(__dirname, 'doxygen-docs/html'), {
+// Serve documentation from docs directory
+app.use('/docs', express.static(path.join(__dirname, 'docs'), {
   index: 'index.html',
   setHeaders: (res, path) => {
     // Set proper MIME types for CSS and JS files

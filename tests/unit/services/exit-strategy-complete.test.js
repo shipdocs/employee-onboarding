@@ -314,7 +314,7 @@ describe('Complete Exit Strategy Implementation', () => {
         data: {}
       });
 
-      expect(exportDoc).toContain('support@burando.online');
+      expect(exportDoc).toContain('support@maritime-example.com');
       expect(exportDoc).toContain('Next Steps');
       expect(exportDoc).toContain('Support');
     });

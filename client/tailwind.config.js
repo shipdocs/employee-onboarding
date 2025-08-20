@@ -10,7 +10,7 @@ module.exports = {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        burando: {
+        maritime: {
           navy: {
             DEFAULT: '#132545',
             light: '#1e3a5f',
@@ -38,18 +38,18 @@ module.exports = {
           200: '#bfdbfe',
           300: '#93c5fd',
           400: '#60a5fa',
-          500: '#006A82', // Updated to Burando teal
+          500: '#006A82', // Updated to Maritime teal
           600: '#004d5e',
-          700: '#132545', // Updated to Burando navy
+          700: '#132545', // Updated to Maritime navy
           800: '#0a1a2e',
           900: '#1e3a8a',
         },
       },
       boxShadow: {
-        'burando-sm': '0 1px 2px 0 rgba(19, 37, 69, 0.05)',
-        'burando-md': '0 4px 6px -1px rgba(19, 37, 69, 0.1), 0 2px 4px -1px rgba(19, 37, 69, 0.06)',
-        'burando-lg': '0 10px 15px -3px rgba(19, 37, 69, 0.1), 0 4px 6px -2px rgba(19, 37, 69, 0.05)',
-        'burando-xl': '0 20px 25px -5px rgba(19, 37, 69, 0.1), 0 10px 10px -5px rgba(19, 37, 69, 0.04)',
+        'maritime-sm': '0 1px 2px 0 rgba(19, 37, 69, 0.05)',
+        'maritime-md': '0 4px 6px -1px rgba(19, 37, 69, 0.1), 0 2px 4px -1px rgba(19, 37, 69, 0.06)',
+        'maritime-lg': '0 10px 15px -3px rgba(19, 37, 69, 0.1), 0 4px 6px -2px rgba(19, 37, 69, 0.05)',
+        'maritime-xl': '0 20px 25px -5px rgba(19, 37, 69, 0.1), 0 10px 10px -5px rgba(19, 37, 69, 0.04)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

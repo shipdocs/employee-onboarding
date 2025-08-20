@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Overview - Maritime Onboarding</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>⚓ Maritime Onboarding System</h1>
+            <p>Technical Overview</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="index.html" class="back-link">← Back to Documentation</a>
+        <div id="content" class="markdown-content"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Maritime Onboarding System</p>
+        </div>
+    </footer>
+
+    <script>
+        fetch('technical-overview.md')
+            .then(response => response.text())
+            .then(markdown => {
+                document.getElementById('content').innerHTML = marked.parse(markdown);
+            })
+            .catch(error => {
+                document.getElementById('content').innerHTML = '<p>Error loading documentation.</p>';
+            });
+    </script>
+</body>
+</html>

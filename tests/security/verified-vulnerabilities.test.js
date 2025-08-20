@@ -245,11 +245,11 @@ describe('Verified Vulnerabilities Tests', () => {
       }
     });
     
-    test('should test rate limiting on production domain (onboarding.burando.online)', async () => {
+    test('should test rate limiting on production domain (maritime-onboarding.example.com)', async () => {
       // This test would verify rate limiting works on the production domain
       // In a real test environment, this would make actual HTTP requests
       
-      const productionDomain = 'onboarding.burando.online';
+      const productionDomain = 'maritime-onboarding.example.com';
       const testEndpoint = '/api/health';
       
       // Mock production test

@@ -167,7 +167,7 @@ describe('XSS Prevention Tests', () => {
   describe('Rate limiting test for unprotected endpoints', () => {
     test('should handle rate limiting on production domain', () => {
       // Mock rate limiting test
-      const endpoint = 'https://onboarding.burando.online/api/test';
+      const endpoint = 'https://maritime-onboarding.example.com/api/test';
       const requests = [];
       
       // Simulate multiple requests

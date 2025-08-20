@@ -126,8 +126,8 @@ const CrewDashboard = () => {
 
   if (error) {
     return (
-      <div className="burando-card">
-        <div className="burando-card-body">
+      <div className="maritime-card">
+        <div className="maritime-card-body">
           <div className="text-center py-8">
             <p className="text-red-600 mb-2">Failed to load dashboard data</p>
             <p className="text-gray-600 text-sm">Please try refreshing the page</p>

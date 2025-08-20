@@ -143,7 +143,7 @@ function ErrorFallback({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-burando-deep-blue via-burando-navy to-burando-dark-blue flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-maritime-deep-blue via-maritime-navy to-maritime-dark-blue flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-xl p-6 text-center">
         {/* Error Icon */}
         <div className="flex justify-center mb-4">
@@ -170,7 +170,7 @@ function ErrorFallback({
               onClick={action.action}
               className={`w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                 action.primary
-                  ? 'bg-burando-light-green text-white hover:bg-burando-green'
+                  ? 'bg-maritime-light-green text-white hover:bg-maritime-green'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
@@ -185,7 +185,7 @@ function ErrorFallback({
           <p className="text-sm text-gray-500 mb-2">
             {t('errors:help.still_stuck')}
           </p>
-          <div className="flex items-center justify-center space-x-2 text-sm text-burando-blue">
+          <div className="flex items-center justify-center space-x-2 text-sm text-maritime-blue">
             <Mail className="w-4 h-4" />
             <span>{t('errors:help.contact_info')}</span>
           </div>

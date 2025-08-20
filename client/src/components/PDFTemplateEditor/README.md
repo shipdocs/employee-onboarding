@@ -4,20 +4,20 @@ A comprehensive PDF template editor for creating professional documents with dra
 
 ## Features
 
-### ✨ **Core Functionality**
+### ✨ Core Functionality
 - **Visual Drag & Drop Editor**: Intuitive canvas-based editing
 - **Perfect Field Alignment**: Grid snap and smart alignment guides
 - **Multiple Field Types**: Text, Number, Date, Checkbox, Signature, Image, QR Code, Barcode
 - **Real-time Preview**: Live preview with sample data
 - **Undo/Redo**: Full history management
 
-### 📄 **Import/Export**
+### 📄 Import/Export
 - **PDF Import**: Import existing PDFs as background templates
 - **Image Import**: Use images as template backgrounds
 - **Template Export**: Export templates as JSON files
 - **Template Import**: Import previously exported templates
 
-### 🎯 **Smart Features**
+### 🎯 Smart Features
 - **Data Binding**: Connect fields to data sources
 - **Field Suggestions**: Auto-suggest fields from onboarding flow
 - **Property Panel**: Comprehensive field customization

@@ -1,7 +1,7 @@
 // Service Worker for Maritime Onboarding - Offline Connectivity Phase 1
 // Provides critical offline functionality for ships with poor connectivity
 
-const CACHE_NAME = 'burando-maritime-v1.0.0';
+const CACHE_NAME = 'maritime-onboarding-v1.0.0';
 const CACHE_VERSION = '1.0.0';
 
 // Critical resources that must be cached for offline functionality
@@ -9,7 +9,7 @@ const CRITICAL_RESOURCES = [
   '/',
   '/manifest.json',
   '/favicon.ico',
-  '/burando-logo-white.svg',
+  '/maritime-logo-white.svg',
   '/offline.html'
 ];
 

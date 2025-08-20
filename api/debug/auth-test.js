@@ -18,8 +18,8 @@ async function handler(req, res) {
   // Additional check using X-Forwarded-Host for proxy scenarios
   const forwardedHost = req.headers['x-forwarded-host'] || '';
   const host = req.headers.host || '';
-  if (host.includes('burando.online') || host.includes('vercel.app') ||
-      forwardedHost.includes('burando.online') || forwardedHost.includes('vercel.app')) {
+  if (host.includes('maritime-onboarding.example.com') || host.includes('vercel.app') ||
+      forwardedHost.includes('maritime-onboarding.example.com') || forwardedHost.includes('vercel.app')) {
     return res.status(404).json({ error: 'Not found' });
   }
 
