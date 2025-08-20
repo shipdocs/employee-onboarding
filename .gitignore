@@ -28,6 +28,20 @@ secrets/
 *.gpg
 *.asc
 
+# Compliance documentation - sensitive data only
+compliance-docs/evidence/
+compliance-docs/audits/
+compliance-docs/internal/
+# Note: policies and procedures ARE committed
+
+# Security scan results
+security-reports/
+vulnerability-reports/
+*.sarif
+sbom*.json
+sbom*.xml
+sbom*.spdx
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
