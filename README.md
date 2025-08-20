@@ -35,7 +35,8 @@ cd maritime-onboarding
 docker-compose up -d
 
 # 3. Access the system
-open http://localhost
+echo "🌊 Maritime Onboarding Platform is ready!"
+echo "📱 Access at: http://localhost"
 ```
 
 **🎉 That's it!** Your system is running with:
