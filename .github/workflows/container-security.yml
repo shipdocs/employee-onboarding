@@ -1,0 +1,459 @@
+name: Container Security Scanning
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'Dockerfile*'
+      - 'docker-compose*.yml'
+      - '.dockerignore'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Dockerfile*'
+      - 'docker-compose*.yml'
+      - '.dockerignore'
+  schedule:
+    # Daily container security scans at 3 AM UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      scan-type:
+        description: 'Type of container scan'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - quick
+          - base-images-only
+
+env:
+  NODE_VERSION: '20.x'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # ===========================================
+  # BUILD CONTAINER IMAGES
+  # ===========================================
+  build-images:
+    name: Build Container Images
+    runs-on: ubuntu-latest
+    outputs:
+      backend-image: ${{ steps.backend.outputs.image }}
+      frontend-image: ${{ steps.frontend.outputs.image }}
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Backend Image
+        id: backend
+        run: |
+          IMAGE_TAG="${REGISTRY}/${IMAGE_NAME}/backend:${{ github.sha }}"
+          docker build -f Dockerfile.backend -t "$IMAGE_TAG" .
+          echo "image=$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "✅ Backend image built: $IMAGE_TAG"
+
+      - name: Build Frontend Image
+        id: frontend
+        run: |
+          IMAGE_TAG="${REGISTRY}/${IMAGE_NAME}/frontend:${{ github.sha }}"
+          docker build -f Dockerfile.frontend -t "$IMAGE_TAG" .
+          echo "image=$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "✅ Frontend image built: $IMAGE_TAG"
+
+      - name: Save Images for Scanning
+        run: |
+          mkdir -p /tmp/images
+          docker save "${{ steps.backend.outputs.image }}" > /tmp/images/backend.tar
+          docker save "${{ steps.frontend.outputs.image }}" > /tmp/images/frontend.tar
+
+      - name: Upload Images
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-images-${{ github.run_id }}
+          path: /tmp/images/
+          retention-days: 1
+
+  # ===========================================
+  # CONTAINER VULNERABILITY SCANNING
+  # ===========================================
+  vulnerability-scan:
+    name: Container Vulnerability Scanning
+    runs-on: ubuntu-latest
+    needs: build-images
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Download Images
+        uses: actions/download-artifact@v4
+        with:
+          name: container-images-${{ github.run_id }}
+          path: /tmp/images/
+
+      - name: Load Images
+        run: |
+          docker load < /tmp/images/backend.tar
+          docker load < /tmp/images/frontend.tar
+
+      - name: Install Trivy
+        run: |
+          sudo apt-get update
+          sudo apt-get install wget apt-transport-https gnupg lsb-release
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo "deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy
+
+      - name: Scan Backend Image
+        id: backend-scan
+        run: |
+          echo "🔍 Scanning backend image for vulnerabilities..."
+          
+          # Scan for critical and high vulnerabilities
+          trivy image --format json --output backend-scan-results.json "${{ needs.build-images.outputs.backend-image }}"
+          
+          # Check for critical vulnerabilities
+          CRITICAL_COUNT=$(cat backend-scan-results.json | jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "CRITICAL")] | length')
+          HIGH_COUNT=$(cat backend-scan-results.json | jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "HIGH")] | length')
+          
+          echo "Backend - Critical: $CRITICAL_COUNT, High: $HIGH_COUNT"
+          echo "backend-critical=$CRITICAL_COUNT" >> $GITHUB_OUTPUT
+          echo "backend-high=$HIGH_COUNT" >> $GITHUB_OUTPUT
+          
+          # Generate human-readable report
+          trivy image --format table "${{ needs.build-images.outputs.backend-image }}" > backend-scan-report.txt
+          
+          if [ $CRITICAL_COUNT -gt 0 ]; then
+            echo "❌ CRITICAL vulnerabilities found in backend image!"
+            echo "This violates NIS2 vulnerability management requirements."
+          else
+            echo "✅ No critical vulnerabilities in backend image"
+          fi
+
+      - name: Scan Frontend Image
+        id: frontend-scan
+        run: |
+          echo "🔍 Scanning frontend image for vulnerabilities..."
+          
+          # Scan for critical and high vulnerabilities
+          trivy image --format json --output frontend-scan-results.json "${{ needs.build-images.outputs.frontend-image }}"
+          
+          # Check for critical vulnerabilities
+          CRITICAL_COUNT=$(cat frontend-scan-results.json | jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "CRITICAL")] | length')
+          HIGH_COUNT=$(cat frontend-scan-results.json | jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "HIGH")] | length')
+          
+          echo "Frontend - Critical: $CRITICAL_COUNT, High: $HIGH_COUNT"
+          echo "frontend-critical=$CRITICAL_COUNT" >> $GITHUB_OUTPUT
+          echo "frontend-high=$HIGH_COUNT" >> $GITHUB_OUTPUT
+          
+          # Generate human-readable report
+          trivy image --format table "${{ needs.build-images.outputs.frontend-image }}" > frontend-scan-report.txt
+          
+          if [ $CRITICAL_COUNT -gt 0 ]; then
+            echo "❌ CRITICAL vulnerabilities found in frontend image!"
+            echo "This violates NIS2 vulnerability management requirements."
+          else
+            echo "✅ No critical vulnerabilities in frontend image"
+          fi
+
+      - name: Scan Base Images
+        run: |
+          echo "🔍 Scanning base images..."
+          
+          # Scan Node.js base image
+          trivy image --format json --output node-base-scan.json node:20-alpine
+          
+          # Scan Nginx base image
+          trivy image --format json --output nginx-base-scan.json nginx:alpine
+          
+          # Scan PostgreSQL base image
+          trivy image --format json --output postgres-base-scan.json postgres:15-alpine
+          
+          echo "✅ Base image scans completed"
+
+      - name: Generate Container Security Report
+        run: |
+          echo "📋 Generating container security report..."
+          
+          cat > container-security-report.md << 'EOF'
+          # Container Security Scan Report
+          
+          **Generated**: $(date -u)
+          **Repository**: ${{ github.repository }}
+          **Commit**: ${{ github.sha }}
+          **Backend Image**: ${{ needs.build-images.outputs.backend-image }}
+          **Frontend Image**: ${{ needs.build-images.outputs.frontend-image }}
+          
+          ## Vulnerability Summary
+          
+          | Image | Critical | High | Status |
+          |-------|----------|------|--------|
+          | Backend | ${{ steps.backend-scan.outputs.backend-critical }} | ${{ steps.backend-scan.outputs.backend-high }} | ${{ steps.backend-scan.outputs.backend-critical == '0' && '✅ PASS' || '❌ FAIL' }} |
+          | Frontend | ${{ steps.frontend-scan.outputs.frontend-critical }} | ${{ steps.frontend-scan.outputs.frontend-high }} | ${{ steps.frontend-scan.outputs.frontend-critical == '0' && '✅ PASS' || '❌ FAIL' }} |
+          
+          ## Compliance Status
+          
+          **NIS2 Article 21 Vulnerability Management**: ${{ (steps.backend-scan.outputs.backend-critical == '0' && steps.frontend-scan.outputs.frontend-critical == '0') && '✅ COMPLIANT' || '❌ NON-COMPLIANT' }}
+          
+          Critical vulnerabilities must be resolved before deployment to maintain NIS2 compliance.
+          
+          ## Recommendations
+          
+          1. Update base images to latest security patches
+          2. Review and update vulnerable dependencies
+          3. Implement automated vulnerability monitoring
+          4. Regular security scanning in CI/CD pipeline
+          
+          ## Scan Details
+          
+          Detailed scan results are available in the artifacts:
+          - backend-scan-results.json
+          - frontend-scan-results.json
+          - backend-scan-report.txt
+          - frontend-scan-report.txt
+          
+          ---
+          
+          **Next Scan**: $(date -d "+1 day" +%Y-%m-%d)
+          **Responsible**: ShipDocs Security Team
+          **Contact**: security@shipdocs.app
+          EOF
+
+      - name: Upload Scan Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-security-scans-${{ github.run_id }}
+          path: |
+            *-scan-results.json
+            *-scan-report.txt
+            container-security-report.md
+          retention-days: 90
+
+      - name: Check Vulnerability Thresholds
+        run: |
+          BACKEND_CRITICAL=${{ steps.backend-scan.outputs.backend-critical }}
+          FRONTEND_CRITICAL=${{ steps.frontend-scan.outputs.frontend-critical }}
+          TOTAL_CRITICAL=$((BACKEND_CRITICAL + FRONTEND_CRITICAL))
+          
+          echo "Total critical vulnerabilities: $TOTAL_CRITICAL"
+          
+          if [ $TOTAL_CRITICAL -gt 0 ]; then
+            echo "❌ CONTAINER SECURITY GATE FAILED"
+            echo "Critical vulnerabilities detected in container images."
+            echo "This violates NIS2 Article 21 vulnerability management requirements."
+            echo "Deployment is BLOCKED until vulnerabilities are resolved."
+            exit 1
+          else
+            echo "✅ CONTAINER SECURITY GATE PASSED"
+            echo "No critical vulnerabilities detected in container images."
+          fi
+
+  # ===========================================
+  # DOCKER CONFIGURATION SECURITY
+  # ===========================================
+  docker-config-security:
+    name: Docker Configuration Security
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Install Docker Bench Security
+        run: |
+          git clone https://github.com/docker/docker-bench-security.git
+          cd docker-bench-security
+
+      - name: Analyze Dockerfile Security
+        run: |
+          echo "🔍 Analyzing Dockerfile security..."
+          
+          mkdir -p docker-security-analysis
+          
+          # Check Dockerfile.backend
+          if [ -f "Dockerfile.backend" ]; then
+            echo "## Backend Dockerfile Security Analysis" > docker-security-analysis/dockerfile-analysis.md
+            echo "" >> docker-security-analysis/dockerfile-analysis.md
+            
+            # Check for security best practices
+            echo "### Security Checks" >> docker-security-analysis/dockerfile-analysis.md
+            
+            if grep -q "USER" Dockerfile.backend; then
+              echo "- ✅ Non-root user specified" >> docker-security-analysis/dockerfile-analysis.md
+            else
+              echo "- ❌ No non-root user specified" >> docker-security-analysis/dockerfile-analysis.md
+            fi
+            
+            if grep -q "COPY.*--chown" Dockerfile.backend; then
+              echo "- ✅ File ownership properly set" >> docker-security-analysis/dockerfile-analysis.md
+            else
+              echo "- ⚠️ Consider setting file ownership explicitly" >> docker-security-analysis/dockerfile-analysis.md
+            fi
+            
+            if grep -q "HEALTHCHECK" Dockerfile.backend; then
+              echo "- ✅ Health check configured" >> docker-security-analysis/dockerfile-analysis.md
+            else
+              echo "- ⚠️ No health check configured" >> docker-security-analysis/dockerfile-analysis.md
+            fi
+          fi
+          
+          # Check Dockerfile.frontend
+          if [ -f "Dockerfile.frontend" ]; then
+            echo "" >> docker-security-analysis/dockerfile-analysis.md
+            echo "## Frontend Dockerfile Security Analysis" >> docker-security-analysis/dockerfile-analysis.md
+            echo "" >> docker-security-analysis/dockerfile-analysis.md
+            
+            echo "### Security Checks" >> docker-security-analysis/dockerfile-analysis.md
+            
+            if grep -q "USER" Dockerfile.frontend; then
+              echo "- ✅ Non-root user specified" >> docker-security-analysis/dockerfile-analysis.md
+            else
+              echo "- ❌ No non-root user specified" >> docker-security-analysis/dockerfile-analysis.md
+            fi
+            
+            if grep -q "nginx" Dockerfile.frontend; then
+              echo "- ✅ Using nginx (secure web server)" >> docker-security-analysis/dockerfile-analysis.md
+            fi
+          fi
+
+      - name: Analyze Docker Compose Security
+        run: |
+          echo "🔍 Analyzing Docker Compose security..."
+          
+          if [ -f "docker-compose.yml" ]; then
+            echo "## Docker Compose Security Analysis" >> docker-security-analysis/compose-analysis.md
+            echo "" >> docker-security-analysis/compose-analysis.md
+            
+            # Check for security configurations
+            echo "### Security Checks" >> docker-security-analysis/compose-analysis.md
+            
+            if grep -q "restart:" docker-compose.yml; then
+              echo "- ✅ Restart policies configured" >> docker-security-analysis/compose-analysis.md
+            fi
+            
+            if grep -q "networks:" docker-compose.yml; then
+              echo "- ✅ Custom networks configured" >> docker-security-analysis/compose-analysis.md
+            else
+              echo "- ⚠️ Consider using custom networks for isolation" >> docker-security-analysis/compose-analysis.md
+            fi
+            
+            if grep -q "healthcheck:" docker-compose.yml; then
+              echo "- ✅ Health checks configured" >> docker-security-analysis/compose-analysis.md
+            else
+              echo "- ⚠️ Consider adding health checks" >> docker-security-analysis/compose-analysis.md
+            fi
+            
+            # Check for exposed secrets
+            if grep -E "(password|secret|key).*=" docker-compose.yml | grep -v "\${"; then
+              echo "- ❌ Hardcoded secrets detected" >> docker-security-analysis/compose-analysis.md
+            else
+              echo "- ✅ No hardcoded secrets detected" >> docker-security-analysis/compose-analysis.md
+            fi
+          fi
+
+      - name: Generate Docker Security Summary
+        run: |
+          echo "📊 Generating Docker security summary..."
+          
+          cat > docker-security-analysis/security-summary.md << 'EOF'
+          # Docker Security Summary
+          
+          **Generated**: $(date -u)
+          **Repository**: ${{ github.repository }}
+          **Commit**: ${{ github.sha }}
+          
+          ## Security Analysis Results
+          
+          This analysis covers Docker configuration security best practices and compliance with container security standards.
+          
+          ### Files Analyzed
+          - Dockerfile.backend
+          - Dockerfile.frontend  
+          - docker-compose.yml
+          
+          ### Compliance Standards
+          - NIS2 Article 21 (Network and Information Security)
+          - ISO 27001 A.14.2 (Security in development and support processes)
+          - CIS Docker Benchmark
+          
+          ### Recommendations
+          1. Ensure all containers run as non-root users
+          2. Implement proper health checks
+          3. Use custom networks for service isolation
+          4. Avoid hardcoded secrets in configurations
+          5. Regular base image updates
+          6. Implement resource limits
+          
+          ---
+          
+          **Next Review**: $(date -d "+1 week" +%Y-%m-%d)
+          **Responsible**: ShipDocs Security Team
+          EOF
+
+      - name: Upload Docker Security Analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-security-analysis-${{ github.run_id }}
+          path: docker-security-analysis/
+          retention-days: 90
+
+  # ===========================================
+  # CONTAINER SECURITY GATE
+  # ===========================================
+  container-security-gate:
+    name: Container Security Gate
+    runs-on: ubuntu-latest
+    needs: [vulnerability-scan, docker-config-security]
+    if: always()
+    
+    steps:
+      - name: Evaluate Container Security Gate
+        run: |
+          echo "🔒 Evaluating Container Security Gate..."
+          
+          VULN_SCAN_RESULT="${{ needs.vulnerability-scan.result }}"
+          CONFIG_SCAN_RESULT="${{ needs.docker-config-security.result }}"
+          
+          echo "Vulnerability Scan Result: $VULN_SCAN_RESULT"
+          echo "Configuration Scan Result: $CONFIG_SCAN_RESULT"
+          
+          if [ "$VULN_SCAN_RESULT" == "success" ] && [ "$CONFIG_SCAN_RESULT" == "success" ]; then
+            echo "✅ CONTAINER SECURITY GATE PASSED"
+            echo "All container security checks passed"
+            echo "Containers are approved for deployment"
+            exit 0
+          else
+            echo "❌ CONTAINER SECURITY GATE FAILED"
+            echo "Container security issues detected"
+            echo "Deployment blocked until issues are resolved"
+            exit 1
+          fi
+
+      - name: Create Container Security Summary
+        if: always()
+        run: |
+          echo "## 🐳 Container Security Gate Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Vulnerability Scan**: ${{ needs.vulnerability-scan.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Configuration Scan**: ${{ needs.docker-config-security.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Overall Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### NIS2 Compliance" >> $GITHUB_STEP_SUMMARY
+          echo "Container security scanning is required under NIS2 Article 21 for vulnerability management." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "- ✅ Containers approved for deployment" >> $GITHUB_STEP_SUMMARY
+            echo "- Continue with deployment pipeline" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ Resolve container security issues" >> $GITHUB_STEP_SUMMARY
+            echo "- Re-run security scans after fixes" >> $GITHUB_STEP_SUMMARY
+          fi

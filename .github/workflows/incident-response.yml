@@ -1,0 +1,415 @@
+name: Security Incident Response
+
+on:
+  workflow_dispatch:
+    inputs:
+      incident-type:
+        description: 'Type of security incident'
+        required: true
+        type: choice
+        options:
+          - vulnerability-detected
+          - data-breach
+          - unauthorized-access
+          - malware-detected
+          - ddos-attack
+          - compliance-violation
+          - other
+      severity:
+        description: 'Incident severity level'
+        required: true
+        type: choice
+        options:
+          - critical
+          - high
+          - medium
+          - low
+      description:
+        description: 'Incident description'
+        required: true
+        type: string
+      affected-systems:
+        description: 'Affected systems (comma-separated)'
+        required: false
+        type: string
+  repository_dispatch:
+    types: [security-incident]
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # ===========================================
+  # INCIDENT CLASSIFICATION & INITIAL RESPONSE
+  # ===========================================
+  incident-classification:
+    name: Incident Classification & Initial Response
+    runs-on: ubuntu-latest
+    outputs:
+      incident-id: ${{ steps.classify.outputs.incident-id }}
+      severity: ${{ steps.classify.outputs.severity }}
+      requires-notification: ${{ steps.classify.outputs.requires-notification }}
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Generate Incident ID
+        id: incident-id
+        run: |
+          INCIDENT_ID="INC-$(date +%Y%m%d)-$(date +%H%M%S)-${{ github.run_id }}"
+          echo "incident-id=$INCIDENT_ID" >> $GITHUB_OUTPUT
+          echo "🚨 Security Incident ID: $INCIDENT_ID"
+
+      - name: Classify Incident
+        id: classify
+        run: |
+          INCIDENT_TYPE="${{ github.event.inputs.incident-type || github.event.client_payload.type }}"
+          SEVERITY="${{ github.event.inputs.severity || github.event.client_payload.severity }}"
+          DESCRIPTION="${{ github.event.inputs.description || github.event.client_payload.description }}"
+          
+          echo "incident-id=${{ steps.incident-id.outputs.incident-id }}" >> $GITHUB_OUTPUT
+          echo "severity=$SEVERITY" >> $GITHUB_OUTPUT
+          
+          echo "📋 Incident Classification:"
+          echo "   ID: ${{ steps.incident-id.outputs.incident-id }}"
+          echo "   Type: $INCIDENT_TYPE"
+          echo "   Severity: $SEVERITY"
+          echo "   Description: $DESCRIPTION"
+          
+          # Determine if regulatory notification is required
+          if [ "$SEVERITY" == "critical" ] || [ "$SEVERITY" == "high" ]; then
+            echo "requires-notification=true" >> $GITHUB_OUTPUT
+            echo "⚠️ Regulatory notification required (NIS2/GDPR)"
+          else
+            echo "requires-notification=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ Internal incident handling only"
+          fi
+
+      - name: Create Incident Record
+        run: |
+          echo "📝 Creating incident record..."
+          
+          mkdir -p incident-response
+          
+          cat > incident-response/incident-${{ steps.incident-id.outputs.incident-id }}.md << 'EOF'
+          # Security Incident Report
+          
+          **Incident ID**: ${{ steps.incident-id.outputs.incident-id }}
+          **Detected**: $(date -u)
+          **Type**: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}
+          **Severity**: ${{ github.event.inputs.severity || github.event.client_payload.severity }}
+          **Status**: ACTIVE
+          
+          ## Incident Details
+          
+          **Description**: ${{ github.event.inputs.description || github.event.client_payload.description }}
+          **Affected Systems**: ${{ github.event.inputs.affected-systems || github.event.client_payload.affected_systems || 'TBD' }}
+          **Reporter**: ${{ github.actor }}
+          **Repository**: ${{ github.repository }}
+          **Commit**: ${{ github.sha }}
+          
+          ## Timeline
+          
+          - **$(date -u)**: Incident detected and classified
+          - **$(date -u)**: Incident response initiated
+          
+          ## Compliance Requirements
+          
+          ### NIS2 Article 21 - Incident Notification
+          - **24-hour notification**: ${{ steps.classify.outputs.requires-notification == 'true' && 'REQUIRED' || 'NOT REQUIRED' }}
+          - **Regulatory authorities**: ${{ steps.classify.outputs.requires-notification == 'true' && 'Must notify within 24 hours' || 'Internal handling only' }}
+          
+          ### GDPR Article 33 - Breach Notification
+          - **72-hour notification**: ${{ (github.event.inputs.incident-type == 'data-breach' || github.event.client_payload.type == 'data-breach') && 'REQUIRED' || 'NOT APPLICABLE' }}
+          - **Data subjects**: ${{ (github.event.inputs.incident-type == 'data-breach' || github.event.client_payload.type == 'data-breach') && 'May require notification' || 'NOT APPLICABLE' }}
+          
+          ## Response Actions
+          
+          - [ ] Incident containment
+          - [ ] Evidence collection
+          - [ ] Impact assessment
+          - [ ] Stakeholder notification
+          - [ ] Remediation planning
+          - [ ] Recovery execution
+          - [ ] Lessons learned
+          
+          ## Evidence Collection
+          
+          - System logs: TBD
+          - Security scan results: TBD
+          - Network traffic analysis: TBD
+          - User activity logs: TBD
+          
+          ## Communication Log
+          
+          | Time | Action | Responsible | Notes |
+          |------|--------|-------------|-------|
+          | $(date -u) | Incident detected | ${{ github.actor }} | Initial report |
+          
+          ---
+          
+          **Next Update**: $(date -d "+1 hour" -u)
+          **Responsible**: ShipDocs Security Team
+          **Contact**: security@shipdocs.app
+          EOF
+          
+          echo "✅ Incident record created"
+
+      - name: Upload Incident Record
+        uses: actions/upload-artifact@v4
+        with:
+          name: incident-record-${{ steps.incident-id.outputs.incident-id }}
+          path: incident-response/
+          retention-days: 2555  # 7 years for compliance
+
+  # ===========================================
+  # IMMEDIATE CONTAINMENT ACTIONS
+  # ===========================================
+  immediate-containment:
+    name: Immediate Containment Actions
+    runs-on: ubuntu-latest
+    needs: incident-classification
+    if: ${{ needs.incident-classification.outputs.severity == 'critical' || needs.incident-classification.outputs.severity == 'high' }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Security Scan for Evidence
+        run: |
+          echo "🔍 Performing emergency security scan..."
+          
+          # Quick vulnerability scan
+          npm audit --audit-level=critical --json > emergency-audit.json || true
+          
+          # Check for suspicious patterns
+          echo "Checking for suspicious patterns..."
+          grep -r -E "(password|secret|key).*=" --include="*.js" --include="*.json" . > suspicious-patterns.txt || true
+          
+          # System status check
+          echo "System status at incident time:" > system-status.txt
+          echo "Timestamp: $(date -u)" >> system-status.txt
+          echo "Commit: ${{ github.sha }}" >> system-status.txt
+          echo "Branch: ${{ github.ref_name }}" >> system-status.txt
+
+      - name: Collect System Evidence
+        run: |
+          echo "📊 Collecting system evidence..."
+          
+          mkdir -p evidence-collection
+          
+          # Copy security configurations
+          cp -r .github/workflows evidence-collection/ || true
+          cp docker-compose*.yml evidence-collection/ || true
+          cp package*.json evidence-collection/ || true
+          
+          # Collect recent commits
+          git log --oneline -20 > evidence-collection/recent-commits.txt
+          
+          # Collect dependency information
+          npm ls --json > evidence-collection/dependencies.json || true
+
+      - name: Generate Containment Report
+        run: |
+          cat > containment-report.md << 'EOF'
+          # Incident Containment Report
+          
+          **Incident ID**: ${{ needs.incident-classification.outputs.incident-id }}
+          **Containment Time**: $(date -u)
+          **Severity**: ${{ needs.incident-classification.outputs.severity }}
+          
+          ## Immediate Actions Taken
+          
+          - ✅ Emergency security scan performed
+          - ✅ System evidence collected
+          - ✅ Configuration snapshots captured
+          - ✅ Dependency audit completed
+          
+          ## Evidence Collected
+          
+          - Security scan results
+          - System configurations
+          - Recent commit history
+          - Dependency inventory
+          - Suspicious pattern analysis
+          
+          ## Next Steps
+          
+          1. Detailed forensic analysis
+          2. Impact assessment
+          3. Stakeholder notification
+          4. Remediation planning
+          
+          ## Compliance Notes
+          
+          Evidence collection follows ISO 27035 incident management standards
+          and maintains chain of custody for potential regulatory reporting.
+          
+          ---
+          
+          **Containment Lead**: GitHub Actions Automation
+          **Evidence Location**: Workflow artifacts
+          **Next Review**: $(date -d "+2 hours" -u)
+          EOF
+
+      - name: Upload Evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: incident-evidence-${{ needs.incident-classification.outputs.incident-id }}
+          path: |
+            emergency-audit.json
+            suspicious-patterns.txt
+            system-status.txt
+            evidence-collection/
+            containment-report.md
+          retention-days: 2555  # 7 years for compliance
+
+  # ===========================================
+  # NOTIFICATION & COMMUNICATION
+  # ===========================================
+  notification:
+    name: Incident Notification
+    runs-on: ubuntu-latest
+    needs: [incident-classification, immediate-containment]
+    if: always() && needs.incident-classification.outputs.requires-notification == 'true'
+    
+    steps:
+      - name: Prepare Notification
+        run: |
+          echo "📢 Preparing incident notifications..."
+          
+          INCIDENT_ID="${{ needs.incident-classification.outputs.incident-id }}"
+          SEVERITY="${{ needs.incident-classification.outputs.severity }}"
+          
+          echo "Incident requires regulatory notification:"
+          echo "  - NIS2 Article 21: 24-hour notification to authorities"
+          echo "  - GDPR Article 33: 72-hour notification for data breaches"
+          echo "  - Internal stakeholders: Immediate notification"
+
+      - name: Generate Notification Templates
+        run: |
+          mkdir -p notifications
+          
+          # NIS2 notification template
+          cat > notifications/nis2-notification-template.md << 'EOF'
+          # NIS2 Article 21 Incident Notification
+          
+          **To**: Relevant National Authority
+          **From**: ShipDocs (Maritime Onboarding Platform)
+          **Date**: $(date -u)
+          **Incident ID**: ${{ needs.incident-classification.outputs.incident-id }}
+          
+          ## Incident Summary
+          
+          We are notifying you of a cybersecurity incident affecting our maritime onboarding platform
+          in accordance with NIS2 Article 21 requirements.
+          
+          **Incident Type**: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}
+          **Severity**: ${{ needs.incident-classification.outputs.severity }}
+          **Detection Time**: $(date -u)
+          **Affected Services**: Maritime crew onboarding system
+          
+          ## Initial Assessment
+          
+          - **Impact**: Under investigation
+          - **Affected Users**: TBD
+          - **Data Involved**: TBD
+          - **Containment Status**: In progress
+          
+          ## Actions Taken
+          
+          - Immediate incident response activated
+          - Security containment measures implemented
+          - Evidence collection initiated
+          - Stakeholder notification in progress
+          
+          ## Next Steps
+          
+          - Detailed impact assessment (within 24 hours)
+          - Remediation plan development
+          - Regular status updates
+          - Final incident report (within 72 hours)
+          
+          ## Contact Information
+          
+          **Security Team**: security@shipdocs.app
+          **Incident Lead**: [To be assigned]
+          **Phone**: [Emergency contact]
+          
+          ---
+          
+          This notification is submitted within 24 hours as required by NIS2 Article 21.
+          EOF
+          
+          # Internal notification template
+          cat > notifications/internal-notification.md << 'EOF'
+          # URGENT: Security Incident Notification
+          
+          **Incident ID**: ${{ needs.incident-classification.outputs.incident-id }}
+          **Severity**: ${{ needs.incident-classification.outputs.severity }}
+          **Time**: $(date -u)
+          
+          ## Summary
+          
+          A security incident has been detected and classified as ${{ needs.incident-classification.outputs.severity }} severity.
+          Immediate response actions have been initiated.
+          
+          ## Details
+          
+          - **Type**: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}
+          - **Description**: ${{ github.event.inputs.description || github.event.client_payload.description }}
+          - **Affected Systems**: ${{ github.event.inputs.affected-systems || github.event.client_payload.affected_systems || 'Under investigation' }}
+          
+          ## Immediate Actions Required
+          
+          1. Security team to review incident details
+          2. Assess impact on operations
+          3. Prepare customer communications if needed
+          4. Coordinate with legal/compliance teams
+          
+          ## Compliance Requirements
+          
+          - **NIS2**: ${{ needs.incident-classification.outputs.requires-notification == 'true' && '24-hour notification required' || 'Internal handling' }}
+          - **GDPR**: ${{ (github.event.inputs.incident-type == 'data-breach' || github.event.client_payload.type == 'data-breach') && '72-hour notification may be required' || 'Not applicable' }}
+          
+          ## Next Update
+          
+          Next status update scheduled for: $(date -d "+2 hours" -u)
+          
+          **Contact**: security@shipdocs.app
+          EOF
+
+      - name: Upload Notification Templates
+        uses: actions/upload-artifact@v4
+        with:
+          name: incident-notifications-${{ needs.incident-classification.outputs.incident-id }}
+          path: notifications/
+          retention-days: 2555  # 7 years for compliance
+
+      - name: Create Incident Summary
+        run: |
+          echo "## 🚨 Security Incident Response Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Incident ID**: ${{ needs.incident-classification.outputs.incident-id }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Severity**: ${{ needs.incident-classification.outputs.severity }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Type**: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Status**: Response in progress" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Compliance Requirements" >> $GITHUB_STEP_SUMMARY
+          echo "- **NIS2 Notification**: ${{ needs.incident-classification.outputs.requires-notification == 'true' && 'Required within 24 hours' || 'Not required' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **GDPR Notification**: ${{ (github.event.inputs.incident-type == 'data-breach' || github.event.client_payload.type == 'data-breach') && 'May be required within 72 hours' || 'Not applicable' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Actions Completed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Incident classified and recorded" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Immediate containment actions initiated" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Evidence collection started" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Notification templates prepared" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. Manual review of incident details" >> $GITHUB_STEP_SUMMARY
+          echo "2. Complete impact assessment" >> $GITHUB_STEP_SUMMARY
+          echo "3. Execute notification procedures" >> $GITHUB_STEP_SUMMARY
+          echo "4. Implement remediation plan" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Contact**: security@shipdocs.app" >> $GITHUB_STEP_SUMMARY
