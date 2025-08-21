@@ -1,15 +1,16 @@
 name: Deploy GitHub Pages
 
 on:
-  push:
-    branches: ["main", "master"]
-    paths:
-      - 'docs/**'
-      - 'README.md'
-      - 'QUICK_START.md'
-      - 'INSTALLATION_GUIDE.md'
-      - '.github/workflows/deploy-pages.yml'
-  workflow_dispatch:
+  # Disabled by default - uncomment when ready to use GitHub Pages
+  # push:
+  #   branches: ["main", "master"]
+  #   paths:
+  #     - 'docs/**'
+  #     - 'README.md'
+  #     - 'QUICK_START.md'
+  #     - 'INSTALLATION_GUIDE.md'
+  #     - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:  # Can still be triggered manually
 
 permissions:
   contents: read
