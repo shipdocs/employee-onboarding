@@ -49,6 +49,7 @@ echo "📱 Access at: http://localhost"
 - **🚀 [Installation Guide](docs/installation/README.md)** - Detailed setup instructions
 - **⚙️ [Configuration](docs/configuration/README.md)** - Customize for your fleet
 - **🔐 [Security Setup](docs/security/README.md)** - Production security guide
+- **🛡️ [Security Alerts](docs/user-security-guide.md)** - Security monitoring system
 - **👥 [User Guide](docs/user-guide/README.md)** - How to use the system
 - **🔧 [API Reference](docs/api/README.md)** - Integration documentation
 
@@ -331,6 +332,9 @@ GET /api/crew/{id}/progress
 - **⚙️ [Admin Guide](docs/admin-guide/)** - System administration
 - **🔧 [Developer Guide](docs/developer-guide/)** - Customization and development
 - **🚀 [Deployment Guide](docs/deployment/)** - Production deployment options
+- **🛡️ [Security Alert System](docs/user-security-guide.md)** - User security guide
+- **👑 [Security Configuration](docs/admin-security-config-guide.md)** - Admin security setup
+- **🔧 [Security API Guide](docs/developer-security-api-guide.md)** - Developer security integration
 
 ### **🆘 Support Options**
 
