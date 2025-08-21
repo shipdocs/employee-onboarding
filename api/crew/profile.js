@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/profile.js
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const unifiedEmailService = require('../../lib/unifiedEmailService');
 const { createAPIHandler, createError, createValidationError, createDatabaseError, createNotFoundError } = require('../../lib/apiHandler');

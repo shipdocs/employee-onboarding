@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-alert.js - Send alert email
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailTemplateGenerator } = require('../../lib/emailTemplateGenerator');
@@ -52,11 +52,11 @@ async function handler(req, res) {
       severity: severity
     });
 
-  } catch (_error) {
-    // console.error('📧 [ERROR] Failed to send alert email:', _error);
+  } catch (error) {
+    // console.error('📧 [ERROR] Failed to send alert email:', error);
     res.status(500).json({
       error: 'Failed to send alert email',
-      details: _error.message
+      details: error.message
     });
   }
 }

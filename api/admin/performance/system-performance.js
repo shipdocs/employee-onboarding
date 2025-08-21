@@ -3,7 +3,7 @@
  * Provides performance environment performance analytics
  */
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAdmin } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -59,11 +59,11 @@ async function handler(req, res) {
       generatedAt: new Date().toISOString()
     });
 
-  } catch (_error) {
-    // console.error('Error in performance performance metrics API:', _error);
+  } catch (error) {
+    // console.error('Error in performance performance metrics API:', error);
     res.status(500).json({
       error: 'Internal server error',
-      message: _error.message
+      message: error.message
     });
   }
 }
@@ -138,8 +138,8 @@ async function getMaritimeMetrics(startTime, filters = {}) {
       rawMetrics: metrics
     };
 
-  } catch (_error) {
-    // console.error('Error getting performance metrics:', _error);
+  } catch (error) {
+    // console.error('Error getting performance metrics:', error);
     return {};
   }
 }
@@ -199,8 +199,8 @@ async function getTrainingPerformanceByLocation(startTime) {
 
     return locationPerformance;
 
-  } catch (_error) {
-    // console.error('Error getting training performance by location:', _error);
+  } catch (error) {
+    // console.error('Error getting training performance by location:', error);
     return {};
   }
 }
@@ -244,8 +244,8 @@ async function getConnectionQualityAnalysis(startTime) {
 
     return analysis;
 
-  } catch (_error) {
-    // console.error('Error getting connection quality analysis:', _error);
+  } catch (error) {
+    // console.error('Error getting connection quality analysis:', error);
     return {};
   }
 }
@@ -303,8 +303,8 @@ async function getDeviceUsagePatterns(startTime) {
 
     return patterns;
 
-  } catch (_error) {
-    // console.error('Error getting device usage patterns:', _error);
+  } catch (error) {
+    // console.error('Error getting device usage patterns:', error);
     return {};
   }
 }
@@ -375,8 +375,8 @@ async function getVesselSpecificInsights(startTime) {
 
     return vesselInsights;
 
-  } catch (_error) {
-    // console.error('Error getting vessel-specific insights:', _error);
+  } catch (error) {
+    // console.error('Error getting vessel-specific insights:', error);
     return {};
   }
 }

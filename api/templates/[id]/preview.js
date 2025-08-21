@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManagerOrAdmin } = require('../../../lib/auth');
 const { uploadRateLimit } = require('../../../lib/rateLimit');
 
@@ -57,8 +57,8 @@ module.exports = uploadRateLimit(requireManagerOrAdmin(async function handler(re
     };
 
     res.status(200).json(preview);
-  } catch (_error) {
-    // console.error('Error generating template preview:', _error);
+  } catch (error) {
+    // console.error('Error generating template preview:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 }));

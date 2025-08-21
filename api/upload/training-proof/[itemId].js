@@ -1,5 +1,5 @@
 // Vercel API Route: /api/upload/training-proof/[itemId].js
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAuth } = require('../../../lib/auth');
 const { uploadRateLimit } = require('../../../lib/rateLimit');
 const { StorageService } = require('../../../lib/storage');
@@ -148,8 +148,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Upload error:', _error);
+  } catch (error) {
+    // console.error('Upload error:', error);
 
     if (error.code === 'LIMIT_FILE_SIZE') {
       throw createValidationError(`File too large. Maximum file size is ${Math.round((parseInt(process.env.MAX_FILE_SIZE) || 10485760) / 1024 / 1024)}MB`);

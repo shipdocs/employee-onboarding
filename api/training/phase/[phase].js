@@ -1,7 +1,7 @@
 // Vercel API Route: /api/training/phase/[phase].js - Get training phase details
 // This endpoint provides training phase details for crew members
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAuth } = require('../../../lib/auth');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 
@@ -130,8 +130,8 @@ async function handler(req, res) {
 
     res.json(response);
 
-  } catch (_error) {
-    // console.error('Error in training phase endpoint:', _error);
+  } catch (error) {
+    // console.error('Error in training phase endpoint:', error);
     res.status(500).json({ error: 'Failed to fetch training phase details' });
   }
 }

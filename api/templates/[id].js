@@ -1,5 +1,5 @@
 // Vercel API Route: /api/templates/[id].js
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireManagerOrAdmin } = require('../../lib/auth');
 const { v4: uuidv4 } = require('uuid');
 const { adminRateLimit } = require('../../lib/rateLimit');
@@ -30,24 +30,24 @@ async function uploadBackgroundImage(base64Data, userId) {
     }
 
     // Upload to Supabase Storage with upsert enabled to handle conflicts
-    const { data: uploadData, error } = await // TODO: Replace with MinIO storage
-      .from('documents')
-      .upload(filePath, buffer, {
+      // await // TODO: Replace with MinIO storage
+      //       .from('documents')
+  // TODO: Implement storage.upload(filePath, buffer, {
         contentType: 'image/png',
         upsert: true // Allow overwriting existing files
       });
 
     if (error) {
-      // console.error('Storage upload error:', _error);
+      // console.error('Storage upload error:', error);
 
       // Try alternative approach if bucket access fails
-      if (_error.message.includes('Bucket not found') || error.statusCode === '404') {
+      if (error.message.includes('Bucket not found') || error.statusCode === '404') {
 
         // Try uploading with a simpler path
         const simplePath = `${fileName}`;
-        const { data: altUploadData, error: altError } = await // TODO: Replace with MinIO storage
-          .from('documents')
-          .upload(simplePath, buffer, {
+      // await // TODO: Replace with MinIO storage
+      //           .from('documents')
+  // TODO: Implement storage.upload(simplePath, buffer, {
             contentType: 'image/png',
             upsert: true
           });
@@ -58,24 +58,22 @@ async function uploadBackgroundImage(base64Data, userId) {
         }
 
         // Get public URL for alternative path
-        const { data: urlData } = // TODO: Replace with MinIO storage
-          .from('documents')
-          .getPublicUrl(simplePath);
+  // TODO: Implement storage.from('documents')
+  // TODO: Implement storage.getPublicUrl(simplePath);
 
         return urlData.publicUrl;
       }
 
-      throw new Error(`Failed to upload background image: ${_error.message}`);
+      throw new Error(`Failed to upload background image: ${error.message}`);
     }
 
     // Get public URL
-    const { data: urlData } = // TODO: Replace with MinIO storage
-      .from('documents')
-      .getPublicUrl(filePath);
+  // TODO: Implement storage.from('documents')
+  // TODO: Implement storage.getPublicUrl(filePath);
 
     return urlData.publicUrl;
-  } catch (_error) {
-    // console.error('Error uploading background image:', _error);
+  } catch (error) {
+    // console.error('Error uploading background image:', error);
     throw error;
   }
 }
@@ -85,7 +83,6 @@ module.exports = adminRateLimit(requireManagerOrAdmin(async function handler(req
   const { id } = req.query;
 
   if (!id) {
-    const error = createSimpleError('Template ID is required', 400, 'VALIDATION_REQUIRED_FIELD');
     return await handleErrorAndRespond(error, req, res, req.user);
   }
 
@@ -98,9 +95,8 @@ module.exports = adminRateLimit(requireManagerOrAdmin(async function handler(req
       case 'DELETE':
         return await deleteTemplate(req, res, req.user, id);
       default:
-        const error = createSimpleError('Method not allowed', 405, 'VALIDATION_INVALID_METHOD');
         return await handleErrorAndRespond(error, req, res, req.user);
-    }
+    } catch (error) { console.error(error); }
   } catch (error) {
     await handleErrorAndRespond(error, req, res, req.user);
   }
@@ -112,16 +108,13 @@ async function getTemplate(req, res, user, id) {
     const showAllTemplates = req.query.browse === 'true' || user.role === 'manager';
 
     let query = supabase
-      .from('pdf_templates')
+  // TODO: Implement storage.from('pdf_templates')
       .select('*')
       .eq('id', id);
 
     if (!showAllTemplates) {
       query = query.eq('created_by', user.userId);
-    }
-
-    const { data: template, error } = await query.single();
-
+    } catch (error) { console.error(error); }
     if (error || !template) {
       const notFoundError = createSimpleError('Template not found', 404, 'DB_RECORD_NOT_FOUND');
       return await handleErrorAndRespond(notFoundError, req, res, user);
@@ -134,7 +127,7 @@ async function getTemplate(req, res, user, id) {
       // Ensure fields is always an array
       if (!Array.isArray(fields)) {
         fields = [];
-      }
+      } catch (error) { console.error(error); }
     } catch (fieldParseError) {
 
       fields = [];
@@ -184,15 +177,13 @@ async function updateTemplate(req, res, user, id) {
     } = req.body;
 
     // First check if template exists and user owns it
-    const { data: existingTemplate, error: fetchError } = await supabase
-      .from('pdf_templates')
+  // TODO: Implement storage.from('pdf_templates')
       .select('*')
       .eq('id', id)
       .eq('created_by', user.userId)
       .single();
 
     if (fetchError || !existingTemplate) {
-      const notFoundError = createSimpleError('Template not found', 404, 'DB_RECORD_NOT_FOUND');
       return await handleErrorAndRespond(notFoundError, req, res, user);
     }
 
@@ -205,13 +196,11 @@ async function updateTemplate(req, res, user, id) {
     if (name !== undefined && name !== existingTemplate.name) {
       const trimmedName = name.trim();
       if (trimmedName.length === 0) {
-        const error = createSimpleError('Template name cannot be empty', 400, 'VALIDATION_INVALID_FORMAT');
         return await handleErrorAndRespond(error, req, res, user);
       }
 
       // Check for duplicate names
-      const { data: duplicateTemplate } = await supabase
-        .from('pdf_templates')
+  // TODO: Implement storage.from('pdf_templates')
         .select('id')
         .eq('name', trimmedName)
         .eq('created_by', user.userId)
@@ -219,7 +208,6 @@ async function updateTemplate(req, res, user, id) {
         .single();
 
       if (duplicateTemplate) {
-        const error = createSimpleError('A template with this name already exists', 409, 'VALIDATION_DUPLICATE_ENTRY');
         error.details = { conflictingTemplateId: duplicateTemplate.id };
         return await handleErrorAndRespond(error, req, res, user);
       }
@@ -240,7 +228,6 @@ async function updateTemplate(req, res, user, id) {
           updateData.background_image = backgroundImageUrl;
 
         } catch (uploadError) {
-          const error = createSimpleError('Failed to upload background image', 500, 'FILE_UPLOAD_FAILED');
           error.details = { originalError: uploadError.message };
           return await handleErrorAndRespond(error, req, res, user);
         }
@@ -265,9 +252,7 @@ async function updateTemplate(req, res, user, id) {
         version: (existingMetadata.version || 1) + 1
       });
     }
-
-    const { data: template, error } = await supabase
-      .from('pdf_templates')
+  // TODO: Implement storage.from('pdf_templates')
       .update(updateData)
       .eq('id', id)
       .eq('created_by', user.userId)
@@ -275,7 +260,6 @@ async function updateTemplate(req, res, user, id) {
       .single();
 
     if (error) {
-      const dbError = createSimpleError('Failed to update template', 500, 'DB_QUERY_ERROR');
       dbError.details = { originalError: error.message };
       return await handleErrorAndRespond(dbError, req, res, user);
     }
@@ -287,7 +271,7 @@ async function updateTemplate(req, res, user, id) {
       // Ensure fields is always an array
       if (!Array.isArray(responseFields)) {
         responseFields = [];
-      }
+      } catch (error) { console.error(error); }
     } catch (fieldParseError) {
 
       responseFields = [];
@@ -301,7 +285,6 @@ async function updateTemplate(req, res, user, id) {
       responseMetadata = {};
     }
 
-    const responseTemplate = {
       id: template.id,
       name: template.name,
       description: template.description,
@@ -319,28 +302,24 @@ async function updateTemplate(req, res, user, id) {
 
     return res.json(responseTemplate);
   } catch (error) {
-    const dbError = createSimpleError('Failed to update template', 500, 'DB_QUERY_ERROR');
     return await handleErrorAndRespond(dbError, req, res, user);
   }
 }
 
 async function deleteTemplate(req, res, user, id) {
   try {
-    const { error } = await supabase
-      .from('pdf_templates')
+  // TODO: Implement storage.from('pdf_templates')
       .delete()
       .eq('id', id)
       .eq('created_by', user.userId);
 
     if (error) {
-      const dbError = createSimpleError('Failed to delete template', 500, 'DB_QUERY_ERROR');
       dbError.details = { originalError: error.message };
       return await handleErrorAndRespond(dbError, req, res, user);
     }
 
     return res.json({ message: 'Template deleted successfully' });
   } catch (error) {
-    const dbError = createSimpleError('Failed to delete template', 500, 'DB_QUERY_ERROR');
     return await handleErrorAndRespond(dbError, req, res, user);
   }
 }

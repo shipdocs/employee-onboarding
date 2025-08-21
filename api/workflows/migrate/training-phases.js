@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManagerOrAdmin } = require('../../../lib/auth.js');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 
@@ -92,12 +92,12 @@ module.exports = apiRateLimit(requireManagerOrAdmin(async function handler(req, 
           })));
         }
 
-      } catch (_error) {
-        console.error(`Error migrating phase ${phase.id}:`, _error);
+      } catch (error) {
+        console.error(`Error migrating phase ${phase.id}:`, error);
         results.errors.push({
           phase_id: phase.id,
           phase_name: phase.title,
-          error: _error.message
+          error: error.message
         });
       }
     }
@@ -109,8 +109,8 @@ module.exports = apiRateLimit(requireManagerOrAdmin(async function handler(req, 
         : `Migration completed. Created ${results.workflows_created} workflows from ${results.phases_migrated} phases.`
     });
 
-  } catch (_error) {
-    console.error('Critical error in training phase migration:', _error);
+  } catch (error) {
+    console.error('Critical error in training phase migration:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }));
@@ -228,8 +228,8 @@ async function migrateTrainingPhase(phase, dryRun, user) {
 
     return result;
 
-  } catch (_error) {
-    result.error = _error.message;
+  } catch (error) {
+    result.error = error.message;
     return result;
   }
 }

@@ -58,12 +58,12 @@ async function handler(req, res) {
       result: enableResult
     });
 
-  } catch (_error) {
-    console.error('MFA enable debug error:', _error);
+  } catch (error) {
+    console.error('MFA enable debug error:', error);
     return res.status(500).json({
       error: 'Debug failed',
-      message: _error.message,
-      stack: process.env.NODE_ENV === 'development' ? _error.stack : undefined
+      message: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }

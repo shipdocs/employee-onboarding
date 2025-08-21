@@ -1,4 +1,4 @@
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const fs = require('fs');
 const path = require('path');

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/auth/change-password.js
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { verifyJWT } = require('../../lib/auth');
 const bcrypt = require('bcrypt');
 const { validators, validateObject } = require('../../lib/validation');
@@ -33,7 +33,7 @@ function logPasswordChangeEvent(userId, email, ipAddress, userAgent, eventType, 
         });
 
       if (error) {
-        console.error('Failed to log security event:', _error);
+        console.error('Failed to log security event:', error);
       }
     } catch (err) {
       console.error('Security logging error:', err);
@@ -194,7 +194,7 @@ async function handler(req, res) {
         userAgent,
         'password_change_failure',
         false,
-        'database_update_error'
+        'database_updateerror'
       );
       return res.status(500).json({ error: 'Failed to update password' });
     }
@@ -240,7 +240,7 @@ async function handler(req, res) {
       sessionsTerminated: sessionTermination?.terminatedCount || 0
     });
 
-  } catch (_error) {
+  } catch (error) {
     // Re-throw to be handled by API handler
     throw error;
   }

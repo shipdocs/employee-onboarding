@@ -72,11 +72,11 @@ async function handler(req, res) {
       debug: debugInfo
     });
 
-  } catch (_error) {
-    console.error('Debug token error:', _error);
+  } catch (error) {
+    console.error('Debug token error:', error);
     return res.status(500).json({
       error: 'Debug failed',
-      message: _error.message
+      message: error.message
     });
   }
 }

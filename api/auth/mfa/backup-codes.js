@@ -70,18 +70,18 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    console.error('Backup codes regeneration error:', _error);
+  } catch (error) {
+    console.error('Backup codes regeneration error:', error);
 
     // Return appropriate error based on error type
-    if (_error.message.includes('MFA is not enabled')) {
+    if (error.message.includes('MFA is not enabled')) {
       return res.status(503).json({
         error: 'MFA service is not available',
         code: 'MFA_SERVICE_DISABLED'
       });
     }
 
-    if (_error.message.includes('not configured')) {
+    if (error.message.includes('not configured')) {
       return res.status(400).json({
         error: 'MFA is not configured for this user',
         code: 'MFA_NOT_CONFIGURED'

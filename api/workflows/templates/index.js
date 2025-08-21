@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManagerOrAdmin } = require('../../../lib/auth.js');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 

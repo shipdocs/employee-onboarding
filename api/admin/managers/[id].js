@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/managers/[id].js - Admin individual manager management
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { authenticateRequest } = require('../../../lib/auth');
 const { generateMagicToken } = require('../../../lib/auth');
 const bcrypt = require('bcrypt');
@@ -89,8 +89,8 @@ async function getManager(req, res, id) {
       },
       permissions: permissionKeys
     });
-  } catch (_error) {
-    // console.error('Get manager error:', _error);
+  } catch (error) {
+    // console.error('Get manager error:', error);
     res.status(500).json({ error: 'Failed to fetch manager' });
   }
 }
@@ -268,8 +268,8 @@ async function updateManager(req, res, id) {
       },
       message: 'Manager updated successfully'
     });
-  } catch (_error) {
-    // console.error('Update manager error:', _error);
+  } catch (error) {
+    // console.error('Update manager error:', error);
     res.status(500).json({ error: 'Failed to update manager' });
   }
 }
@@ -338,8 +338,8 @@ async function deleteManager(req, res, id) {
     res.json({
       message: 'Manager deleted successfully'
     });
-  } catch (_error) {
-    // console.error('Delete manager error:', _error);
+  } catch (error) {
+    // console.error('Delete manager error:', error);
     res.status(500).json({ error: 'Failed to delete manager' });
   }
 }

@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAdmin } = require('../../../lib/auth');
 const trainingData = require('../../../config/training-data');
 const { apiRateLimit } = require('../../../lib/rateLimit');
@@ -96,8 +96,8 @@ async function handler(req, res) {
       quizzes: insertedQuizzes?.length || 0
     });
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in load-initial-data:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in load-initial-data:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

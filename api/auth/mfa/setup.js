@@ -55,11 +55,11 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    console.error('MFA setup error:', _error);
+  } catch (error) {
+    console.error('MFA setup error:', error);
 
     // Return appropriate error based on error type
-    if (_error.message.includes('encryption key')) {
+    if (error.message.includes('encryption key')) {
       return res.status(500).json({
         error: 'MFA service configuration error',
         code: 'MFA_CONFIG_ERROR'

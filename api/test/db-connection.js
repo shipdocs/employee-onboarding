@@ -1,5 +1,5 @@
 // Test endpoint to check database connection
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { supabase } = require('../../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
@@ -16,10 +16,10 @@ async function handler(req, res) {
       .limit(1);
 
     if (error) {
-      console.error('Database connection error:', _error);
+      console.error('Database connection error:', error);
       return res.status(500).json({
         error: 'Database connection failed',
-        details: _error.message
+        details: error.message
       });
     }
 
@@ -29,11 +29,11 @@ async function handler(req, res) {
       userCount: data ? data.length : 0
     });
 
-  } catch (_error) {
-    console.error('Test endpoint error:', _error);
+  } catch (error) {
+    console.error('Test endpoint error:', error);
     return res.status(500).json({
       error: 'Test failed',
-      details: _error.message
+      details: error.message
     });
   }
 }

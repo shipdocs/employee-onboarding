@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-weekly-report.js - Send weekly progress report to HR
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailTemplateGenerator } = require('../../lib/emailTemplateGenerator');
@@ -48,8 +48,8 @@ async function handler(req, res) {
       recipient: hrEmail
     });
 
-  } catch (_error) {
-    // console.error('Error sending weekly report:', _error);
+  } catch (error) {
+    // console.error('Error sending weekly report:', error);
     res.status(500).json({ error: 'Failed to send weekly report' });
   }
 }

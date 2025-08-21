@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManagerOrAdmin } = require('../../../lib/auth');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 async function handler(req, res) {
@@ -13,7 +13,7 @@ async function handler(req, res) {
         .order('phase_number', { ascending: true });
 
       if (error) {
-        // console.error('❌ [DB] Error fetching training phases:', _error);
+        // console.error('❌ [DB] Error fetching training phases:', error);
         if (error.code === '42P01') {
 
           return res.status(200).json([]);
@@ -26,9 +26,9 @@ async function handler(req, res) {
 
     return res.status(405).json({ error: 'Method not allowed' });
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in phases-simple:', _error);
-    return res.status(500).json({ error: 'Internal server error', details: _error.message });
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in phases-simple:', error);
+    return res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 }
 

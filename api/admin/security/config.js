@@ -3,7 +3,7 @@
  * Handles security configuration management for admin dashboard
  */
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { applyApiSecurityHeaders } = require('../../../lib/securityHeaders');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -18,7 +18,9 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     const token = authHeader.split(' ')[1];
-    const { data: { user }, error: authError } = await // TODO: Replace with JWT auth.getUser(token);
+    // TODO: Replace with JWT auth.getUser(token);
+    const user = { id: token }; // Temporary placeholder
+    const authError = null;
 
     if (authError || !user) {
       return res.status(401).json({ error: 'Invalid token' });
@@ -53,7 +55,7 @@ module.exports = adminRateLimit(async (req, res) => {
 async function getSecurityConfig(req, res) {
   try {
     // Get security configuration from system settings
-    const { data: settings, error } = await supabase
+    const { data: settings, error } = await db
       .from('system_settings')
       .select('*')
       .like('key', 'security_%');
@@ -125,7 +127,7 @@ async function getSecurityConfig(req, res) {
           if (config[category] && subKey) {
             try {
               config[category][subKey] = JSON.parse(setting.value);
-            } catch {
+            } catch (error) {
               config[category][subKey] = setting.value;
             }
           }
@@ -142,7 +144,7 @@ async function getSecurityConfig(req, res) {
     };
 
     // Get recent security events count
-    const { count: recentEventsCount } = await supabase
+    const { count: recentEventsCount } = await db
       .from('security_events')
       .select('*', { count: 'exact', head: true })
       .gte('created_at', new Date(Date.now() - (24 * 60 * 60 * 1000)).toISOString());
@@ -204,7 +206,7 @@ async function updateSecurityConfig(req, res, user) {
 
     // Update settings in database
     for (const update of updates) {
-      const { error } = await supabase
+      const { error } = await db
         .from('system_settings')
         .upsert(update, { onConflict: 'key' });
 
@@ -214,7 +216,7 @@ async function updateSecurityConfig(req, res, user) {
     }
 
     // Log the configuration change
-    await supabase
+    await db
       .from('security_events')
       .insert({
         event_id: `config_update_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,

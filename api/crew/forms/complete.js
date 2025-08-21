@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/forms/complete.js - Complete and distribute Form 05_03a
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAuth } = require('../../../lib/auth');
 const unifiedEmailService = require('../../../lib/unifiedEmailService');
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
@@ -235,11 +235,11 @@ async function handler(req, res) {
       });
     }
 
-  } catch (_error) {
-    // console.error('📋 [ERROR] Form completion failed:', _error);
+  } catch (error) {
+    // console.error('📋 [ERROR] Form completion failed:', error);
     res.status(500).json({
       error: 'Failed to complete form',
-      details: _error.message
+      details: error.message
     });
   }
 }
@@ -307,7 +307,7 @@ async function generatePDFFromTemplate(template, data) {
         height: height
       });
 
-    } catch (_error) {
+    } catch (error) {
 
     }
   }
@@ -319,7 +319,7 @@ async function generatePDFFromTemplate(template, data) {
     try {
 
       await renderField(page, field, data, fontMap, height);
-    } catch (_error) {
+    } catch (error) {
 
     }
   }
@@ -446,7 +446,7 @@ function formatDate(value, format = 'YYYY-MM-DD') {
       default:
         return date.toISOString().split('T')[0];
     }
-  } catch (_error) {
+  } catch (error) {
     return value;
   }
 }

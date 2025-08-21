@@ -1,6 +1,6 @@
 // api/security/rate-limit-dashboard.js - Rate limit monitoring dashboard data
 const { requireAuth } = require('../../lib/auth');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { adminRateLimit } = require('../../lib/rateLimit');
 
 /**

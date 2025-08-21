@@ -1,11 +1,5 @@
-const { supabase } = require('../lib/database-supabase-compat');
+const { db } = require('../../lib/database');
 const { apiRateLimit } = require('../../lib/rateLimit');
-
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
 
 /**
  * Rate limiting for CSP violation reports
@@ -135,8 +129,8 @@ async function logViolation(violation, metadata) {
         created_at: new Date().toISOString()
       });
 
-  } catch (_error) {
-    console.error('Failed to log CSP violation:', _error);
+  } catch (error) {
+    console.error('Failed to log CSP violation:', error);
     // Don't throw error - violation reporting should not break the application
   }
 }
@@ -242,8 +236,8 @@ module.exports = apiRateLimit(async function handler(req, res) {
     // Return success (204 No Content as per CSP spec)
     res.status(204).end();
 
-  } catch (_error) {
-    console.error('CSP violation report error:', _error);
+  } catch (error) {
+    console.error('CSP violation report error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });

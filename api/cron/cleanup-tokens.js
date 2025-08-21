@@ -20,11 +20,11 @@ async function handler(req, res) {
       .rpc('cleanup_expired_blacklisted_tokens');
 
     if (error) {
-      console.error('Error cleaning up tokens:', _error);
+      console.error('Error cleaning up tokens:', error);
       return res.status(500).json({
         success: false,
         error: 'Failed to cleanup tokens',
-        details: _error.message
+        details: error.message
       });
     }
 
@@ -38,12 +38,12 @@ async function handler(req, res) {
       timestamp: new Date().toISOString()
     });
 
-  } catch (_error) {
-    console.error('Token cleanup error:', _error);
+  } catch (error) {
+    console.error('Token cleanup error:', error);
     res.status(500).json({
       success: false,
       error: 'Token cleanup failed',
-      details: _error.message
+      details: error.message
     });
   }
 }

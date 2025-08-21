@@ -78,9 +78,9 @@ async function handleRequest(req, res) {
       created_at: new Date().toISOString()
     };
 
-    // Insert into frontend_errors table
+    // Insert into frontenderrors table
     const { error: insertError } = await supabase
-      .from('frontend_errors')
+      .from('frontenderrors')
       .insert(errorData);
 
     if (insertError) {

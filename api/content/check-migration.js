@@ -35,7 +35,7 @@ async function handler(req, res) {
     }
 
     if (error) {
-      // console.error('❌ [DB] Error checking migration status:', _error);
+      // console.error('❌ [DB] Error checking migration status:', error);
       return res.status(500).json({ error: 'Failed to check migration status' });
     }
 
@@ -44,8 +44,8 @@ async function handler(req, res) {
       message: 'Content management tables are ready'
     });
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in check-migration:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in check-migration:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

@@ -3,7 +3,10 @@
  * Vercel API Route: /api/health/storage
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
+const fs = require('fs').promises;
+const path = require('path');
+const os = require('os');
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -12,47 +15,61 @@ async function handler(req, res) {
 
   const startTime = Date.now();
   const checks = {
-    listBuckets: false,
-    readFile: false,
+    tempDirectory: false,
     writeFile: false,
-    deleteFile: false
+    readFile: false,
+    deleteFile: false,
+    databaseConnection: false
   };
 
   try {
-    // Test 1: List buckets
-    const { data: buckets, error: listError } = await // TODO: Replace with MinIO storage.listBuckets();
-    checks.listBuckets = !listError && Array.isArray(buckets);
+    // Test 1: Check temp directory access
+    const tempDir = os.tmpdir();
+    try {
+      await fs.access(tempDir, fs.constants.W_OK | fs.constants.R_OK);
+      checks.tempDirectory = true;
+    } catch (error) {
+      console.error('Temp directory access failed:', error);
+    }
 
-    if (checks.listBuckets && buckets.length > 0) {
-      const testBucket = buckets[0].name;
+    if (checks.tempDirectory) {
       const testFileName = `health-check-${Date.now()}.txt`;
+      const testFilePath = path.join(tempDir, testFileName);
       const testContent = `Health check at ${new Date().toISOString()}`;
 
       // Test 2: Write file
-      const { error: uploadError } = await // TODO: Replace with MinIO storage
-        .from(testBucket)
-        .upload(testFileName, testContent, {
-          contentType: 'text/plain',
-          cacheControl: '3600'
-        });
-
-      checks.writeFile = !uploadError;
+      try {
+        await fs.writeFile(testFilePath, testContent, 'utf8');
+        checks.writeFile = true;
+      } catch (error) {
+        console.error('Write file failed:', error);
+      }
 
       if (checks.writeFile) {
         // Test 3: Read file
-        const { data: downloadData, error: downloadError } = await // TODO: Replace with MinIO storage
-          .from(testBucket)
-          .download(testFileName);
-
-        checks.readFile = !downloadError && downloadData !== null;
+        try {
+          const readContent = await fs.readFile(testFilePath, 'utf8');
+          checks.readFile = readContent === testContent;
+        } catch (error) {
+          console.error('Read file failed:', error);
+        }
 
         // Test 4: Delete file
-        const { error: deleteError } = await // TODO: Replace with MinIO storage
-          .from(testBucket)
-          .remove([testFileName]);
-
-        checks.deleteFile = !deleteError;
+        try {
+          await fs.unlink(testFilePath);
+          checks.deleteFile = true;
+        } catch (error) {
+          console.error('Delete file failed:', error);
+        }
       }
+    }
+
+    // Test 5: Database connection
+    try {
+      const result = await db.query('SELECT 1 as test');
+      checks.databaseConnection = result.rows && result.rows[0]?.test === 1;
+    } catch (error) {
+      console.error('Database check failed:', error);
     }
 
     const responseTime = Date.now() - startTime;
@@ -64,17 +81,18 @@ async function handler(req, res) {
       responseTime,
       checks,
       details: {
-        bucketsFound: buckets?.length || 0,
-        storageUrl: process.env.SUPABASE_URL ? 'configured' : 'missing'
+        tempDirectory: tempDir,
+        nodeVersion: process.version,
+        platform: process.platform
       }
     });
 
-  } catch (_error) {
-    console.error('Storage health check error:', _error);
+  } catch (error) {
+    console.error('Storage health check error:', error);
     res.status(503).json({
       status: 'unhealthy',
       error: 'Storage check failed',
-      details: _error.message,
+      details: error.message,
       timestamp: new Date().toISOString(),
       responseTime: Date.now() - startTime,
       checks

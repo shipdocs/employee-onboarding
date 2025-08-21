@@ -3,7 +3,7 @@
  * Provides aggregated user feedback analytics
  */
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { authenticateRequest } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -56,11 +56,11 @@ async function handler(req, res) {
       generatedAt: new Date().toISOString()
     });
 
-  } catch (_error) {
-    // console.error('Error in feedback summary API:', _error);
+  } catch (error) {
+    // console.error('Error in feedback summary API:', error);
     res.status(500).json({
       error: 'Internal server error',
-      message: _error.message
+      message: error.message
     });
   }
 }
@@ -137,8 +137,8 @@ async function getFeedbackSummary(startTime, filters = {}) {
       improvementAreas
     };
 
-  } catch (_error) {
-    // console.error('Error getting feedback summary:', _error);
+  } catch (error) {
+    // console.error('Error getting feedback summary:', error);
     return {};
   }
 }
@@ -209,8 +209,8 @@ async function getFeedbackTrends(startTime) {
 
     return Object.values(trends);
 
-  } catch (_error) {
-    // console.error('Error getting feedback trends:', _error);
+  } catch (error) {
+    // console.error('Error getting feedback trends:', error);
     return [];
   }
 }
@@ -277,8 +277,8 @@ async function getContextAnalysis(startTime) {
 
     return contextAnalysis;
 
-  } catch (_error) {
-    // console.error('Error getting context analysis:', _error);
+  } catch (error) {
+    // console.error('Error getting context analysis:', error);
     return {};
   }
 }
@@ -323,8 +323,8 @@ async function getRecentFeedback(startTime, limit = 10) {
       }
     }));
 
-  } catch (_error) {
-    // console.error('Error getting recent feedback:', _error);
+  } catch (error) {
+    // console.error('Error getting recent feedback:', error);
     return [];
   }
 }
@@ -355,8 +355,8 @@ async function getFeedbackAlerts(startTime) {
       created_at: alert.created_at
     }));
 
-  } catch (_error) {
-    // console.error('Error getting feedback alerts:', _error);
+  } catch (error) {
+    // console.error('Error getting feedback alerts:', error);
     return [];
   }
 }
@@ -409,8 +409,8 @@ async function calculateResponseRate(startTime, totalResponses) {
     const uniqueUsers = new Set(activeUsers.map(u => u.user_id)).size;
     return uniqueUsers > 0 ? (totalResponses / uniqueUsers) * 100 : 0;
 
-  } catch (_error) {
-    // console.error('Error calculating response rate:', _error);
+  } catch (error) {
+    // console.error('Error calculating response rate:', error);
     return 0;
   }
 }

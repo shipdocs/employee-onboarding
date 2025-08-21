@@ -57,8 +57,8 @@ module.exports = apiRateLimit(async function handler(req, res) {
     res.setHeader('Cache-Control', `public, max-age=${cacheTime}`);
 
     return res.status(200).json(response);
-  } catch (_error) {
-    console.error('Error getting environment config:', _error);
+  } catch (error) {
+    console.error('Error getting environment config:', error);
     return res.status(500).json({
       error: 'Failed to get environment configuration',
       // Fallback to safe defaults

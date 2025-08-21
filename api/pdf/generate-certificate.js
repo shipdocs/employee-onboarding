@@ -1,6 +1,6 @@
 // Vercel API Route: /api/pdf/generate-certificate.js
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { StorageService } = require('../../lib/storage');
 const { EmailService } = require('../../lib/email');
@@ -266,8 +266,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Certificate generation error:', _error);
+  } catch (error) {
+    // console.error('Certificate generation error:', error);
     res.status(500).json({ error: 'Failed to generate certificate' });
   }
 }

@@ -3,7 +3,7 @@
  * Allows users to request deletion of their personal data (Right to be Forgotten)
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const { applyApiSecurityHeaders } = require('../../lib/securityHeaders');
 const { userRateLimit } = require('../../lib/rateLimit');

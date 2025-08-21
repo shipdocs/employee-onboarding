@@ -1,5 +1,5 @@
 // Vercel API Route: /api/health.js
-const db = require('../lib/database-direct');
+const db = require('../lib/database');
 const { applyApiSecurityHeaders } = require('../lib/securityHeaders');
 
 // Simple in-memory cache for health status (resets on function restart)
@@ -78,8 +78,8 @@ async function handler(req, res) {
 
     res.json(healthResponse);
 
-  } catch (_error) {
-    // console.error('Health check error:', _error);
+  } catch (error) {
+    // console.error('Health check error:', error);
     res.status(500).json({
       status: 'unhealthy',
       error: 'Internal server error',

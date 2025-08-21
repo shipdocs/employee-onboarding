@@ -63,6 +63,8 @@
 const { Pool } = require('pg');
 const jwt = require('jsonwebtoken');
 
+const { db } = require('../../lib/database');
+
 // Create PostgreSQL connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL

@@ -3,7 +3,7 @@
  * Admin interface for managing GDPR data export requests and deletion jobs
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 const fs = require('fs/promises');

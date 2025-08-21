@@ -1,10 +1,6 @@
 const { requireAuth } = require('../../lib/auth.js');
-const { supabase } = require('../lib/database-supabase-compat');
+const { db } = require('../../lib/database');
 const { apiRateLimit } = require('../../lib/rateLimit');
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
 
 async function handler(req, res) {
   try {
@@ -73,10 +69,10 @@ async function handler(req, res) {
       const { data: translations, error, count } = await query;
 
       if (error) {
-        // console.error('❌ [GET] Translation memory fetch failed:', _error);
+        // console.error('❌ [GET] Translation memory fetch failed:', error);
         return res.status(500).json({
           error: 'Failed to fetch translation memory',
-          details: _error.message
+          details: error.message
         });
       }
 
@@ -136,10 +132,10 @@ async function handler(req, res) {
         .single();
 
       if (error) {
-        // console.error('❌ [POST] Translation memory creation failed:', _error);
+        // console.error('❌ [POST] Translation memory creation failed:', error);
         return res.status(500).json({
           error: 'Failed to create translation memory entry',
-          details: _error.message
+          details: error.message
         });
       }
 
@@ -148,11 +144,11 @@ async function handler(req, res) {
 
     return res.status(405).json({ error: 'Method not allowed' });
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Translation memory API error:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Translation memory API error:', error);
     return res.status(500).json({
       error: 'Internal server error',
-      details: _error.message
+      details: error.message
     });
   }
 }

@@ -1,5 +1,5 @@
 // Test admin login without rate limiting to isolate the issue
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { generateJWT } = require('../../lib/auth');
 const bcrypt = require('bcrypt');
 const { apiRateLimit } = require('../../lib/rateLimit');
@@ -96,11 +96,11 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    console.error('Admin login error:', _error);
+  } catch (error) {
+    console.error('Admin login error:', error);
     return res.status(500).json({
       error: 'Login failed',
-      details: _error.message,
+      details: error.message,
       step: 'unknown'
     });
   }

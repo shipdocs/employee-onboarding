@@ -3,7 +3,7 @@
  * Handles user feedback collection with maritime context
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { performanceMonitor } = require('../../lib/performanceMonitoring');
 const { apiRateLimit } = require('../../lib/rateLimit');
@@ -129,18 +129,18 @@ async function handler(req, res) {
 
     // Log successful submission
 
-  } catch (_error) {
-    // console.error('Error in feedback submission:', _error);
+  } catch (error) {
+    // console.error('Error in feedback submission:', error);
 
     // Record error metric
-    performanceMonitor.recordMetric('feedback_submission_error', 1, 'count', {
-      error: _error.message,
+    performanceMonitor.recordMetric('feedback_submissionerror', 1, 'count', {
+      error: error.message,
       context: req.body?.context || 'unknown'
     });
 
     res.status(500).json({
       error: 'Internal server error',
-      message: _error.message
+      message: error.message
     });
   }
 }
@@ -163,8 +163,8 @@ async function processFeedbackInsights(feedback) {
       await flagUrgentFeedback(feedback);
     }
 
-  } catch (_error) {
-    // console.error('Error processing feedback insights:', _error);
+  } catch (error) {
+    // console.error('Error processing feedback insights:', error);
     // Don't fail the main request if insights processing fails
   }
 }
@@ -184,7 +184,7 @@ async function checkNegativeFeedbackPattern(feedback) {
       .order('submitted_at', { ascending: false });
 
     if (error) {
-      // console.error('Error checking negative feedback pattern:', _error);
+      // console.error('Error checking negative feedback pattern:', error);
       return;
     }
 
@@ -203,8 +203,8 @@ async function checkNegativeFeedbackPattern(feedback) {
       });
     }
 
-  } catch (_error) {
-    // console.error('Error in negative feedback pattern check:', _error);
+  } catch (error) {
+    // console.error('Error in negative feedback pattern check:', error);
   }
 }
 
@@ -222,7 +222,7 @@ async function updateContextMetrics(feedback) {
       .gte('submitted_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()); // Last 7 days
 
     if (error) {
-      // console.error('Error fetching context metrics:', _error);
+      // console.error('Error fetching context metrics:', error);
       return;
     }
 
@@ -251,8 +251,8 @@ async function updateContextMetrics(feedback) {
       }
     }
 
-  } catch (_error) {
-    // console.error('Error updating context metrics:', _error);
+  } catch (error) {
+    // console.error('Error updating context metrics:', error);
   }
 }
 
@@ -287,8 +287,8 @@ async function flagUrgentFeedback(feedback) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Error flagging urgent feedback:', _error);
+  } catch (error) {
+    // console.error('Error flagging urgent feedback:', error);
   }
 }
 
@@ -306,11 +306,11 @@ async function createFeedbackAlert(alertData) {
       }]);
 
     if (error) {
-      // console.error('Error creating feedback alert:', _error);
+      // console.error('Error creating feedback alert:', error);
     }
 
-  } catch (_error) {
-    // console.error('Error in createFeedbackAlert:', _error);
+  } catch (error) {
+    // console.error('Error in createFeedbackAlert:', error);
   }
 }
 

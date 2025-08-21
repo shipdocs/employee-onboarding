@@ -1,8 +1,6 @@
-const { supabase } = require('../lib/database-supabase-compat');
+const { db } = require('../../../lib/database');
 const { requireAuth } = require('../../../../../lib/auth.js');
 const { trainingRateLimit } = require('../../../../../lib/rateLimit');
-
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 
 /**
  * Workflow Step Progress API
@@ -188,6 +186,7 @@ module.exports = trainingRateLimit(requireAuth(async function handler(req, res) 
  */
 async function advanceWorkflowIfReady(instanceId, completedStepId) {
   try {
+  try {
     // Get current workflow state
     const { data: instance, error: instanceError } = await supabase
       .from('workflow_instances')
@@ -277,7 +276,7 @@ async function advanceWorkflowIfReady(instanceId, completedStepId) {
       }
     }
 
-  } catch (_error) {
-    console.error('Error advancing workflow:', _error);
+  } catch (error) {
+    console.error('Error advancing workflow:', error);
   }
 }

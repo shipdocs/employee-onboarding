@@ -1,5 +1,5 @@
 // Vercel Cron Job: /api/cron/progress-monitoring.js - Monitor training progress and generate reports
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 module.exports = async function handler(req, res) {;
   // Verify this is a cron request
   if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
@@ -208,8 +208,8 @@ module.exports = async function handler(req, res) {;
         } else {
           // console.error('❌ Failed to send weekly report');
         }
-      } catch (_error) {
-        // console.error('❌ Error sending weekly report:', _error.message);
+      } catch (error) {
+        // console.error('❌ Error sending weekly report:', error.message);
       }
     }
 
@@ -233,8 +233,8 @@ module.exports = async function handler(req, res) {;
             } else {
               // console.error(`❌ Failed to send ${alert.type} alert`);
             }
-          } catch (_error) {
-            // console.error(`❌ Error sending ${alert.type} alert:`, _error.message);
+          } catch (error) {
+            // console.error(`❌ Error sending ${alert.type} alert:`, error.message);
           }
         }
       }
@@ -261,11 +261,11 @@ module.exports = async function handler(req, res) {;
       timestamp: now.toISOString()
     });
 
-  } catch (_error) {
-    // console.error('❌ Progress monitoring job failed:', _error);
+  } catch (error) {
+    // console.error('❌ Progress monitoring job failed:', error);
     res.status(500).json({
       success: false,
-      error: _error.message,
+      error: error.message,
       timestamp: new Date().toISOString()
     });
   }

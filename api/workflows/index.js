@@ -113,22 +113,22 @@ async function handler(req, res) {
         const updatedWorkflow = await workflowService.updateWorkflow(id, updateData);
 
         return res.status(200).json(updatedWorkflow);
-      } catch (_error) {
-        // console.error('❌ [UPDATE] Workflow update failed:', _error);
-        if (_error.message.includes('not found')) {
+      } catch (error) {
+        // console.error('❌ [UPDATE] Workflow update failed:', error);
+        if (error.message.includes('not found')) {
           return res.status(404).json({ error: 'Workflow not found' });
         }
         return res.status(500).json({
           error: 'Failed to update workflow',
-          details: _error.message
+          details: error.message
         });
       }
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in workflows:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in workflows:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

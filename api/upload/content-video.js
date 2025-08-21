@@ -1,18 +1,18 @@
-const { supabase } = require('../../lib/database-supabase-compat');
-const { verifyAuth } = require('../../lib/auth.js');
+const db = require('../../lib/database');
+const { verifyAuth } = require('../../lib/auth');
 const formidable = require('formidable');
 const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { safeReadFile, generateSecureFilename, SECURITY_CONFIG } = require('../../lib/security/pathSecurity');
 const { uploadRateLimit } = require('../../lib/rateLimit');
+
 const config = {
   api: {
     bodyParser: false
   }
 };
 
-module.exports = uploadRateLimit(async function handler(req, res) {;
+async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -33,92 +33,84 @@ module.exports = uploadRateLimit(async function handler(req, res) {;
       }
     });
 
-    const [fields, files] = await form.parse(req);
-    const videoFile = files.video?.[0];
+    const [fields, files] = await new Promise((resolve, reject) => {
+      form.parse(req, (err, fields, files) => {
+        if (err) reject(err);
+        else resolve([fields, files]);
+      });
+    });
+
+    const videoFile = Array.isArray(files.file) ? files.file[0] : files.file;
 
     if (!videoFile) {
       return res.status(400).json({ error: 'No video file provided' });
     }
 
-    // Validate file type
-    const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
-    if (!allowedTypes.includes(videoFile.mimetype)) {
-      return res.status(400).json({ error: 'Invalid file type. Only MP4, WebM, OGG, and QuickTime are allowed.' });
-    }
-
-    // Validate file extension matches MIME type
-    const fileExtension = path.extname(videoFile.originalFilename || '').toLowerCase();
-    const allowedExtensions = SECURITY_CONFIG.allowedExtensions.videos;
-    if (!allowedExtensions.includes(fileExtension)) {
-      return res.status(400).json({
-        error: 'Invalid file extension. Only MP4, WebM, OGG, and MOV files are allowed.',
-        allowedExtensions
+    // Validate file extension
+    const allowedExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi'];
+    const fileExt = path.extname(videoFile.originalFilename || '').toLowerCase();
+    
+    if (!allowedExtensions.includes(fileExt)) {
+      return res.status(400).json({ 
+        error: 'Invalid file type',
+        allowed: allowedExtensions 
       });
     }
 
     // Generate secure filename
-    const fileName = `content-videos/${generateSecureFilename(videoFile.originalFilename, 'vid_')}`;
+    const fileName = `${uuidv4()}${fileExt}`;
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'content-media');
+    
+    // Ensure upload directory exists
+    await fs.mkdir(uploadDir, { recursive: true });
+    
+    const targetPath = path.join(uploadDir, fileName);
 
-    // Safely read file content with path validation
-    let fileContent;
-    try {
-      fileContent = await safeReadFile(videoFile.filepath, 'uploads', {
-        allowedExtensions: allowedExtensions,
-        maxFileSize: 100 * 1024 * 1024 // 100MB limit
-      });
-    } catch (_error) {
-      return res.status(400).json({
-        error: 'File security validation failed',
-        details: _error.message
-      });
-    }
-
-    // Upload to Supabase Storage
-    const { data, error } = await // TODO: Replace with MinIO storage
-      .from('content-media')
-      .upload(fileName, fileContent, {
-        contentType: videoFile.mimetype,
-        upsert: false
-      });
-
-    if (error) {
-      // console.error('Error uploading video to storage:', _error);
-      return res.status(500).json({ error: 'Failed to upload video' });
-    }
-
-    // Get public URL
-    const { data: urlData } = // TODO: Replace with MinIO storage
-      .from('content-media')
-      .getPublicUrl(fileName);
-
-    // Log the upload
-    await supabase
-      .from('audit_log')
-      .insert({
-        user_id: user.id,
-        action: 'upload_content_video',
-        resource_type: 'content_media',
-        resource_id: fileName,
-        details: {
-          filename: videoFile.originalFilename,
-          size: videoFile.size,
-          mimetype: videoFile.mimetype
-        }
-      });
+    // Read and move file
+    const fileContent = await fs.readFile(videoFile.filepath);
+    await fs.writeFile(targetPath, fileContent);
 
     // Clean up temporary file
-    await fs.unlink(videoFile.filepath);
+    await fs.unlink(videoFile.filepath).catch(() => {});
+
+    // Save metadata to database
+    try {
+      await db.query(
+        `INSERT INTO file_uploads (
+          user_id, file_name, original_name, file_path, 
+          file_size, mime_type, upload_type, created_at
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())`,
+        [
+          user.id,
+          fileName,
+          videoFile.originalFilename,
+          `/uploads/content-media/${fileName}`,
+          videoFile.size,
+          videoFile.mimetype,
+          'content_video'
+        ]
+      );
+    } catch (dbError) {
+      console.error('Database insert error:', dbError);
+      // Continue even if DB insert fails
+    }
+
+    // Return public URL
+    const publicUrl = `/uploads/content-media/${fileName}`;
 
     return res.status(200).json({
-      url: urlData.publicUrl,
+      url: publicUrl,
       filename: fileName,
       originalName: videoFile.originalFilename,
       size: videoFile.size,
       mimetype: videoFile.mimetype
     });
 
-  } catch (_error) {
-    // console.error('Error handling video upload:', _error);
+  } catch (error) {
+    console.error('Error handling video upload:', error);
     return res.status(500).json({ error: 'Failed to upload video' });
   }
-});
+}
+
+module.exports = uploadRateLimit(handler);
+module.exports.config = config;

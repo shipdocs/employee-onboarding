@@ -4,9 +4,10 @@
  */
 
 const { requireAuth } = require('../../../../lib/auth');
-const { supabase } = require('../lib/database-supabase-compat');
 const AITranslationService = require('../../../../lib/aiTranslationService');
 const { trainingRateLimit } = require('../../../../lib/rateLimit');
+
+const { db } = require('../../../../lib/database');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -39,7 +40,7 @@ async function loadTranslationSettings() {
     });
 
     return settings;
-  } catch (_error) {
+  } catch (error) {
 
     return null;
   }
@@ -333,11 +334,11 @@ async function handler(req, res) {
 
     return res.status(405).json({ error: 'Method not allowed' });
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Quiz translations API error:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Quiz translations API error:', error);
     return res.status(500).json({
       error: 'Internal server error',
-      details: _error.message
+      details: error.message
     });
   }
 }

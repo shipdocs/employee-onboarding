@@ -37,11 +37,11 @@ module.exports = uploadRateLimit(async function handler(req, res) {
     res.setHeader('Content-Length', pdfBytes.length);
 
     return res.send(Buffer.from(pdfBytes));
-  } catch (_error) {
-    console.error('PDF preview error:', _error);
+  } catch (error) {
+    console.error('PDF preview error:', error);
     return res.status(500).json({
       error: 'Failed to generate PDF preview',
-      details: _error.message,
+      details: error.message,
       stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
@@ -77,7 +77,7 @@ async function generatePDFFromTemplate(template, data) {
       // Note: In a real implementation, you'd need to handle base64 images
       // For now, we'll skip background images in the preview
 
-    } catch (_error) {
+    } catch (error) {
 
     }
   }
@@ -86,7 +86,7 @@ async function generatePDFFromTemplate(template, data) {
   for (const field of template.fields || []) {
     try {
       await renderField(page, field, data, fontMap);
-    } catch (_error) {
+    } catch (error) {
 
     }
   }

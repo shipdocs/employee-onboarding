@@ -1,6 +1,6 @@
 // API endpoint to get available training content for linking to workflows
 const { requireAdmin } = require('../../lib/auth');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
 async function handler(req, res) {
@@ -51,12 +51,12 @@ async function handler(req, res) {
 
     return res.status(405).json({ error: 'Method not allowed' });
 
-  } catch (_error) {
-    // console.error('❌ [API] Available training content endpoint error:', _error);
+  } catch (error) {
+    // console.error('❌ [API] Available training content endpoint error:', error);
     return res.status(500).json({
       success: false,
       error: 'Internal server error',
-      details: _error.message
+      details: error.message
     });
   }
 }

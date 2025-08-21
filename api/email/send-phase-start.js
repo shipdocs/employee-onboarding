@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-phase-start.js - Send phase start email
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailRateLimit } = require('../../lib/rateLimit');
@@ -34,11 +34,11 @@ async function handler(req, res) {
       phase: phase
     });
 
-  } catch (_error) {
-    // console.error('📧 [ERROR] Failed to send phase start email:', _error);
+  } catch (error) {
+    // console.error('📧 [ERROR] Failed to send phase start email:', error);
     res.status(500).json({
       error: 'Failed to send phase start email',
-      details: _error.message
+      details: error.message
     });
   }
 }

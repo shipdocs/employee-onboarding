@@ -17,7 +17,7 @@ async function handler(req, res) {
         .order('phase_number', { ascending: true });
 
       if (error) {
-        // console.error('❌ [DB] Error fetching training phases:', _error);
+        // console.error('❌ [DB] Error fetching training phases:', error);
         // Check if table doesn't exist
         if (error.code === '42P01') {
 
@@ -97,7 +97,7 @@ async function handler(req, res) {
         .single();
 
       if (error) {
-        // console.error('Error creating training phase:', _error);
+        // console.error('Error creating training phase:', error);
         return res.status(500).json({ error: 'Failed to create training phase' });
       }
 
@@ -116,8 +116,8 @@ async function handler(req, res) {
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in training/phases:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in training/phases:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

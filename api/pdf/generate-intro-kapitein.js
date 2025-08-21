@@ -1,5 +1,5 @@
 // Vercel API Route: /api/pdf/generate-intro-kapitein.js
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const AutomatedCertificateService = require('../../services/automated-certificate-service');
 const { uploadRateLimit } = require('../../lib/rateLimit');
@@ -67,23 +67,23 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
+  } catch (error) {
     // Log the error
-    // console.error('Error generating certificate:', _error);
+    // console.error('Error generating certificate:', error);
 
     // Determine appropriate error response
-    if (_error.message && _error.message.includes('User not found')) {
+    if (error.message && error.message.includes('User not found')) {
       return res.status(404).json({ error: 'User not found' });
-    } else if (_error.message && _error.message.includes('No completed training')) {
+    } else if (error.message && error.message.includes('No completed training')) {
       return res.status(400).json({ error: 'User has not completed required training' });
-    } else if (_error.message && _error.message.includes('Permission')) {
+    } else if (error.message && error.message.includes('Permission')) {
       return res.status(403).json({ error: 'Permission denied' });
     }
 
     // Generic error response
     return res.status(500).json({
       error: 'Failed to generate certificate',
-      message: _error.message || 'An unexpected error occurred'
+      message: error.message || 'An unexpected error occurred'
     });
   }
 }

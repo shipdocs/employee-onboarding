@@ -34,7 +34,7 @@ async function loadTranslationSettings() {
     });
 
     return settings;
-  } catch (_error) {
+  } catch (error) {
 
     return null;
   }
@@ -118,23 +118,23 @@ const handler = asyncHandler(async (req, res) => {
       domain
     });
 
-  } catch (_error) {
+  } catch (error) {
     // If it's already an APIError, re-throw it to be handled by middleware
     if (error.name === 'APIError' || error.name === 'ValidationError' || error.name === 'ServiceError') {
       throw error;
     }
 
-    // console.error('Translation API error:', _error);
+    // console.error('Translation API error:', error);
 
     // Determine error type and response
-    if (_error.message.includes('Translation failed')) {
+    if (error.message.includes('Translation failed')) {
       throw createServiceError('SERVICE_TRANSLATION_UNAVAILABLE', 'Translation service is temporarily unavailable', {
-        originalError: _error.message,
+        originalError: error.message,
         service: 'translation'
       });
     }
 
-    if (_error.message.includes('No translation providers available')) {
+    if (error.message.includes('No translation providers available')) {
       throw createServiceError('SERVICE_TRANSLATION_UNAVAILABLE', 'All translation services are currently unavailable', {
         reason: 'No providers available',
         service: 'translation'
@@ -143,7 +143,7 @@ const handler = asyncHandler(async (req, res) => {
 
     // Generic error response
     throw createServiceError('SERVICE_TRANSLATION_ERROR', 'An unexpected error occurred during translation', {
-      originalError: _error.message,
+      originalError: error.message,
       service: 'translation'
     });
   }

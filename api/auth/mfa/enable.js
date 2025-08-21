@@ -1,6 +1,6 @@
 const mfaService = require('../../../lib/mfaService');
 const { requireAuth } = require('../../../lib/auth');
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { authRateLimit } = require('../../../lib/rateLimit');
 
 // Helper function to log MFA security events
@@ -27,7 +27,7 @@ function logMFAEvent(userId, email, ipAddress, userAgent, eventType, success, re
         });
 
       if (error) {
-        console.error('Failed to log security event:', _error);
+        console.error('Failed to log security event:', error);
       }
     } catch (err) {
       console.error('Security logging error:', err);
@@ -127,18 +127,18 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    console.error('MFA enable error:', _error);
+  } catch (error) {
+    console.error('MFA enable error:', error);
 
     // Return appropriate error based on error type
-    if (_error.message.includes('MFA is not enabled')) {
+    if (error.message.includes('MFA is not enabled')) {
       return res.status(503).json({
         error: 'MFA service is not available',
         code: 'MFA_SERVICE_DISABLED'
       });
     }
 
-    if (_error.message.includes('not configured')) {
+    if (error.message.includes('not configured')) {
       return res.status(400).json({
         error: 'MFA is not set up for this user',
         code: 'MFA_NOT_CONFIGURED'

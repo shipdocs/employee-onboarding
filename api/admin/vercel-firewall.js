@@ -3,7 +3,7 @@
  * Real integration with Vercel Firewall API for admin management
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const vercelFirewallService = require('../../lib/services/vercelFirewallService');
 const securityFirewallIntegration = require('../../lib/services/securityFirewallIntegration');

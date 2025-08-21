@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/onboarding/progress.js - Manage onboarding progress
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireCrew } = require('../../../lib/auth');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 async function handler(req, res) {
@@ -15,7 +15,7 @@ async function handler(req, res) {
         .single();
 
       if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
-        // console.error('Error fetching onboarding progress:', _error);
+        // console.error('Error fetching onboarding progress:', error);
         return res.status(500).json({ error: 'Database error' });
       }
 
@@ -64,12 +64,12 @@ async function handler(req, res) {
           .single();
 
         if (error) {
-          // console.error('Error updating onboarding progress:', _error);
+          // console.error('Error updating onboarding progress:', error);
           // console.error('Update data was:', updateData);
           // console.error('User ID:', userId);
           return res.status(500).json({
             error: 'Failed to update progress',
-            details: _error.message,
+            details: error.message,
             code: error.code
           });
         }
@@ -92,7 +92,7 @@ async function handler(req, res) {
           .single();
 
         if (error) {
-          // console.error('Error creating onboarding progress:', _error);
+          // console.error('Error creating onboarding progress:', error);
           return res.status(500).json({ error: 'Failed to create progress' });
         }
 
@@ -124,7 +124,7 @@ async function handler(req, res) {
         .eq('user_id', userId);
 
       if (error) {
-        // console.error('Error deleting onboarding progress:', _error);
+        // console.error('Error deleting onboarding progress:', error);
         return res.status(500).json({ error: 'Failed to reset progress' });
       }
 
@@ -147,11 +147,11 @@ async function handler(req, res) {
       return res.status(405).json({ error: 'Method not allowed' });
     }
 
-  } catch (_error) {
-    // console.error('Error in onboarding progress endpoint:', _error);
+  } catch (error) {
+    // console.error('Error in onboarding progress endpoint:', error);
     res.status(500).json({
       error: 'Failed to manage onboarding progress',
-      message: _error.message
+      message: error.message
     });
   }
 }

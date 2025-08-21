@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManagerOrAdmin } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -87,8 +87,8 @@ module.exports = adminRateLimit(requireManagerOrAdmin(async function handler(req
     };
 
     res.status(200).json(response);
-  } catch (_error) {
-    // console.error('Error fetching template fields:', _error);
+  } catch (error) {
+    // console.error('Error fetching template fields:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 }));

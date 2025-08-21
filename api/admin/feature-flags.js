@@ -3,7 +3,7 @@
  * Admin interface for managing feature flags with real-time toggles and analytics
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 

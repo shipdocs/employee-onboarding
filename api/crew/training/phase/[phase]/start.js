@@ -2,6 +2,8 @@
 const { supabase } = require('../../../../../lib/supabase');
 const { requireCrew } = require('../../../../../lib/auth');
 const { trainingRateLimit } = require('../../../../../lib/rateLimit');
+const { db } = require('../../../../../lib/database');
+
 async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -156,8 +158,8 @@ async function handler(req, res) {
       phaseInfo: getPhaseInfo(phaseNum)
     });
 
-  } catch (_error) {
-    // console.error('Error starting training phase:', _error);
+  } catch (error) {
+    // console.error('Error starting training phase:', error);
     res.status(500).json({ error: 'Failed to start training phase' });
   }
 }
@@ -176,8 +178,8 @@ async function getTrainingItemsForPhase(phase) {
     if (phaseData && phaseData.items && phaseData.items.length > 0) {
       return phaseData.items;
     }
-  } catch (_error) {
-    // console.error('Error fetching training items from database:', _error);
+  } catch (error) {
+    // console.error('Error fetching training items from database:', error);
   }
 
   // Fallback to static data if database doesn't have the phase

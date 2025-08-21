@@ -3,7 +3,7 @@
  * External API for incident response tools to interact with our incident system
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { incidentDetectionService } = require('../../lib/services/incidentDetectionService');
 const { externalIntegrationService } = require('../../lib/services/externalIntegrationService');
 const { requireRole } = require('../../lib/auth');

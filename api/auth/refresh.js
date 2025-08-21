@@ -48,7 +48,7 @@ async function handler(req, res) {
 
   } catch (error) {
     console.error('Error in token refresh:', error);
-    await logAuthenticationEvent(req, null, 'token_refresh', 'failed', 'internal_error');
+    await logAuthenticationEvent(req, null, 'token_refresh', 'failed', 'internalerror');
     res.status(500).json({ error: 'Internal server error' });
   }
 }

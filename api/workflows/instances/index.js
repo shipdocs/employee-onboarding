@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAuth } = require('../../../lib/auth.js');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 

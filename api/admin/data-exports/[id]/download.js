@@ -7,6 +7,8 @@ const { supabase } = require('../../../../lib/database-supabase-compat');
 const { authenticateRequest } = require('../../../../lib/auth');
 const { adminRateLimit } = require('../../../../lib/rateLimit');
 
+const { db } = require('../../../../lib/database');
+
 module.exports = adminRateLimit(async (req, res) => {
   try {
     // Verify admin authentication with proper blacklist checking

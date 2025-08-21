@@ -1,5 +1,5 @@
 // Vercel Cron Job: /api/cron/cleanup-expired.js - Clean up expired data and files
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 
 async function handler(req, res) {
   // Verify this is a cron request
@@ -25,7 +25,7 @@ async function handler(req, res) {
 
     try {
       const { data: expiredLinks, error: selectError } = await supabase
-        .from('magic_links')
+  // TODO: Implement storage.from('magic_links')
         .select('id')
         .lt('expires_at', now.toISOString());
 
@@ -34,8 +34,7 @@ async function handler(req, res) {
       }
 
       if (expiredLinks && expiredLinks.length > 0) {
-        const { error: deleteError } = await supabase
-          .from('magic_links')
+  // TODO: Implement storage.from('magic_links')
           .delete()
           .lt('expires_at', now.toISOString());
 
@@ -48,26 +47,23 @@ async function handler(req, res) {
       } else {
 
       }
-    } catch (_error) {
+    } catch (error) {
       cleanupStats.errors++;
-      // console.error('❌ Error cleaning up magic links:', _error.message);
+      // console.error('❌ Error cleaning up magic links:', error.message);
     }
 
     // 2. Clean up old email notifications (keep last 30 days)
 
     try {
-      const { data: oldNotifications, error: selectError } = await supabase
-        .from('email_notifications')
+  // TODO: Implement storage.from('email_notifications')
         .select('id')
         .lt('created_at', oneMonthAgo);
 
       if (selectError) {
         throw selectError;
-      }
-
+      } catch (error) { console.error(error); }
       if (oldNotifications && oldNotifications.length > 0) {
-        const { error: deleteError } = await supabase
-          .from('email_notifications')
+  // TODO: Implement storage.from('email_notifications')
           .delete()
           .lt('created_at', oneMonthAgo);
 
@@ -80,26 +76,23 @@ async function handler(req, res) {
       } else {
 
       }
-    } catch (_error) {
+    } catch (error) {
       cleanupStats.errors++;
-      // console.error('❌ Error cleaning up email notifications:', _error.message);
+      // console.error('❌ Error cleaning up email notifications:', error.message);
     }
 
     // 3. Clean up expired quiz randomization sessions (older than 1 day)
 
     try {
-      const { data: expiredSessions, error: selectError } = await supabase
-        .from('quiz_randomization_sessions')
+  // TODO: Implement storage.from('quiz_randomization_sessions')
         .select('id')
         .lt('created_at', oneDayAgo);
 
       if (selectError) {
         throw selectError;
-      }
-
+      } catch (error) { console.error(error); }
       if (expiredSessions && expiredSessions.length > 0) {
-        const { error: deleteError } = await supabase
-          .from('quiz_randomization_sessions')
+  // TODO: Implement storage.from('quiz_randomization_sessions')
           .delete()
           .lt('created_at', oneDayAgo);
 
@@ -112,9 +105,9 @@ async function handler(req, res) {
       } else {
 
       }
-    } catch (_error) {
+    } catch (error) {
       cleanupStats.errors++;
-      // console.error('❌ Error cleaning up quiz sessions:', _error.message);
+      // console.error('❌ Error cleaning up quiz sessions:', error.message);
     }
 
     // 4. Clean up orphaned files (files not referenced in database)
@@ -131,8 +124,7 @@ async function handler(req, res) {
 
       if (uploadsError || certsError) {
         throw new Error('Failed to fetch file references from database');
-      }
-
+      } catch (error) { console.error(error); }
       const referencedFiles = new Set();
 
       // Collect all referenced file paths
@@ -150,11 +142,11 @@ async function handler(req, res) {
 
       for (const bucketName of buckets) {
         try {
-          const { data: files, error: listError } = await // TODO: Replace with MinIO storage
-            .from(bucketName)
+      // await // TODO: Replace with MinIO storage
+      //             .from(bucketName)
             .list('', {
               limit: 1000,
-              sortBy: { column: 'created_at', order: 'asc' }
+              sortBy: { column: 'created_at', order: 'asc' } catch (error) { console.error(error); }
             });
 
           if (listError) {
@@ -179,9 +171,9 @@ async function handler(req, res) {
 
             // Delete orphaned files in batches
             const filesToDelete = orphanedFiles.map(file => file.name);
-            const { error: deleteError } = await // TODO: Replace with MinIO storage
-              .from(bucketName)
-              .remove(filesToDelete);
+      // await // TODO: Replace with MinIO storage
+      //               .from(bucketName)
+  // TODO: Implement storage.remove(filesToDelete);
 
             if (deleteError) {
               // console.error(`❌ Error deleting orphaned files from ${bucketName}:`, deleteError.message);
@@ -192,42 +184,39 @@ async function handler(req, res) {
           } else {
 
           }
-        } catch (_error) {
-          // console.error(`❌ Error processing ${bucketName} bucket:`, _error.message);
+        } catch (error) {
+          // console.error(`❌ Error processing ${bucketName} bucket:`, error.message);
         }
       }
 
       cleanupStats.orphanedFiles = totalOrphanedFiles;
-    } catch (_error) {
+    } catch (error) {
       cleanupStats.errors++;
-      // console.error('❌ Error cleaning up orphaned files:', _error.message);
+      // console.error('❌ Error cleaning up orphaned files:', error.message);
     }
 
     // 5. Update user last_seen timestamps for active sessions
 
     try {
       // This would typically be done by the application, but we can clean up stale data here
-      const { data: activeUsers, error: usersError } = await supabase
-        .from('users')
+  // TODO: Implement storage.from('users')
         .select('id, last_login_at')
         .eq('status', 'active')
         .is('last_login_at', null);
 
       if (usersError) {
         throw usersError;
-      }
-
+      } catch (error) { console.error(error); }
       if (activeUsers && activeUsers.length > 0) {
 
         // We don't update these automatically as it should be done by the app
       }
-    } catch (_error) {
-      // console.error('❌ Error checking user activity:', _error.message);
+    } catch (error) {
+      // console.error('❌ Error checking user activity:', error.message);
     }
 
     // 6. Log cleanup statistics
-    const { error: logError } = await supabase
-      .from('email_notifications')
+  // TODO: Implement storage.from('email_notifications')
       .insert({
         user_id: null,
         email_type: 'system_cleanup',
@@ -246,11 +235,11 @@ async function handler(req, res) {
       timestamp: now.toISOString()
     });
 
-  } catch (_error) {
-    // console.error('❌ Cleanup job failed:', _error);
+  } catch (error) {
+    // console.error('❌ Cleanup job failed:', error);
     res.status(500).json({
       success: false,
-      error: _error.message,
+      error: error.message,
       timestamp: new Date().toISOString()
     });
   }

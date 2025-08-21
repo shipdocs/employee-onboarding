@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/crew/[id].js - Get/update specific crew member
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManager } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 async function handler(req, res) {
@@ -154,8 +154,8 @@ async function getCrewMember(req, res, userId) {
       certificates
     });
 
-  } catch (_error) {
-    // console.error('Error in getCrewMember:', _error);
+  } catch (error) {
+    // console.error('Error in getCrewMember:', error);
     res.status(500).json({ error: 'Failed to fetch crew member details' });
   }
 }
@@ -246,8 +246,8 @@ async function updateCrewMember(req, res, userId) {
       user: updatedUser
     });
 
-  } catch (_error) {
-    // console.error('Error in updateCrewMember:', _error);
+  } catch (error) {
+    // console.error('Error in updateCrewMember:', error);
     res.status(500).json({ error: 'Failed to update crew member' });
   }
 }
@@ -387,11 +387,11 @@ async function deleteCrewMember(req, res, userId) {
       });
     }
 
-  } catch (_error) {
-    // console.error('Error in deleteCrewMember:', _error);
+  } catch (error) {
+    // console.error('Error in deleteCrewMember:', error);
     res.status(500).json({
       error: 'Failed to delete crew member',
-      details: _error.message
+      details: error.message
     });
   }
 }

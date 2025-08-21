@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/quiz-reviews/pending.js - Get pending quiz reviews
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManager } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -137,8 +137,8 @@ async function handler(req, res) {
     // Return array directly to match frontend expectations
     res.json(formattedQuizzes || []);
 
-  } catch (_error) {
-    // console.error('Error in pending quiz reviews:', _error);
+  } catch (error) {
+    // console.error('Error in pending quiz reviews:', error);
     // Return empty array instead of 500 error for frontend stability
     res.json([]);
   }

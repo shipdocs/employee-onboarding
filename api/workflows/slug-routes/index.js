@@ -20,8 +20,8 @@ async function handler(req, res) {
         }
 
         return res.status(200).json(workflow);
-      } catch (_error) {
-        console.error('❌ [GET] Failed to fetch workflow by slug:', _error);
+      } catch (error) {
+        console.error('❌ [GET] Failed to fetch workflow by slug:', error);
         return res.status(500).json({ error: 'Failed to fetch workflow' });
       }
     }
@@ -29,8 +29,8 @@ async function handler(req, res) {
     // Handle other HTTP methods if needed in the future
     return res.status(405).json({ error: 'Method not allowed' });
 
-  } catch (_error) {
-    console.error('❌ [WORKFLOW-SLUG] Unexpected error:', _error);
+  } catch (error) {
+    console.error('❌ [WORKFLOW-SLUG] Unexpected error:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }

@@ -3,7 +3,7 @@
  * Manually escalate security events to incidents
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { SecurityEventEscalationService } = require('../../lib/services/securityEventEscalationService');
 const { requireRole } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');

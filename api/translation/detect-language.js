@@ -52,11 +52,11 @@ module.exports = apiRateLimit(async function handler(req, res) {;
       timestamp: new Date().toISOString()
     });
 
-  } catch (_error) {
-    // console.error('Language detection API error:', _error);
+  } catch (error) {
+    // console.error('Language detection API error:', error);
 
     // Determine error type and response
-    if (_error.message.includes('No translation providers available')) {
+    if (error.message.includes('No translation providers available')) {
       return res.status(503).json({
         error: 'No language detection providers available',
         message: 'All language detection services are currently unavailable'

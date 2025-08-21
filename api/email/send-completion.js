@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-completion.js - Send completion email
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailRateLimit } = require('../../lib/rateLimit');
@@ -33,11 +33,11 @@ async function handler(req, res) {
       recipient: user.email
     });
 
-  } catch (_error) {
-    // console.error('📧 [ERROR] Failed to send completion email:', _error);
+  } catch (error) {
+    // console.error('📧 [ERROR] Failed to send completion email:', error);
     res.status(500).json({
       error: 'Failed to send completion email',
-      details: _error.message
+      details: error.message
     });
   }
 }

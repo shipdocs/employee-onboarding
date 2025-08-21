@@ -11,7 +11,7 @@
 
 const { requireAuth } = require('../../lib/auth');
 const accountDeletionService = require('../../lib/services/accountDeletionService');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const bcrypt = require('bcrypt');
 const mfaService = require('../../lib/mfaService');
 const { apiRateLimit } = require('../../lib/rateLimit');
@@ -147,11 +147,11 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    console.error('Account deletion error:', _error);
+  } catch (error) {
+    console.error('Account deletion error:', error);
     return res.status(500).json({
       error: 'Account deletion failed',
-      details: process.env.NODE_ENV === 'development' ? _error.message : undefined
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }
@@ -189,8 +189,8 @@ async function verifyUserCredentials(userId, verificationCode) {
     }
 
     return false;
-  } catch (_error) {
-    console.error('Credential verification error:', _error);
+  } catch (error) {
+    console.error('Credential verification error:', error);
     return false;
   }
 }

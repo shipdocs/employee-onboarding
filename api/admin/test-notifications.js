@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/test-notifications.js - Test notification system
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAdmin } = require('../../lib/auth');
 const { notificationService } = require('../../lib/notificationService');
 const { adminRateLimit } = require('../../lib/rateLimit');
@@ -99,12 +99,12 @@ async function handler(req, res) {
       timestamp: new Date().toISOString()
     });
 
-  } catch (_error) {
-    console.error('Test notification error:', _error);
+  } catch (error) {
+    console.error('Test notification error:', error);
     res.status(500).json({
       error: 'Test failed',
-      message: _error.message,
-      stack: process.env.NODE_ENV === 'development' ? _error.stack : undefined
+      message: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }

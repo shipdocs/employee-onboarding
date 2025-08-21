@@ -1,6 +1,6 @@
 // Vercel API Route: /api/pdf/generate-manager-welcome.js
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const fs = require('fs/promises');
 const path = require('path');
@@ -38,8 +38,8 @@ async function handler(req, res) {
       await safeWriteFile(tempFilePath, pdfBytes, 'uploads', {
         allowedExtensions: ['.pdf']
       });
-    } catch (_error) {
-      throw new Error(`Failed to create temporary PDF file: ${_error.message}`);
+    } catch (error) {
+      throw new Error(`Failed to create temporary PDF file: ${error.message}`);
     }
 
     res.json({
@@ -55,11 +55,11 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('📋 [ERROR] Manager Welcome PDF generation failed:', _error);
+  } catch (error) {
+    // console.error('📋 [ERROR] Manager Welcome PDF generation failed:', error);
     res.status(500).json({
       error: 'Failed to generate Manager Welcome PDF',
-      details: _error.message
+      details: error.message
     });
   }
 }

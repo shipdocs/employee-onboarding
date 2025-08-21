@@ -4,6 +4,8 @@ const { requireCrew } = require('../../../../../../lib/auth');
 const { unifiedEmailService } = require('../../../../../../lib/unifiedEmailService');
 const { trainingRateLimit } = require('../../../../../../lib/rateLimit');
 
+const { db } = require('../../../../lib/database');
+
 async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -312,10 +314,10 @@ async function handler(req, res) {
       phaseCompleted: allCompleted
     });
 
-  } catch (_error) {
-    // console.error('Error completing training item:', _error);
+  } catch (error) {
+    // console.error('Error completing training item:', error);
     // Error details:
-    //   error: _error.message,
+    //   error: error.message,
     //   userId,
     //   phase,
     //   itemNumber
@@ -325,13 +327,13 @@ async function handler(req, res) {
       await supabase
         .from('system_logs')
         .insert({
-          log_type: 'api_error',
+          log_type: 'apierror',
           endpoint: '/api/training/phase/[phase]/item/[itemNumber]/complete',
           details: {
             phase: req.query.phase,
             itemNumber: req.query.itemNumber,
             userId: req.user?.userId,
-            error: _error.message,
+            error: error.message,
             stack: error.stack
           },
           created_at: new Date().toISOString()
@@ -345,10 +347,10 @@ async function handler(req, res) {
       // Database-related errors
       return res.status(500).json({
         error: 'Database operation failed',
-        details: _error.message,
+        details: error.message,
         code: error.code || 'DB_ERROR'
       });
-    } else if (error.name === 'FetchError' || _error.message.includes('fetch')) {
+    } else if (error.name === 'FetchError' || error.message.includes('fetch')) {
       // Network or API call errors
       return res.status(500).json({
         error: 'External service communication failed',
@@ -359,7 +361,7 @@ async function handler(req, res) {
       // Generic error fallback
       return res.status(500).json({
         error: 'Failed to complete training item',
-        details: _error.message,
+        details: error.message,
         code: 'INTERNAL_ERROR'
       });
     }
@@ -380,8 +382,8 @@ async function getTrainingItemsForPhase(phase) {
     if (phaseData && phaseData.items && phaseData.items.length > 0) {
       return phaseData.items;
     }
-  } catch (_error) {
-    // console.error('Error fetching training items from database:', _error);
+  } catch (error) {
+    // console.error('Error fetching training items from database:', error);
   }
 
   // Fallback to static data if database doesn't have the phase

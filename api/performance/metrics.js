@@ -3,7 +3,7 @@
  * Handles collection and retrieval of performance metrics
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
@@ -130,11 +130,11 @@ async function handler(req, res) {
       res.status(405).json({ error: 'Method not allowed' });
     }
 
-  } catch (_error) {
-    // console.error('Error in performance metrics API:', _error);
+  } catch (error) {
+    // console.error('Error in performance metrics API:', error);
     res.status(500).json({
       error: 'Internal server error',
-      message: _error.message
+      message: error.message
     });
   }
 }
@@ -252,8 +252,8 @@ async function checkPerformanceThresholds(metric) {
       }
     }
 
-  } catch (_error) {
-    // console.error('Error checking performance thresholds:', _error);
+  } catch (error) {
+    // console.error('Error checking performance thresholds:', error);
   }
 }
 

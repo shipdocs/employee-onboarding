@@ -185,8 +185,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Error in quiz review approval:', _error);
+  } catch (error) {
+    // console.error('Error in quiz review approval:', error);
     res.status(500).json({ error: 'Failed to process quiz review' });
   }
 }
@@ -196,6 +196,8 @@ function generateServiceToken(userId) {
   // This is a simplified version - in production you'd want proper service-to-service auth
   const jwt = require('jsonwebtoken');
 const { adminRateLimit } = require('../../../../lib/rateLimit');
+const { db } = require('../../../../lib/database');
+
   return jwt.sign(
     { userId, role: 'service' },
     process.env.JWT_SECRET,

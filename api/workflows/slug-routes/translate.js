@@ -4,7 +4,7 @@
  */
 
 const AITranslationService = require('../../../lib/aiTranslationService');
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { authenticate } = require('../../../lib/auth');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 
@@ -34,7 +34,7 @@ async function loadTranslationSettings() {
     });
 
     return settings;
-  } catch (_error) {
+  } catch (error) {
 
     return null;
   }
@@ -225,22 +225,22 @@ module.exports = apiRateLimit(async function handler(req, res) {;
       throw translationError;
     }
 
-  } catch (_error) {
-    // console.error('Workflow translation API error:', _error);
+  } catch (error) {
+    // console.error('Workflow translation API error:', error);
 
     // Determine error type and response
-    if (_error.message.includes('not found')) {
+    if (error.message.includes('not found')) {
       return res.status(404).json({
         error: 'Workflow not found',
-        message: _error.message
+        message: error.message
       });
     }
 
-    if (_error.message.includes('Translation failed')) {
+    if (error.message.includes('Translation failed')) {
       return res.status(503).json({
         error: 'Translation service unavailable',
         message: 'Translation service is temporarily unavailable',
-        details: _error.message
+        details: error.message
       });
     }
 
@@ -248,7 +248,7 @@ module.exports = apiRateLimit(async function handler(req, res) {;
     res.status(500).json({
       error: 'Workflow translation failed',
       message: 'An unexpected error occurred during workflow translation',
-      details: process.env.NODE_ENV === 'development' ? _error.message : undefined
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 });

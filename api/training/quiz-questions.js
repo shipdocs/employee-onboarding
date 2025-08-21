@@ -1,5 +1,5 @@
 // Vercel API Route: /api/training/quiz-questions.js - Get quiz questions for a phase
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { verifyJWT } = require('../../lib/auth');
 const crypto = require('crypto');
 const { trainingRateLimit } = require('../../lib/rateLimit');
@@ -233,11 +233,11 @@ async function handler(req, res) {
       questions: processedQuestions
     });
 
-  } catch (_error) {
-    // console.error('Error fetching quiz questions:', _error);
+  } catch (error) {
+    // console.error('Error fetching quiz questions:', error);
     res.status(500).json({
       error: 'Failed to fetch quiz questions',
-      message: _error.message
+      message: error.message
     });
   }
 }

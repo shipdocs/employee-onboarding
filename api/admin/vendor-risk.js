@@ -3,7 +3,7 @@
  * Provides vendor risk data and assessment information for NIS2 compliance
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const { applyApiSecurityHeaders } = require('../../lib/securityHeaders');
 const { adminRateLimit } = require('../../lib/rateLimit');

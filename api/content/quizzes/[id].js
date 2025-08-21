@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAuth } = require('../../../lib/auth');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
@@ -19,7 +19,7 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
         .single();
 
       if (error) {
-        // console.error('Error fetching quiz:', _error);
+        // console.error('Error fetching quiz:', error);
         return res.status(500).json({ error: 'Failed to fetch quiz' });
       }
 
@@ -93,7 +93,7 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
         .single();
 
       if (error) {
-        // console.error('Error updating quiz:', _error);
+        // console.error('Error updating quiz:', error);
         return res.status(500).json({ error: 'Failed to update quiz' });
       }
 
@@ -170,8 +170,8 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
-  } catch (_error) {
-    // console.error('API error:', _error);
+  } catch (error) {
+    // console.error('API error:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }));

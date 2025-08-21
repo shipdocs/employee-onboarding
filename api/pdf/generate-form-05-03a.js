@@ -1,6 +1,6 @@
 // Vercel API Route: /api/pdf/generate-form-05-03a.js
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { StorageService } = require('../../lib/storage');
 const fs = require('fs/promises');
@@ -104,8 +104,8 @@ async function handler(req, res) {
       await safeWriteFile(tempFilePath, pdfBytes, 'uploads', {
         allowedExtensions: ['.pdf']
       });
-    } catch (_error) {
-      throw new Error(`Failed to create temporary PDF file: ${_error.message}`);
+    } catch (error) {
+      throw new Error(`Failed to create temporary PDF file: ${error.message}`);
     }
 
     res.json({
@@ -123,11 +123,11 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('📋 [ERROR] Form 05_03a PDF generation failed:', _error);
+  } catch (error) {
+    // console.error('📋 [ERROR] Form 05_03a PDF generation failed:', error);
     res.status(500).json({
       error: 'Failed to generate Form 05_03a PDF',
-      details: _error.message
+      details: error.message
     });
   }
 }
@@ -179,7 +179,7 @@ async function generatePDFFromTemplate(template, data) {
         width: width,
         height: height
       });
-    } catch (_error) {
+    } catch (error) {
 
     }
   }
@@ -189,7 +189,7 @@ async function generatePDFFromTemplate(template, data) {
   for (const field of fields) {
     try {
       await renderField(page, field, data, fontMap, height);
-    } catch (_error) {
+    } catch (error) {
 
     }
   }
@@ -316,7 +316,7 @@ function formatDate(value, format = 'YYYY-MM-DD') {
       default:
         return date.toISOString().split('T')[0];
     }
-  } catch (_error) {
+  } catch (error) {
     return value;
   }
 }

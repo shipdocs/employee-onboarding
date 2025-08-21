@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/dashboard/stats.js - Manager dashboard statistics
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManager } = require('../../../lib/auth');
 
 async function handler(req, res) {
@@ -132,11 +132,11 @@ const { adminRateLimit } = require('../../../lib/rateLimit');
 
     res.json(stats);
 
-  } catch (_error) {
-    // console.error('Error in manager dashboard stats:', _error);
+  } catch (error) {
+    // console.error('Error in manager dashboard stats:', error);
     res.status(500).json({
       error: 'Failed to fetch dashboard statistics',
-      message: _error.message
+      message: error.message
     });
   }
 }

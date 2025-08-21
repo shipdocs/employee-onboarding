@@ -191,8 +191,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Error resending manager welcome email:', _error);
+  } catch (error) {
+    // console.error('Error resending manager welcome email:', error);
     res.status(500).json({ error: 'Failed to resend welcome email' });
   }
 }

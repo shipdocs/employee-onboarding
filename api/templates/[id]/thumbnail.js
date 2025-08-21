@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManagerOrAdmin } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -51,8 +51,8 @@ module.exports = adminRateLimit(requireManagerOrAdmin(async function handler(req
     res.setHeader('Content-Type', 'image/svg+xml');
     res.setHeader('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
     res.status(200).send(placeholderSvg);
-  } catch (_error) {
-    // console.error('Error generating thumbnail:', _error);
+  } catch (error) {
+    // console.error('Error generating thumbnail:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 }));

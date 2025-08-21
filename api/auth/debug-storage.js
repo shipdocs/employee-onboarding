@@ -45,8 +45,8 @@ if (window.tokenService) {
 try {
   // This might not work depending on module system
   console.log('🔧 Trying to access tokenService...');
-} catch (_error) {
-  console.log('❌ Cannot access tokenService:', _error.message);
+} catch (error) {
+  console.log('❌ Cannot access tokenService:', error.message);
 }
 
 console.log('=== END STORAGE DEBUG ===');

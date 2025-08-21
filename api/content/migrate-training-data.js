@@ -1,4 +1,4 @@
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAdmin } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
@@ -6,8 +6,8 @@ const { apiRateLimit } = require('../../lib/rateLimit');
 let migrationModule;
 try {
   migrationModule = require('../../scripts/migrate-training-content');
-} catch (_error) {
-  // console.error('Migration script not found:', _error.message);
+} catch (error) {
+  // console.error('Migration script not found:', error.message);
 }
 
 if (!migrationModule) {
@@ -136,12 +136,12 @@ async function handler(req, res) {
       });
     }
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in migrate-training-data:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in migrate-training-data:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ 
       error: 'Internal server error',
-      details: _error.message 
+      details: error.message 
     });
   }
 }

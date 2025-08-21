@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/resend.js - Resend any type of email
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailRateLimit } = require('../../lib/rateLimit');
@@ -92,8 +92,8 @@ async function handler(req, res) {
       emailType: emailType
     });
 
-  } catch (_error) {
-    // console.error(`📧 [ERROR] Failed to resend ${req.body.emailType} email:`, _error);
+  } catch (error) {
+    // console.error(`📧 [ERROR] Failed to resend ${req.body.emailType} email:`, error);
 
     // Log the failure
     try {
@@ -107,7 +107,7 @@ async function handler(req, res) {
           details: {
             resent_by: req.user.userId,
             resent_at: new Date().toISOString(),
-            error: _error.message,
+            error: error.message,
             comments: req.body.comments,
             phase: req.body.phase
           }
@@ -118,7 +118,7 @@ async function handler(req, res) {
 
     res.status(500).json({
       error: `Failed to resend ${req.body.emailType} email`,
-      details: _error.message
+      details: error.message
     });
   }
 }

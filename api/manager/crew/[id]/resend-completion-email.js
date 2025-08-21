@@ -108,8 +108,8 @@ async function handler(req, res) {
       });
     }
 
-  } catch (_error) {
-    // console.error('Error in resend-completion-email:', _error);
+  } catch (error) {
+    // console.error('Error in resend-completion-email:', error);
     res.status(500).json({ error: 'Failed to resend completion email' });
   }
 }

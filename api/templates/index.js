@@ -1,5 +1,5 @@
 // Vercel API Route: /api/templates/index.js
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireManagerOrAdmin } = require('../../lib/auth');
 const { v4: uuidv4 } = require('uuid');
 const { adminRateLimit } = require('../../lib/rateLimit');
@@ -16,8 +16,8 @@ module.exports = adminRateLimit(requireManagerOrAdmin(async function handler(req
       default:
         return res.status(405).json({ error: 'Method not allowed' });
     }
-  } catch (_error) {
-    // console.error('Templates API error:', _error);
+  } catch (error) {
+    // console.error('Templates API error:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }));
@@ -34,26 +34,26 @@ async function uploadBackgroundImage(base64Data, userId) {
     const filePath = `backgrounds/${fileName}`;
 
     // Upload to Supabase Storage
-    const { data, error } = await // TODO: Replace with MinIO storage
-      .from('documents')
-      .upload(filePath, buffer, {
+    const { data, error } = // TODO: Fix incomplete await
+      // await // TODO: Replace with MinIO storage
+      //       .from('documents')
+  // TODO: Implement storage.upload(filePath, buffer, {
         contentType: 'image/png',
         upsert: false
       });
 
     if (error) {
-      // console.error('Storage upload error:', _error);
-      throw new Error(`Failed to upload background image: ${_error.message}`);
+      // console.error('Storage upload error:', error);
+      throw new Error(`Failed to upload background image: ${error.message}`);
     }
 
     // Get public URL
-    const { data: urlData } = // TODO: Replace with MinIO storage
-      .from('documents')
-      .getPublicUrl(filePath);
+  // TODO: Implement storage.from('documents')
+  // TODO: Implement storage.getPublicUrl(filePath);
 
     return urlData.publicUrl;
-  } catch (_error) {
-    // console.error('Error uploading background image:', _error);
+  } catch (error) {
+    // console.error('Error uploading background image:', error);
     throw error;
   }
 }
@@ -84,7 +84,7 @@ async function getTemplates(req, res, user) {
           // Ensure fields is always an array
           if (!Array.isArray(fields)) {
             fields = [];
-          }
+          } catch (error) { console.error(error); }
         } catch (fieldParseError) {
 
           fields = [];
@@ -145,8 +145,8 @@ async function getTemplates(req, res, user) {
     });
 
     return res.json({ templates: responseTemplates });
-  } catch (_error) {
-    // console.error('Get templates error:', _error);
+  } catch (error) {
+    // console.error('Get templates error:', error);
     return res.status(500).json({ error: 'Failed to fetch templates' });
   }
 }
@@ -206,25 +206,23 @@ async function createTemplate(req, res, user) {
     let template;
     try {
       // Log the user ID and template data for debugging
-
-      const { data, error } = await supabase
-        .from('pdf_templates')
+  // TODO: Implement storage.from('pdf_templates')
         .insert([templateData])
         .select()
         .single();
 
       if (error) {
-        // console.error('Error creating template:', _error);
+        // console.error('Error creating template:', error);
         // Error details:
-        //   error: _error.message,
+        //   error: error.message,
         //   templateId: id,
-        //   message: _error.message,
+        //   message: error.message,
         //   details: error.details,
         //   hint: error.hint,
         //   code: error.code
         // });
         return res.status(500).json({
-          error: 'Failed to create template: ' + _error.message,
+          error: 'Failed to create template: ' + error.message,
           details: error.details,
           hint: error.hint
         });
@@ -271,8 +269,8 @@ async function createTemplate(req, res, user) {
         message: 'Template created but response transformation failed'
       });
     }
-  } catch (_error) {
-    // console.error('Create template error:', _error);
+  } catch (error) {
+    // console.error('Create template error:', error);
     return res.status(500).json({ error: 'Failed to create template' });
   }
 }

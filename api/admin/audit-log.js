@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/audit-log.js
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 
@@ -83,7 +83,7 @@ async function handler(req, res) {
     const { data: auditLogs, error, count } = await query;
 
     if (error) {
-      console.error('Error fetching audit logs:', _error);
+      console.error('Error fetching audit logs:', error);
       return res.status(500).json({ error: 'Failed to fetch audit logs' });
     }
 
@@ -132,7 +132,7 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
+  } catch (error) {
     console.error('Audit log API error:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }

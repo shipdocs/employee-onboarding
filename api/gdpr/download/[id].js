@@ -3,7 +3,7 @@
  * Allows users to download their exported data
  */
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { authenticateRequest } = require('../../../lib/auth');
 const { applyApiSecurityHeaders } = require('../../../lib/securityHeaders');
 const { userRateLimit } = require('../../../lib/rateLimit');

@@ -4,7 +4,7 @@
  */
 
 const { authenticateRequest } = require('../../lib/auth');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const externalLoggingService = require('../../lib/services/externalLoggingService');
 const { authRateLimit } = require('../../lib/rateLimit');
 
@@ -81,7 +81,7 @@ async function getConfiguration(req, res, user) {
         log_level,
         include_security_events,
         include_auth_events,
-        include_error_logs,
+        includeerror_logs,
         include_audit_logs,
         max_logs_per_minute,
         batch_size,
@@ -91,7 +91,7 @@ async function getConfiguration(req, res, user) {
         last_modified_at,
         last_connection_test,
         last_connection_status,
-        last_error_message,
+        lasterror_message,
         logs_sent_today,
         logs_sent_month,
         last_log_sent_at

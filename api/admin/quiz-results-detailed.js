@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/quiz-results-detailed.js - Get detailed quiz results with real scoring
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth, requireRole } = require('../../lib/auth');
 const { createAPIHandler, createValidationError, createDatabaseError } = require('../../lib/apiHandler');
 const { adminRateLimit } = require('../../lib/rateLimit');
@@ -59,7 +59,7 @@ async function handler(req, res) {
 
   if (error) {
     throw createDatabaseError('Failed to fetch quiz results', {
-      originalError: _error.message
+      originalError: error.message
     });
   }
 

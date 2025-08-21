@@ -76,16 +76,16 @@ const { apiRateLimit } = require('../../lib/rateLimit');
             // Sanitize sensitive values
             results[key] = sanitizeValue(key, value, user);
           }
-        } catch (_error) {
-          errors.push({ key, error: _error.message });
+        } catch (error) {
+          errors.push({ key, error: error.message });
         }
       })
     );
 
     // Return results
     return res.status(200).json(results);
-  } catch (_error) {
-    // console.error('Batch config API error:', _error);
+  } catch (error) {
+    // console.error('Batch config API error:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }

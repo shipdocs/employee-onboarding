@@ -83,11 +83,11 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('❌ [DEBUG] Unexpected error:', _error);
+  } catch (error) {
+    // console.error('❌ [DEBUG] Unexpected error:', error);
     return res.status(500).json({
       error: 'Debug failed',
-      details: _error.message
+      details: error.message
     });
   }
 }

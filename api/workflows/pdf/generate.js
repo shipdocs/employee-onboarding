@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
 const { requireAuth } = require('../../../lib/auth.js');
 const fs = require('fs');
@@ -31,7 +31,7 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
 
     // Get workflow instance
     const { data: instance, error: instanceError } = await supabase
-      .from('workflow_instances')
+  // TODO: Implement storage.from('workflow_instances')
       .select(`
         *,
         workflow_templates (*),
@@ -80,23 +80,22 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
     }
 
     // Upload PDF to storage
-    const { data: uploadData, error: uploadError } = await // TODO: Replace with MinIO storage
-      .from('workflow-pdfs')
-      .upload(`${user.company_id}/${fileName}`, pdfBytes, {
-        contentType: 'application/pdf',
-        upsert: true
-      });
+    // TODO: Implement storage.from('workflow-pdfs')
+    // TODO: Implement storage.upload(`${user.company_id}/${fileName}`, pdfBytes, {
+    //   contentType: 'application/pdf',
+    //   upsert: true
+    // });
 
     if (uploadError) {
-      const error = createSimpleError('Failed to upload PDF', 500, 'FILE_UPLOAD_FAILED');
       error.details = { originalError: uploadError.message };
       return await handleErrorAndRespond(error, req, res, user);
     }
 
     // Get public URL
-    const { data: { publicUrl } } = // TODO: Replace with MinIO storage
-      .from('workflow-pdfs')
-      .getPublicUrl(uploadData.path);
+    // TODO: Replace with MinIO storage
+    // TODO: Implement storage.from('workflow-pdfs')
+    // TODO: Implement storage.getPublicUrl(uploadData.path);
+    const publicUrl = `/api/workflows/pdf/download/${fileName}`; // Temporary placeholder
 
     // Update workflow instance with generated document
     const currentDocs = instance.generated_documents || [];
@@ -111,7 +110,7 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
     };
 
     await supabase
-      .from('workflow_instances')
+  // TODO: Implement storage.from('workflow_instances')
       .update({
         generated_documents: [...currentDocs, newDoc],
         updated_at: new Date().toISOString()
@@ -134,22 +133,21 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
  */
 async function generateFromTemplate(templateId, formData, instance) {
   // Get PDF template
-  const { data: template, error } = await supabase
-    .from('pdf_templates')
-    .select('*')
-    .eq('id', templateId)
-    .single();
+  // TODO: Implement storage.from('pdf_templates')
+  // TODO: Implement .select('*').eq('id', templateId).single();
+  const template = null; // Placeholder
 
-  if (error || !template) {
+  if (!template) {
     throw new Error('PDF template not found');
   }
 
   // Download template file
-  const { data: templateFile, error: downloadError } = await // TODO: Replace with MinIO storage
-    .from('pdf-templates')
-    .download(template.template_url);
+  // TODO: Implement storage.from('pdf-templates')
+  // TODO: Implement storage.download(template.template_url);
 
-  if (downloadError) {
+  // Placeholder for template file
+  const templateFile = null;
+  if (!templateFile) {
     throw new Error('Failed to download PDF template');
   }
 
@@ -165,7 +163,11 @@ async function generateFromTemplate(templateId, formData, instance) {
         if (value !== undefined && value !== null) {
           const field = form.getField(fieldName);
           if (field) {
-            field.setText(String(value));
+            try {
+              field.setText(String(value));
+            } catch (error) {
+              console.error(error);
+            }
           }
         }
       } catch (err) {
@@ -181,7 +183,6 @@ async function generateFromTemplate(templateId, formData, instance) {
  * Generate completion certificate
  */
 async function generateCompletionCertificate(instance) {
-  const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage([612, 792]); // Letter size
   const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
   const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -232,10 +233,6 @@ async function generateCompletionCertificate(instance) {
  * Generate form report from collected data
  */
 async function generateFormReport(instance, formData) {
-  const pdfDoc = await PDFDocument.create();
-  const page = pdfDoc.addPage([612, 792]);
-  const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-  const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
   let yPosition = 750;
   const margin = 50;
@@ -316,13 +313,8 @@ async function generateFormReport(instance, formData) {
  * Generate progress summary
  */
 async function generateProgressSummary(instance) {
-  const pdfDoc = await PDFDocument.create();
-  const page = pdfDoc.addPage([612, 792]);
-  const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-  const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
   let yPosition = 750;
-  const margin = 50;
 
   // Title
   page.drawText('Workflow Progress Summary', {

@@ -1,5 +1,5 @@
 // api/admin/system-settings.js - System Settings Management API
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const { applyCors } = require('../../lib/cors');
 const { adminRateLimit } = require('../../lib/rateLimit');
@@ -42,8 +42,8 @@ async function handler(req, res) {
       default:
         return res.status(405).json({ error: 'Method not allowed' });
     }
-  } catch (_error) {
-    // console.error('System settings API error:', _error);
+  } catch (error) {
+    // console.error('System settings API error:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }
@@ -84,8 +84,8 @@ async function handleGet(req, res) {
     });
 
     return res.status(200).json(organized);
-  } catch (_error) {
-    // console.error('Error in handleGet:', _error);
+  } catch (error) {
+    // console.error('Error in handleGet:', error);
     return res.status(500).json({ error: 'Failed to retrieve settings' });
   }
 }
@@ -158,8 +158,8 @@ async function handlePut(req, res) {
       message: 'Setting updated successfully',
       setting: updated
     });
-  } catch (_error) {
-    // console.error('Error in handlePut:', _error);
+  } catch (error) {
+    // console.error('Error in handlePut:', error);
     return res.status(500).json({ error: 'Failed to update setting' });
   }
 }
@@ -234,8 +234,8 @@ async function handlePost(req, res) {
       message: 'Setting created successfully',
       setting: created
     });
-  } catch (_error) {
-    // console.error('Error in handlePost:', _error);
+  } catch (error) {
+    // console.error('Error in handlePost:', error);
     return res.status(500).json({ error: 'Failed to create setting' });
   }
 }
@@ -282,8 +282,8 @@ async function handleDelete(req, res) {
     return res.status(200).json({
       message: 'Setting deleted successfully'
     });
-  } catch (_error) {
-    // console.error('Error in handleDelete:', _error);
+  } catch (error) {
+    // console.error('Error in handleDelete:', error);
     return res.status(500).json({ error: 'Failed to delete setting' });
   }
 }
@@ -338,8 +338,8 @@ function decryptValue(encryptedData) {
     decrypted += decipher.final('utf8');
 
     return decrypted;
-  } catch (_error) {
-    // console.error('Decryption error:', _error);
+  } catch (error) {
+    // console.error('Decryption error:', error);
     throw error;
   }
 }

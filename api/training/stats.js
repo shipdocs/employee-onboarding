@@ -1,5 +1,5 @@
 // Vercel API Route: /api/training/stats.js - Get training statistics for authenticated user
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { trainingRateLimit } = require('../../lib/rateLimit');
 
@@ -97,8 +97,8 @@ async function handler(req, res) {
 
     return res.status(200).json(stats);
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in training/stats:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in training/stats:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

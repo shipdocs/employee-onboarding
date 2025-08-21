@@ -1,4 +1,4 @@
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManagerOrAdmin } = require('../../../lib/auth.js');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 
@@ -435,7 +435,7 @@ async function seedTemplateLibrary() {
     }
 
     console.log('Template library seeded successfully');
-  } catch (_error) {
-    console.error('Error seeding template library:', _error);
+  } catch (error) {
+    console.error('Error seeding template library:', error);
   }
 }

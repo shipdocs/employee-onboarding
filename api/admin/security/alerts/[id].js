@@ -7,6 +7,8 @@ const { supabase } = require('../../../../lib/database-supabase-compat');
 const { applyApiSecurityHeaders } = require('../../../../lib/securityHeaders');
 const { adminRateLimit } = require('../../../../lib/rateLimit');
 
+const { db } = require('../../../../lib/database');
+
 module.exports = adminRateLimit(async (req, res) => {
   try {
     applyApiSecurityHeaders(res);
@@ -22,7 +24,8 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     const token = authHeader.split(' ')[1];
-    const { data: { user }, error: authError } = await // TODO: Replace with JWT auth.getUser(token);
+    const user = null; // TODO: Implement authentication
+    const authError = null;
 
     if (authError || !user) {
       return res.status(401).json({ error: 'Invalid token' });

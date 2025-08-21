@@ -2,6 +2,8 @@ const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireManagerOrAdmin } = require('../../../../lib/auth');
 const { invalidateContentCache } = require('../../../../lib/contentCache');
 const { apiRateLimit } = require('../../../../lib/rateLimit');
+const { db } = require('../../../../lib/database');
+
 async function handler(req, res) {
   try {
 
@@ -19,7 +21,7 @@ async function handler(req, res) {
         .single();
 
       if (error) {
-        // console.error('Error fetching training phase:', _error);
+        // console.error('Error fetching training phase:', error);
         return res.status(500).json({ error: 'Failed to fetch training phase' });
       }
 
@@ -131,7 +133,7 @@ async function handler(req, res) {
         .single();
 
       if (error) {
-        // console.error('Error updating training phase:', _error);
+        // console.error('Error updating training phase:', error);
         return res.status(500).json({ error: 'Failed to update training phase' });
       }
 
@@ -185,7 +187,7 @@ async function handler(req, res) {
             error: 'Cannot delete training phase - it is currently being used by crew members'
           });
         }
-      } catch (_error) {
+      } catch (error) {
         // Table doesn't exist, continue with deletion
 
       }
@@ -221,8 +223,8 @@ async function handler(req, res) {
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in training/phases/[id]:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in training/phases/[id]:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

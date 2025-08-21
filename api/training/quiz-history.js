@@ -1,5 +1,5 @@
 // Vercel API Route: /api/training/quiz-history.js - Get user's quiz history
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { verifyJWT } = require('../../lib/auth');
 const { trainingRateLimit } = require('../../lib/rateLimit');
 
@@ -41,7 +41,7 @@ async function handler(req, res) {
       .order('completed_at', { ascending: false });
 
     if (error) {
-      // console.error('Error fetching quiz history:', _error);
+      // console.error('Error fetching quiz history:', error);
       return res.status(500).json({ error: 'Failed to fetch quiz history' });
     }
 
@@ -77,11 +77,11 @@ async function handler(req, res) {
 
     res.json(formattedResults);
 
-  } catch (_error) {
-    // console.error('Error in quiz history endpoint:', _error);
+  } catch (error) {
+    // console.error('Error in quiz history endpoint:', error);
     res.status(500).json({
       error: 'Failed to get quiz history',
-      message: _error.message
+      message: error.message
     });
   }
 }

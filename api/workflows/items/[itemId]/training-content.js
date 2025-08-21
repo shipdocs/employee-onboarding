@@ -61,12 +61,12 @@ const { apiRateLimit } = require('../../../../lib/rateLimit');
 
     return res.status(405).json({ error: 'Method not allowed' });
 
-  } catch (_error) {
-    // console.error('❌ [API] Training content endpoint error:', _error);
+  } catch (error) {
+    // console.error('❌ [API] Training content endpoint error:', error);
     return res.status(500).json({
       success: false,
       error: 'Internal server error',
-      details: _error.message
+      details: error.message
     });
   }
 }

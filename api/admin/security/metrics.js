@@ -1,6 +1,6 @@
 // Vercel API Route: /api/admin/security/metrics.js
 const { requireAdmin } = require('../../../lib/auth');
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
 /**
@@ -178,11 +178,11 @@ async function handler(req, res) {
     };
 
     return res.status(200).json(metrics);
-  } catch (_error) {
-    console.error('Error fetching security metrics:', _error);
+  } catch (error) {
+    console.error('Error fetching security metrics:', error);
     return res.status(500).json({
       error: 'Failed to fetch security metrics',
-      message: _error.message
+      message: error.message
     });
   }
 }

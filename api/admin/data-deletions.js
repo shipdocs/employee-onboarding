@@ -3,7 +3,7 @@
  * Handles data deletion requests and jobs for admin dashboard
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/onboarding/analytics.js - Track onboarding analytics
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireCrew } = require('../../../lib/auth');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 async function handler(req, res) {
@@ -46,7 +46,7 @@ async function handler(req, res) {
       .single();
 
     if (error) {
-      // console.error('Error inserting onboarding analytics:', _error);
+      // console.error('Error inserting onboarding analytics:', error);
       return res.status(500).json({ error: 'Failed to track analytics' });
     }
 
@@ -55,11 +55,11 @@ async function handler(req, res) {
       event_id: data.id
     });
 
-  } catch (_error) {
-    // console.error('Error in onboarding analytics endpoint:', _error);
+  } catch (error) {
+    // console.error('Error in onboarding analytics endpoint:', error);
     res.status(500).json({
       error: 'Failed to track analytics',
-      message: _error.message
+      message: error.message
     });
   }
 }

@@ -44,8 +44,8 @@ module.exports = adminRateLimit(async function handler(req, res) {
       imageUrl: null
     });
 
-  } catch (_error) {
-    // console.error('PDF to image conversion error:', _error);
+  } catch (error) {
+    // console.error('PDF to image conversion error:', error);
     return res.status(500).json({ error: 'Failed to process PDF' });
   }
 });

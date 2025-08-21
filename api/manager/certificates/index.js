@@ -6,7 +6,7 @@
  * with filtering and pagination options.
  */
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManager } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -71,11 +71,11 @@ async function handler(req, res) {
     const { data: certificates, error, count } = await query;
 
     if (error) {
-      // console.error('Error fetching certificates:', _error);
+      // console.error('Error fetching certificates:', error);
       // console.error('Query details:', { sort_by, sort_order, page, limit });
       return res.status(500).json({
         error: 'Failed to fetch certificates',
-        details: _error.message,
+        details: error.message,
         query: { sort_by, sort_order, page, limit }
       });
     }
@@ -101,8 +101,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Error in certificates list endpoint:', _error);
+  } catch (error) {
+    // console.error('Error in certificates list endpoint:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }

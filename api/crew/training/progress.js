@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/training/progress.js - Get crew member's training progress
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAuth } = require('../../../lib/auth');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 
@@ -109,8 +109,8 @@ async function handler(req, res) {
 
     return res.status(200).json(detailedProgress);
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in crew/training/progress:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in crew/training/progress:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

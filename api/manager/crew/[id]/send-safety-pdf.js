@@ -46,8 +46,8 @@ async function handler(req, res) {
       });
     }
 
-  } catch (_error) {
-    // console.error('Error in send-safety-pdf:', _error);
+  } catch (error) {
+    // console.error('Error in send-safety-pdf:', error);
     res.status(500).json({ error: 'Failed to send Safety Management PDF' });
   }
 }

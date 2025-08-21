@@ -3,7 +3,7 @@
  * Provides incident metrics and statistics for monitoring and reporting
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { incidentDetectionService } = require('../../lib/services/incidentDetectionService');
 const { requireRole } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');

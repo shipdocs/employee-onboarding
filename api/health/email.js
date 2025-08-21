@@ -63,12 +63,12 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    console.error('Email health check error:', _error);
+  } catch (error) {
+    console.error('Email health check error:', error);
     res.status(503).json({
       status: 'unhealthy',
       error: 'Email service check failed',
-      details: _error.message,
+      details: error.message,
       timestamp: new Date().toISOString(),
       responseTime: Date.now() - startTime,
       checks

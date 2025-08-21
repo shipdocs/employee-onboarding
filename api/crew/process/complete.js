@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/process/complete.js - Complete onboarding process
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAuth } = require('../../../lib/auth');
 const unifiedEmailService = require('../../../lib/unifiedEmailService');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
@@ -142,11 +142,11 @@ async function handler(req, res) {
       });
     }
 
-  } catch (_error) {
-    // console.error('🏁 [ERROR] Process completion failed:', _error);
+  } catch (error) {
+    // console.error('🏁 [ERROR] Process completion failed:', error);
     res.status(500).json({
       error: 'Failed to complete onboarding process',
-      details: _error.message
+      details: error.message
     });
   }
 }

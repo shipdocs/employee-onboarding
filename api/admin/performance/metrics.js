@@ -3,7 +3,7 @@
  * Provides aggregated performance metrics for admin dashboard
  */
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { authenticateRequest } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -65,11 +65,11 @@ async function handler(req, res) {
       generatedAt: new Date().toISOString()
     });
 
-  } catch (_error) {
-    // console.error('Error in admin performance metrics API:', _error);
+  } catch (error) {
+    // console.error('Error in admin performance metrics API:', error);
     res.status(500).json({
       error: 'Internal server error',
-      message: _error.message
+      message: error.message
     });
   }
 }
@@ -154,8 +154,8 @@ async function getAggregatedMetrics(startTime, filters = {}) {
 
     return aggregated;
 
-  } catch (_error) {
-    // console.error('Error getting aggregated metrics:', _error);
+  } catch (error) {
+    // console.error('Error getting aggregated metrics:', error);
     return {};
   }
 }
@@ -202,8 +202,8 @@ async function getActiveUsersCount(startTime) {
 
     return 0;
 
-  } catch (_error) {
-    // console.error('Error getting active users count:', _error);
+  } catch (error) {
+    // console.error('Error getting active users count:', error);
     return 0;
   }
 }
@@ -236,8 +236,8 @@ async function getPerformanceAlerts(startTime) {
       contextTags: alert.context_tags
     }));
 
-  } catch (_error) {
-    // console.error('Error getting performance alerts:', _error);
+  } catch (error) {
+    // console.error('Error getting performance alerts:', error);
     return [];
   }
 }
@@ -281,8 +281,8 @@ async function getSystemHealthIndicators(startTime) {
       lastUpdated: new Date().toISOString()
     };
 
-  } catch (_error) {
-    // console.error('Error getting system health indicators:', _error);
+  } catch (error) {
+    // console.error('Error getting system health indicators:', error);
     return {};
   }
 }
@@ -310,8 +310,8 @@ async function calculateErrorRate(startTime) {
 
     return (errorCount / requestCount) * 100;
 
-  } catch (_error) {
-    // console.error('Error calculating error rate:', _error);
+  } catch (error) {
+    // console.error('Error calculating error rate:', error);
     return 0;
   }
 }
@@ -332,8 +332,8 @@ async function calculateThroughput(startTime) {
 
     return requestCount / timeRangeMinutes;
 
-  } catch (_error) {
-    // console.error('Error calculating throughput:', _error);
+  } catch (error) {
+    // console.error('Error calculating throughput:', error);
     return 0;
   }
 }

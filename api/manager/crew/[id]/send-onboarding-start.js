@@ -46,8 +46,8 @@ async function handler(req, res) {
       });
     }
 
-  } catch (_error) {
-    // console.error('Error in send-onboarding-start:', _error);
+  } catch (error) {
+    // console.error('Error in send-onboarding-start:', error);
     res.status(500).json({ error: 'Failed to send Onboarding Start email' });
   }
 }

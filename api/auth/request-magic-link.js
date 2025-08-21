@@ -1,5 +1,5 @@
 // Vercel API Route: /api/auth/request-magic-link.js
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { generateMagicToken } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { authRateLimit } = require('../../lib/rateLimit');
@@ -22,8 +22,8 @@ async function logMagicLinkRequestEvent(email, ipAddress, userAgent, eventType, 
         },
         threats: eventType === 'rate_limited' ? ['magic_link_abuse'] : []
       });
-  } catch (_error) {
-    console.error('Failed to log magic link request security event:', _error);
+  } catch (error) {
+    console.error('Failed to log magic link request security event:', error);
   }
 }
 
@@ -172,8 +172,8 @@ async function handler(req, res) {
         error: 'Failed to send magic link. Please try again later or contact your administrator.'
       });
     }
-  } catch (_error) {
-    // console.error('Request magic link error:', _error);
+  } catch (error) {
+    // console.error('Request magic link error:', error);
     res.status(500).json({ error: 'Failed to process request' });
   }
 }

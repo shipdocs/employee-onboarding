@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/onboarding/overview.js - Get onboarding overview for managers
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManagerOrAdmin } = require('../../../lib/auth');
 
 // Admin schema for sensitive views
@@ -95,11 +95,11 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Error in onboarding overview endpoint:', _error);
+  } catch (error) {
+    // console.error('Error in onboarding overview endpoint:', error);
     res.status(500).json({
       error: 'Failed to get onboarding overview',
-      message: _error.message
+      message: error.message
     });
   }
 }

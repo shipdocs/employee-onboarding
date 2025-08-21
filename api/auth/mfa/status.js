@@ -51,8 +51,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    console.error('MFA status error:', _error);
+  } catch (error) {
+    console.error('MFA status error:', error);
     return res.status(500).json({
       error: 'Failed to get MFA status',
       code: 'MFA_STATUS_FAILED'

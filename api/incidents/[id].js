@@ -3,7 +3,7 @@
  * External API for incident response tools to interact with specific incidents
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireRole } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
 

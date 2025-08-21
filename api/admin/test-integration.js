@@ -4,7 +4,7 @@
  * Located at: /api/admin/system-settings/test-integration
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { externalIntegrationService } = require('../../lib/services/externalIntegrationService');
 const { authenticateRequest } = require('../../lib/auth');
 const { applyCors } = require('../../lib/cors');
@@ -224,7 +224,7 @@ async function handler(req, res) {
             error: integrationError.message,
             timestamp: new Date().toISOString()
           },
-          threats: ['configuration_error']
+          threats: ['configurationerror']
         });
 
       res.status(400).json({

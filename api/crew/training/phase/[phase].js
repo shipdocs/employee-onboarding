@@ -36,7 +36,6 @@ async function handler(req, res) {
     }
 
     if (!sessions || sessions.length === 0) {
-
       // Create a new training session for this phase
       const { data: newSession, error: createError } = await supabase
         .from('training_sessions')
@@ -96,12 +95,16 @@ async function handler(req, res) {
 
     // Get phase information with caching
     const phaseInfo = await getCachedPhaseInfo(phaseNum, async () => {
-      const dbPhaseInfo = await getPhaseInfoFromDatabase(phaseNum);
-      if (dbPhaseInfo) {
-        return dbPhaseInfo;
+      try {
+        const dbPhaseInfo = await getPhaseInfoFromDatabase(phaseNum);
+        if (dbPhaseInfo) {
+          return dbPhaseInfo;
+        }
+        return getPhaseInfo(phaseNum);
+      } catch (error) {
+        console.error('Error fetching phase info:', error);
+        return getPhaseInfo(phaseNum);
       }
-
-      return getPhaseInfo(phaseNum);
     });
 
     // Format training items and merge with database content
@@ -187,8 +190,8 @@ async function handler(req, res) {
       }))
     });
 
-  } catch (_error) {
-    // console.error('Error in phase training details:', _error);
+  } catch (error) {
+    // console.error('Error in phase training details:', error);
     res.status(500).json({ error: 'Failed to fetch phase training details' });
   }
 }
@@ -204,10 +207,10 @@ async function getPhaseInfoFromDatabase(phase) {
       .maybeSingle();
 
     if (error) {
-      // console.error('Error fetching phase info from database:', _error);
+      // console.error('Error fetching phase info from database:', error);
       return null;
     }
-
+    
     if (!phaseData) {
       return null;
     }
@@ -222,8 +225,8 @@ async function getPhaseInfoFromDatabase(phase) {
       items: phaseData.items || [],
       mediaFiles: phaseData.media_attachments || []
     };
-  } catch (_error) {
-    // console.error('Error fetching phase info from database:', _error);
+  } catch (error) {
+    // console.error('Error fetching phase info from database:', error);
     return null;
   }
 }
@@ -275,17 +278,9 @@ function getPhaseInfo(phase) {
 // Helper function to get file URL from Supabase Storage
 function getFileUrl(bucket, path) {
   if (!path) return null;
-
-  try {
-    const { data } = // TODO: Replace with MinIO storage
-      .from(bucket)
-      .getPublicUrl(path);
-
-    return data.publicUrl;
-  } catch (_error) {
-    // console.error('Error getting file URL:', _error);
-    return null;
-  }
+  
+  // Return a local file URL path
+  return `/uploads/${bucket}/${path}`;
 }
 
 module.exports = trainingRateLimit(requireCrew(handler));

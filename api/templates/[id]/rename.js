@@ -1,5 +1,5 @@
 // Vercel API Route: /api/templates/[id]/rename.js - Rename PDF template
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireAdmin } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -102,8 +102,8 @@ module.exports = adminRateLimit(requireAdmin(async function handler(req, res) {
       previousName: existingTemplate.name
     });
 
-  } catch (_error) {
-    // console.error('Template rename error:', _error);
+  } catch (error) {
+    // console.error('Template rename error:', error);
     res.status(500).json({ error: 'Failed to rename template' });
   }
 }));

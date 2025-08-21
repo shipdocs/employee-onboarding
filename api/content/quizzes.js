@@ -16,7 +16,7 @@ async function handler(req, res) {
         .order('phase', { ascending: true });
 
       if (error) {
-        // console.error('❌ [DB] Error fetching quizzes:', _error);
+        // console.error('❌ [DB] Error fetching quizzes:', error);
         // Check if table doesn't exist
         if (error.code === '42P01') {
 
@@ -57,7 +57,7 @@ async function handler(req, res) {
         .single();
 
       if (error) {
-        // console.error('Error creating quiz:', _error);
+        // console.error('Error creating quiz:', error);
         return res.status(500).json({ error: 'Failed to create quiz' });
       }
 
@@ -76,8 +76,8 @@ async function handler(req, res) {
     }
 
     return res.status(405).json({ error: 'Method not allowed' });
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in quizzes:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in quizzes:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

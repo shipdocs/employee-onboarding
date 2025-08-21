@@ -7,7 +7,7 @@
  * This endpoint allows managers to view, update, or delete a specific certificate
  */
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManager } = require('../../../lib/auth');
 const { StorageService } = require('../../../lib/storage');
 const { adminRateLimit } = require('../../../lib/rateLimit');
@@ -33,8 +33,8 @@ module.exports = adminRateLimit(requireManager(async (req, res) => {
       default:
         return res.status(405).json({ error: 'Method not allowed' });
     }
-  } catch (_error) {
-    // console.error(`Error in certificate [${req.query.id}] endpoint:`, _error);
+  } catch (error) {
+    // console.error(`Error in certificate [${req.query.id}] endpoint:`, error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }));
@@ -63,7 +63,7 @@ async function getCertificate(id, res) {
     .single();
 
   if (error) {
-    // console.error('Error fetching certificate:', _error);
+    // console.error('Error fetching certificate:', error);
     return res.status(500).json({ error: 'Failed to fetch certificate' });
   }
 
@@ -76,7 +76,7 @@ async function getCertificate(id, res) {
   if (certificate.pdf_url) {
     try {
       fileUrl = await StorageService.getFileUrl('certificates', certificate.pdf_url);
-    } catch (_error) {
+    } catch (error) {
 
       // Continue without the URL
     }
@@ -127,7 +127,7 @@ async function updateCertificate(id, data, res) {
     .single();
 
   if (error) {
-    // console.error('Error updating certificate:', _error);
+    // console.error('Error updating certificate:', error);
     return res.status(500).json({ error: 'Failed to update certificate' });
   }
 

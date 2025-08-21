@@ -108,8 +108,8 @@ async function handler(req, res) {
 
     return res.status(405).json({ error: 'Method not allowed' });
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error managing workflow progress:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error managing workflow progress:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({ error: 'Internal server error' });
   }

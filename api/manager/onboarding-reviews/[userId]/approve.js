@@ -194,8 +194,8 @@ async function handler(req, res) {
       approvedAt: new Date().toISOString()
     });
 
-  } catch (_error) {
-    // console.error('Error in onboarding approval:', _error);
+  } catch (error) {
+    // console.error('Error in onboarding approval:', error);
     res.status(500).json({ error: 'Failed to approve onboarding' });
   }
 }
@@ -204,6 +204,8 @@ async function handler(req, res) {
 function generateServiceToken(userId) {
   const jwt = require('jsonwebtoken');
 const { adminRateLimit } = require('../../../../lib/rateLimit');
+const { db } = require('../../../../lib/database');
+
   return jwt.sign(
     { userId, role: 'service' },
     process.env.JWT_SECRET,

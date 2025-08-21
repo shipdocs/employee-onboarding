@@ -44,8 +44,8 @@ async function handler(req, res) {
       message: 'Logged out successfully'
     });
 
-  } catch (_error) {
-    console.error('Logout error:', _error);
+  } catch (error) {
+    console.error('Logout error:', error);
     res.status(500).json({ error: 'Logout failed' });
   }
 }

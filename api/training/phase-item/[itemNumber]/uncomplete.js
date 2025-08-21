@@ -3,6 +3,8 @@ const { supabase } = require('../../../../../../lib/supabase');
 const { requireCrew } = require('../../../../../../lib/auth');
 const { trainingRateLimit } = require('../../../../../../lib/rateLimit');
 
+const { db } = require('../../../../lib/database');
+
 async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -130,8 +132,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Error uncompleting training item:', _error);
+  } catch (error) {
+    // console.error('Error uncompleting training item:', error);
     res.status(500).json({ error: 'Failed to uncomplete training item' });
   }
 }

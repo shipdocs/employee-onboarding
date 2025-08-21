@@ -32,7 +32,7 @@ async function loadTranslationSettings() {
     });
 
     return settings;
-  } catch (_error) {
+  } catch (error) {
 
     return null;
   }
@@ -168,19 +168,19 @@ module.exports = apiRateLimit(async function handler(req, res) {;
       }
     });
 
-  } catch (_error) {
-    // console.error('Batch translation API error:', _error);
+  } catch (error) {
+    // console.error('Batch translation API error:', error);
 
     // Determine error type and response
-    if (_error.message.includes('Translation failed')) {
+    if (error.message.includes('Translation failed')) {
       return res.status(503).json({
         error: 'Translation service unavailable',
         message: 'Translation service is temporarily unavailable',
-        details: _error.message
+        details: error.message
       });
     }
 
-    if (_error.message.includes('No translation providers available')) {
+    if (error.message.includes('No translation providers available')) {
       return res.status(503).json({
         error: 'No translation providers available',
         message: 'All translation services are currently unavailable'
@@ -191,7 +191,7 @@ module.exports = apiRateLimit(async function handler(req, res) {;
     res.status(500).json({
       error: 'Batch translation failed',
       message: 'An unexpected error occurred during batch translation',
-      details: process.env.NODE_ENV === 'development' ? _error.message : undefined
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 });

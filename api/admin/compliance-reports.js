@@ -3,7 +3,7 @@
  * Handles compliance reports generation and management for admin dashboard
  */
 
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 

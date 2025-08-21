@@ -1,6 +1,6 @@
 // Vercel API Route: /api/admin/cleanup-tokens.js
 const { requireAdmin } = require('../../lib/auth');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { adminRateLimit } = require('../../lib/rateLimit');
 
 async function handler(req, res) {
@@ -16,7 +16,7 @@ async function handler(req, res) {
       .rpc('cleanup_expired_blacklisted_tokens');
 
     if (error) {
-      console.error('Error cleaning up tokens:', _error);
+      console.error('Error cleaning up tokens:', error);
       return res.status(500).json({ error: 'Failed to cleanup tokens' });
     }
 
@@ -34,8 +34,8 @@ async function handler(req, res) {
       currentStats: stats || []
     });
 
-  } catch (_error) {
-    console.error('Token cleanup error:', _error);
+  } catch (error) {
+    console.error('Token cleanup error:', error);
     res.status(500).json({ error: 'Token cleanup failed' });
   }
 }

@@ -1,5 +1,5 @@
 // Vercel Cron Job: /api/cron/send-reminders.js - Send training progress reminders
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { generateMagicToken } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 module.exports = async function handler(req, res) {;
@@ -56,9 +56,9 @@ module.exports = async function handler(req, res) {;
           );
           remindersSent++;
 
-        } catch (_error) {
+        } catch (error) {
           errors++;
-          // console.error(`❌ Error sending overdue reminder to ${session.users.email}:`, _error.message);
+          // console.error(`❌ Error sending overdue reminder to ${session.users.email}:`, error.message);
         }
       }
     }
@@ -116,9 +116,9 @@ module.exports = async function handler(req, res) {;
           );
           remindersSent++;
 
-        } catch (_error) {
+        } catch (error) {
           errors++;
-          // console.error(`❌ Error sending due soon reminder to ${session.users.email}:`, _error.message);
+          // console.error(`❌ Error sending due soon reminder to ${session.users.email}:`, error.message);
         }
       }
     }
@@ -173,9 +173,9 @@ module.exports = async function handler(req, res) {;
           );
           remindersSent++;
 
-        } catch (_error) {
+        } catch (error) {
           errors++;
-          // console.error(`❌ Error sending inactive reminder to ${user.email}:`, _error.message);
+          // console.error(`❌ Error sending inactive reminder to ${user.email}:`, error.message);
         }
       }
     }
@@ -226,9 +226,9 @@ module.exports = async function handler(req, res) {;
           await unifiedEmailService.sendFormReminder(user);
           remindersSent++;
 
-        } catch (_error) {
+        } catch (error) {
           errors++;
-          // console.error(`❌ Error sending form reminder to ${user.email}:`, _error.message);
+          // console.error(`❌ Error sending form reminder to ${user.email}:`, error.message);
         }
       }
     }
@@ -266,9 +266,9 @@ module.exports = async function handler(req, res) {;
             );
             remindersSent++;
 
-          } catch (_error) {
+          } catch (error) {
             errors++;
-            // console.error(`❌ Error sending weekly reminder to ${session.users.email}:`, _error.message);
+            // console.error(`❌ Error sending weekly reminder to ${session.users.email}:`, error.message);
           }
         }
       }
@@ -327,9 +327,9 @@ module.exports = async function handler(req, res) {;
 
             await new Promise(resolve => setTimeout(resolve, 10000));
           }
-        } catch (_error) {
+        } catch (error) {
           errors++;
-          // console.error('❌ Error sending Safety PDF to ' + crew.email + ':', _error.message);
+          // console.error('❌ Error sending Safety PDF to ' + crew.email + ':', error.message);
         }
       }
     }
@@ -388,9 +388,9 @@ module.exports = async function handler(req, res) {;
 
             await new Promise(resolve => setTimeout(resolve, 10000));
           }
-        } catch (_error) {
+        } catch (error) {
           errors++;
-          // console.error('❌ Error sending onboarding start email to ' + crew.email + ':', _error.message);
+          // console.error('❌ Error sending onboarding start email to ' + crew.email + ':', error.message);
         }
       }
     }
@@ -412,11 +412,11 @@ module.exports = async function handler(req, res) {;
       timestamp: now.toISOString()
     });
 
-  } catch (_error) {
-    // console.error('❌ Cron job failed:', _error);
+  } catch (error) {
+    // console.error('❌ Cron job failed:', error);
     res.status(500).json({
       success: false,
-      error: _error.message,
+      error: error.message,
       timestamp: new Date().toISOString()
     });
   }

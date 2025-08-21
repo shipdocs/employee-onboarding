@@ -1,5 +1,5 @@
 // API Route: /api/privacy/user-access-report.js
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { wrapWithErrorHandling } = require('../../lib/apiHandler');
 const { apiRateLimit } = require('../../lib/rateLimit');

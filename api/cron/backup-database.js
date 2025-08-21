@@ -47,12 +47,12 @@ async function handler(req, res) {
       nextRun: getNextRunTime()
     });
 
-  } catch (_error) {
-    console.error('Database backup failed:', _error);
+  } catch (error) {
+    console.error('Database backup failed:', error);
     res.status(500).json({
       success: false,
       error: 'Backup failed',
-      details: _error.message,
+      details: error.message,
       timestamp: new Date().toISOString()
     });
   } finally {

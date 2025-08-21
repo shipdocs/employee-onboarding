@@ -1,6 +1,6 @@
 // Vercel API Route: /api/auth/verify.js
 const { authenticateRequest, isTokenBlacklisted } = require('../../lib/auth');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authRateLimit } = require('../../lib/rateLimit');
 const externalLoggingService = require('../../lib/services/externalLoggingService');
 
@@ -87,8 +87,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Token verification error:', _error);
+  } catch (error) {
+    // console.error('Token verification error:', error);
     res.status(500).json({ error: 'Token verification failed' });
   }
 }

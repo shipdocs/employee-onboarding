@@ -35,12 +35,12 @@ async function handler(req, res) {
       nextRun: getNextRunTime()
     });
 
-  } catch (_error) {
-    console.error('Automated cleanup failed:', _error);
+  } catch (error) {
+    console.error('Automated cleanup failed:', error);
     res.status(500).json({
       success: false,
       error: 'Cleanup failed',
-      details: _error.message,
+      details: error.message,
       timestamp: new Date().toISOString()
     });
   } finally {

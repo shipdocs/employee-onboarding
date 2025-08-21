@@ -4,7 +4,7 @@
  */
 
 const { verifyJWT, generateJWT } = require('../../lib/auth');
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -70,12 +70,12 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    console.error('Auth health check error:', _error);
+  } catch (error) {
+    console.error('Auth health check error:', error);
     res.status(503).json({
       status: 'unhealthy',
       error: 'Authentication check failed',
-      details: _error.message,
+      details: error.message,
       timestamp: new Date().toISOString(),
       responseTime: Date.now() - startTime,
       checks

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-quiz-rejection.js - Send quiz rejection notification
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailTemplateGenerator } = require('../../lib/emailTemplateGenerator');
@@ -67,8 +67,8 @@ async function handler(req, res) {
       recipient: user.email
     });
 
-  } catch (_error) {
-    // console.error('Error sending quiz rejection email:', _error);
+  } catch (error) {
+    // console.error('Error sending quiz rejection email:', error);
     res.status(500).json({ error: 'Failed to send quiz rejection email' });
   }
 }

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/run-notification-migration.js - Run notification system migration
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireAdmin } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 
@@ -115,8 +115,8 @@ async function handler(req, res) {
       try {
         await query;
         results[name] = 'SUCCESS';
-      } catch (_error) {
-        results[name] = `FAILED: ${_error.message}`;
+      } catch (error) {
+        results[name] = `FAILED: ${error.message}`;
       }
     }
 
@@ -127,12 +127,12 @@ async function handler(req, res) {
       timestamp: new Date().toISOString()
     });
 
-  } catch (_error) {
-    // console.error('Migration error:', _error);
+  } catch (error) {
+    // console.error('Migration error:', error);
     res.status(500).json({
       error: 'Migration failed',
-      message: _error.message,
-      stack: process.env.NODE_ENV === 'development' ? _error.stack : undefined
+      message: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }

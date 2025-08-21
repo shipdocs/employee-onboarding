@@ -88,8 +88,8 @@ async function handler(req, res) {
       }
     });
 
-  } catch (_error) {
-    // console.error('Error sending magic link:', _error);
+  } catch (error) {
+    // console.error('Error sending magic link:', error);
     res.status(500).json({ error: 'Failed to send magic link' });
   }
 }

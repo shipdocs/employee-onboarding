@@ -1,5 +1,5 @@
 // api/admin/refactoring-metrics.js - Refactoring Metrics API
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { authenticateRequest } = require('../../lib/auth');
 
 /**
@@ -78,8 +78,8 @@ const { adminRateLimit } = require('../../lib/rateLimit');
     };
 
     return res.status(200).json(metrics);
-  } catch (_error) {
-    // console.error('Refactoring metrics API error:', _error);
+  } catch (error) {
+    // console.error('Refactoring metrics API error:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 }
@@ -152,8 +152,8 @@ async function calculateSystemHealth(startTime) {
     );
 
     return Math.round(healthScore);
-  } catch (_error) {
-    // console.error('Error calculating system health:', _error);
+  } catch (error) {
+    // console.error('Error calculating system health:', error);
     return 0;
   }
 }
@@ -195,8 +195,8 @@ async function getErrorMetrics(startTime) {
       totalCalls,
       userComplaints
     };
-  } catch (_error) {
-    // console.error('Error getting error metrics:', _error);
+  } catch (error) {
+    // console.error('Error getting error metrics:', error);
     return { errorRate: 0, errorCount: 0, totalCalls: 0, userComplaints: 0 };
   }
 }
@@ -230,8 +230,8 @@ async function getPerformanceMetrics(startTime) {
       baseline,
       degradation
     };
-  } catch (_error) {
-    // console.error('Error getting performance metrics:', _error);
+  } catch (error) {
+    // console.error('Error getting performance metrics:', error);
     return { avgResponseTime: 0, baseline: 500, degradation: 1 };
   }
 }
@@ -273,8 +273,8 @@ async function getRolloutProgress() {
         }
       });
     }
-  } catch (_error) {
-    // console.error('Error getting rollout progress:', _error);
+  } catch (error) {
+    // console.error('Error getting rollout progress:', error);
   }
 
   return weeks;
@@ -297,8 +297,8 @@ async function getUserMetrics(startTime) {
     return {
       activeUsers: uniqueUsers.size
     };
-  } catch (_error) {
-    // console.error('Error getting user metrics:', _error);
+  } catch (error) {
+    // console.error('Error getting user metrics:', error);
     return { activeUsers: 0 };
   }
 }
@@ -339,8 +339,8 @@ async function getPerformanceTrend(startTime) {
     }
 
     return trend;
-  } catch (_error) {
-    // console.error('Error getting performance trend:', _error);
+  } catch (error) {
+    // console.error('Error getting performance trend:', error);
     // Return empty trend on error
     return [];
   }
@@ -385,8 +385,8 @@ async function getErrorTrend(startTime) {
     }
 
     return trend;
-  } catch (_error) {
-    // console.error('Error getting error trend:', _error);
+  } catch (error) {
+    // console.error('Error getting error trend:', error);
     // Return empty trend on error
     return [];
   }

@@ -1,4 +1,4 @@
-const db = require('../../lib/database-direct');
+const db = require('../../lib/database');
 const { requireManagerOrAdmin } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
 /**
@@ -113,12 +113,12 @@ async function handler(req, res) {
 
     return res.status(200).json(validationResults);
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Critical error in content validation:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Critical error in content validation:', error);
     // console.error('❌ [ERROR] Stack trace:', error.stack);
     return res.status(500).json({
       error: 'Internal server error',
-      details: _error.message
+      details: error.message
     });
   }
 }

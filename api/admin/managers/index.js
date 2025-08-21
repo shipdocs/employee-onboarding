@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/managers/index.js - Admin manager management
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { authenticateRequest, generateMagicToken } = require('../../../lib/auth');
 const { unifiedEmailService } = require('../../../lib/unifiedEmailService');
 const bcrypt = require('bcrypt');
@@ -75,8 +75,8 @@ async function getManagers(req, res) {
       managers: managersWithPermissions,
       total: managers.length
     });
-  } catch (_error) {
-    // console.error('Get managers error:', _error);
+  } catch (error) {
+    // console.error('Get managers error:', error);
     res.status(500).json({ error: 'Failed to fetch managers' });
   }
 }
@@ -351,9 +351,9 @@ async function createManager(req, res) {
       },
       message: 'Manager created successfully'
     });
-  } catch (_error) {
-    console.error('Create manager error:', _error);
-    res.status(500).json({ error: 'Failed to create manager', debug: _error.message });
+  } catch (error) {
+    console.error('Create manager error:', error);
+    res.status(500).json({ error: 'Failed to create manager', debug: error.message });
   }
 }
 

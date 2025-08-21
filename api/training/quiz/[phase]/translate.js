@@ -4,7 +4,6 @@
  */
 
 const { requireAuth } = require('../../../../lib/auth');
-const { supabase } = require('../lib/database-supabase-compat');
 const AITranslationService = require('../../../../lib/aiTranslationService');
 const { trainingRateLimit } = require('../../../../lib/rateLimit');
 
@@ -39,7 +38,7 @@ async function loadTranslationSettings() {
     });
 
     return settings;
-  } catch (_error) {
+  } catch (error) {
 
     return null;
   }
@@ -341,7 +340,7 @@ async function handler(req, res) {
         await supabase
           .from('translation_jobs')
           .update({
-            status: translationErrors.length === 0 ? 'completed' : 'completed_with_errors',
+            status: translationErrors.length === 0 ? 'completed' : 'completed_witherrors',
             progress_percentage: 100,
             completed_items: translatedQuestions,
             failed_items: translationErrors.length,
@@ -378,8 +377,8 @@ async function handler(req, res) {
         errors: translationErrors.length > 0 ? translationErrors : undefined
       });
 
-    } catch (_error) {
-      // console.error('❌ [TRANSLATE] Batch translation failed:', _error);
+    } catch (error) {
+      // console.error('❌ [TRANSLATE] Batch translation failed:', error);
 
       // Update translation job with error
       if (translationJob) {
@@ -387,7 +386,7 @@ async function handler(req, res) {
           .from('translation_jobs')
           .update({
             status: 'failed',
-            error_messages: [_error.message],
+            error_messages: [error.message],
             completed_at: new Date().toISOString()
           })
           .eq('id', translationJob.id);
@@ -395,28 +394,28 @@ async function handler(req, res) {
 
       return res.status(500).json({
         error: 'Batch translation failed',
-        message: _error.message,
+        message: error.message,
         phase: phase,
         translation_job_id: translationJob?.id
       });
     }
 
-  } catch (_error) {
-    // console.error('❌ [ERROR] Quiz batch translation API error:', _error);
+  } catch (error) {
+    // console.error('❌ [ERROR] Quiz batch translation API error:', error);
 
     // Determine error type and response
-    if (_error.message.includes('not found')) {
+    if (error.message.includes('not found')) {
       return res.status(404).json({
         error: 'Quiz not found',
-        message: _error.message
+        message: error.message
       });
     }
 
-    if (_error.message.includes('Translation failed')) {
+    if (error.message.includes('Translation failed')) {
       return res.status(503).json({
         error: 'Translation service unavailable',
         message: 'Translation service is temporarily unavailable',
-        details: _error.message
+        details: error.message
       });
     }
 
@@ -424,7 +423,7 @@ async function handler(req, res) {
     return res.status(500).json({
       error: 'Quiz translation failed',
       message: 'An unexpected error occurred during quiz translation',
-      details: process.env.NODE_ENV === 'development' ? _error.message : undefined
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }

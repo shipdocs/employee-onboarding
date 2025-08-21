@@ -6,7 +6,7 @@
  * using the AutomatedCertificateService
  */
 
-const db = require('../../../lib/database-direct');
+const db = require('../../../lib/database');
 const { requireManager } = require('../../../lib/auth');
 const automatedCertificateService = require('../../../services/automated-certificate-service');
 const { adminRateLimit } = require('../../../lib/rateLimit');
@@ -93,11 +93,11 @@ module.exports = adminRateLimit(requireManager(async (req, res) => {
       }
     });
 
-  } catch (_error) {
-    // console.error('Error in certificate regeneration endpoint:', _error);
+  } catch (error) {
+    // console.error('Error in certificate regeneration endpoint:', error);
     return res.status(500).json({
       error: 'Failed to regenerate certificate',
-      message: _error.message
+      message: error.message
     });
   }
 }));
