@@ -82,7 +82,7 @@ jobs:
           fi
           
           # 4. Vulnerability Management
-          if [ -f ".github/workflows/security.yml" ]; then
+          if [ -f ".github/workflows/security-gate.yml" ]; then
             echo "✅ Vulnerability Management: Security scanning configured"
             CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
           else
