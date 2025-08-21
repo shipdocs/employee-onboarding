@@ -2,9 +2,9 @@ name: Code Quality & Maintainability
 
 on:
   push:
-    branches: [ main, testing, preview ]
+    branches: [ master, testing, preview ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
   schedule:
     # Run every Monday at 9 AM UTC
     - cron: '0 9 * * 1'

@@ -2,13 +2,13 @@ name: Container Security Scanning
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ master, develop ]
     paths:
       - 'Dockerfile*'
       - 'docker-compose*.yml'
       - '.dockerignore'
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - 'Dockerfile*'
       - 'docker-compose*.yml'
