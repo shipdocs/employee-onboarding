@@ -2,7 +2,9 @@ class MaritimeOnboarding < Formula
   desc "Maritime crew onboarding and training management system"
   homepage "https://github.com/shipdocs/employee-onboarding"
   url "https://github.com/shipdocs/employee-onboarding/archive/v2.0.1.tar.gz"
-  sha256 "REPLACE_WITH_ACTUAL_SHA256"
+  # TODO: Replace with actual SHA256 when release is created
+  # Generate with: curl -sL https://github.com/shipdocs/employee-onboarding/archive/v2.0.1.tar.gz | sha256sum
+  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
   license "MIT"
 
   depends_on "docker"

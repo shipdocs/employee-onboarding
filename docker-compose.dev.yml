@@ -12,7 +12,7 @@ services:
     environment:
       POSTGRES_DB: ${DB_NAME:-employee_onboarding_dev}
       POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres_dev}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-dev_password_change_me}
     volumes:
       - postgres_dev_data:/var/lib/postgresql/data
       - ./database/dev-seed.sql:/docker-entrypoint-initdb.d/02-dev-seed.sql:ro
@@ -30,7 +30,7 @@ services:
       # Enable hot reload
       CHOKIDAR_USEPOLLING: "true"
       # Development database
-      DATABASE_URL: postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres_dev}@database:5432/${DB_NAME:-employee_onboarding_dev}
+      DATABASE_URL: "postgres://${DB_USER:-postgres}:${DB_PASSWORD:-dev_password_change_me}@database:5432/${DB_NAME:-employee_onboarding_dev}"
       # Development email (MailHog)
       MAIL_HOST: mailhog
       MAIL_PORT: 1025

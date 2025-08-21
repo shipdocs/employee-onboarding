@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS security_alert_config (
     description TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    updated_by INTEGER REFERENCES users(id)
+    updated_by INTEGER REFERENCES users(id) ON DELETE SET NULL
 );
 
 -- Security alert recipients table
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS security_alert_recipients (
     is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    created_by INTEGER REFERENCES users(id),
+    created_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
     UNIQUE(alert_type, recipient_type, recipient_value)
 );
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS security_alert_thresholds (
     is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    updated_by INTEGER REFERENCES users(id),
+    updated_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
     UNIQUE(metric_name)
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS security_alerts (
     message TEXT NOT NULL,
     is_resolved BOOLEAN DEFAULT false,
     resolved_at TIMESTAMP WITH TIME ZONE,
-    resolved_by INTEGER REFERENCES users(id),
+    resolved_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
     resolution_notes TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -113,6 +113,12 @@ ALTER TABLE security_alert_recipients ENABLE ROW LEVEL SECURITY;
 ALTER TABLE security_alert_thresholds ENABLE ROW LEVEL SECURITY;
 ALTER TABLE security_alerts ENABLE ROW LEVEL SECURITY;
 
+-- NOTE: These RLS policies use auth.uid() which is Supabase-specific.
+-- For non-Supabase deployments, consider:
+-- 1. Using current_setting('app.current_user_id') with application-level user context
+-- 2. Disabling RLS and relying on application-level authorization
+-- 3. Using PostgreSQL roles instead of auth.uid()
+
 -- Only admins can manage security alert configuration
 CREATE POLICY security_alert_config_admin_only ON security_alert_config
     FOR ALL USING (
@@ -160,6 +166,19 @@ CREATE POLICY security_alerts_admin_update ON security_alerts
             AND users.role = 'admin'
         )
     );
+
+-- Alternative RLS policies for non-Supabase deployments (commented out):
+-- Replace auth.uid() with current_setting('app.current_user_id')::integer
+-- and set the user context in your application before database operations:
+--
+-- CREATE POLICY security_alert_config_admin_only_alt ON security_alert_config
+--     FOR ALL USING (
+--         EXISTS (
+--             SELECT 1 FROM users
+--             WHERE users.id = current_setting('app.current_user_id')::integer
+--             AND users.role = 'admin'
+--         )
+--     );
 
 COMMENT ON TABLE security_alert_config IS 'Configuration settings for security alert system';
 COMMENT ON TABLE security_alert_recipients IS 'Email and notification recipients for security alerts';
