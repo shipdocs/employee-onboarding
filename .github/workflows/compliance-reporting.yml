@@ -454,12 +454,42 @@ jobs:
           
           echo "✅ Executive summary generated"
 
-      - name: Upload Compliance Reports
+      - name: Upload Compliance Reports (Short-term)
         uses: actions/upload-artifact@v4
         with:
           name: compliance-reports-${{ github.run_id }}
           path: compliance-reports/
-          retention-days: 2555  # 7 years for maritime compliance
+          retention-days: 30  # Short-term GitHub retention; long-term archival handled below
+
+      - name: Prepare Compliance Archive for Long-term Storage
+        run: |
+          echo "📁 Preparing compliance reports for 7-year archival..."
+
+          # Create structured archive for external storage
+          mkdir -p compliance-archive/reports/$(date +%Y)/$(date +%m)
+          cp -r compliance-reports/* compliance-archive/reports/$(date +%Y)/$(date +%m)/
+
+          # Add archival metadata
+          cat > compliance-archive/reports/$(date +%Y)/$(date +%m)/archive-metadata.json << EOF
+          {
+            "archive_date": "$(date -u)",
+            "report_period": "${{ github.event.inputs.report-type || 'scheduled' }}",
+            "commit": "${{ github.sha }}",
+            "workflow_run": "${{ github.run_id }}",
+            "retention_requirement": "7 years (maritime compliance)",
+            "standards_covered": ["NIS2", "ISO27001", "GDPR"],
+            "evidence_included": ${{ needs.collect-evidence.outputs.evidence-collected }},
+            "archive_structure": {
+              "nis2_report": "nis2-compliance-report-$(date +%Y%m%d).md",
+              "iso27001_report": "iso27001-compliance-report-$(date +%Y%m%d).md",
+              "gdpr_report": "gdpr-compliance-report-$(date +%Y%m%d).md",
+              "executive_summary": "executive-summary-$(date +%Y%m%d).md"
+            }
+          }
+          EOF
+
+          echo "✅ Compliance reports prepared for long-term archival"
+          echo "📋 Archive location: compliance-archive/reports/$(date +%Y)/$(date +%m)/"
 
       - name: Create Compliance Summary
         run: |

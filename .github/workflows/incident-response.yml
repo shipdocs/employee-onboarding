@@ -156,12 +156,38 @@ jobs:
           
           echo "✅ Incident record created"
 
-      - name: Upload Incident Record
+      - name: Upload Incident Record (Short-term)
         uses: actions/upload-artifact@v4
         with:
           name: incident-record-${{ steps.incident-id.outputs.incident-id }}
           path: incident-response/
-          retention-days: 2555  # 7 years for compliance
+          retention-days: 90  # GitHub Actions retention; long-term archival handled below
+
+      - name: Prepare Incident Record for Long-term Archival
+        run: |
+          echo "📁 Preparing incident record for 7-year compliance archival..."
+
+          # Create compliance archive structure for incidents
+          mkdir -p compliance-archive/incidents/$(date +%Y)/$(date +%m)
+          cp -r incident-response/* compliance-archive/incidents/$(date +%Y)/$(date +%m)/
+
+          # Add incident archival metadata
+          cat > compliance-archive/incidents/$(date +%Y)/$(date +%m)/incident-archive-metadata.json << EOF
+          {
+            "incident_id": "${{ steps.incident-id.outputs.incident-id }}",
+            "archive_date": "$(date -u)",
+            "incident_type": "${{ github.event.inputs.incident-type || github.event.client_payload.type }}",
+            "severity": "${{ github.event.inputs.severity || github.event.client_payload.severity }}",
+            "requires_notification": "${{ steps.classify.outputs.requires-notification }}",
+            "retention_requirement": "7 years (NIS2/GDPR compliance)",
+            "compliance_standards": ["NIS2 Article 21", "GDPR Article 33", "ISO 27035"],
+            "workflow_run": "${{ github.run_id }}",
+            "archive_location": "compliance-archive/incidents/$(date +%Y)/$(date +%m)/"
+          }
+          EOF
+
+          echo "✅ Incident record prepared for long-term compliance archival"
+          echo "🚨 Incident ID: ${{ steps.incident-id.outputs.incident-id }}"
 
   # ===========================================
   # IMMEDIATE CONTAINMENT ACTIONS

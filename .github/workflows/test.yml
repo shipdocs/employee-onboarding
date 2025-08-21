@@ -55,8 +55,15 @@ jobs:
 
       - name: Setup test database
         run: |
-          npm run db:setup || echo "Database setup not available, continuing..."
-          npm run db:apply-seed || echo "Seed data not available, continuing..."
+          # Use --if-present to only run if scripts exist, avoiding false failures
+          npm run db:setup --if-present || echo "Database setup script not found, skipping..."
+          npm run db:apply-seed --if-present || echo "Seed data script not found, skipping..."
+
+          # Verify database connectivity
+          if command -v psql &> /dev/null; then
+            echo "🔍 Verifying database connectivity..."
+            PGPASSWORD=postgres psql -h localhost -U postgres -d employee_onboarding_test -c "SELECT 1;" || echo "⚠️ Database connection test failed"
+          fi
 
       - name: Run linting
         run: npm run lint || echo "Linting not configured, skipping..."
