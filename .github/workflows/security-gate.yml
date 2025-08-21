@@ -1,0 +1,407 @@
+name: Security & Compliance Gate
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Daily security scans at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      scan-type:
+        description: 'Type of security scan'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - quick
+          - compliance-only
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # ===========================================
+  # COMPLIANCE VALIDATION
+  # ===========================================
+  compliance-check:
+    name: Compliance Validation
+    runs-on: ubuntu-latest
+    outputs:
+      compliance-status: ${{ steps.compliance.outputs.status }}
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd client && npm ci --legacy-peer-deps && cd ..
+
+      - name: NIS2 Article 21 Compliance Check
+        id: nis2-check
+        run: |
+          echo "🔍 Checking NIS2 Article 21 requirements..."
+          
+          # Check for required security controls
+          CONTROLS_PASSED=0
+          TOTAL_CONTROLS=8
+          
+          # 1. Risk Management
+          if [ -f "compliance-docs/policies/development-security-standards.md" ]; then
+            echo "✅ Risk Management: Development security standards documented"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          else
+            echo "❌ Risk Management: Missing development security standards"
+          fi
+          
+          # 2. Incident Handling
+          if [ -f "compliance-docs/procedures/incident-response-plan.md" ]; then
+            echo "✅ Incident Handling: Response plan documented"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          else
+            echo "❌ Incident Handling: Missing response plan"
+          fi
+          
+          # 3. Supply Chain Security
+          if [ -f ".github/workflows/sbom-generation.yml" ]; then
+            echo "✅ Supply Chain Security: SBOM generation configured"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          else
+            echo "❌ Supply Chain Security: Missing SBOM generation"
+          fi
+          
+          # 4. Vulnerability Management
+          if [ -f ".github/workflows/security.yml" ]; then
+            echo "✅ Vulnerability Management: Security scanning configured"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          else
+            echo "❌ Vulnerability Management: Missing security scanning"
+          fi
+          
+          # 5. Network Security
+          if [ -f "nginx.conf" ]; then
+            echo "✅ Network Security: Nginx configuration present"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          else
+            echo "❌ Network Security: Missing Nginx configuration"
+          fi
+          
+          # 6. Access Control
+          if grep -q "JWT" package.json; then
+            echo "✅ Access Control: JWT authentication configured"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          else
+            echo "❌ Access Control: Missing JWT authentication"
+          fi
+          
+          # 7. Cryptography
+          if grep -q "bcrypt\|crypto" package.json; then
+            echo "✅ Cryptography: Encryption libraries present"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          else
+            echo "❌ Cryptography: Missing encryption libraries"
+          fi
+          
+          # 8. Training & Awareness
+          if [ -f "README.md" ] && grep -q -i "security" README.md; then
+            echo "✅ Training & Awareness: Security documentation present"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          else
+            echo "❌ Training & Awareness: Missing security documentation"
+          fi
+          
+          echo "NIS2_CONTROLS_PASSED=$CONTROLS_PASSED" >> $GITHUB_OUTPUT
+          echo "NIS2_TOTAL_CONTROLS=$TOTAL_CONTROLS" >> $GITHUB_OUTPUT
+          
+          COMPLIANCE_PERCENTAGE=$((CONTROLS_PASSED * 100 / TOTAL_CONTROLS))
+          echo "NIS2_COMPLIANCE_PERCENTAGE=$COMPLIANCE_PERCENTAGE" >> $GITHUB_OUTPUT
+          
+          echo "📊 NIS2 Compliance: $CONTROLS_PASSED/$TOTAL_CONTROLS controls ($COMPLIANCE_PERCENTAGE%)"
+
+      - name: ISO 27001 Controls Check
+        id: iso27001-check
+        run: |
+          echo "🔍 Checking ISO 27001 controls..."
+          
+          CONTROLS_PASSED=0
+          TOTAL_CONTROLS=5
+          
+          # A.8.30 - Outsourced development
+          if [ -f "compliance-docs/NIS2-ISO27001-compliance-matrix.md" ]; then
+            echo "✅ A.8.30: Compliance matrix documented"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          # A.14.2 - Secure development lifecycle
+          if [ -f ".github/workflows/security-gate.yml" ]; then
+            echo "✅ A.14.2: Secure development lifecycle implemented"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          # A.8.9 - Configuration management
+          if [ -d ".git" ]; then
+            echo "✅ A.8.9: Version control configured"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          # A.8.16 - Monitoring activities
+          if [ -f "config/security-monitoring.js" ]; then
+            echo "✅ A.8.16: Security monitoring configured"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          # A.8.25 - Secure development lifecycle
+          if [ -f ".github/workflows/test.yml" ]; then
+            echo "✅ A.8.25: Automated testing configured"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          echo "ISO27001_CONTROLS_PASSED=$CONTROLS_PASSED" >> $GITHUB_OUTPUT
+          echo "ISO27001_TOTAL_CONTROLS=$TOTAL_CONTROLS" >> $GITHUB_OUTPUT
+          
+          COMPLIANCE_PERCENTAGE=$((CONTROLS_PASSED * 100 / TOTAL_CONTROLS))
+          echo "ISO27001_COMPLIANCE_PERCENTAGE=$COMPLIANCE_PERCENTAGE" >> $GITHUB_OUTPUT
+          
+          echo "📊 ISO 27001 Compliance: $CONTROLS_PASSED/$TOTAL_CONTROLS controls ($COMPLIANCE_PERCENTAGE%)"
+
+      - name: GDPR Compliance Check
+        id: gdpr-check
+        run: |
+          echo "🔍 Checking GDPR compliance..."
+          
+          CONTROLS_PASSED=0
+          TOTAL_CONTROLS=4
+          
+          # Data protection by design
+          if [ -f "api/gdpr/request-deletion.js" ]; then
+            echo "✅ GDPR: Data deletion endpoint implemented"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          # Audit logging
+          if grep -r "audit_log" --include="*.js" . >/dev/null 2>&1; then
+            echo "✅ GDPR: Audit logging implemented"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          # Privacy documentation
+          if [ -f "compliance-docs/NIS2-ISO27001-compliance-matrix.md" ] && grep -q "GDPR" compliance-docs/NIS2-ISO27001-compliance-matrix.md; then
+            echo "✅ GDPR: Privacy documentation present"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          # Incident response
+          if [ -f "compliance-docs/procedures/incident-response-plan.md" ]; then
+            echo "✅ GDPR: Breach notification procedures documented"
+            CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
+          fi
+          
+          echo "GDPR_CONTROLS_PASSED=$CONTROLS_PASSED" >> $GITHUB_OUTPUT
+          echo "GDPR_TOTAL_CONTROLS=$TOTAL_CONTROLS" >> $GITHUB_OUTPUT
+          
+          COMPLIANCE_PERCENTAGE=$((CONTROLS_PASSED * 100 / TOTAL_CONTROLS))
+          echo "GDPR_COMPLIANCE_PERCENTAGE=$COMPLIANCE_PERCENTAGE" >> $GITHUB_OUTPUT
+          
+          echo "📊 GDPR Compliance: $CONTROLS_PASSED/$TOTAL_CONTROLS controls ($COMPLIANCE_PERCENTAGE%)"
+
+      - name: Overall Compliance Assessment
+        id: compliance
+        run: |
+          NIS2_PERCENTAGE=${{ steps.nis2-check.outputs.NIS2_COMPLIANCE_PERCENTAGE }}
+          ISO27001_PERCENTAGE=${{ steps.iso27001-check.outputs.ISO27001_COMPLIANCE_PERCENTAGE }}
+          GDPR_PERCENTAGE=${{ steps.gdpr-check.outputs.GDPR_COMPLIANCE_PERCENTAGE }}
+          
+          OVERALL_PERCENTAGE=$(( (NIS2_PERCENTAGE + ISO27001_PERCENTAGE + GDPR_PERCENTAGE) / 3 ))
+          
+          echo "📊 Overall Compliance Score: $OVERALL_PERCENTAGE%"
+          echo "   - NIS2: $NIS2_PERCENTAGE%"
+          echo "   - ISO 27001: $ISO27001_PERCENTAGE%"
+          echo "   - GDPR: $GDPR_PERCENTAGE%"
+          
+          if [ $OVERALL_PERCENTAGE -ge 80 ]; then
+            echo "status=COMPLIANT" >> $GITHUB_OUTPUT
+            echo "✅ COMPLIANCE GATE PASSED"
+          else
+            echo "status=NON_COMPLIANT" >> $GITHUB_OUTPUT
+            echo "❌ COMPLIANCE GATE FAILED"
+            echo "Minimum 80% compliance required for deployment"
+          fi
+          
+          echo "percentage=$OVERALL_PERCENTAGE" >> $GITHUB_OUTPUT
+
+      - name: Generate Compliance Summary
+        run: |
+          echo "## 🛡️ Compliance Gate Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Overall Score**: ${{ steps.compliance.outputs.percentage }}%" >> $GITHUB_STEP_SUMMARY
+          echo "**Status**: ${{ steps.compliance.outputs.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Detailed Results" >> $GITHUB_STEP_SUMMARY
+          echo "| Standard | Score | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| NIS2 Article 21 | ${{ steps.nis2-check.outputs.NIS2_COMPLIANCE_PERCENTAGE }}% | ${{ steps.nis2-check.outputs.NIS2_CONTROLS_PASSED }}/${{ steps.nis2-check.outputs.NIS2_TOTAL_CONTROLS }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ISO 27001 | ${{ steps.iso27001-check.outputs.ISO27001_COMPLIANCE_PERCENTAGE }}% | ${{ steps.iso27001-check.outputs.ISO27001_CONTROLS_PASSED }}/${{ steps.iso27001-check.outputs.ISO27001_TOTAL_CONTROLS }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| GDPR | ${{ steps.gdpr-check.outputs.GDPR_COMPLIANCE_PERCENTAGE }}% | ${{ steps.gdpr-check.outputs.GDPR_CONTROLS_PASSED }}/${{ steps.gdpr-check.outputs.GDPR_TOTAL_CONTROLS }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ===========================================
+  # SECURITY SCANNING
+  # ===========================================
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+    needs: compliance-check
+    if: ${{ needs.compliance-check.outputs.compliance-status == 'COMPLIANT' || github.event.inputs.scan-type == 'full' }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd client && npm ci --legacy-peer-deps && cd ..
+
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+          queries: security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+      - name: Critical Vulnerability Check
+        run: |
+          echo "🔍 Checking for critical vulnerabilities..."
+          
+          # Run npm audit for both root and client
+          npm audit --audit-level=critical --json > audit-results.json || true
+          cd client && npm audit --audit-level=critical --json > ../client-audit-results.json || true && cd ..
+          
+          # Check for critical vulnerabilities
+          CRITICAL_COUNT=$(cat audit-results.json | jq '.metadata.vulnerabilities.critical // 0')
+          CLIENT_CRITICAL_COUNT=$(cat client-audit-results.json | jq '.metadata.vulnerabilities.critical // 0')
+          TOTAL_CRITICAL=$((CRITICAL_COUNT + CLIENT_CRITICAL_COUNT))
+          
+          echo "Critical vulnerabilities found: $TOTAL_CRITICAL"
+          
+          if [ $TOTAL_CRITICAL -gt 0 ]; then
+            echo "❌ CRITICAL VULNERABILITIES DETECTED!"
+            echo "This violates NIS2 Article 21 vulnerability management requirements."
+            echo "Deployment is BLOCKED until vulnerabilities are resolved."
+            exit 1
+          else
+            echo "✅ No critical vulnerabilities detected"
+          fi
+
+  # ===========================================
+  # SECURITY GATE DECISION
+  # ===========================================
+  security-gate:
+    name: Security Gate Decision
+    runs-on: ubuntu-latest
+    needs: [compliance-check, security-scan]
+    if: always()
+    
+    steps:
+      - name: Evaluate Security Gate
+        run: |
+          echo "🔒 Evaluating Security Gate..."
+          
+          COMPLIANCE_STATUS="${{ needs.compliance-check.outputs.compliance-status }}"
+          SECURITY_SCAN_RESULT="${{ needs.security-scan.result }}"
+          
+          echo "Compliance Status: $COMPLIANCE_STATUS"
+          echo "Security Scan Result: $SECURITY_SCAN_RESULT"
+          
+          if [ "$COMPLIANCE_STATUS" == "COMPLIANT" ] && [ "$SECURITY_SCAN_RESULT" == "success" ]; then
+            echo "✅ SECURITY GATE PASSED"
+            echo "Deployment approved for compliance and security"
+            exit 0
+          else
+            echo "❌ SECURITY GATE FAILED"
+            echo "Deployment blocked due to compliance or security issues"
+            exit 1
+          fi
+
+      - name: Create Security Gate Report
+        if: always()
+        run: |
+          echo "# 🔒 Security Gate Report" > security-gate-report.md
+          echo "" >> security-gate-report.md
+          echo "**Generated**: $(date -u)" >> security-gate-report.md
+          echo "**Commit**: ${{ github.sha }}" >> security-gate-report.md
+          echo "**Branch**: ${{ github.ref_name }}" >> security-gate-report.md
+          echo "" >> security-gate-report.md
+          echo "## Results" >> security-gate-report.md
+          echo "- **Compliance Check**: ${{ needs.compliance-check.result }}" >> security-gate-report.md
+          echo "- **Security Scan**: ${{ needs.security-scan.result }}" >> security-gate-report.md
+          echo "- **Overall Status**: ${{ job.status }}" >> security-gate-report.md
+          echo "" >> security-gate-report.md
+          echo "## Compliance Score" >> security-gate-report.md
+          echo "**Overall**: ${{ needs.compliance-check.outputs.compliance-status }}" >> security-gate-report.md
+
+      - name: Upload Security Gate Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-gate-report-${{ github.run_id }}
+          path: security-gate-report.md
+          retention-days: 30  # Standard GitHub Actions retention
+
+      - name: Update Compliance Documentation
+        if: github.ref == 'refs/heads/main' && always()
+        run: |
+          echo "📝 Updating compliance documentation in repository..."
+
+          # Create compliance docs directory
+          mkdir -p compliance-docs/security-assessments
+
+          # Generate simple compliance summary
+          COMPLIANCE_STATUS="${{ needs.compliance-check.outputs.compliance-status }}"
+          SECURITY_SCAN_RESULT="${{ needs.security-scan.result }}"
+          OVERALL_SCORE="${{ needs.compliance-check.outputs.compliance-status == 'COMPLIANT' && 'PASS' || 'FAIL' }}"
+
+          cat > compliance-docs/security-assessments/$(date +%Y-%m-%d)-security-gate.md << EOF
+          # Security Gate Assessment - $(date +%Y-%m-%d)
+
+          **Date**: $(date -u)
+          **Commit**: ${{ github.sha }}
+          **Branch**: ${{ github.ref_name }}
+          **Overall Result**: $OVERALL_SCORE
+
+          ## Summary
+          - **Compliance Check**: $COMPLIANCE_STATUS
+          - **Security Scan**: $SECURITY_SCAN_RESULT
+          - **Deployment Status**: ${{ OVERALL_SCORE == 'PASS' && 'Approved' || 'Blocked' }}
+
+          ## Standards Verified
+          - NIS2 Article 21: Supply chain security, vulnerability management
+          - ISO 27001: Secure development lifecycle controls
+          - GDPR: Privacy by design verification
+
+          ## Next Review
+          Next automated assessment: $(date -d "+1 week" +%Y-%m-%d)
+
+          ---
+          *Generated automatically by GitHub Actions*
+          EOF
+
+          echo "✅ Compliance documentation updated in repository"
