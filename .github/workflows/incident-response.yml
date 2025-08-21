@@ -1,0 +1,214 @@
+name: Security Incident Response
+
+on:
+  workflow_dispatch:
+    inputs:
+      incident-type:
+        description: 'Type of security incident'
+        required: true
+        type: choice
+        options:
+          - data-breach
+          - vulnerability-disclosure
+          - unauthorized-access
+          - system-compromise
+          - ddos-attack
+          - other
+      severity:
+        description: 'Incident severity level'
+        required: true
+        type: choice
+        options:
+          - critical
+          - high
+          - medium
+          - low
+      description:
+        description: 'Brief incident description'
+        required: true
+        type: string
+  repository_dispatch:
+    types: [security-incident]
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # ===========================================
+  # INCIDENT RESPONSE
+  # ===========================================
+  incident-response:
+    name: Security Incident Response
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Generate Incident ID
+        id: incident-id
+        run: |
+          INCIDENT_ID="INC-$(date +%Y%m%d)-$(date +%H%M%S)"
+          echo "incident-id=$INCIDENT_ID" >> $GITHUB_OUTPUT
+          echo "🚨 Incident ID: $INCIDENT_ID"
+
+      - name: Classify Incident
+        id: classify
+        run: |
+          INCIDENT_TYPE="${{ github.event.inputs.incident-type || github.event.client_payload.type }}"
+          SEVERITY="${{ github.event.inputs.severity || github.event.client_payload.severity }}"
+          
+          echo "📋 Classifying incident..."
+          echo "   Type: $INCIDENT_TYPE"
+          echo "   Severity: $SEVERITY"
+          
+          # Determine if regulatory notification is required
+          if [ "$SEVERITY" = "critical" ] || [ "$SEVERITY" = "high" ]; then
+            echo "requires-notification=true" >> $GITHUB_OUTPUT
+            echo "⚠️ High/Critical severity - regulatory notification may be required"
+          else
+            echo "requires-notification=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ Medium/Low severity - standard response procedures"
+          fi
+
+      - name: Create Incident Record
+        run: |
+          echo "📝 Creating incident record..."
+          
+          mkdir -p incident-response
+          
+          cat > incident-response/incident-${{ steps.incident-id.outputs.incident-id }}.md << EOF
+          # Security Incident Record
+          
+          **Incident ID**: ${{ steps.incident-id.outputs.incident-id }}
+          **Date**: $(date -u)
+          **Type**: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}
+          **Severity**: ${{ github.event.inputs.severity || github.event.client_payload.severity }}
+          **Requires Notification**: ${{ steps.classify.outputs.requires-notification }}
+          
+          ## Description
+          
+          ${{ github.event.inputs.description || github.event.client_payload.description || 'No description provided' }}
+          
+          ## Timeline
+          
+          - **$(date -u)**: Incident reported and response initiated
+          - **$(date -u)**: Incident record created (ID: ${{ steps.incident-id.outputs.incident-id }})
+          
+          ## Response Actions
+          
+          ### Immediate Actions (0-1 hour)
+          - [x] Incident ID assigned
+          - [x] Severity classification completed
+          - [x] Incident record created
+          - [ ] Security team notified
+          - [ ] Initial assessment completed
+          
+          ### Short-term Actions (1-24 hours)
+          - [ ] Detailed investigation initiated
+          - [ ] Impact assessment completed
+          - [ ] Containment measures implemented
+          - [ ] Stakeholder communication plan activated
+          
+          ### Medium-term Actions (24-72 hours)
+          - [ ] Root cause analysis completed
+          - [ ] Remediation plan developed
+          - [ ] Security controls reviewed and updated
+          - [ ] Regulatory notifications sent (if required)
+          
+          ### Long-term Actions (72+ hours)
+          - [ ] Post-incident review completed
+          - [ ] Lessons learned documented
+          - [ ] Security improvements implemented
+          - [ ] Incident formally closed
+          
+          ## Regulatory Requirements
+          
+          ### NIS2 Article 21 (if applicable)
+          - **24-hour notification**: ${{ steps.classify.outputs.requires-notification == 'true' && 'REQUIRED' || 'NOT REQUIRED' }}
+          - **Incident type**: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}
+          - **Impact assessment**: Pending investigation
+          
+          ### GDPR Article 33 (if personal data involved)
+          - **72-hour notification**: To be determined based on investigation
+          - **Data subjects affected**: To be determined
+          - **Data categories involved**: To be determined
+          
+          ## Contact Information
+          
+          - **Security Team**: security@shipdocs.app
+          - **Incident Commander**: TBD
+          - **Legal Team**: legal@shipdocs.app
+          - **Communications**: communications@shipdocs.app
+          
+          ## Notes
+          
+          This incident record will be updated as the response progresses.
+          All times are in UTC.
+          
+          ---
+          
+          **Last Updated**: $(date -u)
+          **Status**: OPEN
+          EOF
+          
+          echo "✅ Incident record created"
+
+      - name: Upload Incident Record
+        uses: actions/upload-artifact@v4
+        with:
+          name: incident-record-${{ steps.incident-id.outputs.incident-id }}
+          path: incident-response/
+          retention-days: 30
+
+      - name: Commit Incident Record to Repository
+        if: ${{ steps.classify.outputs.requires-notification == 'true' }}
+        run: |
+          echo "💾 Committing critical incident record to repository..."
+          
+          # Create compliance docs directory for incidents
+          mkdir -p compliance-docs/incidents
+          cp incident-response/incident-${{ steps.incident-id.outputs.incident-id }}.md compliance-docs/incidents/
+          
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Add and commit the incident record
+          git add compliance-docs/incidents/
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "docs: add security incident record ${{ steps.incident-id.outputs.incident-id }}
+            
+            - Type: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}
+            - Severity: ${{ github.event.inputs.severity || github.event.client_payload.severity }}
+            - Requires notification: ${{ steps.classify.outputs.requires-notification }}
+            - Generated: $(date -u)"
+            
+            git push
+            echo "✅ Critical incident record committed to repository for compliance"
+          fi
+
+      - name: Create Incident Summary
+        run: |
+          echo "## 🚨 Security Incident Response Initiated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Incident ID**: ${{ steps.incident-id.outputs.incident-id }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Type**: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Severity**: ${{ github.event.inputs.severity || github.event.client_payload.severity }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Requires Notification**: ${{ steps.classify.outputs.requires-notification }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. Security team notification" >> $GITHUB_STEP_SUMMARY
+          echo "2. Initial assessment and containment" >> $GITHUB_STEP_SUMMARY
+          echo "3. Impact analysis and stakeholder communication" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.classify.outputs.requires-notification }}" = "true" ]; then
+            echo "4. **Regulatory notification within 24 hours (NIS2)**" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Incident Record" >> $GITHUB_STEP_SUMMARY
+          echo "📁 \`incident-response/incident-${{ steps.incident-id.outputs.incident-id }}.md\`" >> $GITHUB_STEP_SUMMARY

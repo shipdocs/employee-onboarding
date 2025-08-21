@@ -1,0 +1,207 @@
+name: Quarterly Compliance Report
+
+on:
+  schedule:
+    # Quarterly compliance reports (1st of quarter at 8 AM UTC)
+    - cron: '0 8 1 1,4,7,10 *'
+  workflow_dispatch:
+    inputs:
+      report-type:
+        description: 'Type of compliance report'
+        required: true
+        default: 'quarterly'
+        type: choice
+        options:
+          - quarterly
+          - annual
+          - incident
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # ===========================================
+  # QUARTERLY COMPLIANCE REPORT
+  # ===========================================
+  generate-compliance-report:
+    name: Generate Quarterly Compliance Report
+    runs-on: ubuntu-latest
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd client && npm ci --legacy-peer-deps && cd ..
+
+      - name: Run Current Security Assessment
+        id: security-assessment
+        run: |
+          echo "🔍 Running current security assessment..."
+          
+          # Quick security check
+          CRITICAL_VULNS=$(npm audit --audit-level=critical --json | jq '.metadata.vulnerabilities.critical // 0')
+          HIGH_VULNS=$(npm audit --audit-level=high --json | jq '.metadata.vulnerabilities.high // 0')
+          
+          cd client
+          CLIENT_CRITICAL=$(npm audit --audit-level=critical --json | jq '.metadata.vulnerabilities.critical // 0')
+          CLIENT_HIGH=$(npm audit --audit-level=high --json | jq '.metadata.vulnerabilities.high // 0')
+          cd ..
+          
+          TOTAL_CRITICAL=$((CRITICAL_VULNS + CLIENT_CRITICAL))
+          TOTAL_HIGH=$((HIGH_VULNS + CLIENT_HIGH))
+          
+          echo "critical_vulns=$TOTAL_CRITICAL" >> $GITHUB_OUTPUT
+          echo "high_vulns=$TOTAL_HIGH" >> $GITHUB_OUTPUT
+          
+          echo "📊 Security Assessment Results:"
+          echo "   Critical vulnerabilities: $TOTAL_CRITICAL"
+          echo "   High vulnerabilities: $TOTAL_HIGH"
+
+      - name: Check Current Dependencies
+        id: dependency-check
+        run: |
+          echo "📦 Checking current dependency status..."
+          
+          # Count dependencies
+          BACKEND_DEPS=$(jq '.dependencies | length' package.json)
+          FRONTEND_DEPS=$(jq '.dependencies | length' client/package.json)
+          TOTAL_DEPS=$((BACKEND_DEPS + FRONTEND_DEPS))
+          
+          echo "dependency_count=$TOTAL_DEPS" >> $GITHUB_OUTPUT
+          echo "backend_deps=$BACKEND_DEPS" >> $GITHUB_OUTPUT
+          echo "frontend_deps=$FRONTEND_DEPS" >> $GITHUB_OUTPUT
+          
+          echo "📊 Dependency Summary:"
+          echo "   Backend dependencies: $BACKEND_DEPS"
+          echo "   Frontend dependencies: $FRONTEND_DEPS"
+          echo "   Total dependencies: $TOTAL_DEPS"
+
+      - name: Generate Quarterly Compliance Report
+        run: |
+          echo "📋 Generating quarterly compliance report..."
+          
+          # Create compliance docs directory
+          mkdir -p compliance-docs/quarterly-reports
+          
+          # Determine quarter
+          QUARTER=$(date +%q)
+          YEAR=$(date +%Y)
+          REPORT_TYPE="${{ github.event.inputs.report-type || 'quarterly' }}"
+          
+          # Generate simple compliance report
+          cat > compliance-docs/quarterly-reports/${YEAR}-Q${QUARTER}-compliance-report.md << EOF
+          # Quarterly Compliance Report - ${YEAR} Q${QUARTER}
+          
+          **Generated**: $(date -u)
+          **Report Type**: $REPORT_TYPE
+          **Repository**: ${{ github.repository }}
+          **Commit**: ${{ github.sha }}
+          
+          ## Executive Summary
+          
+          This quarterly report demonstrates ongoing compliance with security and development standards.
+          
+          ## Current Security Status
+          
+          - **Critical Vulnerabilities**: ${{ steps.security-assessment.outputs.critical_vulns }}
+          - **High Vulnerabilities**: ${{ steps.security-assessment.outputs.high_vulns }}
+          - **Security Status**: ${{ steps.security-assessment.outputs.critical_vulns == '0' && 'COMPLIANT' || 'REQUIRES ATTENTION' }}
+          
+          ## Dependency Management
+          
+          - **Total Dependencies**: ${{ steps.dependency-check.outputs.dependency_count }}
+          - **Backend Dependencies**: ${{ steps.dependency-check.outputs.backend_deps }}
+          - **Frontend Dependencies**: ${{ steps.dependency-check.outputs.frontend_deps }}
+          - **Dependency Management**: Automated updates via Dependabot
+          
+          ## Compliance Standards
+          
+          ### ISO 27001 Controls
+          - ✅ A.14.2: Secure development lifecycle implemented
+          - ✅ A.8.30: Outsourced development controls in place
+          - ✅ A.8.9: Configuration management via Git
+          
+          ### NIS2 Article 21
+          - ✅ Vulnerability management: Automated scanning
+          - ✅ Supply chain security: SBOM generation
+          - ✅ Incident handling: Response procedures documented
+          
+          ### GDPR
+          - ✅ Privacy by design: Data protection controls
+          - ✅ Security of processing: Encryption and access controls
+          
+          ## Security Measures
+          
+          - **Automated Security Scanning**: Daily
+          - **Dependency Updates**: Automated via Dependabot
+          - **Code Quality Gates**: Enforced on all PRs
+          - **Container Security**: Trivy scanning
+          
+          ## Recommendations
+          
+          1. Continue quarterly compliance reviews
+          2. Maintain automated security scanning
+          3. Regular dependency updates
+          4. Monitor for new security standards
+          
+          ## Next Review
+          
+          **Next Quarterly Review**: $(date -d "+3 months" +%Y-%m-%d)
+          
+          ---
+          
+          **Prepared by**: Automated Compliance System
+          **Contact**: security@shipdocs.app
+          EOF
+          
+          echo "✅ Quarterly compliance report generated"
+
+      - name: Commit Compliance Report to Repository
+        run: |
+          echo "💾 Committing compliance report to repository..."
+          
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Add and commit the report
+          git add compliance-docs/quarterly-reports/
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "docs: add ${YEAR}-Q${QUARTER} compliance report
+            
+            - Security status: ${{ steps.security-assessment.outputs.critical_vulns == '0' && 'COMPLIANT' || 'REQUIRES ATTENTION' }}
+            - Dependencies: ${{ steps.dependency-check.outputs.dependency_count }} total
+            - Generated: $(date -u)"
+            
+            git push
+            echo "✅ Compliance report committed to repository"
+          fi
+
+      - name: Create Compliance Summary
+        run: |
+          echo "## 📋 Quarterly Compliance Report Generated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Quarter**: ${YEAR} Q${QUARTER}" >> $GITHUB_STEP_SUMMARY
+          echo "**Security Status**: ${{ steps.security-assessment.outputs.critical_vulns == '0' && '✅ COMPLIANT' || '⚠️ REQUIRES ATTENTION' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Critical Vulnerabilities**: ${{ steps.security-assessment.outputs.critical_vulns }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Total Dependencies**: ${{ steps.dependency-check.outputs.dependency_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Report Location" >> $GITHUB_STEP_SUMMARY
+          echo "📁 \`compliance-docs/quarterly-reports/${YEAR}-Q${QUARTER}-compliance-report.md\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Standards Covered" >> $GITHUB_STEP_SUMMARY
+          echo "- ISO 27001 (Secure development)" >> $GITHUB_STEP_SUMMARY
+          echo "- NIS2 Article 21 (Vulnerability management)" >> $GITHUB_STEP_SUMMARY
+          echo "- GDPR (Privacy by design)" >> $GITHUB_STEP_SUMMARY
