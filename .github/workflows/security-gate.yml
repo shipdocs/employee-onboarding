@@ -392,7 +392,7 @@ jobs:
           ## Summary
           - **Compliance Check**: $COMPLIANCE_STATUS
           - **Security Scan**: $SECURITY_SCAN_RESULT
-          - **Deployment Status**: ${{ OVERALL_SCORE == 'PASS' && 'Approved' || 'Blocked' }}
+          - **Deployment Status**: \$([ "\$OVERALL_SCORE" = "PASS" ] && echo "Approved" || echo "Blocked")
 
           ## Standards Verified
           - NIS2 Article 21: Supply chain security, vulnerability management
