@@ -1,4 +1,4 @@
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireManagerOrAdmin } = require('../../../../lib/auth');
 const { invalidateContentCache } = require('../../../../lib/contentCache');
 const { apiRateLimit } = require('../../../../lib/rateLimit');
@@ -60,11 +60,9 @@ async function handler(req, res) {
       }
 
       // Check if phase exists
-      const { data: existingPhase, error: fetchError } = await supabase
-        .from('training_phases')
-        .select('id, title, version')
-        .eq('id', id)
-        .single();
+      const existingPhaseResult = await db.query('SELECT id, title, version FROM training_phases WHERE id = $1', [id]);
+    const existingPhase = existingPhaseResult.rows[0];
+    const fetchError = !existingPhase;
 
       if (fetchError || !existingPhase) {
         return res.status(404).json({ error: 'Training phase not found' });
@@ -161,11 +159,9 @@ async function handler(req, res) {
 
     if (req.method === 'DELETE') {
       // Delete training phase
-      const { data: phase, error: fetchError } = await supabase
-        .from('training_phases')
-        .select('id, title, phase_number')
-        .eq('id', id)
-        .single();
+      const phaseResult = await db.query('SELECT id, title, phase_number FROM training_phases WHERE id = $1', [id]);
+    const phase = phaseResult.rows[0];
+    const fetchError = !phase;
 
       if (fetchError || !phase) {
         return res.status(404).json({ error: 'Training phase not found' });

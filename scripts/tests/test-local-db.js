@@ -1,5 +1,5 @@
 // Quick test script for local Supabase database
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 // Local Supabase configuration
 const supabaseUrl = 'http://localhost:54321';
@@ -25,7 +25,7 @@ async function testLocalDatabase() {
 
     for (const table of tables) {
       try {
-        const { data, error } = await supabase.from(table).select('count').limit(1);
+        const { data, error } = await db.from(table).select('count').limit(1);
         if (error) {
           console.log(`❌ ${table}: ${error.message}`);
         } else {
@@ -81,7 +81,7 @@ async function testLocalDatabase() {
       }
 
       // Clean up
-      await supabase.from('workflows').delete().eq('id', workflow.id);
+      await db.from('workflows').delete().eq('id', workflow.id);
       console.log('✅ Test data cleaned up');
     }
 

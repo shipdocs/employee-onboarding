@@ -1,5 +1,5 @@
 // Script to set up test users for E2E testing
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
@@ -34,11 +34,9 @@ async function createTestUser(userConfig) {
     console.log(`\n👤 Creating ${userConfig.role}: ${userConfig.email}`);
 
     // Check if user already exists
-    const { data: existingUser, error: checkError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', userConfig.email)
-      .single();
+    const existingUserResult = await db.query('SELECT * FROM users WHERE email = $1', [userConfig.email]);
+    const existingUser = existingUserResult.rows[0];
+    const checkError = !existingUser;
 
     if (checkError && checkError.code !== 'PGRST116') {
       throw checkError;

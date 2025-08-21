@@ -9,7 +9,7 @@
  *   node scripts/manage-crew-assignments.js bulk-assign <manager-id> --crew-ids=1,2,3
  */
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 require('dotenv').config();
 
 // Initialize Supabase client with service role key for admin operations

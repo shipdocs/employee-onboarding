@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/crew/[id]/send-safety-pdf.js - Manually send Safety Management PDF
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireManager } = require('../../../../lib/auth');
 const { unifiedEmailService } = require('../../../../lib/unifiedEmailService');
 const { adminRateLimit } = require('../../../../lib/rateLimit');

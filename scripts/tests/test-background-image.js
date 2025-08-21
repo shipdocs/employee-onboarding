@@ -73,7 +73,7 @@ async function testBackgroundImage() {
     // 3. Test the Supabase storage bucket directly
     console.log('\n🗄️  Testing Supabase Storage Bucket...');
     try {
-      const { data: buckets, error: bucketError } = await supabase.storage.listBuckets();
+      const { data: buckets, error: bucketError } = await // TODO: Replace with MinIO storage.listBuckets();
       if (bucketError) {
         console.error('❌ Error listing buckets:', bucketError);
       } else {
@@ -84,7 +84,7 @@ async function testBackgroundImage() {
           console.log('✅ Documents bucket exists');
           
           // List files in backgrounds folder
-          const { data: files, error: filesError } = await supabase.storage
+          const { data: files, error: filesError } = await // TODO: Replace with MinIO storage
             .from('documents')
             .list('backgrounds');
           

@@ -1,5 +1,5 @@
 // Simple migration script
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 

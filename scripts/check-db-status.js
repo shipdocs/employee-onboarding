@@ -1,6 +1,6 @@
 // Check database connection and sync status
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,

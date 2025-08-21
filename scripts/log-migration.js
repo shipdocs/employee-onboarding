@@ -14,7 +14,7 @@
  *   SUPABASE_SERVICE_ROLE_KEY - Supabase service role key
  */
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 require('dotenv').config();
 
 async function logMigration() {
@@ -74,7 +74,7 @@ async function logMigration() {
     }
 
     // Log the migration
-    const { error } = await supabase.from('migration_logs').insert({
+    const { error } = await db.from('migration_logs').insert({
       migration_name: migrationName,
       environment: environment,
       applied_by: appliedBy,

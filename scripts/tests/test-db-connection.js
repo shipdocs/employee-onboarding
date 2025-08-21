@@ -1,6 +1,6 @@
 // Test database connection and schema
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -106,11 +106,11 @@ async function testDatabaseSchema() {
         console.log('✅ Magic link created successfully');
         
         // Clean up
-        await supabase.from('magic_links').delete().eq('id', magicLink[0].id);
+        await db.from('magic_links').delete().eq('id', magicLink[0].id);
       }
 
       // Clean up test user
-      await supabase.from('users').delete().eq('id', userId);
+      await db.from('users').delete().eq('id', userId);
     }
 
     // Test 5: Check all important tables
@@ -125,7 +125,7 @@ async function testDatabaseSchema() {
     ];
 
     for (const table of tables) {
-      const { error } = await supabase.from(table).select('count').limit(1);
+      const { error } = await db.from(table).select('count').limit(1);
       if (error) {
         console.log(`❌ ${table}: NOT FOUND or ERROR`);
       } else {

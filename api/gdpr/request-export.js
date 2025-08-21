@@ -3,7 +3,7 @@
  * Allows users to request their personal data export
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { authenticateRequest } = require('../../lib/auth');
 const { applyApiSecurityHeaders } = require('../../lib/securityHeaders');
 const { userRateLimit } = require('../../lib/rateLimit');

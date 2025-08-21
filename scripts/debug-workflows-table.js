@@ -4,7 +4,7 @@
  * Debug script to check workflows table and related database issues
  */
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 require('dotenv').config();
 
 // Use production database configuration

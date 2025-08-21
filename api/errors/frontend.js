@@ -3,7 +3,7 @@
  * Receives and processes frontend errors from React Error Boundaries
  */
 
-const { supabase } = require('../../lib/supabase.js');
+const { supabase } = require('../../lib/database-supabase-compat');
 // Use CommonJS for errorHandler (it's a CommonJS module)
 const ErrorHandler = require('../../lib/errorHandler.js');
 const { apiRateLimit } = require('../../lib/rateLimit');

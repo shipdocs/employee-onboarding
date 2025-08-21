@@ -3,7 +3,7 @@
  * Handles security configuration management for admin dashboard
  */
 
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { applyApiSecurityHeaders } = require('../../../lib/securityHeaders');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 
@@ -18,18 +18,16 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     const token = authHeader.split(' ')[1];
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+    const { data: { user }, error: authError } = await // TODO: Replace with JWT auth.getUser(token);
 
     if (authError || !user) {
       return res.status(401).json({ error: 'Invalid token' });
     }
 
     // Check if user is admin
-    const { data: profile, error: profileError } = await supabase
-      .from('user_profiles')
-      .select('role')
-      .eq('user_id', user.id)
-      .single();
+    const profileResult = await db.query('SELECT role FROM user_profiles WHERE user_id = $1', [user.id]);
+    const profile = profileResult.rows[0];
+    const profileError = !profile;
 
     if (profileError || profile?.role !== 'admin') {
       return res.status(403).json({ error: 'Admin access required' });

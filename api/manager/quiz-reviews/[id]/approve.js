@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/quiz-reviews/[id]/approve.js - Approve/reject quiz results
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireManager } = require('../../../../lib/auth');
 async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -84,10 +84,9 @@ async function handler(req, res) {
       }
 
       // Check if this was the final phase and all phases are now completed
-      const { data: allSessions, error: allSessionsError } = await supabase
-        .from('training_sessions')
-        .select('phase, status')
-        .eq('user_id', quizResult.user_id);
+      const allSessionsResult = await db.query('SELECT phase, status FROM training_sessions WHERE user_id = $1', [quizResult.user_id]);
+    const allSessions = allSessionsResult.rows;
+    const allSessionsError = false;
 
       if (!allSessionsError && allSessions) {
         const completedPhases = allSessions.filter(s => s.status === 'completed').length;

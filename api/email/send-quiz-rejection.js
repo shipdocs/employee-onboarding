@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-quiz-rejection.js - Send quiz rejection notification
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailTemplateGenerator } = require('../../lib/emailTemplateGenerator');
@@ -17,11 +17,9 @@ async function handler(req, res) {
     }
 
     // Get user details
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single();
+    const userResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
     if (userError || !user) {
       return res.status(404).json({ error: 'User not found' });

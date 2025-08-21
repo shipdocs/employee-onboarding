@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/quiz-results-detailed.js - Get detailed quiz results with real scoring
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth, requireRole } = require('../../lib/auth');
 const { createAPIHandler, createValidationError, createDatabaseError } = require('../../lib/apiHandler');
 const { adminRateLimit } = require('../../lib/rateLimit');

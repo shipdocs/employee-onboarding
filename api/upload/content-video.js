@@ -1,4 +1,4 @@
-const { supabase } = require('../../lib/supabase.js');
+const { supabase } = require('../../lib/database-supabase-compat');
 const { verifyAuth } = require('../../lib/auth.js');
 const formidable = require('formidable');
 const fs = require('fs').promises;
@@ -74,7 +74,7 @@ module.exports = uploadRateLimit(async function handler(req, res) {;
     }
 
     // Upload to Supabase Storage
-    const { data, error } = await supabase.storage
+    const { data, error } = await // TODO: Replace with MinIO storage
       .from('content-media')
       .upload(fileName, fileContent, {
         contentType: videoFile.mimetype,
@@ -87,7 +87,7 @@ module.exports = uploadRateLimit(async function handler(req, res) {;
     }
 
     // Get public URL
-    const { data: urlData } = supabase.storage
+    const { data: urlData } = // TODO: Replace with MinIO storage
       .from('content-media')
       .getPublicUrl(fileName);
 

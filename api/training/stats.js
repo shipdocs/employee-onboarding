@@ -1,5 +1,5 @@
 // Vercel API Route: /api/training/stats.js - Get training statistics for authenticated user
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { trainingRateLimit } = require('../../lib/rateLimit');
 
@@ -53,10 +53,9 @@ async function handler(req, res) {
     }
 
     // Get completed quizzes count
-    const { data: quizzes, error: quizzesError } = await supabase
-      .from('quiz_results')
-      .select('id, phase, score, passed')
-      .eq('user_id', user.userId);
+    const quizzesResult = await db.query('SELECT id, phase, score, passed FROM quiz_results WHERE user_id = $1', [user.userId]);
+    const quizzes = quizzesResult.rows;
+    const quizzesError = false;
 
     if (quizzesError) {
       // console.error('❌ [DB] Error fetching quiz results:', quizzesError);

@@ -4,7 +4,7 @@
  */
 
 const { verifyJWT, generateJWT } = require('../../lib/auth');
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 
 async function handler(req, res) {
   if (req.method !== 'GET') {

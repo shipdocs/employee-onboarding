@@ -1,6 +1,6 @@
 // Debug training items for a specific user
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -12,11 +12,9 @@ async function debugTrainingItems(userEmail) {
   
   try {
     // Find the user
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('id, email')
-      .eq('email', userEmail)
-      .single();
+    const userResult = await db.query('SELECT id, email FROM users WHERE email = $1', [userEmail]);
+    const user = userResult.rows[0];
+    const userError = !user;
     
     if (userError || !user) {
       console.error('❌ User not found');

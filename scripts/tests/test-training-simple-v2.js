@@ -1,6 +1,6 @@
 // Simple training workflow test - directly manipulating database
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const axios = require('axios');
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
@@ -17,7 +17,7 @@ async function testSimpleWorkflow() {
     console.log('1️⃣ Creating test crew member...');
     
     // Clean up existing test user
-    await supabase.from('users').delete().eq('email', 'simple.test@shipdocs.app');
+    await db.from('users').delete().eq('email', 'simple.test@shipdocs.app');
     
     // Create test crew member
     const { data: crew, error: crewError } = await supabase
@@ -150,11 +150,9 @@ async function testSimpleWorkflow() {
     // Wait a bit for certificate generation
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    const { data: certificate, error: certError } = await supabase
-      .from('certificates')
-      .select('*')
-      .eq('user_id', crew.id)
-      .single();
+    const certificateResult = await db.query('SELECT * FROM certificates WHERE user_id = $1', [crew.id]);
+    const certificate = certificateResult.rows[0];
+    const certError = !certificate;
     
     if (certificate) {
       console.log('✅ Certificate found!');
@@ -167,14 +165,14 @@ async function testSimpleWorkflow() {
     
     // 8. Cleanup
     console.log('\n8️⃣ Cleaning up test data...');
-    await supabase.from('certificates').delete().eq('user_id', crew.id);
-    await supabase.from('quiz_attempts').delete().eq('user_id', crew.id);
-    await supabase.from('quiz_results').delete().eq('user_id', crew.id);
-    await supabase.from('training_progress').delete().eq('user_id', crew.id);
-    await supabase.from('training_items').delete().in('session_id', trainingSessions.map(s => s.id));
-    await supabase.from('training_sessions').delete().eq('user_id', crew.id);
-    await supabase.from('magic_links').delete().eq('email', crew.email);
-    await supabase.from('users').delete().eq('id', crew.id);
+    await db.from('certificates').delete().eq('user_id', crew.id);
+    await db.from('quiz_attempts').delete().eq('user_id', crew.id);
+    await db.from('quiz_results').delete().eq('user_id', crew.id);
+    await db.from('training_progress').delete().eq('user_id', crew.id);
+    await db.from('training_items').delete().in('session_id', trainingSessions.map(s => s.id));
+    await db.from('training_sessions').delete().eq('user_id', crew.id);
+    await db.from('magic_links').delete().eq('email', crew.email);
+    await db.from('users').delete().eq('id', crew.id);
     console.log('✅ Test data cleaned up');
     
     console.log('\n✨ Test completed successfully!');

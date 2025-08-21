@@ -4,7 +4,7 @@
  */
 
 const { requireAuth } = require('../../../../lib/auth');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const AITranslationService = require('../../../../lib/aiTranslationService');
 const { trainingRateLimit } = require('../../../../lib/rateLimit');
 

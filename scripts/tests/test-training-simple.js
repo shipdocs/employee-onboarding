@@ -3,7 +3,7 @@
 
 require('dotenv').config();
 const axios = require('axios');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const jwt = require('jsonwebtoken');
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
@@ -24,7 +24,7 @@ class SimpleTrainingTest {
     console.log('🔧 Setting up test user...\n');
     
     // Clean up any existing test user
-    await supabase.from('users').delete().eq('email', 'training-test@example.com');
+    await db.from('users').delete().eq('email', 'training-test@example.com');
     
     // Create test crew member
     const { data: user, error } = await supabase
@@ -142,9 +142,9 @@ class SimpleTrainingTest {
     console.log('\n🧹 Cleaning up...');
     
     // Delete test data
-    await supabase.from('training_items').delete().eq('session_id', userId);
-    await supabase.from('training_sessions').delete().eq('user_id', userId);
-    await supabase.from('users').delete().eq('id', userId);
+    await db.from('training_items').delete().eq('session_id', userId);
+    await db.from('training_sessions').delete().eq('user_id', userId);
+    await db.from('users').delete().eq('id', userId);
     
     console.log('✅ Test data cleaned up');
   }

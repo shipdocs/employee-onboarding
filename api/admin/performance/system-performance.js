@@ -3,7 +3,7 @@
  * Provides performance environment performance analytics
  */
 
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAdmin } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 

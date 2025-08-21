@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/test-notifications.js - Test notification system
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAdmin } = require('../../lib/auth');
 const { notificationService } = require('../../lib/notificationService');
 const { adminRateLimit } = require('../../lib/rateLimit');
@@ -20,11 +20,9 @@ async function handler(req, res) {
 
     if (userId) {
       // Use specific user
-      const { data: user, error: userError } = await supabase
-        .from('users')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      const userResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
       if (userError || !user) {
         return res.status(404).json({ error: 'User not found' });

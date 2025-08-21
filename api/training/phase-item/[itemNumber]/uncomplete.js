@@ -99,10 +99,9 @@ async function handler(req, res) {
     }
 
     // Get updated progress (using completed_at for consistency)
-    const { data: allItems, error: allItemsError } = await supabase
-      .from('training_items')
-      .select('id, completed_at')
-      .eq('session_id', session.id);
+    const allItemsResult = await db.query('SELECT id, completed_at FROM training_items WHERE session_id = $1', [session.id]);
+    const allItems = allItemsResult.rows;
+    const allItemsError = false;
 
     if (allItemsError) {
       // console.error('Error checking all items:', allItemsError);

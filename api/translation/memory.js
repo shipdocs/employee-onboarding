@@ -1,5 +1,5 @@
 const { requireAuth } = require('../../lib/auth.js');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../lib/rateLimit');
 const supabase = createClient(
   process.env.SUPABASE_URL,

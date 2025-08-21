@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/profile.js
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const unifiedEmailService = require('../../lib/unifiedEmailService');
 const { createAPIHandler, createError, createValidationError, createDatabaseError, createNotFoundError } = require('../../lib/apiHandler');
@@ -20,11 +20,9 @@ async function getProfile(req, res) {
   const userId = req.user.userId;
 
     // Get user profile
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single();
+    const userResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
     if (userError) {
       throw createDatabaseError('Failed to fetch user profile', { originalError: userError.message });

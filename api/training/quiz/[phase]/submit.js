@@ -1,5 +1,5 @@
 // Vercel API Route: /api/training/quiz/[phase]/submit.js - Submit quiz answers with REAL SCORING
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireAuth } = require('../../../../lib/auth');
 const AutomatedCertificateService = require('../../../../services/automated-certificate-service');
 const DynamicPdfService = require('../../../../lib/dynamicPdfService');

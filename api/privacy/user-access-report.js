@@ -1,5 +1,5 @@
 // API Route: /api/privacy/user-access-report.js
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { wrapWithErrorHandling } = require('../../lib/apiHandler');
 const { apiRateLimit } = require('../../lib/rateLimit');
@@ -28,11 +28,9 @@ async function handler(req, res) {
     };
 
     // Get user profile
-    const { data: profile, error: profileError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single();
+    const profileResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const profile = profileResult.rows[0];
+    const profileError = !profile;
 
     if (profileError && profileError.code !== 'PGRST116') {
       throw profileError;

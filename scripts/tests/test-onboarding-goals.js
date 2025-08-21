@@ -1,6 +1,6 @@
 // Test script voor onboarding app doelen
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const axios = require('axios');
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3001';
@@ -516,9 +516,9 @@ class OnboardingGoalsTest {
     for (const user of this.testUsers) {
       try {
         // Verwijder alle gerelateerde data
-        await supabase.from('magic_links').delete().eq('email', user.email);
-        await supabase.from('training_sessions').delete().eq('user_id', user.id);
-        await supabase.from('users').delete().eq('id', user.id);
+        await db.from('magic_links').delete().eq('email', user.email);
+        await db.from('training_sessions').delete().eq('user_id', user.id);
+        await db.from('users').delete().eq('id', user.id);
         console.log(`✅ Verwijderd: ${user.email}`);
       } catch (error) {
         console.error(`❌ Fout bij verwijderen ${user.email}:`, error.message);

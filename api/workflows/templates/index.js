@@ -1,4 +1,4 @@
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManagerOrAdmin } = require('../../../lib/auth.js');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 
@@ -103,7 +103,7 @@ module.exports = apiRateLimit(requireManagerOrAdmin(async function handler(req, 
         if (stepsError) {
           console.error('Error creating workflow steps:', stepsError);
           // Clean up template
-          await supabase.from('workflow_templates').delete().eq('id', template.id);
+          await db.from('workflow_templates').delete().eq('id', template.id);
           return res.status(500).json({ error: 'Failed to create workflow steps' });
         }
       }

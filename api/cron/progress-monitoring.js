@@ -1,5 +1,5 @@
 // Vercel Cron Job: /api/cron/progress-monitoring.js - Monitor training progress and generate reports
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 module.exports = async function handler(req, res) {;
   // Verify this is a cron request
   if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
@@ -25,10 +25,9 @@ module.exports = async function handler(req, res) {;
 
     // 1. Get overall user statistics
 
-    const { data: allUsers, error: usersError } = await supabase
-      .from('users')
-      .select('id, status, created_at')
-      .eq('role', 'crew');
+    const allUsersResult = await db.query('SELECT id, status, created_at FROM users WHERE role = $1', ['crew']);
+    const allUsers = allUsersResult.rows;
+    const usersError = false;
 
     if (usersError) {
       throw usersError;

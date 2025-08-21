@@ -35,10 +35,9 @@ async function debugTranslationService() {
     console.log('✅ Database connection successful\n');
 
     console.log('2. Loading translation settings from database...');
-    const { data: settingsData, error: settingsError } = await supabase
-      .from('system_settings')
-      .select('*')
-      .eq('category', 'translation');
+    const settingsDataResult = await db.query('SELECT * FROM system_settings WHERE category = $1', ['translation']);
+    const settingsData = settingsDataResult.rows;
+    const settingsError = false;
 
     if (settingsError) {
       console.error('❌ Failed to load translation settings:', settingsError);

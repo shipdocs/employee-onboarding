@@ -3,7 +3,7 @@
  * Vercel API Route: /api/health/storage
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -20,7 +20,7 @@ async function handler(req, res) {
 
   try {
     // Test 1: List buckets
-    const { data: buckets, error: listError } = await supabase.storage.listBuckets();
+    const { data: buckets, error: listError } = await // TODO: Replace with MinIO storage.listBuckets();
     checks.listBuckets = !listError && Array.isArray(buckets);
 
     if (checks.listBuckets && buckets.length > 0) {
@@ -29,7 +29,7 @@ async function handler(req, res) {
       const testContent = `Health check at ${new Date().toISOString()}`;
 
       // Test 2: Write file
-      const { error: uploadError } = await supabase.storage
+      const { error: uploadError } = await // TODO: Replace with MinIO storage
         .from(testBucket)
         .upload(testFileName, testContent, {
           contentType: 'text/plain',
@@ -40,14 +40,14 @@ async function handler(req, res) {
 
       if (checks.writeFile) {
         // Test 3: Read file
-        const { data: downloadData, error: downloadError } = await supabase.storage
+        const { data: downloadData, error: downloadError } = await // TODO: Replace with MinIO storage
           .from(testBucket)
           .download(testFileName);
 
         checks.readFile = !downloadError && downloadData !== null;
 
         // Test 4: Delete file
-        const { error: deleteError } = await supabase.storage
+        const { error: deleteError } = await // TODO: Replace with MinIO storage
           .from(testBucket)
           .remove([testFileName]);
 

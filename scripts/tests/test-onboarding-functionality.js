@@ -109,14 +109,14 @@ async function cleanupTestAccounts() {
       
     if (user) {
       // Delete related data
-      await supabase.from('magic_links').delete().eq('user_id', user.id);
-      await supabase.from('form_completions').delete().eq('user_id', user.id);
-      await supabase.from('training_sessions').delete().eq('user_id', user.id);
-      await supabase.from('quiz_results').delete().eq('user_id', user.id);
-      await supabase.from('email_notifications').delete().eq('user_id', user.id);
+      await db.from('magic_links').delete().eq('user_id', user.id);
+      await db.from('form_completions').delete().eq('user_id', user.id);
+      await db.from('training_sessions').delete().eq('user_id', user.id);
+      await db.from('quiz_results').delete().eq('user_id', user.id);
+      await db.from('email_notifications').delete().eq('user_id', user.id);
       
       // Delete user
-      await supabase.from('users').delete().eq('id', user.id);
+      await db.from('users').delete().eq('id', user.id);
       console.log(`🧹 Deleted test account: ${account.email}`);
     }
   }
@@ -129,9 +129,9 @@ async function cleanupTestAccounts() {
     .single();
     
   if (manager) {
-    await supabase.from('magic_links').delete().eq('user_id', manager.id);
-    await supabase.from('email_notifications').delete().eq('user_id', manager.id);
-    await supabase.from('users').delete().eq('id', manager.id);
+    await db.from('magic_links').delete().eq('user_id', manager.id);
+    await db.from('email_notifications').delete().eq('user_id', manager.id);
+    await db.from('users').delete().eq('id', manager.id);
     console.log(`🧹 Deleted test manager: ${TEST_CONFIG.managerEmail}`);
   }
   
@@ -226,11 +226,9 @@ async function testAccessLinkDistribution() {
   try {
     for (const account of TEST_CONFIG.testAccounts) {
       // Get crew member
-      const { data: crew, error: crewError } = await supabase
-        .from('users')
-        .select('*')
-        .eq('email', account.email)
-        .single();
+      const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [account.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
         
       if (crewError || !crew) {
         await logResult('accessLinkDistribution', false, `Failed to find test crew member ${account.email}: ${crewError?.message || 'Not found'}`);
@@ -293,11 +291,9 @@ async function testAuthentication() {
   try {
     for (const account of TEST_CONFIG.testAccounts) {
       // Get crew member
-      const { data: crew, error: crewError } = await supabase
-        .from('users')
-        .select('*')
-        .eq('email', account.email)
-        .single();
+      const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [account.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
         
       if (crewError || !crew) {
         await logResult('authentication', false, `Failed to find test crew member ${account.email}: ${crewError?.message || 'Not found'}`);
@@ -367,11 +363,9 @@ async function testInitialFormCompletion() {
     const testAccount = TEST_CONFIG.testAccounts[0];
     
     // Get crew member
-    const { data: crew, error: crewError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', testAccount.email)
-      .single();
+    const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [testAccount.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
       
     if (crewError || !crew) {
       await logResult('initialFormCompletion', false, `Failed to find test crew member ${testAccount.email}: ${crewError?.message || 'Not found'}`);
@@ -465,11 +459,9 @@ async function testFollowupFormSequence() {
     const testAccount = TEST_CONFIG.testAccounts[1];
     
     // Get crew member
-    const { data: crew, error: crewError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', testAccount.email)
-      .single();
+    const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [testAccount.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
       
     if (crewError || !crew) {
       await logResult('followupFormSequence', false, `Failed to find test crew member ${testAccount.email}: ${crewError?.message || 'Not found'}`);
@@ -615,11 +607,9 @@ async function testCompletionNotification() {
     const testAccount = TEST_CONFIG.testAccounts[2];
     
     // Get crew member
-    const { data: crew, error: crewError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', testAccount.email)
-      .single();
+    const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [testAccount.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
       
     if (crewError || !crew) {
       await logResult('completionNotification', false, `Failed to find test crew member ${testAccount.email}: ${crewError?.message || 'Not found'}`);
@@ -699,11 +689,9 @@ async function testPDFGeneration() {
     const testAccount = TEST_CONFIG.testAccounts[3];
     
     // Get crew member
-    const { data: crew, error: crewError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', testAccount.email)
-      .single();
+    const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [testAccount.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
       
     if (crewError || !crew) {
       await logResult('pdfGeneration', false, `Failed to find test crew member ${testAccount.email}: ${crewError?.message || 'Not found'}`);
@@ -833,11 +821,9 @@ async function testPDFEditing() {
     const testAccount = TEST_CONFIG.testAccounts[3];
     
     // Get crew member
-    const { data: crew, error: crewError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', testAccount.email)
-      .single();
+    const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [testAccount.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
       
     if (crewError || !crew) {
       await logResult('pdfEditing', false, `Failed to find test crew member ${testAccount.email}: ${crewError?.message || 'Not found'}`);
@@ -908,11 +894,9 @@ async function testDocumentDistribution() {
     const testAccount = TEST_CONFIG.testAccounts[4];
     
     // Get crew member
-    const { data: crew, error: crewError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', testAccount.email)
-      .single();
+    const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [testAccount.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
       
     if (crewError || !crew) {
       await logResult('documentDistribution', false, `Failed to find test crew member ${testAccount.email}: ${crewError?.message || 'Not found'}`);
@@ -995,11 +979,9 @@ async function testProcessCompletion() {
     const testAccount = TEST_CONFIG.testAccounts[4];
     
     // Get crew member
-    const { data: crew, error: crewError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', testAccount.email)
-      .single();
+    const crewResult = await db.query('SELECT * FROM users WHERE email = $1', [testAccount.email]);
+    const crew = crewResult.rows[0];
+    const crewError = !crew;
       
     if (crewError || !crew) {
       await logResult('processCompletion', false, `Failed to find test crew member ${testAccount.email}: ${crewError?.message || 'Not found'}`);

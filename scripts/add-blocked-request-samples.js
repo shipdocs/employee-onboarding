@@ -7,7 +7,7 @@
  * to demonstrate the security dashboard blocked requests functionality.
  */
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 require('dotenv').config();
 
 // Initialize Supabase client

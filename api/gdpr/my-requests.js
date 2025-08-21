@@ -3,7 +3,7 @@
  * Allows users to view their own GDPR requests
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { authenticateRequest } = require('../../lib/auth');
 const { applyApiSecurityHeaders } = require('../../lib/securityHeaders');
 const { userRateLimit } = require('../../lib/rateLimit');

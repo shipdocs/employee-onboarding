@@ -1,4 +1,4 @@
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 require('dotenv').config();
 
 // Initialize Supabase client
@@ -69,7 +69,7 @@ async function addTestSecurityEvents() {
     {
       event_id: `evt_test_005_${Date.now()}`,
       type: 'security_configuration_change',
-      severity: 'info',
+      severity: 'low',
       user_id: null,
       ip_address: '192.168.1.1',
       user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124',

@@ -5,7 +5,7 @@
  */
 
 require('dotenv').config();
-const { supabase } = require('../lib/supabase');
+const db = require('../lib/database-direct');
 const crypto = require('crypto');
 
 // Generate magic token locally
@@ -19,11 +19,9 @@ async function generateCrewMagicLink() {
 
   try {
     // Get the first test crew member
-    const { data: crewMember, error: crewError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', 'test-crew-001@shipdocs.app')
-      .single();
+    const crewMemberResult = await db.query('SELECT * FROM users WHERE email = $1', ['test-crew-001@shipdocs.app']);
+    const crewMember = crewMemberResult.rows[0];
+    const crewError = !crewMember;
 
     if (crewError || !crewMember) {
       console.error('❌ Test crew member not found. Run: node scripts/setup-test-accounts.js');

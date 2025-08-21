@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-alert.js - Send alert email
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailTemplateGenerator } = require('../../lib/emailTemplateGenerator');

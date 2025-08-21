@@ -218,7 +218,7 @@ class MigrationManager {
       }
       
       // Update supabase references to use compatible API
-      if (content.includes('supabase.from(')) {
+      if (content.includes('db.from(')) {
         content = content.replace(/supabase\.from\(/g, 'db.from(');
         modified = true;
       }

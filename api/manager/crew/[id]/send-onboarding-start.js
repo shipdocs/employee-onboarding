@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/crew/[id]/send-onboarding-start.js - Manually send Onboarding Start email
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireManager } = require('../../../../lib/auth');
 const { unifiedEmailService } = require('../../../../lib/unifiedEmailService');
 const { adminRateLimit } = require('../../../../lib/rateLimit');

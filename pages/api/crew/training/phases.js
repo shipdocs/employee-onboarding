@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
+const { supabase } = require('../../../../lib/database-supabase-compat');
 import { verifyToken } from '../../../../utils/auth';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/onboarding/analytics.js - Track onboarding analytics
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireCrew } = require('../../../lib/auth');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 async function handler(req, res) {

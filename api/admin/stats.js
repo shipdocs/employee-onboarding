@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/stats.js - Admin system statistics
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { authenticateRequest } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 

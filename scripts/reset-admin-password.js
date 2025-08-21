@@ -1,5 +1,5 @@
 // Script to reset admin password
-const { supabase } = require('../lib/supabase');
+const db = require('../lib/database-direct');
 const bcrypt = require('bcrypt');
 
 async function resetAdminPassword() {

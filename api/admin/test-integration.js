@@ -4,7 +4,7 @@
  * Located at: /api/admin/system-settings/test-integration
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { externalIntegrationService } = require('../../lib/services/externalIntegrationService');
 const { authenticateRequest } = require('../../lib/auth');
 const { applyCors } = require('../../lib/cors');

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/training/phase/[phase].js - Get specific phase training details
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireCrew } = require('../../../../lib/auth');
 const { getCachedPhaseInfo, getCachedTrainingItems, invalidateContentCache } = require('../../../../lib/contentCache');
 const { trainingRateLimit } = require('../../../../lib/rateLimit');
@@ -277,7 +277,7 @@ function getFileUrl(bucket, path) {
   if (!path) return null;
 
   try {
-    const { data } = supabase.storage
+    const { data } = // TODO: Replace with MinIO storage
       .from(bucket)
       .getPublicUrl(path);
 

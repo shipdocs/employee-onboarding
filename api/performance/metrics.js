@@ -3,7 +3,7 @@
  * Handles collection and retrieval of performance metrics
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
 

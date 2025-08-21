@@ -1,10 +1,6 @@
 const { requireAuth } = require('../../lib/auth.js');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../lib/rateLimit');
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
 
 async function handler(req, res) {
   try {
@@ -19,11 +15,9 @@ async function handler(req, res) {
     if (req.method === 'GET') {
 
       // Verify workflow exists and user has access
-      const { data: workflow, error: workflowError } = await supabase
-        .from('workflows')
-        .select('id, name, slug')
-        .eq('id', workflowId)
-        .single();
+      const workflowResult = await db.query('SELECT id, name, slug FROM workflows WHERE id = $1', [workflowId]);
+    const workflow = workflowResult.rows[0];
+    const workflowError = !workflow;
 
       if (workflowError || !workflow) {
         // console.error('❌ [GET] Workflow not found:', workflowError);
@@ -119,11 +113,9 @@ async function handler(req, res) {
       }
 
       // Verify workflow exists
-      const { data: workflow, error: workflowError } = await supabase
-        .from('workflows')
-        .select('id')
-        .eq('id', workflowId)
-        .single();
+      const workflowResult = await db.query('SELECT id FROM workflows WHERE id = $1', [workflowId]);
+    const workflow = workflowResult.rows[0];
+    const workflowError = !workflow;
 
       if (workflowError || !workflow) {
         return res.status(404).json({ error: 'Workflow not found' });

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/managers/index.js - Admin manager management
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { authenticateRequest, generateMagicToken } = require('../../../lib/auth');
 const { unifiedEmailService } = require('../../../lib/unifiedEmailService');
 const bcrypt = require('bcrypt');

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/retention/run.js
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { authenticateRequest } = require('../../../lib/auth');
 const { wrapWithErrorHandling } = require('../../../lib/apiHandler');
 const { adminRateLimit } = require('../../../lib/rateLimit');

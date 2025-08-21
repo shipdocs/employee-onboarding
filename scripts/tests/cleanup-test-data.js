@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 require('dotenv').config();
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
@@ -41,35 +41,35 @@ async function cleanup() {
   
   // 2. Delete workflow instances
   console.log('🗑️  Deleting workflow instances...');
-  await supabase.from('workflow_instances').delete().in('user_id', userIds);
+  await db.from('workflow_instances').delete().in('user_id', userIds);
   
   // 3. Delete training progress
   console.log('🗑️  Deleting training progress...');
-  await supabase.from('training_progress').delete().in('user_id', userIds);
+  await db.from('training_progress').delete().in('user_id', userIds);
   
   // 4. Delete quiz attempts
   console.log('🗑️  Deleting quiz attempts...');
-  await supabase.from('quiz_attempts').delete().in('user_id', userIds);
+  await db.from('quiz_attempts').delete().in('user_id', userIds);
   
   // 5. Delete onboarding records
   console.log('🗑️  Deleting onboarding records...');
-  await supabase.from('onboarding').delete().in('user_id', userIds);
+  await db.from('onboarding').delete().in('user_id', userIds);
   
   // 6. Delete manager permissions
   console.log('🗑️  Deleting manager permissions...');
-  await supabase.from('manager_permissions').delete().in('manager_id', userIds);
+  await db.from('manager_permissions').delete().in('manager_id', userIds);
   
   // 7. Delete audit logs
   console.log('🗑️  Deleting audit logs...');
-  await supabase.from('audit_log').delete().in('user_id', userIds);
+  await db.from('audit_log').delete().in('user_id', userIds);
   
   // 8. Delete magic links
   console.log('🗑️  Deleting magic links...');
-  await supabase.from('magic_links').delete().in('user_id', userIds);
+  await db.from('magic_links').delete().in('user_id', userIds);
   
   // 9. Delete certificates
   console.log('🗑️  Deleting certificates...');
-  await supabase.from('certificates').delete().in('user_id', userIds);
+  await db.from('certificates').delete().in('user_id', userIds);
   
   // 10. Finally, delete users
   console.log('🗑️  Deleting test users...');

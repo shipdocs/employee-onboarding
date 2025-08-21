@@ -1,6 +1,6 @@
 // Fix missing training sessions for existing crew members
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -12,10 +12,9 @@ async function fixMissingTrainingSessions() {
   
   try {
     // Find all crew members
-    const { data: crewMembers, error: crewError } = await supabase
-      .from('users')
-      .select('id, email, first_name, last_name')
-      .eq('role', 'crew');
+    const crewMembersResult = await db.query('SELECT id, email, first_name, last_name FROM users WHERE role = $1', ['crew']);
+    const crewMembers = crewMembersResult.rows;
+    const crewError = false;
     
     if (crewError) {
       console.error('❌ Error fetching crew members:', crewError);
@@ -29,10 +28,9 @@ async function fixMissingTrainingSessions() {
       console.log(`\n📋 Checking crew member: ${crew.email}`);
       
       // Get existing training sessions
-      const { data: existingSessions, error: sessionError } = await supabase
-        .from('training_sessions')
-        .select('phase')
-        .eq('user_id', crew.id);
+      const existingSessionsResult = await db.query('SELECT phase FROM training_sessions WHERE user_id = $1', [crew.id]);
+    const existingSessions = existingSessionsResult.rows;
+    const sessionError = false;
       
       if (sessionError) {
         console.error(`❌ Error checking sessions for ${crew.email}:`, sessionError);

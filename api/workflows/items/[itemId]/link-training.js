@@ -15,7 +15,7 @@ async function handler(req, res) {
         });
       }
 
-      const { supabase } = require('../../../../lib/supabase');
+      const { supabase } = require('../../../../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../../../lib/rateLimit');
 
       // Validate that the training phase exists and is published

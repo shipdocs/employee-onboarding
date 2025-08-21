@@ -3,7 +3,7 @@
  * Admin interface for managing feature flags with real-time toggles and analytics
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { authenticateRequest } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 
@@ -184,11 +184,9 @@ async function updateFeatureFlag(req, res, user) {
     }
 
     // Get current flag
-    const { data: currentFlag, error: fetchError } = await supabase
-      .from('feature_flags')
-      .select('*')
-      .eq('id', targetId)
-      .single();
+    const currentFlagResult = await db.query('SELECT * FROM feature_flags WHERE id = $1', [targetId]);
+    const currentFlag = currentFlagResult.rows[0];
+    const fetchError = !currentFlag;
 
     if (fetchError || !currentFlag) {
       return res.status(404).json({ error: 'Feature flag not found' });
@@ -269,11 +267,9 @@ async function deleteFeatureFlag(req, res, user) {
     }
 
     // Get flag details before deletion
-    const { data: flag, error: fetchError } = await supabase
-      .from('feature_flags')
-      .select('*')
-      .eq('id', flagId)
-      .single();
+    const flagResult = await db.query('SELECT * FROM feature_flags WHERE id = $1', [flagId]);
+    const flag = flagResult.rows[0];
+    const fetchError = !flag;
 
     if (fetchError || !flag) {
       return res.status(404).json({ error: 'Feature flag not found' });

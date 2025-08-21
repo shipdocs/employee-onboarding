@@ -1,6 +1,6 @@
 // Vercel API Route: /api/pdf/generate-form-05-03a.js
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { StorageService } = require('../../lib/storage');
 const fs = require('fs/promises');
@@ -17,11 +17,9 @@ async function handler(req, res) {
     const { templateId, formData } = req.body;
 
     // Get user data
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single();
+    const userResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
     if (userError || !user) {
       return res.status(404).json({ error: 'User not found' });
@@ -30,11 +28,9 @@ async function handler(req, res) {
     // Get template data if templateId provided
     let template = null;
     if (templateId) {
-      const { data: templateData, error: templateError } = await supabase
-        .from('pdf_templates')
-        .select('*')
-        .eq('id', templateId)
-        .single();
+      const templateDataResult = await db.query('SELECT * FROM pdf_templates WHERE id = $1', [templateId]);
+    const templateData = templateDataResult.rows[0];
+    const templateError = !templateData;
 
       if (templateError) {
         // console.error('Template not found:', templateError);

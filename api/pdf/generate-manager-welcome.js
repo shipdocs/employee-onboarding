@@ -1,6 +1,6 @@
 // Vercel API Route: /api/pdf/generate-manager-welcome.js
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const fs = require('fs/promises');
 const path = require('path');

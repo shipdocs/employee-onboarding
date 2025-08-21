@@ -2,7 +2,7 @@
 
 // scripts/run-smtp-migration.js - Run SMTP Admin Settings Migration
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const fs = require('fs').promises;
 const path = require('path');
 

@@ -3,7 +3,7 @@
  * Admin interface for downloading completed data export files
  */
 
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { authenticateRequest } = require('../../../../lib/auth');
 const { adminRateLimit } = require('../../../../lib/rateLimit');
 
@@ -30,11 +30,9 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     // Get export record
-    const { data: exportRecord, error: exportError } = await supabase
-      .from('data_exports')
-      .select('*')
-      .eq('id', id)
-      .single();
+    const exportRecordResult = await db.query('SELECT * FROM data_exports WHERE id = $1', [id]);
+    const exportRecord = exportRecordResult.rows[0];
+    const exportError = !exportRecord;
 
     if (exportError || !exportRecord) {
       return res.status(404).json({ error: 'Export not found' });
@@ -48,11 +46,9 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     // Get export data from export_data table
-    const { data: exportData, error: dataError } = await supabase
-      .from('export_data')
-      .select('*')
-      .eq('request_id', id)
-      .single();
+    const exportDataResult = await db.query('SELECT * FROM export_data WHERE request_id = $1', [id]);
+    const exportData = exportDataResult.rows[0];
+    const dataError = !exportData;
 
     if (dataError || !exportData) {
       return res.status(404).json({ error: 'Export data not found' });

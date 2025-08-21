@@ -1,4 +1,4 @@
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManagerOrAdmin } = require('../../../lib/auth');
 const { uploadRateLimit } = require('../../../lib/rateLimit');
 
@@ -15,11 +15,9 @@ module.exports = uploadRateLimit(requireManagerOrAdmin(async function handler(re
 
   try {
     // Get template from database
-    const { data: template, error: templateError } = await supabase
-      .from('pdf_templates')
-      .select('*')
-      .eq('id', id)
-      .single();
+    const templateResult = await db.query('SELECT * FROM pdf_templates WHERE id = $1', [id]);
+    const template = templateResult.rows[0];
+    const templateError = !template;
 
     if (templateError) {
       // console.error('Error fetching template:', templateError);

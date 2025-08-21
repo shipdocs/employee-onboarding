@@ -1,5 +1,5 @@
 // Test endpoint to debug admin login issues
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { generateJWT } = require('../../lib/auth');
 const bcrypt = require('bcrypt');
 const { apiRateLimit } = require('../../lib/rateLimit');

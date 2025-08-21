@@ -1,4 +1,4 @@
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManagerOrAdmin } = require('../../../lib/auth.js');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 
@@ -64,11 +64,9 @@ module.exports = apiRateLimit(requireManagerOrAdmin(async function handler(req, 
       }
 
       // Get template from library
-      const { data: template, error: templateError } = await supabase
-        .from('workflow_template_library')
-        .select('*')
-        .eq('id', template_id)
-        .single();
+      const templateResult = await db.query('SELECT * FROM workflow_template_library WHERE id = $1', [template_id]);
+    const template = templateResult.rows[0];
+    const templateError = !template;
 
       if (templateError || !template) {
         return res.status(404).json({ error: 'Template not found' });
@@ -136,7 +134,7 @@ module.exports = apiRateLimit(requireManagerOrAdmin(async function handler(req, 
         if (stepsError) {
           console.error('Error creating workflow steps:', stepsError);
           // Clean up workflow
-          await supabase.from('workflow_templates').delete().eq('id', workflow.id);
+          await db.from('workflow_templates').delete().eq('id', workflow.id);
           return res.status(500).json({ error: 'Failed to create workflow steps' });
         }
       }

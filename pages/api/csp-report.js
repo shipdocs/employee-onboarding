@@ -1,7 +1,7 @@
 // pages/api/csp-report.js - CSP violation report endpoint
 
 const { createCSPReportHandler } = require('../../lib/security/cspSecurity');
-const { supabase } = require('../../lib/supabase');
+const { supabase } = require('../../lib/database-supabase-compat');
 
 // Create the CSP report handler with database logging
 const handler = createCSPReportHandler({

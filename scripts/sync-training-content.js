@@ -10,7 +10,7 @@
  * Solution: Copy rich content from training_items to training_phases for consistency
  */
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 // Supabase configuration
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://ocqnnyxnqaedarcohywe.supabase.co';
@@ -61,9 +61,9 @@ async function syncTrainingContent() {
     console.log('\n📋 Step 3: Mapping training items to phases...');
     
     // Get session to phase mapping
-    const { data: sessions, error: sessionsError } = await supabase
-      .from('training_sessions')
-      .select('id, phase');
+    const sessionsResult = await db.query('SELECT id, phase FROM training_sessions');
+    const sessions = sessionsResult.rows;
+    const sessionsError = false;
 
     if (sessionsError) {
       throw new Error(`Failed to fetch training sessions: ${sessionsError.message}`);

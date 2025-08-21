@@ -3,7 +3,7 @@
  * Allows users to download their exported data
  */
 
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { authenticateRequest } = require('../../../lib/auth');
 const { applyApiSecurityHeaders } = require('../../../lib/securityHeaders');
 const { userRateLimit } = require('../../../lib/rateLimit');
@@ -66,11 +66,9 @@ module.exports = async function handler(req, res) {
     }
 
     // Get the actual export data
-    const { data: exportData, error: dataError } = await supabase
-      .from('export_data')
-      .select('data')
-      .eq('request_id', requestId)
-      .single();
+    const exportDataResult = await db.query('SELECT data FROM export_data WHERE request_id = $1', [requestId]);
+    const exportData = exportDataResult.rows[0];
+    const dataError = !exportData;
 
     if (dataError || !exportData) {
       console.error('Error fetching export data:', dataError);

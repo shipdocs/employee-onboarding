@@ -31,11 +31,9 @@ async function testOnboardingAPI() {
     // Test 2: Get test user
     console.log('\n2. Getting test user...');
     const testAccount = TEST_CONFIG.testAccounts[0];
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', testAccount.email)
-      .single();
+    const userResult = await db.query('SELECT * FROM users WHERE email = $1', [testAccount.email]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
     if (userError || !user) {
       console.error('❌ Test user not found:', userError?.message);
@@ -84,8 +82,8 @@ async function testOnboardingAPI() {
 
     // Test 5: Clean up test data
     console.log('\n5. Cleaning up test data...');
-    await supabase.from('onboarding_analytics').delete().eq('id', analyticsData.id);
-    await supabase.from('onboarding_progress').delete().eq('id', progressData.id);
+    await db.from('onboarding_analytics').delete().eq('id', analyticsData.id);
+    await db.from('onboarding_progress').delete().eq('id', progressData.id);
     console.log('✅ Test data cleaned up');
 
     console.log('\n🎉 All onboarding API tests passed!');

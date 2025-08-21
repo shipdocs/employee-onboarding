@@ -1,5 +1,5 @@
 // api/admin/system-settings.js - System Settings Management API
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { authenticateRequest } = require('../../lib/auth');
 const { applyCors } = require('../../lib/cors');
 const { adminRateLimit } = require('../../lib/rateLimit');

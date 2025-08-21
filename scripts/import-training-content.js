@@ -5,7 +5,7 @@
  * This will link the rich content that crew members see to the workflow system
  */
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
@@ -52,9 +52,9 @@ async function importTrainingContent(dryRun = true) {
 
   try {
     // 1. Get all training phases
-    const { data: trainingPhases, error: phasesError } = await supabase
-      .from('training_phases')
-      .select('*');
+    const trainingPhasesResult = await db.query('SELECT * FROM training_phases');
+    const trainingPhases = trainingPhasesResult.rows;
+    const phasesError = false;
 
     if (phasesError) {
       console.error('❌ Error fetching training phases:', phasesError);
@@ -62,9 +62,9 @@ async function importTrainingContent(dryRun = true) {
     }
 
     // 2. Get all workflow items
-    const { data: workflowItems, error: itemsError } = await supabase
-      .from('workflow_phase_items')
-      .select('*');
+    const workflowItemsResult = await db.query('SELECT * FROM workflow_phase_items');
+    const workflowItems = workflowItemsResult.rows;
+    const itemsError = false;
 
     if (itemsError) {
       console.error('❌ Error fetching workflow items:', itemsError);

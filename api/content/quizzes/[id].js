@@ -1,4 +1,4 @@
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAuth } = require('../../../lib/auth');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
@@ -55,11 +55,9 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
       }
 
       // Check if quiz exists
-      const { data: existingQuiz, error: fetchError } = await supabase
-        .from('quiz_content')
-        .select('id, title, version')
-        .eq('id', id)
-        .single();
+      const existingQuizResult = await db.query('SELECT id, title, version FROM quiz_content WHERE id = $1', [id]);
+    const existingQuiz = existingQuizResult.rows[0];
+    const fetchError = !existingQuiz;
 
       if (fetchError || !existingQuiz) {
         return res.status(404).json({ error: 'Quiz not found' });
@@ -120,11 +118,9 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
 
     if (req.method === 'DELETE') {
       // Delete quiz
-      const { data: quiz, error: fetchError } = await supabase
-        .from('quiz_content')
-        .select('id, title, phase')
-        .eq('id', id)
-        .single();
+      const quizResult = await db.query('SELECT id, title, phase FROM quiz_content WHERE id = $1', [id]);
+    const quiz = quizResult.rows[0];
+    const fetchError = !quiz;
 
       if (fetchError || !quiz) {
         return res.status(404).json({ error: 'Quiz not found' });

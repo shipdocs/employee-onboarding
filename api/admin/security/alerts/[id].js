@@ -3,7 +3,7 @@
  * Handles updating individual security alerts
  */
 
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { applyApiSecurityHeaders } = require('../../../../lib/securityHeaders');
 const { adminRateLimit } = require('../../../../lib/rateLimit');
 
@@ -22,18 +22,16 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     const token = authHeader.split(' ')[1];
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+    const { data: { user }, error: authError } = await // TODO: Replace with JWT auth.getUser(token);
 
     if (authError || !user) {
       return res.status(401).json({ error: 'Invalid token' });
     }
 
     // Check if user is admin
-    const { data: profile, error: profileError } = await supabase
-      .from('user_profiles')
-      .select('role')
-      .eq('user_id', user.id)
-      .single();
+    const profileResult = await db.query('SELECT role FROM user_profiles WHERE user_id = $1', [user.id]);
+    const profile = profileResult.rows[0];
+    const profileError = !profile;
 
     if (profileError || profile?.role !== 'admin') {
       return res.status(403).json({ error: 'Admin access required' });
@@ -61,11 +59,9 @@ module.exports = adminRateLimit(async (req, res) => {
 
     // Since we're using security_events as our alerts store,
     // we'll update the event details to include the alert status
-    const { data: event, error: fetchError } = await supabase
-      .from('security_events')
-      .select('*')
-      .eq('event_id', id)
-      .single();
+    const eventResult = await db.query('SELECT * FROM security_events WHERE event_id = $1', [id]);
+    const event = eventResult.rows[0];
+    const fetchError = !event;
 
     if (fetchError || !event) {
       return res.status(404).json({ error: 'Alert not found' });

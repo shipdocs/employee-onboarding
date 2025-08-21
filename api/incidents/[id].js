@@ -3,7 +3,7 @@
  * External API for incident response tools to interact with specific incidents
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireRole } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
@@ -111,11 +111,9 @@ async function handleUpdateIncident(req, res, incidentId) {
     // Add external reference to metadata
     if (external_reference || resolution_notes) {
       // First fetch current metadata
-      const { data: currentIncident, error: fetchError } = await supabase
-        .from('incidents')
-        .select('metadata')
-        .eq('incident_id', incidentId)
-        .single();
+      const currentIncidentResult = await db.query('SELECT metadata FROM incidents WHERE incident_id = $1', [incidentId]);
+    const currentIncident = currentIncidentResult.rows[0];
+    const fetchError = !currentIncident;
 
       if (fetchError) {
         console.error('Error fetching current incident:', fetchError);

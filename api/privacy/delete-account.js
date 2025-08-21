@@ -11,7 +11,7 @@
 
 const { requireAuth } = require('../../lib/auth');
 const accountDeletionService = require('../../lib/services/accountDeletionService');
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const bcrypt = require('bcrypt');
 const mfaService = require('../../lib/mfaService');
 const { apiRateLimit } = require('../../lib/rateLimit');
@@ -73,11 +73,9 @@ async function handler(req, res) {
     }
 
     // Check if user exists
-    const { data: targetUser, error: userError } = await supabase
-      .from('users')
-      .select('id, email, first_name, last_name, role')
-      .eq('id', targetUserId)
-      .single();
+    const targetUserResult = await db.query('SELECT id, email, first_name, last_name, role FROM users WHERE id = $1', [targetUserId]);
+    const targetUser = targetUserResult.rows[0];
+    const userError = !targetUser;
 
     if (userError || !targetUser) {
       return res.status(404).json({ error: 'User not found' });

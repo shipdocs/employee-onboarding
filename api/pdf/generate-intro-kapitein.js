@@ -1,5 +1,5 @@
 // Vercel API Route: /api/pdf/generate-intro-kapitein.js
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const AutomatedCertificateService = require('../../services/automated-certificate-service');
 const { uploadRateLimit } = require('../../lib/rateLimit');
@@ -35,11 +35,9 @@ async function handler(req, res) {
     }
 
     // Verify target user exists
-    const { data: targetUser, error: userError } = await supabase
-      .from('users')
-      .select('id, first_name, last_name, email, role')
-      .eq('id', targetUserId)
-      .single();
+    const targetUserResult = await db.query('SELECT id, first_name, last_name, email, role FROM users WHERE id = $1', [targetUserId]);
+    const targetUser = targetUserResult.rows[0];
+    const userError = !targetUser;
 
     if (userError || !targetUser) {
       // console.error('Target user not found:', userError?.message || 'No user data returned');

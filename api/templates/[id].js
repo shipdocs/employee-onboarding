@@ -1,5 +1,5 @@
 // Vercel API Route: /api/templates/[id].js
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireManagerOrAdmin } = require('../../lib/auth');
 const { v4: uuidv4 } = require('uuid');
 const { adminRateLimit } = require('../../lib/rateLimit');
@@ -17,7 +17,7 @@ async function uploadBackgroundImage(base64Data, userId) {
     const filePath = `backgrounds/${fileName}`;
 
     // First, ensure the bucket exists and is accessible
-    const { data: buckets, error: listError } = await supabase.storage.listBuckets();
+    const { data: buckets, error: listError } = await // TODO: Replace with MinIO storage.listBuckets();
     if (listError) {
       // console.error('Error listing buckets:', listError);
       throw new Error(`Storage service error: ${listError.message}`);
@@ -30,7 +30,7 @@ async function uploadBackgroundImage(base64Data, userId) {
     }
 
     // Upload to Supabase Storage with upsert enabled to handle conflicts
-    const { data: uploadData, error } = await supabase.storage
+    const { data: uploadData, error } = await // TODO: Replace with MinIO storage
       .from('documents')
       .upload(filePath, buffer, {
         contentType: 'image/png',
@@ -45,7 +45,7 @@ async function uploadBackgroundImage(base64Data, userId) {
 
         // Try uploading with a simpler path
         const simplePath = `${fileName}`;
-        const { data: altUploadData, error: altError } = await supabase.storage
+        const { data: altUploadData, error: altError } = await // TODO: Replace with MinIO storage
           .from('documents')
           .upload(simplePath, buffer, {
             contentType: 'image/png',
@@ -58,7 +58,7 @@ async function uploadBackgroundImage(base64Data, userId) {
         }
 
         // Get public URL for alternative path
-        const { data: urlData } = supabase.storage
+        const { data: urlData } = // TODO: Replace with MinIO storage
           .from('documents')
           .getPublicUrl(simplePath);
 
@@ -69,7 +69,7 @@ async function uploadBackgroundImage(base64Data, userId) {
     }
 
     // Get public URL
-    const { data: urlData } = supabase.storage
+    const { data: urlData } = // TODO: Replace with MinIO storage
       .from('documents')
       .getPublicUrl(filePath);
 

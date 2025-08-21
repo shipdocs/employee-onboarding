@@ -1,5 +1,5 @@
 // Vercel API Route: /api/auth/request-magic-link.js
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { generateMagicToken } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { authRateLimit } = require('../../lib/rateLimit');

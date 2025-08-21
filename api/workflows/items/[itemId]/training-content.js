@@ -36,7 +36,7 @@ async function handler(req, res) {
       // Unlink training content from workflow item
 
       // Get the workflow item first
-      const { supabase } = require('../../../../lib/supabase');
+      const { supabase } = require('../../../../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../../../lib/rateLimit');
 
       const { error } = await supabase

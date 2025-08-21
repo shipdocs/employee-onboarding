@@ -1,6 +1,6 @@
 // Fix training items to match the actual training phases content
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -26,9 +26,9 @@ async function fixTrainingItems() {
     console.log(`Found ${phases.length} published training phases\n`);
     
     // Get all training sessions
-    const { data: sessions, error: sessionError } = await supabase
-      .from('training_sessions')
-      .select('*');
+    const sessionsResult = await db.query('SELECT * FROM training_sessions');
+    const sessions = sessionsResult.rows;
+    const sessionError = false;
     
     if (sessionError) {
       console.error('❌ Error fetching sessions:', sessionError);

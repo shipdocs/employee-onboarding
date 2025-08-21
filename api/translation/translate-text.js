@@ -4,7 +4,7 @@
  */
 
 const AITranslationService = require('../../lib/aiTranslationService.js');
-const { supabase } = require('../../lib/supabase.js');
+const { supabase } = require('../../lib/database-supabase-compat');
 const { ErrorHandler, createServiceError, createValidationError } = require('../../lib/errorHandler.js');
 const { asyncHandler, requestIdMiddleware } = require('../../lib/middleware/errorMiddleware.js');
 const { apiRateLimit } = require('../../lib/rateLimit');

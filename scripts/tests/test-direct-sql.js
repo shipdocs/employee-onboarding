@@ -1,6 +1,6 @@
 // Test direct SQL queries
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -82,7 +82,7 @@ async function testDirectSQL() {
         console.log('   ✅ Success! Created:', ml1);
         // Clean up
         if (ml1 && ml1[0]) {
-          await supabase.from('magic_links').delete().eq('id', ml1[0].id);
+          await db.from('magic_links').delete().eq('id', ml1[0].id);
         }
       }
     }

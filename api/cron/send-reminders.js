@@ -1,5 +1,5 @@
 // Vercel Cron Job: /api/cron/send-reminders.js - Send training progress reminders
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { generateMagicToken } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 module.exports = async function handler(req, res) {;

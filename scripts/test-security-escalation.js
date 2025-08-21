@@ -3,7 +3,7 @@
  * Process existing high-severity security events and create incidents
  */
 
-const { supabase } = require('../lib/supabase');
+const db = require('../lib/database-direct');
 const { SecurityEventEscalationService } = require('../lib/services/securityEventEscalationService');
 
 async function testSecurityEscalation() {

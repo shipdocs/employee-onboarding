@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/dashboard/stats.js - Manager dashboard statistics
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManager } = require('../../../lib/auth');
 
 async function handler(req, res) {

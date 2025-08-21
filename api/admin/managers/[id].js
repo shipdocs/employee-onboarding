@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/managers/[id].js - Admin individual manager management
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { authenticateRequest } = require('../../../lib/auth');
 const { generateMagicToken } = require('../../../lib/auth');
 const bcrypt = require('bcrypt');
@@ -61,10 +61,9 @@ async function getManager(req, res, id) {
     }
 
     // Get manager permissions
-    const { data: permissions, error: permError } = await supabase
-      .from('manager_permissions')
-      .select('*')
-      .eq('manager_id', id);
+    const permissionsResult = await db.query('SELECT * FROM manager_permissions WHERE manager_id = $1', [id]);
+    const permissions = permissionsResult.rows;
+    const permError = false;
 
     if (permError) {
       // console.error('Error fetching permissions:', permError);

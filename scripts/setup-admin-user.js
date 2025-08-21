@@ -1,5 +1,5 @@
 // Script to set up the admin user with proper password hash
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const bcrypt = require('bcrypt');
 const readline = require('readline');
 require('dotenv').config();
@@ -72,11 +72,9 @@ async function setupAdminUser() {
     console.log('');
 
     // Check if admin user already exists
-    const { data: existingAdmin, error: checkError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('role', 'admin')
-      .single();
+    const existingAdminResult = await db.query('SELECT * FROM users WHERE role = $1', ['admin']);
+    const existingAdmin = existingAdminResult.rows[0];
+    const checkError = !existingAdmin;
 
     if (checkError && checkError.code !== 'PGRST116') {
       throw checkError;

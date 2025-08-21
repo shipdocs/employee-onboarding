@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/onboarding/overview.js - Get onboarding overview for managers
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManagerOrAdmin } = require('../../../lib/auth');
 
 // Admin schema for sensitive views

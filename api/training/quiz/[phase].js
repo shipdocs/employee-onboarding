@@ -1,5 +1,5 @@
 // Vercel API Route: /api/training/quiz/[phase].js - Get quiz questions for a phase
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { verifyJWT } = require('../../../lib/auth');
 const crypto = require('crypto');
 const { trainingRateLimit } = require('../../../lib/rateLimit');

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/auth/change-password.js
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { verifyJWT } = require('../../lib/auth');
 const bcrypt = require('bcrypt');
 const { validators, validateObject } = require('../../lib/validation');

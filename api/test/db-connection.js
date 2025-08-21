@@ -1,5 +1,6 @@
 // Test endpoint to check database connection
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
+const { supabase } = require('../../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
 async function handler(req, res) {

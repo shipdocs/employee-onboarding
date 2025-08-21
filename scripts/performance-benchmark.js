@@ -16,7 +16,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const chalk = require('chalk');
 const { performance } = require('perf_hooks');
-const { supabase } = require('../lib/supabase');
+const db = require('../lib/database-direct');
 
 class PerformanceBenchmark {
   constructor() {

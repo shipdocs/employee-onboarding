@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-completion.js - Send completion email
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailRateLimit } = require('../../lib/rateLimit');
@@ -16,11 +16,9 @@ async function handler(req, res) {
     }
 
     // Get user details to verify they exist
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single();
+    const userResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
     if (userError || !user) {
       return res.status(404).json({ error: 'User not found' });

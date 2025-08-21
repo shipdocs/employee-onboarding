@@ -3,7 +3,7 @@
  * Handles downloading compliance reports
  */
 
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { authenticateRequest } = require('../../../../lib/auth');
 const { applyApiSecurityHeaders } = require('../../../../lib/securityHeaders');
 const { adminRateLimit } = require('../../../../lib/rateLimit');

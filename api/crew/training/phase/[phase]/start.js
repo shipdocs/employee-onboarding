@@ -94,10 +94,9 @@ async function handler(req, res) {
     }
 
     // Create training items if they don't exist
-    const { data: existingItems, error: itemsError } = await supabase
-      .from('training_items')
-      .select('id')
-      .eq('session_id', session.id);
+    const existingItemsResult = await db.query('SELECT id FROM training_items WHERE session_id = $1', [session.id]);
+    const existingItems = existingItemsResult.rows;
+    const itemsError = false;
 
     if (itemsError) {
       // console.error('Error checking training items:', itemsError);

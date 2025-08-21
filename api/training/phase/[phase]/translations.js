@@ -4,7 +4,7 @@
  */
 
 const { requireAuth } = require('../../../../lib/auth.js');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const AITranslationService = require('../../../../lib/aiTranslationService.js');
 const { trainingRateLimit } = require('../../../../lib/rateLimit');
 const supabase = createClient(
@@ -200,11 +200,9 @@ async function handler(req, res) {
       }
 
       // Get phase data to determine workflow_id
-      const { data: phaseData, error: phaseError } = await supabase
-        .from('workflow_phases')
-        .select('id, workflow_id, content_languages, translation_confidence')
-        .eq('phase_number', phase)
-        .single();
+      const phaseDataResult = await db.query('SELECT id, workflow_id, content_languages, translation_confidence FROM workflow_phases WHERE phase_number = $1', [phase]);
+    const phaseData = phaseDataResult.rows[0];
+    const phaseError = !phaseData;
 
       if (phaseError) {
         return res.status(404).json({ error: 'Phase not found' });
@@ -217,11 +215,9 @@ async function handler(req, res) {
           const itemField = field_name.replace('item_', '');
 
           // Get existing item data
-          const { data: itemData, error: itemError } = await supabase
-            .from('workflow_phase_items')
-            .select('content_languages, translation_confidence')
-            .eq('id', item_id)
-            .single();
+          const itemDataResult = await db.query('SELECT content_languages, translation_confidence FROM workflow_phase_items WHERE id = $1', [item_id]);
+    const itemData = itemDataResult.rows[0];
+    const itemError = !itemData;
 
           if (itemError) {
             return res.status(404).json({ error: 'Phase item not found' });
@@ -360,11 +356,9 @@ async function handler(req, res) {
       }
 
       // Get phase data
-      const { data: phaseData, error: phaseError } = await supabase
-        .from('workflow_phases')
-        .select('id, workflow_id')
-        .eq('phase_number', phase)
-        .single();
+      const phaseDataResult = await db.query('SELECT id, workflow_id FROM workflow_phases WHERE phase_number = $1', [phase]);
+    const phaseData = phaseDataResult.rows[0];
+    const phaseError = !phaseData;
 
       if (phaseError) {
         return res.status(404).json({ error: 'Phase not found' });
@@ -374,11 +368,9 @@ async function handler(req, res) {
         // Remove from appropriate table
         if (field_name.startsWith('item_') && item_id) {
           // Remove from item
-          const { data: itemData, error: itemError } = await supabase
-            .from('workflow_phase_items')
-            .select('content_languages, translation_confidence')
-            .eq('id', item_id)
-            .single();
+          const itemDataResult = await db.query('SELECT content_languages, translation_confidence FROM workflow_phase_items WHERE id = $1', [item_id]);
+    const itemData = itemDataResult.rows[0];
+    const itemError = !itemData;
 
           if (itemError) {
             return res.status(404).json({ error: 'Phase item not found' });

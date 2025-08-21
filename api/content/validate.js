@@ -1,4 +1,4 @@
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireManagerOrAdmin } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
 /**
@@ -27,11 +27,9 @@ async function handler(req, res) {
     }
 
     // Get phase data
-    const { data: phase, error: phaseError } = await supabase
-      .from('training_phases')
-      .select('*')
-      .eq('id', phase_id)
-      .single();
+    const phaseResult = await db.query('SELECT * FROM training_phases WHERE id = $1', [phase_id]);
+    const phase = phaseResult.rows[0];
+    const phaseError = !phase;
 
     if (phaseError) {
       // console.error('❌ [DB] Error fetching phase:', phaseError);

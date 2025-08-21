@@ -1,5 +1,5 @@
 // Vercel API Route: /api/templates/[id]/rename.js - Rename PDF template
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAdmin } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 

@@ -1,4 +1,4 @@
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAdmin } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
@@ -210,8 +210,8 @@ async function createBackup() {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   
   // Get existing data
-  const { data: phases } = await supabase.from('training_phases').select('*');
-  const { data: quizzes } = await supabase.from('quiz_content').select('*');
+  const { data: phases } = await db.from('training_phases').select('*');
+  const { data: quizzes } = await db.from('quiz_content').select('*');
   
   const backupData = {
     timestamp,
@@ -339,8 +339,8 @@ function getPassingScoreForPhase(phaseNumber) {
  */
 async function validateMigratedData(trainingData) {
   // Basic validation - check counts match
-  const { data: phases } = await supabase.from('training_phases').select('*');
-  const { data: quizzes } = await supabase.from('quiz_content').select('*');
+  const { data: phases } = await db.from('training_phases').select('*');
+  const { data: quizzes } = await db.from('quiz_content').select('*');
   
   const expectedPhases = Object.keys(trainingData.phases).length;
   const expectedQuizzes = Object.keys(trainingData.quizzes).length;

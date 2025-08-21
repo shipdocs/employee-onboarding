@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/onboarding-reviews/index.js - Get onboarding reviews
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManager } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 

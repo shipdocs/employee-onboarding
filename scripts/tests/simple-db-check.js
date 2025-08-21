@@ -4,7 +4,7 @@
  * Simple database connection and user check
  */
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 require('dotenv').config();
 
 async function simpleCheck() {

@@ -1,5 +1,5 @@
 // Vercel API Route: /api/email/send-weekly-report.js - Send weekly progress report to HR
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { unifiedEmailService } = require('../../lib/unifiedEmailService');
 const { emailTemplateGenerator } = require('../../lib/emailTemplateGenerator');

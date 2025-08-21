@@ -1,4 +1,4 @@
-const { supabase } = require('../../lib/supabase.js');
+const { supabase } = require('../../lib/database-supabase-compat');
 const { authenticateRequest } = require('../../lib/auth.js');
 const { apiRateLimit } = require('../../lib/rateLimit');
 async function handler(req, res) {

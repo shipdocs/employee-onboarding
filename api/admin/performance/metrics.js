@@ -3,7 +3,7 @@
  * Provides aggregated performance metrics for admin dashboard
  */
 
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { authenticateRequest } = require('../../../lib/auth');
 const { adminRateLimit } = require('../../../lib/rateLimit');
 

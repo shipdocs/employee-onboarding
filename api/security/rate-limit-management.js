@@ -1,7 +1,7 @@
 // api/security/rate-limit-management.js - Rate limit management utilities
 const { requireAuth } = require('../../lib/auth');
 const { globalRateLimiter } = require('../../lib/security/GlobalRateLimiter');
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { adminRateLimit } = require('../../lib/rateLimit');
 
 /**

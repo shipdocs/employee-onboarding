@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/run-notification-migration.js - Run notification system migration
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAdmin } = require('../../lib/auth');
 const { adminRateLimit } = require('../../lib/rateLimit');
 
@@ -105,9 +105,9 @@ async function handler(req, res) {
     // Step 6: Verify tables exist
 
     const verificationQueries = [
-      { name: 'users columns', query: supabase.from('users').select('first_login_at, login_count').limit(1) },
-      { name: 'system_notifications', query: supabase.from('system_notifications').select('id').limit(1) },
-      { name: 'email_logs', query: supabase.from('email_logs').select('id').limit(1) }
+      { name: 'users columns', query: db.from('users').select('first_login_at, login_count').limit(1) },
+      { name: 'system_notifications', query: db.from('system_notifications').select('id').limit(1) },
+      { name: 'email_logs', query: db.from('email_logs').select('id').limit(1) }
     ];
 
     const results = {};

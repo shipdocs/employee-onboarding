@@ -1,6 +1,6 @@
 // Vercel API Route: /api/auth/verify.js
-const { requireAuth } = require('../../lib/auth');
-const { supabase } = require('../../lib/supabase');
+const { authenticateRequest, isTokenBlacklisted } = require('../../lib/auth');
+const db = require('../../lib/database-direct');
 const { authRateLimit } = require('../../lib/rateLimit');
 
 async function handler(req, res) {
@@ -9,50 +9,71 @@ async function handler(req, res) {
   }
 
   try {
-    const userId = req.user.userId;
+    // Extract token and check authentication
+    const authHeader = req.headers.authorization;
+    const token = authHeader?.split(' ')[1];
+
+    if (!token) {
+      return res.status(401).json({ error: 'Access token required' });
+    }
+
+    // Check if token is blacklisted first
+    try {
+      const isBlacklisted = await isTokenBlacklisted(token);
+      if (isBlacklisted) {
+        return res.status(401).json({ error: 'Token has been revoked' });
+      }
+    } catch (error) {
+      console.error('Blacklist check failed:', error);
+      return res.status(500).json({ error: 'Authentication error' });
+    }
+
+    // Authenticate the request
+    const user = await authenticateRequest(req);
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
+
+    const userId = user.userId;
 
     // Get fresh user data from database
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single();
+    const userResult = await db.query(
+      'SELECT * FROM users WHERE id = $1',
+      [userId]
+    );
+    const userData = userResult.rows[0];
 
-    if (userError || !user) {
+    if (!userData) {
       return res.status(401).json({ error: 'User not found' });
     }
 
     // Check if user can access the system (not suspended or not_started)
-    if (user.status === 'suspended' || user.status === 'not_started') {
+    if (userData.status === 'suspended' || userData.status === 'not_started') {
       return res.status(401).json({ error: 'Account access not available' });
     }
 
     // Fetch manager permissions if user is a manager
     let permissions = [];
-    if (user.role === 'manager') {
-      const { data: permissionData, error: permissionError } = await supabase
-        .from('manager_permissions')
-        .select('permission_key')
-        .eq('manager_id', user.id)
-        .eq('permission_value', true);
-
-      if (!permissionError && permissionData) {
-        permissions = permissionData.map(p => p.permission_key);
-      }
+    if (userData.role === 'manager') {
+      const permissionResult = await db.query(
+        'SELECT permission_key FROM manager_permissions WHERE manager_id = $1 AND permission_value = true',
+        [userData.id]
+      );
+      permissions = permissionResult.rows.map(p => p.permission_key);
     }
 
     res.json({
       valid: true,
       user: {
-        id: user.id,
-        email: user.email,
-        firstName: user.first_name,
-        lastName: user.last_name,
-        role: user.role,
-        position: user.position,
-        vesselAssignment: user.vessel_assignment,
-        status: user.status,
-        preferredLanguage: user.preferred_language,
+        id: userData.id,
+        email: userData.email,
+        firstName: userData.first_name,
+        lastName: userData.last_name,
+        role: userData.role,
+        position: userData.position,
+        vesselAssignment: userData.vessel_assignment,
+        status: userData.status,
+        preferredLanguage: userData.preferred_language,
         permissions: permissions
       }
     });
@@ -63,4 +84,4 @@ async function handler(req, res) {
   }
 }
 
-module.exports = authRateLimit(requireAuth(handler));
+module.exports = authRateLimit(handler);

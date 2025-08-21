@@ -3,7 +3,7 @@
  * Receives webhooks from external incident response tools
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const crypto = require('crypto');
 const settingsService = require('../../lib/settingsService');
 const { apiRateLimit } = require('../../lib/rateLimit');

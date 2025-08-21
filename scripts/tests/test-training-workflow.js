@@ -3,7 +3,7 @@
 
 require('dotenv').config();
 const axios = require('axios');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 const supabase = createClient(
@@ -320,15 +320,15 @@ class TrainingWorkflowTest {
     try {
       // Delete test data in reverse order
       if (this.testCrew) {
-        await supabase.from('certificates').delete().eq('user_id', this.testCrew.id);
-        await supabase.from('quiz_attempts').delete().eq('user_id', this.testCrew.id);
-        await supabase.from('training_progress').delete().eq('user_id', this.testCrew.id);
-        await supabase.from('magic_links').delete().eq('user_id', this.testCrew.id);
-        await supabase.from('users').delete().eq('id', this.testCrew.id);
+        await db.from('certificates').delete().eq('user_id', this.testCrew.id);
+        await db.from('quiz_attempts').delete().eq('user_id', this.testCrew.id);
+        await db.from('training_progress').delete().eq('user_id', this.testCrew.id);
+        await db.from('magic_links').delete().eq('user_id', this.testCrew.id);
+        await db.from('users').delete().eq('id', this.testCrew.id);
       }
       
       if (this.testManager) {
-        await supabase.from('users').delete().eq('id', this.testManager.id);
+        await db.from('users').delete().eq('id', this.testManager.id);
       }
       
       console.log('✅ Test data cleaned up');

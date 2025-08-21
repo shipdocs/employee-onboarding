@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/onboarding-reviews/[userId]/approve.js - Final onboarding approval
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireManager } = require('../../../../lib/auth');
 async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -29,15 +29,13 @@ async function handler(req, res) {
     }
 
     // Verify user has completed all phases and quizzes
-    const { data: sessions, error: sessionsError } = await supabase
-      .from('training_sessions')
-      .select('phase, status')
-      .eq('user_id', userId);
+    const sessionsResult = await db.query('SELECT phase, status FROM training_sessions WHERE user_id = $1', [userId]);
+    const sessions = sessionsResult.rows;
+    const sessionsError = false;
 
-    const { data: quizResults, error: quizError } = await supabase
-      .from('quiz_results')
-      .select('phase, passed, review_status')
-      .eq('user_id', userId);
+    const quizResultsResult = await db.query('SELECT phase, passed, review_status FROM quiz_results WHERE user_id = $1', [userId]);
+    const quizResults = quizResultsResult.rows;
+    const quizError = false;
 
     if (sessionsError || quizError) {
       // console.error('Error fetching user progress:', sessionsError || quizError);

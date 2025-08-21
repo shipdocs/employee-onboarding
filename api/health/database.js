@@ -3,7 +3,8 @@
  * Vercel API Route: /api/health/database
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
+const { supabase } = require('../../lib/database-supabase-compat');
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -28,11 +29,9 @@ async function handler(req, res) {
     checks.connection = !connError;
 
     // Test 2: Read operation
-    const { data: readData, error: readError } = await supabase
-      .from('application_settings')
-      .select('key, value')
-      .eq('key', 'system_health_check')
-      .single();
+    const readDataResult = await db.query('SELECT key, value FROM application_settings WHERE key = $1', ['system_health_check']);
+    const readData = readDataResult.rows[0];
+    const readError = !readData;
 
     checks.read = !readError || readError.code === 'PGRST116'; // No rows is OK
 

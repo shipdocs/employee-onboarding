@@ -102,10 +102,9 @@ async function handler(req, res) {
       session.started_at = updatedSession.started_at;
 
       // Create training items if they don't exist
-      const { data: existingItems, error: itemsError } = await supabase
-        .from('training_items')
-        .select('id')
-        .eq('session_id', session.id);
+      const existingItemsResult = await db.query('SELECT id FROM training_items WHERE session_id = $1', [session.id]);
+    const existingItems = existingItemsResult.rows;
+    const itemsError = false;
 
       if (itemsError) {
         // console.error('Error checking training items:', itemsError);
@@ -227,10 +226,9 @@ async function handler(req, res) {
 
     // Check if all items in this phase are now completed (using completed_at for consistency)
 
-    const { data: allItems, error: allItemsError } = await supabase
-      .from('training_items')
-      .select('id, completed_at')
-      .eq('session_id', session.id);
+    const allItemsResult = await db.query('SELECT id, completed_at FROM training_items WHERE session_id = $1', [session.id]);
+    const allItems = allItemsResult.rows;
+    const allItemsError = false;
 
     if (allItemsError) {
       // console.error('Error checking all items:', allItemsError);

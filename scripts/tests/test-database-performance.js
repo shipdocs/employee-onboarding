@@ -4,7 +4,7 @@
 // Sprint S02 T02: Database Query Optimization & Indexing
 // Tests the performance improvements from optimization
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const { performance } = require('perf_hooks');
 
 // Initialize Supabase client
@@ -194,10 +194,10 @@ async function testAdminStatsQuery() {
         activeUsersResult,
         completedTrainingResult
       ] = await Promise.all([
-        supabase.from('users').select('*', { count: 'exact', head: true }).eq('role', 'manager'),
-        supabase.from('users').select('*', { count: 'exact', head: true }).eq('role', 'crew'),
-        supabase.from('users').select('*', { count: 'exact', head: true }).eq('is_active', true),
-        supabase.from('training_sessions').select('*', { count: 'exact', head: true }).eq('status', 'completed')
+        db.from('users').select('*', { count: 'exact', head: true }).eq('role', 'manager'),
+        db.from('users').select('*', { count: 'exact', head: true }).eq('role', 'crew'),
+        db.from('users').select('*', { count: 'exact', head: true }).eq('is_active', true),
+        db.from('training_sessions').select('*', { count: 'exact', head: true }).eq('status', 'completed')
       ]);
 
       return {
@@ -282,10 +282,10 @@ async function testIndexUsage() {
   try {
     // Test queries that should use indexes
     const indexTests = [
-      { name: 'users.email index', query: () => supabase.from('users').select('id').eq('email', 'test@example.com') },
-      { name: 'users.role index', query: () => supabase.from('users').select('id').eq('role', 'crew') },
-      { name: 'training_sessions.user_id index', query: () => supabase.from('training_sessions').select('id').eq('user_id', '123') },
-      { name: 'quiz_results.user_id index', query: () => supabase.from('quiz_results').select('id').eq('user_id', '123') }
+      { name: 'users.email index', query: () => db.from('users').select('id').eq('email', 'test@example.com') },
+      { name: 'users.role index', query: () => db.from('users').select('id').eq('role', 'crew') },
+      { name: 'training_sessions.user_id index', query: () => db.from('training_sessions').select('id').eq('user_id', '123') },
+      { name: 'quiz_results.user_id index', query: () => db.from('quiz_results').select('id').eq('user_id', '123') }
     ];
 
     for (const test of indexTests) {

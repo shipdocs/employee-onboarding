@@ -4,7 +4,7 @@
  */
 
 const { requireAuth } = require('../../../../lib/auth');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const AITranslationService = require('../../../../lib/aiTranslationService');
 const { trainingRateLimit } = require('../../../../lib/rateLimit');
 
@@ -74,10 +74,9 @@ async function handler(req, res) {
       }
 
       // Get translation status for this phase
-      const { data: translationStatus, error: statusError } = await supabase
-        .from('quiz_translation_status')
-        .select('*')
-        .eq('quiz_phase', phase);
+      const translationStatusResult = await db.query('SELECT * FROM quiz_translation_status WHERE quiz_phase = $1', [phase]);
+    const translationStatus = translationStatusResult.rows;
+    const statusError = false;
 
       if (statusError) {
 

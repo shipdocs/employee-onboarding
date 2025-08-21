@@ -15,7 +15,7 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 require('dotenv').config();
 
 // Supabase connection details

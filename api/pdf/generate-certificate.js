@@ -1,6 +1,6 @@
 // Vercel API Route: /api/pdf/generate-certificate.js
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { StorageService } = require('../../lib/storage');
 const { EmailService } = require('../../lib/email');
@@ -15,11 +15,9 @@ async function handler(req, res) {
     const userId = req.user.userId;
 
     // Get user data
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single();
+    const userResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
     if (userError || !user) {
       return res.status(404).json({ error: 'User not found' });

@@ -2,7 +2,7 @@
 // Usage: node debug-user-training.js
 
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -18,11 +18,9 @@ async function debugUserTraining() {
 
   try {
     // 1. Get user info
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', userEmail)
-      .single();
+    const userResult = await db.query('SELECT * FROM users WHERE email = $1', [userEmail]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
     if (userError || !user) {
       console.error('❌ User not found:', userError);

@@ -1,4 +1,4 @@
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { authenticateRequest } = require('../../lib/auth');
 const fs = require('fs');
 const path = require('path');

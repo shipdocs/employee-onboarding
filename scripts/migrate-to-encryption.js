@@ -12,7 +12,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 // Import our services
-const supabase = require('../lib/supabase');
+const db = require('../lib/database-direct');
 const fieldEncryption = require('../lib/encryption/FieldEncryption');
 const secretsManager = require('../lib/security/SecretsManager');
 

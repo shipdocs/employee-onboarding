@@ -4,7 +4,7 @@
  */
 
 const AITranslationService = require('../../lib/aiTranslationService.js');
-const { supabase } = require('../../lib/supabase.js');
+const { supabase } = require('../../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../lib/rateLimit');
 // Initialize translation service
 const translationService = new AITranslationService();

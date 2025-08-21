@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/crew/index.js - Manager crew management
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManager, generateMagicToken } = require('../../../lib/auth');
 const bcrypt = require('bcrypt');
 const { unifiedEmailService } = require('../../../lib/unifiedEmailService');

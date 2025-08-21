@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/crew/[id]/send-magic-link.js - Send magic link to crew member
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireManager, generateMagicToken } = require('../../../../lib/auth');
 const { unifiedEmailService } = require('../../../../lib/unifiedEmailService');
 const { adminRateLimit } = require('../../../../lib/rateLimit');

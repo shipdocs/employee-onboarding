@@ -1,4 +1,4 @@
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const { requireAuth } = require('../../../../../lib/auth.js');
 const { trainingRateLimit } = require('../../../../../lib/rateLimit');
 
@@ -112,11 +112,9 @@ module.exports = trainingRateLimit(requireAuth(async function handler(req, res) 
 
       if (user.role === 'crew') {
         // Add additional check to ensure crew member owns the instance
-        const { data: instance, error: instanceError } = await supabase
-          .from('workflow_instances')
-          .select('assigned_to')
-          .eq('id', instanceId)
-          .single();
+        const instanceResult = await db.query('SELECT assigned_to FROM workflow_instances WHERE id = $1', [instanceId]);
+    const instance = instanceResult.rows[0];
+    const instanceError = !instance;
 
         if (instanceError || instance.assigned_to !== user.id) {
           return res.status(403).json({ error: 'Access denied' });

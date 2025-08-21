@@ -1,5 +1,5 @@
 // Vercel Cron Job: /api/cron/cleanup-expired.js - Clean up expired data and files
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 
 async function handler(req, res) {
   // Verify this is a cron request
@@ -121,13 +121,13 @@ async function handler(req, res) {
 
     try {
       // Get all file references from database
-      const { data: fileUploads, error: uploadsError } = await supabase
-        .from('file_uploads')
-        .select('file_path');
+      const fileUploadsResult = await db.query('SELECT file_path FROM file_uploads');
+    const fileUploads = fileUploadsResult.rows;
+    const uploadsError = false;
 
-      const { data: certificates, error: certsError } = await supabase
-        .from('certificates')
-        .select('file_path');
+      const certificatesResult = await db.query('SELECT file_path FROM certificates');
+    const certificates = certificatesResult.rows;
+    const certsError = false;
 
       if (uploadsError || certsError) {
         throw new Error('Failed to fetch file references from database');
@@ -150,7 +150,7 @@ async function handler(req, res) {
 
       for (const bucketName of buckets) {
         try {
-          const { data: files, error: listError } = await supabase.storage
+          const { data: files, error: listError } = await // TODO: Replace with MinIO storage
             .from(bucketName)
             .list('', {
               limit: 1000,
@@ -179,7 +179,7 @@ async function handler(req, res) {
 
             // Delete orphaned files in batches
             const filesToDelete = orphanedFiles.map(file => file.name);
-            const { error: deleteError } = await supabase.storage
+            const { error: deleteError } = await // TODO: Replace with MinIO storage
               .from(bucketName)
               .remove(filesToDelete);
 

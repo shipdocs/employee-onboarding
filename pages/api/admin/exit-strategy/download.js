@@ -9,7 +9,7 @@ const { requireAdmin } = require('../../../../lib/auth');
 const { createAPIHandler, createError } = require('../../../../lib/apiHandler');
 const { ACTION_TYPES, RESOURCE_TYPES, SEVERITY_LEVELS } = require('../../../../lib/services/auditService');
 const { StorageService } = require('../../../../lib/storage');
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const crypto = require('crypto');
 
 async function handler(req, res) {

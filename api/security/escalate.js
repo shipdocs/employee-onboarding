@@ -3,7 +3,7 @@
  * Manually escalate security events to incidents
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { SecurityEventEscalationService } = require('../../lib/services/securityEventEscalationService');
 const { requireRole } = require('../../lib/auth');
 const { apiRateLimit } = require('../../lib/rateLimit');
@@ -47,11 +47,9 @@ async function handleEscalateEvent(req, res) {
     }
 
     // Get security event
-    const { data: securityEvent, error: fetchError } = await supabase
-      .from('security_events')
-      .select('*')
-      .eq('event_id', event_id)
-      .single();
+    const securityEventResult = await db.query('SELECT * FROM security_events WHERE event_id = $1', [event_id]);
+    const securityEvent = securityEventResult.rows[0];
+    const fetchError = !securityEvent;
 
     if (fetchError || !securityEvent) {
       return res.status(404).json({ error: 'Security event not found' });

@@ -4,7 +4,7 @@
  */
 
 const AITranslationService = require('../../../lib/aiTranslationService');
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { authenticate } = require('../../../lib/auth');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 

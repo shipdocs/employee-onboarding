@@ -5,7 +5,7 @@
  * Run this once to set up accounts for integration testing
  */
 
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
@@ -76,11 +76,9 @@ async function createTestAccounts() {
   for (const account of TEST_ACCOUNTS) {
     try {
       // Check if account already exists
-      const { data: existing, error: checkError } = await supabase
-        .from('users')
-        .select('id, email')
-        .eq('email', account.email)
-        .single();
+      const existingResult = await db.query('SELECT id, email FROM users WHERE email = $1', [account.email]);
+    const existing = existingResult.rows[0];
+    const checkError = !existing;
 
       if (existing) {
         console.log(`⚠️  Account already exists: ${account.email}`);
@@ -181,16 +179,16 @@ async function cleanupTestAccounts() {
   console.log('🗑️  Deleting related records...');
   
   // Delete onboarding records
-  await supabase.from('onboarding').delete().in('user_id', userIds);
+  await db.from('onboarding').delete().in('user_id', userIds);
   
   // Delete manager permissions
-  await supabase.from('manager_permissions').delete().in('manager_id', userIds);
+  await db.from('manager_permissions').delete().in('manager_id', userIds);
   
   // Delete audit logs
-  await supabase.from('audit_log').delete().in('user_id', userIds);
+  await db.from('audit_log').delete().in('user_id', userIds);
   
   // Delete magic links
-  await supabase.from('magic_links').delete().in('user_id', userIds);
+  await db.from('magic_links').delete().in('user_id', userIds);
   
   // Finally, delete users
   const { error: deleteError } = await supabase

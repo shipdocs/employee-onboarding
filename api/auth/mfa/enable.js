@@ -1,6 +1,6 @@
 const mfaService = require('../../../lib/mfaService');
 const { requireAuth } = require('../../../lib/auth');
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { authRateLimit } = require('../../../lib/rateLimit');
 
 // Helper function to log MFA security events

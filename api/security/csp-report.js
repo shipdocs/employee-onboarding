@@ -1,4 +1,4 @@
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
 // Initialize Supabase client

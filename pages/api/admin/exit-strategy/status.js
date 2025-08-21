@@ -7,7 +7,7 @@ const { withAudit, logAuditEvent } = require('../../../../lib/middleware/auditMi
 const { requireAdmin } = require('../../../../lib/auth');
 const { createAPIHandler, createError } = require('../../../../lib/apiHandler');
 const { ACTION_TYPES, RESOURCE_TYPES, SEVERITY_LEVELS } = require('../../../../lib/services/auditService');
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 
 async function handler(req, res) {
   if (req.method !== 'GET') {

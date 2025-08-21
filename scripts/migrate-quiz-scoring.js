@@ -6,7 +6,7 @@
  */
 
 require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,

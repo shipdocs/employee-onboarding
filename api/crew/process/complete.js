@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/process/complete.js - Complete onboarding process
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAuth } = require('../../../lib/auth');
 const unifiedEmailService = require('../../../lib/unifiedEmailService');
 const { trainingRateLimit } = require('../../../lib/rateLimit');

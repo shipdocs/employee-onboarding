@@ -7,7 +7,7 @@
  * This endpoint allows managers to view, update, or delete a specific certificate
  */
 
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManager } = require('../../../lib/auth');
 const { StorageService } = require('../../../lib/storage');
 const { adminRateLimit } = require('../../../lib/rateLimit');
@@ -143,11 +143,9 @@ async function updateCertificate(id, data, res) {
  */
 async function deleteCertificate(id, res) {
   // First, get the certificate to check if it has a file to delete
-  const { data: certificate, error: fetchError } = await supabase
-    .from('certificates')
-    .select('pdf_url')
-    .eq('id', id)
-    .single();
+  const certificateResult = await db.query('SELECT pdf_url FROM certificates WHERE id = $1', [id]);
+    const certificate = certificateResult.rows[0];
+    const fetchError = !certificate;
 
   if (fetchError) {
     // console.error('Error fetching certificate for deletion:', fetchError);

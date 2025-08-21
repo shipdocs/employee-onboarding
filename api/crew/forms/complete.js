@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/forms/complete.js - Complete and distribute Form 05_03a
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAuth } = require('../../../lib/auth');
 const unifiedEmailService = require('../../../lib/unifiedEmailService');
 const { PDFDocument, rgb, StandardFonts } = require('pdf-lib');
@@ -90,11 +90,9 @@ async function handler(req, res) {
         const templateId = req.body.templateId;
 
         if (templateId) {
-          const { data: templateData, error: templateError } = await supabase
-            .from('pdf_templates')
-            .select('*')
-            .eq('id', templateId)
-            .single();
+          const templateDataResult = await db.query('SELECT * FROM pdf_templates WHERE id = $1', [templateId]);
+    const templateData = templateDataResult.rows[0];
+    const templateError = !templateData;
 
           if (!templateError && templateData) {
             template = templateData;

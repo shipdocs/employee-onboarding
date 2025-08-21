@@ -1,5 +1,5 @@
 // api/admin/refactoring-metrics.js - Refactoring Metrics API
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { authenticateRequest } = require('../../lib/auth');
 
 /**

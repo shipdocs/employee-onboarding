@@ -1,7 +1,7 @@
 // Vercel API Route: /api/training/phase/[phase].js - Get training phase details
 // This endpoint provides training phase details for crew members
 
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAuth } = require('../../../lib/auth');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 
@@ -93,11 +93,9 @@ async function handler(req, res) {
     const progressPercentage = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
 
     // Get phase information from database
-    const { data: phaseInfo, error: phaseError } = await supabase
-      .from('training_phases')
-      .select('*')
-      .eq('phase_number', phaseNum)
-      .single();
+    const phaseInfoResult = await db.query('SELECT * FROM training_phases WHERE phase_number = $1', [phaseNum]);
+    const phaseInfo = phaseInfoResult.rows[0];
+    const phaseError = !phaseInfo;
 
     if (phaseError) {
       // console.error('Error fetching phase info:', phaseError);

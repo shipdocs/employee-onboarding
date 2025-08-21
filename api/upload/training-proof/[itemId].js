@@ -1,5 +1,5 @@
 // Vercel API Route: /api/upload/training-proof/[itemId].js
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAuth } = require('../../../lib/auth');
 const { uploadRateLimit } = require('../../../lib/rateLimit');
 const { StorageService } = require('../../../lib/storage');

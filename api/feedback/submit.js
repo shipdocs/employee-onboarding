@@ -3,7 +3,7 @@
  * Handles user feedback collection with maritime context
  */
 
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireAuth } = require('../../lib/auth');
 const { performanceMonitor } = require('../../lib/performanceMonitoring');
 const { apiRateLimit } = require('../../lib/rateLimit');
@@ -57,11 +57,9 @@ async function handler(req, res) {
                      null;
 
     // Get user details for context
-    const { data: user, error: userError } = await supabase
-      .from('users')
-      .select('id, email, first_name, last_name, role, position, vessel_assignment')
-      .eq('id', userId)
-      .single();
+    const userResult = await db.query('SELECT id, email, first_name, last_name, role, position, vessel_assignment FROM users WHERE id = $1', [userId]);
+    const user = userResult.rows[0];
+    const userError = !user;
 
     if (userError) {
       // console.error('Error fetching user details:', userError);

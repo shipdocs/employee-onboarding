@@ -6,7 +6,7 @@
  * using the AutomatedCertificateService
  */
 
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireManager } = require('../../../lib/auth');
 const automatedCertificateService = require('../../../services/automated-certificate-service');
 const { adminRateLimit } = require('../../../lib/rateLimit');
@@ -28,11 +28,9 @@ module.exports = adminRateLimit(requireManager(async (req, res) => {
     }
 
     // Check if the user exists
-    const { data: targetUser, error: userError } = await supabase
-      .from('users')
-      .select('id, first_name, last_name, email')
-      .eq('id', userId)
-      .single();
+    const targetUserResult = await db.query('SELECT id, first_name, last_name, email FROM users WHERE id = $1', [userId]);
+    const targetUser = targetUserResult.rows[0];
+    const userError = !targetUser;
 
     if (userError || !targetUser) {
       // console.error('Error fetching user:', userError);

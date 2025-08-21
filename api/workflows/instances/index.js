@@ -1,4 +1,4 @@
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAuth } = require('../../../lib/auth.js');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 
@@ -147,7 +147,7 @@ module.exports = trainingRateLimit(requireAuth(async function handler(req, res) 
         if (progressError) {
           console.error('Error creating step progress:', progressError);
           // Clean up instance
-          await supabase.from('workflow_instances').delete().eq('id', instance.id);
+          await db.from('workflow_instances').delete().eq('id', instance.id);
           return res.status(500).json({ error: 'Failed to initialize workflow progress' });
         }
       }

@@ -1,5 +1,5 @@
 // API Route: /api/privacy/user-data-export/[id]/download.js
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireAuth } = require('../../../../lib/auth');
 const { wrapWithErrorHandling } = require('../../../../lib/apiHandler');
 const { apiRateLimit } = require('../../../../lib/rateLimit');

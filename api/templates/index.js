@@ -1,5 +1,5 @@
 // Vercel API Route: /api/templates/index.js
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { requireManagerOrAdmin } = require('../../lib/auth');
 const { v4: uuidv4 } = require('uuid');
 const { adminRateLimit } = require('../../lib/rateLimit');
@@ -34,7 +34,7 @@ async function uploadBackgroundImage(base64Data, userId) {
     const filePath = `backgrounds/${fileName}`;
 
     // Upload to Supabase Storage
-    const { data, error } = await supabase.storage
+    const { data, error } = await // TODO: Replace with MinIO storage
       .from('documents')
       .upload(filePath, buffer, {
         contentType: 'image/png',
@@ -47,7 +47,7 @@ async function uploadBackgroundImage(base64Data, userId) {
     }
 
     // Get public URL
-    const { data: urlData } = supabase.storage
+    const { data: urlData } = // TODO: Replace with MinIO storage
       .from('documents')
       .getPublicUrl(filePath);
 

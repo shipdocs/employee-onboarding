@@ -1,6 +1,6 @@
 // API endpoint to get available training content for linking to workflows
 const { requireAdmin } = require('../../lib/auth');
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
 async function handler(req, res) {

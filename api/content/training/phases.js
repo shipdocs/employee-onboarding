@@ -1,4 +1,4 @@
-const { supabase } = require('../../../lib/supabase.js');
+const { supabase } = require('../../../lib/database-supabase-compat');
 const { requireAuth } = require('../../../lib/auth.js');
 const { apiRateLimit } = require('../../../lib/rateLimit');
 

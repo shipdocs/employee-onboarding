@@ -1,5 +1,5 @@
 // Vercel API Route: /api/manager/crew/[id]/resend-completion-email.js - Resend completion email
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireManager } = require('../../../../lib/auth');
 const { unifiedEmailService } = require('../../../../lib/unifiedEmailService');
 const { adminRateLimit } = require('../../../../lib/rateLimit');

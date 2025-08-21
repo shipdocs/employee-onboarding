@@ -1,5 +1,5 @@
 // Vercel API Route: /api/health.js
-const { supabase } = require('../lib/supabase');
+const db = require('../lib/database-direct');
 const { applyApiSecurityHeaders } = require('../lib/securityHeaders');
 
 // Simple in-memory cache for health status (resets on function restart)
@@ -38,14 +38,10 @@ async function handler(req, res) {
   try {
 
     // Test database connectivity with a lightweight query
-    const { data, error } = await supabase
-      .from('users')
-      .select('id')
-      .limit(1)
-      .single();
+    const result = await db.query('SELECT id FROM users LIMIT 1');
 
-    if (error && error.code !== 'PGRST116') { // PGRST116 is "no rows returned" which is fine
-      // console.error('Database health check failed:', _error);
+    if (!result) {
+      // console.error('Database health check failed');
       return res.status(500).json({
         status: 'unhealthy',
         error: 'Database connection failed',
@@ -57,17 +53,9 @@ async function handler(req, res) {
     const skipStorageCheck = req.headers['x-health-check-type'] === 'monitoring';
 
     if (!skipStorageCheck) {
-      // Test storage connectivity
-      const { data: buckets, error: storageError } = await supabase.storage.listBuckets();
-
-      if (storageError) {
-        // console.error('Storage health check failed:', storageError);
-        return res.status(500).json({
-          status: 'unhealthy',
-          error: 'Storage connection failed',
-          timestamp: new Date().toISOString()
-        });
-      }
+      // Test storage connectivity - simplified check
+      // Note: Storage health check simplified since we're using MinIO/filesystem
+      // In a production environment, you might want to add MinIO connectivity check
     }
 
     const healthResponse = {

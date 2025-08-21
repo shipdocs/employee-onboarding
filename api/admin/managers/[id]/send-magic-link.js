@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/managers/[id]/send-magic-link.js - Send magic link to manager
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireAdmin } = require('../../../../lib/auth');
 const { generateMagicToken } = require('../../../../lib/auth');
 const { unifiedEmailService } = require('../../../../lib/unifiedEmailService');

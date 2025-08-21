@@ -1,5 +1,5 @@
 // Vercel API Route: /api/crew/training/progress.js - Get crew member's training progress
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { requireAuth } = require('../../../lib/auth');
 const { trainingRateLimit } = require('../../../lib/rateLimit');
 

@@ -1,5 +1,5 @@
 // Test admin login without rate limiting to isolate the issue
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { generateJWT } = require('../../lib/auth');
 const bcrypt = require('bcrypt');
 const { apiRateLimit } = require('../../lib/rateLimit');

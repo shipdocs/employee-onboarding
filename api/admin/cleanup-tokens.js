@@ -1,6 +1,6 @@
 // Vercel API Route: /api/admin/cleanup-tokens.js
 const { requireAdmin } = require('../../lib/auth');
-const { supabase } = require('../../lib/supabase');
+const db = require('../../lib/database-direct');
 const { adminRateLimit } = require('../../lib/rateLimit');
 
 async function handler(req, res) {

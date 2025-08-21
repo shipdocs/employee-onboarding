@@ -1,7 +1,7 @@
 // scripts/setup-manager-password.js - Set up proper manager authentication
 require('dotenv').config();
 const bcrypt = require('bcrypt');
-const { createClient } = require('@supabase/supabase-js');
+const { supabase } = require('../lib/database-supabase-compat');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;

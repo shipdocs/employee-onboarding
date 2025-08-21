@@ -1,4 +1,4 @@
-const { supabase } = require('../../../lib/supabase');
+const db = require('../../../lib/database-direct');
 const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
 const { requireAuth } = require('../../../lib/auth.js');
 const fs = require('fs');
@@ -80,7 +80,7 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
     }
 
     // Upload PDF to storage
-    const { data: uploadData, error: uploadError } = await supabase.storage
+    const { data: uploadData, error: uploadError } = await // TODO: Replace with MinIO storage
       .from('workflow-pdfs')
       .upload(`${user.company_id}/${fileName}`, pdfBytes, {
         contentType: 'application/pdf',
@@ -94,7 +94,7 @@ module.exports = apiRateLimit(requireAuth(async function handler(req, res) {
     }
 
     // Get public URL
-    const { data: { publicUrl } } = supabase.storage
+    const { data: { publicUrl } } = // TODO: Replace with MinIO storage
       .from('workflow-pdfs')
       .getPublicUrl(uploadData.path);
 
@@ -145,7 +145,7 @@ async function generateFromTemplate(templateId, formData, instance) {
   }
 
   // Download template file
-  const { data: templateFile, error: downloadError } = await supabase.storage
+  const { data: templateFile, error: downloadError } = await // TODO: Replace with MinIO storage
     .from('pdf-templates')
     .download(template.template_url);
 

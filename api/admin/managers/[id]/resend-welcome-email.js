@@ -1,5 +1,5 @@
 // Vercel API Route: /api/admin/managers/[id]/resend-welcome-email.js - Resend welcome email to manager
-const { supabase } = require('../../../../lib/supabase');
+const { supabase } = require('../../../../lib/database-supabase-compat');
 const { requireAdmin } = require('../../../../lib/auth');
 const { unifiedEmailService } = require('../../../../lib/unifiedEmailService');
 const bcrypt = require('bcrypt');

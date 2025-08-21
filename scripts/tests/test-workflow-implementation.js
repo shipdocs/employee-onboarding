@@ -31,7 +31,7 @@ async function testWorkflowSystem() {
     
     for (const table of tables) {
       try {
-        const { data, error } = await supabase.from(table).select('*').limit(1);
+        const { data, error } = await db.from(table).select('*').limit(1);
         if (error) {
           console.error(`❌ Table ${table} error:`, error.message);
         } else {
