@@ -242,8 +242,7 @@ jobs:
             const sbom = JSON.parse(require('fs').readFileSync('sbom-simple.json'));
             console.log(\`- Backend dependencies: \${sbom.components.backend.dependencies.length}\`);
             console.log(\`- Frontend dependencies: \${sbom.components.frontend.dependencies.length}\`);
-            "
- >> $GITHUB_STEP_SUMMARY
+            " >> $GITHUB_STEP_SUMMARY
           fi
           
       - name: Upload SBOM artifacts

@@ -54,8 +54,6 @@ import {
   Security,
   History
 } from '@mui/icons-material';
-import axios from 'axios';
-import toast from 'react-hot-toast';
 
 const ExternalLoggingSettings = () => {
   const [config, setConfig] = useState(null);
@@ -329,7 +327,10 @@ const ExternalLoggingSettings = () => {
                   type="number"
                   label="Rate Limit (logs/minute)"
                   value={config.max_logs_per_minute || 100}
-                  onChange={(e) => setConfig({ ...config, max_logs_per_minute: parseInt(e.target.value) })}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value, 10);
+                    setConfig({ ...config, max_logs_per_minute: Number.isFinite(value) ? value : 100 });
+                  }}
                   helperText="Maximum logs per minute to prevent overages"
                 />
               </Grid>
@@ -400,7 +401,10 @@ const ExternalLoggingSettings = () => {
                   type="number"
                   label="Batch Size"
                   value={config.batch_size || 10}
-                  onChange={(e) => setConfig({ ...config, batch_size: parseInt(e.target.value) })}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value, 10);
+                    setConfig({ ...config, batch_size: Number.isFinite(value) && value > 0 ? value : 10 });
+                  }}
                   helperText="Number of logs to batch before sending"
                 />
               </Grid>
@@ -411,7 +415,10 @@ const ExternalLoggingSettings = () => {
                   type="number"
                   label="Flush Interval (ms)"
                   value={config.flush_interval_ms || 5000}
-                  onChange={(e) => setConfig({ ...config, flush_interval_ms: parseInt(e.target.value) })}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value, 10);
+                    setConfig({ ...config, flush_interval_ms: Number.isFinite(value) && value > 0 ? value : 5000 });
+                  }}
                   helperText="Time to wait before sending partial batch"
                 />
               </Grid>

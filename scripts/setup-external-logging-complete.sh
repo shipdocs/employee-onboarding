@@ -32,7 +32,7 @@ fi
 # Step 3: Apply database migration
 echo ""
 echo "📝 Step 3: Applying database migration..."
-MIGRATION_CHECK=$(docker exec employee-onboarding-database psql -U postgres -d employee_onboarding -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'external_logging_config';" 2>/dev/null || echo "0")
+MIGRATION_CHECK=$(docker exec employee-onboarding-database psql -U postgres -d employee_onboarding -t -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'external_logging_config';" 2>/dev/null | xargs || echo "0")
 
 if [ "$MIGRATION_CHECK" -eq "0" ] || [ -z "$MIGRATION_CHECK" ]; then
     echo "Applying migration..."
