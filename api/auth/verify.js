@@ -2,6 +2,7 @@
 const { authenticateRequest, isTokenBlacklisted } = require('../../lib/auth');
 const db = require('../../lib/database-direct');
 const { authRateLimit } = require('../../lib/rateLimit');
+const externalLoggingService = require('../../lib/services/externalLoggingService');
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -21,6 +22,14 @@ async function handler(req, res) {
     try {
       const isBlacklisted = await isTokenBlacklisted(token);
       if (isBlacklisted) {
+        // Log blacklisted token attempt
+        externalLoggingService.logAuthEvent({
+          action: 'blacklisted_token_used',
+          ip_address: req.headers['x-forwarded-for'] || req.connection?.remoteAddress,
+          success: false,
+          reason: 'Token has been revoked'
+        }).catch(err => console.error('External logging failed:', err));
+        
         return res.status(401).json({ error: 'Token has been revoked' });
       }
     } catch (error) {
