@@ -1,0 +1,114 @@
+# Development Environment with Hot Reload and Debug Tools
+version: '3.8'
+
+services:
+  # Development Database with Debug Tools
+  database:
+    extends:
+      file: docker-compose.yml
+      service: database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME:-employee_onboarding_dev}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres_dev}
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+      - ./database/dev-seed.sql:/docker-entrypoint-initdb.d/02-dev-seed.sql:ro
+
+  # Backend with Hot Reload
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend.dev
+      target: development
+    container_name: maritime-onboarding-backend-dev
+    environment:
+      NODE_ENV: development
+      DEBUG: "maritime:*"
+      # Enable hot reload
+      CHOKIDAR_USEPOLLING: "true"
+      # Development database
+      DATABASE_URL: postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres_dev}@database:5432/${DB_NAME:-employee_onboarding_dev}
+      # Development email (MailHog)
+      MAIL_HOST: mailhog
+      MAIL_PORT: 1025
+      MAIL_SECURE: 'false'
+    ports:
+      - "3000:3000"
+      - "9229:9229"  # Node.js debugger
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ./uploads:/app/uploads
+    command: npm run dev:debug
+    depends_on:
+      - database
+      - redis
+      - mailhog
+
+  # Frontend with Hot Reload
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+      target: development
+    container_name: maritime-onboarding-frontend-dev
+    environment:
+      REACT_APP_API_URL: http://localhost:3000
+      REACT_APP_ENVIRONMENT: development
+      CHOKIDAR_USEPOLLING: "true"
+      FAST_REFRESH: "true"
+    ports:
+      - "3001:3000"  # React dev server
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    command: npm start
+    stdin_open: true
+    tty: true
+
+  # Redis for development
+  redis:
+    extends:
+      file: docker-compose.yml
+      service: redis
+    volumes:
+      - redis_dev_data:/data
+
+  # MailHog for email testing
+  mailhog:
+    extends:
+      file: docker-compose.yml
+      service: mailhog
+
+  # Development tools
+  adminer:
+    image: adminer:latest
+    container_name: maritime-onboarding-adminer
+    ports:
+      - "8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: database
+    depends_on:
+      - database
+
+  # Redis Commander
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: maritime-onboarding-redis-commander
+    environment:
+      REDIS_HOSTS: local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+
+volumes:
+  postgres_dev_data:
+  redis_dev_data:
+
+networks:
+  default:
+    name: maritime-onboarding-dev-network
