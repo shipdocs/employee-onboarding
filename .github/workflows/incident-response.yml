@@ -156,38 +156,42 @@ jobs:
           
           echo "✅ Incident record created"
 
-      - name: Upload Incident Record (Short-term)
+      - name: Upload Incident Record
         uses: actions/upload-artifact@v4
         with:
           name: incident-record-${{ steps.incident-id.outputs.incident-id }}
           path: incident-response/
-          retention-days: 90  # GitHub Actions retention; long-term archival handled below
+          retention-days: 30  # Standard GitHub Actions retention
 
-      - name: Prepare Incident Record for Long-term Archival
+      - name: Commit Incident Record to Repository
+        if: ${{ steps.classify.outputs.requires-notification == 'true' }}
         run: |
-          echo "📁 Preparing incident record for 7-year compliance archival..."
+          echo "💾 Committing critical incident record to repository..."
 
-          # Create compliance archive structure for incidents
-          mkdir -p compliance-archive/incidents/$(date +%Y)/$(date +%m)
-          cp -r incident-response/* compliance-archive/incidents/$(date +%Y)/$(date +%m)/
+          # Create compliance docs directory for incidents
+          mkdir -p compliance-docs/incidents
+          cp incident-response/incident-${{ steps.incident-id.outputs.incident-id }}.md compliance-docs/incidents/
 
-          # Add incident archival metadata
-          cat > compliance-archive/incidents/$(date +%Y)/$(date +%m)/incident-archive-metadata.json << EOF
-          {
-            "incident_id": "${{ steps.incident-id.outputs.incident-id }}",
-            "archive_date": "$(date -u)",
-            "incident_type": "${{ github.event.inputs.incident-type || github.event.client_payload.type }}",
-            "severity": "${{ github.event.inputs.severity || github.event.client_payload.severity }}",
-            "requires_notification": "${{ steps.classify.outputs.requires-notification }}",
-            "retention_requirement": "7 years (NIS2/GDPR compliance)",
-            "compliance_standards": ["NIS2 Article 21", "GDPR Article 33", "ISO 27035"],
-            "workflow_run": "${{ github.run_id }}",
-            "archive_location": "compliance-archive/incidents/$(date +%Y)/$(date +%m)/"
-          }
-          EOF
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
-          echo "✅ Incident record prepared for long-term compliance archival"
-          echo "🚨 Incident ID: ${{ steps.incident-id.outputs.incident-id }}"
+          # Add and commit the incident record
+          git add compliance-docs/incidents/
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "docs: add security incident record ${{ steps.incident-id.outputs.incident-id }}
+
+            - Type: ${{ github.event.inputs.incident-type || github.event.client_payload.type }}
+            - Severity: ${{ github.event.inputs.severity || github.event.client_payload.severity }}
+            - Requires notification: ${{ steps.classify.outputs.requires-notification }}
+            - Generated: $(date -u)"
+
+            git push
+            echo "✅ Critical incident record committed to repository for compliance"
+          fi
 
   # ===========================================
   # IMMEDIATE CONTAINMENT ACTIONS

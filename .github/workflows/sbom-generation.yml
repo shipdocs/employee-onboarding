@@ -459,37 +459,50 @@ jobs:
 
           EOF
           
-      - name: Upload supply chain compliance report (Short-term)
+      - name: Upload supply chain compliance report
         uses: actions/upload-artifact@v4
         with:
           name: supply-chain-compliance-report-${{ github.sha }}
           path: supply-chain-compliance-report.md
-          retention-days: 30  # GitHub Actions retention; long-term archival handled below
+          retention-days: 30  # Standard GitHub Actions retention
 
-      - name: Prepare Supply Chain Report for Long-term Archival
+      - name: Update Production SBOM in Repository
+        if: github.ref == 'refs/heads/main'
         run: |
-          echo "📁 Preparing supply chain compliance report for 7-year archival..."
+          echo "💾 Updating production SBOM in repository..."
 
-          # Create archive structure for supply chain compliance
-          mkdir -p compliance-archive/supply-chain/$(date +%Y)/$(date +%m)
-          cp supply-chain-compliance-report.md compliance-archive/supply-chain/$(date +%Y)/$(date +%m)/supply-chain-report-${{ github.sha }}.md
+          # Create compliance docs directory for SBOM
+          mkdir -p compliance-docs/sbom
 
-          # Add supply chain archival metadata
-          cat > compliance-archive/supply-chain/$(date +%Y)/$(date +%m)/supply-chain-metadata-${{ github.sha }}.json << EOF
-          {
-            "report_type": "supply-chain-compliance",
-            "archive_date": "$(date -u)",
-            "commit": "${{ github.sha }}",
-            "sbom_generation": "${{ needs.generate-sbom.result }}",
-            "compliance_verification": "${{ needs.supply-chain-compliance.result }}",
-            "retention_requirement": "7 years (NIS2 Article 21)",
-            "compliance_standards": ["NIS2 Article 21", "ISO 27001 A.5.21", "A.8.30", "A.14.2"],
-            "workflow_run": "${{ github.run_id }}",
-            "archive_location": "compliance-archive/supply-chain/$(date +%Y)/$(date +%m)/"
-          }
-          EOF
+          # Copy current SBOM to repository
+          if [ -f "sbom-cyclonedx-complete.json" ]; then
+            cp sbom-cyclonedx-complete.json compliance-docs/sbom/production-sbom-$(date +%Y%m%d).json
 
-          echo "✅ Supply chain compliance report prepared for long-term archival"
+            # Keep only the latest 3 SBOM files (current + 2 previous)
+            cd compliance-docs/sbom
+            ls -t production-sbom-*.json | tail -n +4 | xargs rm -f || true
+            cd ../..
+          fi
+
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # Add and commit the SBOM
+          git add compliance-docs/sbom/
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "docs: update production SBOM $(date +%Y%m%d)
+
+            - SBOM generation: ${{ needs.generate-sbom.result }}
+            - Compliance check: ${{ needs.supply-chain-compliance.result }}
+            - Generated: $(date -u)"
+
+            git push
+            echo "✅ Production SBOM updated in repository"
+          fi
 
       - name: Create Supply Chain Summary
         run: |
