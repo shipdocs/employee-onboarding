@@ -45,6 +45,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          # Install missing dependencies that are in package.json but not in node_modules
+          npm install winston winston-loki
           npm ci
           cd client && npm ci --legacy-peer-deps && cd ..
 
