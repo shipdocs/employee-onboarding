@@ -27,6 +27,13 @@ on:
         default: true
         type: boolean
 
+permissions:
+  contents: read
+  packages: read
+  actions: read
+  attestations: write
+  id-token: write
+
 jobs:
   generate-sbom:
     name: Generate Software Bill of Materials

@@ -23,6 +23,14 @@ on:
 env:
   NODE_VERSION: '20.x'
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+  pull-requests: read
+  statuses: write
+  checks: write
+
 jobs:
   # ===========================================
   # COMPLIANCE VALIDATION
