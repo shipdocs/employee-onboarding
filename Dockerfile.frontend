@@ -1,0 +1,66 @@
+# Maritime Onboarding System - Frontend Dockerfile
+# Multi-stage build: Build React app + Serve with Nginx
+
+# Build stage
+FROM node:20-alpine AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy client directory
+COPY client/package*.json ./
+
+# Install dependencies
+RUN npm ci --legacy-peer-deps && npm cache clean --force
+
+# Copy client source code
+COPY client ./
+
+# Build the React application
+RUN npm run build:optimized
+
+# Production stage
+FROM nginx:alpine AS production
+
+# Copy custom nginx configuration
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+
+# Copy built React app from builder stage
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Create a default nginx config if none exists
+RUN if [ ! -f /etc/nginx/nginx.conf ]; then \
+    echo 'events { worker_connections 1024; }' > /etc/nginx/nginx.conf && \
+    echo 'http {' >> /etc/nginx/nginx.conf && \
+    echo '  include /etc/nginx/mime.types;' >> /etc/nginx/nginx.conf && \
+    echo '  default_type application/octet-stream;' >> /etc/nginx/nginx.conf && \
+    echo '  server {' >> /etc/nginx/nginx.conf && \
+    echo '    listen 80;' >> /etc/nginx/nginx.conf && \
+    echo '    server_name localhost;' >> /etc/nginx/nginx.conf && \
+    echo '    root /usr/share/nginx/html;' >> /etc/nginx/nginx.conf && \
+    echo '    index index.html;' >> /etc/nginx/nginx.conf && \
+    echo '    location / {' >> /etc/nginx/nginx.conf && \
+    echo '      try_files $uri $uri/ /index.html;' >> /etc/nginx/nginx.conf && \
+    echo '    }' >> /etc/nginx/nginx.conf && \
+    echo '    location /api {' >> /etc/nginx/nginx.conf && \
+    echo '      proxy_pass http://backend:3000;' >> /etc/nginx/nginx.conf && \
+    echo '      proxy_set_header Host $host;' >> /etc/nginx/nginx.conf && \
+    echo '      proxy_set_header X-Real-IP $remote_addr;' >> /etc/nginx/nginx.conf && \
+    echo '    }' >> /etc/nginx/nginx.conf && \
+    echo '  }' >> /etc/nginx/nginx.conf && \
+    echo '}' >> /etc/nginx/nginx.conf; \
+    fi
+
+# Set permissions
+RUN chown -R nginx:nginx /usr/share/nginx/html
+
+# Expose ports
+EXPOSE 80
+EXPOSE 443
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

@@ -20,7 +20,30 @@
 - Git
 - 8GB RAM, 10GB disk space
 
-### **1. Clone & Setup**
+### **1. Automated Installation (Recommended)**
+
+```bash
+# Clone the repository
+git clone https://github.com/shipdocs/employee-onboarding.git
+cd employee-onboarding
+
+# Run the automated setup script
+./setup.sh
+```
+
+The setup script will:
+- ✅ Check prerequisites (Docker, Docker Compose)
+- ✅ Generate secure passwords automatically
+- ✅ Create SSL certificates for development
+- ✅ Build the client application
+- ✅ Start all services
+- ✅ Verify the installation
+
+### **2. Manual Installation**
+
+If you prefer manual setup or the script fails:
+
+#### **Clone & Setup**
 ```bash
 # Clone the repository
 git clone https://github.com/shipdocs/employee-onboarding.git
@@ -30,7 +53,7 @@ cd employee-onboarding
 cp .env.example .env
 ```
 
-### **2. Configure Environment**
+#### **Configure Environment**
 Edit `.env` file - **minimum required changes**:
 ```bash
 # Change these passwords!
@@ -47,6 +70,24 @@ openssl rand -base64 32
 openssl rand -base64 32
 ```
 
+#### **Build Client Application**
+```bash
+# Install dependencies and build
+cd client
+npm install --legacy-peer-deps
+npm run build
+cd ..
+```
+
+#### **Generate SSL Certificates**
+```bash
+# Create self-signed certificates for development
+mkdir -p nginx/ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout nginx/ssl/key.pem -out nginx/ssl/cert.pem \
+    -subj "/C=NL/ST=State/L=City/O=Maritime/CN=localhost"
+```
+
 ### **3. Start the System**
 ```bash
 # Start all services
@@ -54,6 +95,9 @@ docker compose up -d
 
 # Check status
 docker ps
+
+# View logs
+docker compose logs -f
 ```
 
 ### **4. Access the Application**
