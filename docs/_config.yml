@@ -1,0 +1,98 @@
+# Jekyll configuration for GitHub Pages
+title: Maritime Employee Onboarding System
+description: Complete crew training & certification platform for the shipping industry
+theme: jekyll-theme-cayman
+baseurl: "/employee-onboarding"
+url: "https://shipdocs.github.io"
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Quick Start
+    url: /quickstart
+  - title: Installation
+    url: /installation
+  - title: Features
+    url: /features
+  - title: Documentation
+    url: /documentation
+  - title: API Reference
+    url: /api
+  - title: GitHub
+    url: https://github.com/shipdocs/employee-onboarding
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-relative-links
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Include files
+include:
+  - README.md
+  - QUICK_START.md
+  - INSTALLATION_GUIDE.md
+  - SECURITY.md
+  - CONTRIBUTING.md
+  - LICENSE
+
+# Exclude files
+exclude:
+  - node_modules
+  - vendor
+  - .gitignore
+  - docker-compose.yml
+  - package.json
+  - package-lock.json
+
+# Collections
+collections:
+  features:
+    output: true
+    permalink: /features/:name
+  guides:
+    output: true
+    permalink: /guides/:name
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+      author: "Maritime Onboarding Team"
+  - scope:
+      path: ""
+      type: "features"
+    values:
+      layout: "feature"
+  - scope:
+      path: ""
+      type: "guides"
+    values:
+      layout: "guide"
+
+# SEO
+twitter:
+  username: shipdocs
+  card: summary_large_image
+
+social:
+  name: ShipDocs
+  links:
+    - https://github.com/shipdocs
+    - https://www.linkedin.com/company/shipdocs
+
+# Analytics (add your tracking ID when ready)
+google_analytics: # UA-XXXXXXXXX-X
+
+# Repository
+repository: shipdocs/employee-onboarding
