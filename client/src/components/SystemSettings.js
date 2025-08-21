@@ -19,10 +19,12 @@ import {
   Eye,
   EyeOff,
   Phone,
-  FileText
+  FileText,
+  CloudUpload
 } from 'lucide-react';
 import adminService from '../services/adminService';
 import toast from 'react-hot-toast';
+import ExternalLoggingSettings from './admin/ExternalLoggingSettings';
 
 const SystemSettings = () => {
   const { t } = useTranslation(['admin', 'common']);
@@ -206,7 +208,8 @@ const SystemSettings = () => {
     { key: 'security', label: t('admin:settings.categories.security'), icon: Shield, description: t('admin:settings.descriptions.security') },
     { key: 'training', label: t('admin:settings.categories.training'), icon: GraduationCap, description: t('admin:settings.descriptions.training') },
     { key: 'notifications', label: t('admin:settings.categories.notifications'), icon: Bell, description: t('admin:settings.descriptions.notifications') },
-    { key: 'integrations', label: 'External Integrations', icon: Link, description: 'Configure external services like PagerDuty, Slack, and webhooks' }
+    { key: 'integrations', label: 'External Integrations', icon: Link, description: 'Configure external services like PagerDuty, Slack, and webhooks' },
+    { key: 'external_logging', label: 'External Logging', icon: CloudUpload, description: 'Configure Grafana Cloud logging for security monitoring and compliance' }
   ];
 
   const handleSettingChange = (category, key, value) => {
@@ -951,26 +954,31 @@ const SystemSettings = () => {
             </div>
           )}
 
-          <div key={`${activeCategory}-${emailProvider}-${translationProvider}-${integrationProvider}-${vercelFirewallEnabled}`} className="space-y-4 sm:space-y-6">
-            {Object.entries(categorySettings).map(([key, setting]) => (
-              <div key={`${activeCategory}-${key}`} className="border-b border-gray-200 pb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {formatSettingKey(key)}
-                </label>
-                {renderSettingInput(activeCategory, key, setting)}
-              </div>
-            ))}
+          {/* Special rendering for External Logging */}
+          {activeCategory === 'external_logging' ? (
+            <ExternalLoggingSettings />
+          ) : (
+            <div key={`${activeCategory}-${emailProvider}-${translationProvider}-${integrationProvider}-${vercelFirewallEnabled}`} className="space-y-4 sm:space-y-6">
+              {Object.entries(categorySettings).map(([key, setting]) => (
+                <div key={`${activeCategory}-${key}`} className="border-b border-gray-200 pb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    {formatSettingKey(key)}
+                  </label>
+                  {renderSettingInput(activeCategory, key, setting)}
+                </div>
+              ))}
 
-            {Object.keys(categorySettings).length === 0 && (
-              <div className="text-center py-12">
-                <Settings className="mx-auto h-12 w-12 text-gray-400" />
-                <h3 className="mt-2 text-sm font-medium text-gray-900">{t('admin:settings.empty.title')}</h3>
-                <p className="mt-1 text-sm text-gray-500">
-                  {t('admin:settings.empty.message')}
-                </p>
-              </div>
-            )}
-          </div>
+              {Object.keys(categorySettings).length === 0 && (
+                <div className="text-center py-12">
+                  <Settings className="mx-auto h-12 w-12 text-gray-400" />
+                  <h3 className="mt-2 text-sm font-medium text-gray-900">{t('admin:settings.empty.title')}</h3>
+                  <p className="mt-1 text-sm text-gray-500">
+                    {t('admin:settings.empty.message')}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
