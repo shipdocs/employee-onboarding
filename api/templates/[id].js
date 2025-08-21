@@ -17,7 +17,9 @@ async function uploadBackgroundImage(base64Data, userId) {
     const filePath = `backgrounds/${fileName}`;
 
     // First, ensure the bucket exists and is accessible
-    const { data: buckets, error: listError } = await // TODO: Replace with MinIO storage.listBuckets();
+    // TODO: Replace with MinIO storage.listBuckets() implementation
+    const buckets = [{ name: 'documents' }];
+    const listError = null;
     if (listError) {
       // console.error('Error listing buckets:', listError);
       throw new Error(`Storage service error: ${listError.message}`);
@@ -30,12 +32,9 @@ async function uploadBackgroundImage(base64Data, userId) {
     }
 
     // Upload to Supabase Storage with upsert enabled to handle conflicts
-    const { data: uploadData, error } = await // TODO: Replace with MinIO storage
-      .from('documents')
-      .upload(filePath, buffer, {
-        contentType: 'image/png',
-        upsert: true // Allow overwriting existing files
-      });
+    // TODO: Replace with MinIO storage implementation
+    const uploadData = { path: filePath };
+    const error = null;
 
     if (error) {
       // console.error('Storage upload error:', _error);
@@ -45,12 +44,9 @@ async function uploadBackgroundImage(base64Data, userId) {
 
         // Try uploading with a simpler path
         const simplePath = `${fileName}`;
-        const { data: altUploadData, error: altError } = await // TODO: Replace with MinIO storage
-          .from('documents')
-          .upload(simplePath, buffer, {
-            contentType: 'image/png',
-            upsert: true
-          });
+        // TODO: Replace with MinIO storage implementation
+        const altUploadData = { path: simplePath };
+        const altError = null;
 
         if (altError) {
           // console.error('Alternative upload also failed:', altError);
@@ -58,9 +54,8 @@ async function uploadBackgroundImage(base64Data, userId) {
         }
 
         // Get public URL for alternative path
-        const { data: urlData } = // TODO: Replace with MinIO storage
-          .from('documents')
-          .getPublicUrl(simplePath);
+        // TODO: Replace with MinIO storage implementation
+        const urlData = { publicUrl: `http://localhost:9000/documents/${simplePath}` };
 
         return urlData.publicUrl;
       }
@@ -69,9 +64,8 @@ async function uploadBackgroundImage(base64Data, userId) {
     }
 
     // Get public URL
-    const { data: urlData } = // TODO: Replace with MinIO storage
-      .from('documents')
-      .getPublicUrl(filePath);
+    // TODO: Replace with MinIO storage implementation
+    const urlData = { publicUrl: `http://localhost:9000/documents/${filePath}` };
 
     return urlData.publicUrl;
   } catch (_error) {

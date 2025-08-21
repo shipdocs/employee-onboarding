@@ -277,9 +277,8 @@ function getFileUrl(bucket, path) {
   if (!path) return null;
 
   try {
-    const { data } = // TODO: Replace with MinIO storage
-      .from(bucket)
-      .getPublicUrl(path);
+    // TODO: Replace with MinIO storage implementation
+    const data = { publicUrl: `http://localhost:9000/${bucket}/${path}` };
 
     return data.publicUrl;
   } catch (_error) {

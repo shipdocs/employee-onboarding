@@ -1,11 +1,7 @@
 const { supabase } = require('../lib/database-supabase-compat');
 const { apiRateLimit } = require('../../lib/rateLimit');
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+// Supabase client is already initialized from the import above
 
 /**
  * Rate limiting for CSP violation reports

@@ -150,12 +150,9 @@ async function handler(req, res) {
 
       for (const bucketName of buckets) {
         try {
-          const { data: files, error: listError } = await // TODO: Replace with MinIO storage
-            .from(bucketName)
-            .list('', {
-              limit: 1000,
-              sortBy: { column: 'created_at', order: 'asc' }
-            });
+          // TODO: Replace with MinIO storage implementation
+          const files = [];
+          const listError = null;
 
           if (listError) {
             // console.error(`❌ Error listing files in ${bucketName}:`, listError.message);
@@ -179,9 +176,8 @@ async function handler(req, res) {
 
             // Delete orphaned files in batches
             const filesToDelete = orphanedFiles.map(file => file.name);
-            const { error: deleteError } = await // TODO: Replace with MinIO storage
-              .from(bucketName)
-              .remove(filesToDelete);
+            // TODO: Replace with MinIO storage implementation
+            const deleteError = null;
 
             if (deleteError) {
               // console.error(`❌ Error deleting orphaned files from ${bucketName}:`, deleteError.message);

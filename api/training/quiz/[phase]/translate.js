@@ -8,10 +8,7 @@ const { supabase } = require('../lib/database-supabase-compat');
 const AITranslationService = require('../../../../lib/aiTranslationService');
 const { trainingRateLimit } = require('../../../../lib/rateLimit');
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+// Supabase client is already initialized from the import above
 
 // Initialize translation service
 const translationService = new AITranslationService();

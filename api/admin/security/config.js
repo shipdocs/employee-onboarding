@@ -18,7 +18,9 @@ module.exports = adminRateLimit(async (req, res) => {
     }
 
     const token = authHeader.split(' ')[1];
-    const { data: { user }, error: authError } = await // TODO: Replace with JWT auth.getUser(token);
+    // TODO: Replace with JWT auth.getUser(token) implementation
+    const user = null;
+    const authError = new Error('Authentication not implemented');
 
     if (authError || !user) {
       return res.status(401).json({ error: 'Invalid token' });

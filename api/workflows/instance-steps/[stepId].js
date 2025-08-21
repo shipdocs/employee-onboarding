@@ -2,7 +2,7 @@ const { supabase } = require('../lib/database-supabase-compat');
 const { requireAuth } = require('../../../../../lib/auth.js');
 const { trainingRateLimit } = require('../../../../../lib/rateLimit');
 
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
+// Supabase client is already initialized from the import above
 
 /**
  * Workflow Step Progress API
