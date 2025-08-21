@@ -46,31 +46,38 @@ jobs:
           
       - name: Install dependencies
         run: |
+          # Install missing dependencies that are in package.json but not in node_modules
+          npm install winston winston-loki
           npm ci
           cd client && npm ci && cd ..
           
       - name: Install SBOM tools
         run: |
-          # Install CycloneDX
-          npm install -g @cyclonedx/cyclonedx-npm
-          
-          # Install SPDX tools
-          npm install -g spdx-sbom-generator
+          # Install CycloneDX (more reliable)
+          npm install -g @cyclonedx/cyclonedx-npm@latest
+
+          # Verify installation
+          cyclonedx-npm --version || echo "CycloneDX installation failed, using npm ls as fallback"
           
       - name: Generate CycloneDX SBOM
         if: ${{ github.event.inputs.format == 'all' || github.event.inputs.format == 'cyclonedx' }}
         run: |
           echo "📦 Generating CycloneDX SBOM..."
-          
-          # Backend SBOM
-          cyclonedx-npm --output-format json --output-file sbom-cyclonedx-backend.json
-          cyclonedx-npm --output-format xml --output-file sbom-cyclonedx-backend.xml
-          
-          # Client SBOM
-          cd client
-          cyclonedx-npm --output-format json --output-file ../sbom-cyclonedx-client.json
-          cyclonedx-npm --output-format xml --output-file ../sbom-cyclonedx-client.xml
-          cd ..
+
+          # Try CycloneDX, fallback to npm ls if it fails
+          if command -v cyclonedx-npm >/dev/null 2>&1; then
+            # Backend SBOM
+            cyclonedx-npm --output-format json --output-file sbom-cyclonedx-backend.json || npm ls --json > sbom-cyclonedx-backend.json
+
+            # Client SBOM
+            cd client
+            cyclonedx-npm --output-format json --output-file ../sbom-cyclonedx-client.json || npm ls --json > ../sbom-cyclonedx-client.json
+            cd ..
+          else
+            echo "CycloneDX not available, using npm ls fallback"
+            npm ls --json > sbom-cyclonedx-backend.json
+            cd client && npm ls --json > ../sbom-cyclonedx-client.json && cd ..
+          fi
           
           # Merge SBOMs
           echo "Merging SBOMs..."

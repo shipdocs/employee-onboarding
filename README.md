@@ -119,7 +119,7 @@ Unlike generic training platforms, this system understands maritime operations:
 | **Deployment** | Docker + Docker Compose | Containerized, scalable deployment |
 | **Security** | HTTPS, Rate Limiting, Audit Logs | Enterprise-grade security |
 
-### **🔒 Security Features**
+### **🔒 Security & Compliance Features**
 - **🛡️ Multi-Factor Authentication** - Enhanced security for admin accounts
 - **🔐 Row Level Security** - Database-level access control
 - **📋 GDPR Compliance** - Data export and privacy controls
@@ -127,6 +127,14 @@ Unlike generic training platforms, this system understands maritime operations:
 - **🔒 Data Encryption** - Optional encryption at rest
 - **🚫 Rate Limiting** - Protection against abuse
 - **🔍 Security Headers** - OWASP recommended security headers
+
+### **🏛️ Enterprise Compliance Framework**
+- **🔍 Automated Security Scanning** - Daily vulnerability assessments with zero-tolerance for critical issues
+- **📊 Quarterly Compliance Reports** - Automated ISO 27001, NIS2, and GDPR documentation
+- **🚨 24-Hour Incident Response** - NIS2-compliant incident handling and notification procedures
+- **📦 Supply Chain Security** - SBOM generation and dependency vulnerability tracking
+- **🛡️ Zero-Trust Security Gate** - Automated deployment blocking for security violations
+- **📋 Compliance Documentation** - Version-controlled evidence collection for audits
 
 ## 🎯 **Maritime Training Workflow**
 

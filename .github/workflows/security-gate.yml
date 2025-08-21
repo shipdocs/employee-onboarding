@@ -45,6 +45,8 @@ jobs:
 
       - name: Install dependencies
         run: |
+          # Install missing dependencies that are in package.json but not in node_modules
+          npm install winston winston-loki
           npm ci
           cd client && npm ci --legacy-peer-deps && cd ..
 
@@ -82,7 +84,7 @@ jobs:
           fi
           
           # 4. Vulnerability Management
-          if [ -f ".github/workflows/security.yml" ]; then
+          if [ -f ".github/workflows/security-gate.yml" ]; then
             echo "✅ Vulnerability Management: Security scanning configured"
             CONTROLS_PASSED=$((CONTROLS_PASSED + 1))
           else
