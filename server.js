@@ -32,17 +32,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-// EMERGENCY TEST: Direct route registration to test if Express routing works
-app.post('/api/test-emergency', (req, res) => {
-  res.json({
-    message: 'Emergency test route works!',
-    timestamp: new Date().toISOString(),
-    method: req.method,
-    path: req.path
-  });
-});
 
-console.log('🚨 EMERGENCY TEST ROUTE REGISTERED: /api/test-emergency');
 
 // API Health check endpoint - ensure it works even if route loading fails
 app.get('/api/health', async (req, res) => {
@@ -66,18 +56,20 @@ app.get('/api/health', async (req, res) => {
 function convertToExpressRoute(filePath) {
   // Remove api/ prefix and .js suffix
   let route = filePath.replace(/^api/, '').replace(/\.js$/, '');
-  
-  // Convert [param] to :param
-  route = route.replace(/\[([^\]]+)\]/g, ':$1');
-  
+
+  // Convert [param] to :param - rewritten for clarity
+  route = route.replace(/\[([^[\]]+)\]/g, function(match, paramName) {
+    return ':' + paramName;
+  });
+
   // Handle index files
   if (route.endsWith('/index')) {
     route = route.replace(/\/index$/, '');
   }
-  
+
   // Ensure route starts with /api
   route = `/api${route}`;
-  
+
   return route;
 }
 
@@ -129,7 +121,6 @@ function loadAllRoutes() {
         };
         
         // Register route for all HTTP methods
-        console.log(`🔧 Registering route: ${route}`);
         app.all(route, wrappedHandler);
         console.log(`✅ Loaded: ${route} <- ${filePath}`);
         loadedCount++;
@@ -200,13 +191,9 @@ async function startServer() {
     console.log('✅ Critical routes registered');
 
     // Load all routes
-    console.log('🔧 About to load all routes...');
     loadAllRoutes();
-    console.log('🔧 Finished loading all routes...');
 
     // Register error handling and 404 middleware AFTER routes are loaded
-    console.log('🔧 Registering error handling middleware...');
-    console.log('🔧 DEBUG: About to register error middleware');
 
     // Error handling middleware
     app.use((err, req, res, next) => {
