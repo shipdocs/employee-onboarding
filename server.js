@@ -32,6 +32,18 @@ app.get('/health', (req, res) => {
   });
 });
 
+// EMERGENCY TEST: Direct route registration to test if Express routing works
+app.post('/api/test-emergency', (req, res) => {
+  res.json({
+    message: 'Emergency test route works!',
+    timestamp: new Date().toISOString(),
+    method: req.method,
+    path: req.path
+  });
+});
+
+console.log('🚨 EMERGENCY TEST ROUTE REGISTERED: /api/test-emergency');
+
 // API Health check endpoint - ensure it works even if route loading fails
 app.get('/api/health', async (req, res) => {
   try {
@@ -194,6 +206,7 @@ async function startServer() {
 
     // Register error handling and 404 middleware AFTER routes are loaded
     console.log('🔧 Registering error handling middleware...');
+    console.log('🔧 DEBUG: About to register error middleware');
 
     // Error handling middleware
     app.use((err, req, res, next) => {
