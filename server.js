@@ -48,6 +48,7 @@ app.get('/api/health', async (req, res) => {
 
 // Staff Login endpoint - ensure it works even if route loading fails
 app.post('/api/auth/staff-login', async (req, res) => {
+  console.log('🔐 Direct staff-login route called!');
   try {
     const handler = require('./api/auth/staff-login.js');
     await handler(req, res);
@@ -58,6 +59,11 @@ app.post('/api/auth/staff-login', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   }
+});
+
+// Test endpoint to verify direct registration works
+app.get('/api/test-direct', (req, res) => {
+  res.json({ message: 'Direct route registration works!', timestamp: new Date().toISOString() });
 });
 
 /**
