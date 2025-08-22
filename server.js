@@ -46,25 +46,7 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
-// Staff Login endpoint - ensure it works even if route loading fails
-app.post('/api/auth/staff-login', async (req, res) => {
-  console.log('🔐 Direct staff-login route called!');
-  try {
-    const handler = require('./api/auth/staff-login.js');
-    await handler(req, res);
-  } catch (error) {
-    console.error('Error in /api/auth/staff-login:', error.message);
-    res.status(500).json({
-      error: 'Internal server error',
-      timestamp: new Date().toISOString()
-    });
-  }
-});
 
-// Test endpoint to verify direct registration works
-app.get('/api/test-direct', (req, res) => {
-  res.json({ message: 'Direct route registration works!', timestamp: new Date().toISOString() });
-});
 
 /**
  * Convert Next.js [param] pattern to Express :param pattern
@@ -196,7 +178,32 @@ async function startServer() {
     } else {
       console.log('✅ Database connected');
     }
-    
+
+    // Register critical routes directly (before dynamic loading)
+    console.log('🔧 Registering critical routes...');
+
+    // Staff Login endpoint - ensure it works even if route loading fails
+    app.post('/api/auth/staff-login', async (req, res) => {
+      console.log('🔐 Direct staff-login route called!');
+      try {
+        const handler = require('./api/auth/staff-login.js');
+        await handler(req, res);
+      } catch (error) {
+        console.error('Error in /api/auth/staff-login:', error.message);
+        res.status(500).json({
+          error: 'Internal server error',
+          timestamp: new Date().toISOString()
+        });
+      }
+    });
+
+    // Test endpoint to verify direct registration works
+    app.get('/api/test-direct', (req, res) => {
+      res.json({ message: 'Direct route registration works!', timestamp: new Date().toISOString() });
+    });
+
+    console.log('✅ Critical routes registered');
+
     // Load all routes
     loadAllRoutes();
     
