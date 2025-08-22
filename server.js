@@ -117,6 +117,7 @@ function loadAllRoutes() {
         };
         
         // Register route for all HTTP methods
+        console.log(`🔧 Registering route: ${route}`);
         app.all(route, wrappedHandler);
         console.log(`✅ Loaded: ${route} <- ${filePath}`);
         loadedCount++;
@@ -187,7 +188,9 @@ async function startServer() {
     console.log('✅ Critical routes registered');
 
     // Load all routes
+    console.log('🔧 About to load all routes...');
     loadAllRoutes();
+    console.log('🔧 Finished loading all routes...');
 
     // Register error handling and 404 middleware AFTER routes are loaded
     console.log('🔧 Registering error handling middleware...');
