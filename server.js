@@ -46,6 +46,20 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
+// Staff Login endpoint - ensure it works even if route loading fails
+app.post('/api/auth/staff-login', async (req, res) => {
+  try {
+    const handler = require('./api/auth/staff-login.js');
+    await handler(req, res);
+  } catch (error) {
+    console.error('Error in /api/auth/staff-login:', error.message);
+    res.status(500).json({
+      error: 'Internal server error',
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 /**
  * Convert Next.js [param] pattern to Express :param pattern
  */
