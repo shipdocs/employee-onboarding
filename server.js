@@ -146,25 +146,7 @@ function loadAllRoutes() {
   console.log('='.repeat(50) + '\n');
 }
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error('Unhandled error:', err);
-  if (!res.headersSent) {
-    res.status(500).json({ 
-      error: 'Internal server error',
-      message: process.env.NODE_ENV === 'development' ? err.message : undefined
-    });
-  }
-});
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ 
-    error: 'Not found',
-    path: req.path,
-    method: req.method
-  });
-});
+// Note: Error handling and 404 middleware moved to after route loading
 
 // Initialize server
 async function startServer() {
@@ -206,7 +188,32 @@ async function startServer() {
 
     // Load all routes
     loadAllRoutes();
-    
+
+    // Register error handling and 404 middleware AFTER routes are loaded
+    console.log('🔧 Registering error handling middleware...');
+
+    // Error handling middleware
+    app.use((err, req, res, next) => {
+      console.error('Unhandled error:', err);
+      if (!res.headersSent) {
+        res.status(500).json({
+          error: 'Internal server error',
+          message: process.env.NODE_ENV === 'development' ? err.message : undefined
+        });
+      }
+    });
+
+    // 404 handler (must be last)
+    app.use((req, res) => {
+      res.status(404).json({
+        error: 'Not found',
+        path: req.path,
+        method: req.method
+      });
+    });
+
+    console.log('✅ Error handling middleware registered');
+
     // Start server
     app.listen(PORT, () => {
       console.log(`✅ Server running on port ${PORT}`);
