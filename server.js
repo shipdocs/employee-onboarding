@@ -32,6 +32,20 @@ app.get('/health', (req, res) => {
   });
 });
 
+// API Health check endpoint - ensure it works even if route loading fails
+app.get('/api/health', async (req, res) => {
+  try {
+    const handler = require('./api/health.js');
+    await handler(req, res);
+  } catch (error) {
+    console.error('Error in /api/health:', error.message);
+    res.status(500).json({
+      error: 'Internal server error',
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 /**
  * Convert Next.js [param] pattern to Express :param pattern
  */
