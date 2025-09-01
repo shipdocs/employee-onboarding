@@ -441,7 +441,7 @@ jobs:
           cd ..
 
       - name: Run OSV Scanner for additional vulnerability detection
-        uses: google/osv-scanner-action@v1.7.4
+        uses: google/osv-scanner-action@v2.2.2
         continue-on-error: true
         with:
           scan-args: |-
