@@ -207,7 +207,7 @@
     "identity-obj-proxy": "^3.0.0",
     "inquirer": "^12.9.0",
     "jest": "30.0.5",
-    "jest-environment-jsdom": "30.0.5",
+    "jest-environment-jsdom": "30.1.2",
     "jest-transform-stub": "^2.0.0",
     "knip": "5.62.0",
     "lighthouse": "^12.8.1",
