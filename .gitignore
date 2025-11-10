@@ -192,6 +192,7 @@ playwright-report/
 .claude/settings.json
 .serena/
 .ai-collaboration/
+.augment/
 mcp-config.json
 claude-config.json
 *.mcp

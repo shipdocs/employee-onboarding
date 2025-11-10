@@ -90,8 +90,6 @@
     "dependency:report": "node scripts/dependency-security-cli.js report",
     "dependency:schedule": "node scripts/dependency-security-cli.js schedule",
     "dependency:verify": "npm run dependency:scan && npm run test:security:comprehensive",
-    "supabase:setup-mcp": "node scripts/setup-supabase-mcp.js",
-    "supabase:test-mcp": "node scripts/test-supabase-mcp.js",
     "test:email:security": "node scripts/test-email-security.js",
     "email:security:monitor": "node -e \"require('./lib/email-monitoring').emailMonitoring.getDashboardData().then(console.log)\"",
     "email:security:stats": "node -e \"require('./lib/email-security').emailSecurity.getSecurityMetrics('24h').then(console.log)\"",
