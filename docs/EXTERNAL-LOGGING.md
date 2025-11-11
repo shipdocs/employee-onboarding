@@ -24,7 +24,7 @@ The Maritime Onboarding Platform supports external logging to services like Graf
 export EXTERNAL_LOGGING_ENABLED=true
 export GRAFANA_CLOUD_URL=https://logs-prod-us-central1.grafana.net
 export GRAFANA_CLOUD_USER=123456  # Your Grafana Cloud user ID
-export GRAFANA_CLOUD_API_KEY=glc_eyJvIjoiMTIzNDU2IiwibiI6InN0YWNrLTEyMzQ1Ni1obS1yZWFkLXdyaXRlIiwiayI6IjEyMzQ1Njc4OTAiLCJtIjp7InIiOiJ1cyJ9fQ==
+export GRAFANA_CLOUD_API_KEY=your_grafana_cloud_api_key_here
 
 # Optional settings
 export EXTERNAL_LOGGING_LEVEL=warn  # error, warn, info, debug
