@@ -369,7 +369,7 @@ jobs:
           echo "**Overall**: ${{ needs.compliance-check.outputs.compliance-status }}" >> security-gate-report.md
 
       - name: Upload Security Gate Report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: security-gate-report-${{ github.run_id }}
