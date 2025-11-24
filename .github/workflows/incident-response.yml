@@ -157,7 +157,7 @@ jobs:
           echo "✅ Incident record created"
 
       - name: Upload Incident Record
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: incident-record-${{ steps.incident-id.outputs.incident-id }}
           path: incident-response/
@@ -284,7 +284,7 @@ jobs:
           EOF
 
       - name: Upload Evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: incident-evidence-${{ needs.incident-classification.outputs.incident-id }}
           path: |
@@ -411,7 +411,7 @@ jobs:
           EOF
 
       - name: Upload Notification Templates
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: incident-notifications-${{ needs.incident-classification.outputs.incident-id }}
           path: notifications/

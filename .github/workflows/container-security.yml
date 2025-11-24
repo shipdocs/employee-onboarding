@@ -74,7 +74,7 @@ jobs:
           docker save "${{ steps.frontend.outputs.image }}" > /tmp/images/frontend.tar
 
       - name: Upload Images
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: container-images-${{ github.run_id }}
           path: /tmp/images/
@@ -248,7 +248,7 @@ jobs:
           EOF
 
       - name: Upload Scan Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: container-security-scans-${{ github.run_id }}
           path: |
@@ -419,7 +419,7 @@ jobs:
           EOF
 
       - name: Upload Docker Security Analysis
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: docker-security-analysis-${{ github.run_id }}
           path: docker-security-analysis/

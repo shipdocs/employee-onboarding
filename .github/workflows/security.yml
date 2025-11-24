@@ -97,7 +97,7 @@ jobs:
           sarif_file: snyk-code.sarif
 
       - name: Upload SAST artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: sast-results
@@ -151,7 +151,7 @@ jobs:
           npm run test:security:auth || echo "Authentication security tests not yet implemented"
 
       - name: Upload security test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: security-test-results
@@ -239,7 +239,7 @@ jobs:
           echo "4. Monitor security metrics dashboard" >> security-gate-report.md
 
       - name: Upload Security Gate Report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: security-gate-report
@@ -276,7 +276,7 @@ jobs:
           npm audit --audit-level=moderate || true
 
       - name: Upload audit results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: npm-audit-results
           path: audit-results.json
@@ -327,7 +327,7 @@ jobs:
           npm audit --audit-level=moderate || true
 
       - name: Upload client audit results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: client-audit-results
           path: client-audit-results.json
@@ -532,7 +532,7 @@ jobs:
           "
 
       - name: Upload Dependency Security Reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: dependency-security-reports
@@ -608,7 +608,7 @@ jobs:
           npm outdated || true
 
       - name: Upload outdated packages report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: outdated-packages
           path: outdated-packages.json
@@ -624,7 +624,7 @@ jobs:
           npm outdated || true
 
       - name: Upload client outdated packages report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: client-outdated-packages
           path: client-outdated-packages.json
