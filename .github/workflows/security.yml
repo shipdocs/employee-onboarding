@@ -22,7 +22,7 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4.4.0
@@ -112,7 +112,7 @@ jobs:
     needs: sast-analysis
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4.4.0
@@ -250,7 +250,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.4.0
@@ -302,7 +302,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.4.0
@@ -353,7 +353,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.4.0
@@ -403,7 +403,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.4.0
@@ -587,7 +587,7 @@ jobs:
     needs: automated-dependency-scanning
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.4.0

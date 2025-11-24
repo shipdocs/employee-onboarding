@@ -52,7 +52,7 @@ jobs:
       
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v6
 
       - name: Generate Incident ID
         id: incident-id
@@ -204,7 +204,7 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v6
 
       - name: Security Scan for Evidence
         run: |
