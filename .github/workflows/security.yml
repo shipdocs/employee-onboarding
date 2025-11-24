@@ -167,7 +167,7 @@ jobs:
 
     steps:
       - name: Download SAST results
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: sast-results
           path: ./sast-results/
